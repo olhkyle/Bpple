@@ -4,7 +4,7 @@ const users = require('../mock-data/users');
 const jwt = require('jsonwebtoken');
 
 router.get('/auth', (req, res) => {
-	const accessToken = req.headers.authorization || req.cookies.accessToken;
+	const accessToken = req.cookies.accessToken;
 
 	try {
 		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
@@ -37,6 +37,7 @@ router.post('/signin', (req, res) => {
 		expiresIn: '1d',
 	});
 
+	// TODO : 쿠키명 바꿔서 상수화하기
 	res.cookie('accessToken', accessToken, {
 		maxAge: 1000 * 60 * 60 * 24 * 7, // 7d
 		httpOnly: true,
@@ -55,6 +56,6 @@ router.post('/signup', (req, res) => {
 	res.send({ message: '회원가입에 성공하였습니다.' });
 });
 
-router.post('/signup', () => {});
+router.post('/signout', () => {});
 
 module.exports = router;
