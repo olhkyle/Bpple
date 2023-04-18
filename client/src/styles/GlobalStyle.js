@@ -23,6 +23,11 @@ const GlobalStyle = css`
     --font-color: #fff;
     --body-bg-color: #232323;
   }
+
+  a {
+    text-decoration: none;
+    color: #0070c9;
+  }
 `;
 
 export default GlobalStyle;
