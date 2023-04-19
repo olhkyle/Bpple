@@ -20,4 +20,7 @@ export default {
   COMMUNITY_CATEGORY_IPHONE: '/community/iphone',
   COMMUNITY_CATEGORY_MAC: '/community/mac',
   COMMUNITY_POST: '/community/:id',
+  COMMUNITY_QUESTION: '/community/question',
+  COMMUNITY_RANK: '/community/rank',
+  COMMUNITY_ME: '/community/me',
 };
