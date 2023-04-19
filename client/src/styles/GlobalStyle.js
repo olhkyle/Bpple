@@ -16,12 +16,14 @@ const GlobalStyle = css`
 
   body[data-theme='light'] {
     --font-color: #000;
+    --hover-font-color: #0071e2;
     --body-bg-color: #fff;
     --footer-bg-color: #f5f5f7;
   }
 
   body[data-theme='dark'] {
     --font-color: #fff;
+    --hover-font-color: #56abff;
     --body-bg-color: #232323;
     --footer-bg-color: #232323;
   }
