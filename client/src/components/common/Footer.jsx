@@ -4,7 +4,7 @@ import { Container, Flex, Text, Divider } from '@mantine/core';
 
 const FooterContainer = styled.footer`
   background-color: var(--footer-bg-color);
-  color: #6e6e73;
+  color: var(--footer-font-color);
 `;
 
 const Wrapper = styled(Container)`
@@ -46,7 +46,7 @@ const Footer = () => {
       </Wrapper>
       <Divider my="sm" sx={{ maxWidth: '1024px', margin: '0 auto' }} />
       <Wrapper>
-        <Flex justify="flex-start" align="align-items" direction="column">
+        <Flex justify="center" align="align-items" direction="column">
           {businessInfo.map((info, idx) => (
             <li key={idx}>{info}</li>
           ))}
@@ -54,7 +54,7 @@ const Footer = () => {
       </Wrapper>
       <Wrapper>
         <Text>Copyright © 2023 Apple Inc. 모든 권리 보유.</Text>
-        <Flex sx={{ gap: '10px' }}>
+        <Flex sx={{ gap: '1rem' }}>
           {regulations.map((regulation, idx) => (
             <li key={idx}>{regulation}</li>
           ))}
