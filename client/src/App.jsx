@@ -5,12 +5,19 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import Root from './components/Root';
-import { SignIn, SignUp } from './pages';
+import { SignIn, SignUp, Community, CommunityMe } from './pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    children: [
+      {
+        path: '/community',
+        element: <Community />,
+        children: [{ path: 'me', element: <CommunityMe /> }],
+      },
+    ],
   },
   {
     path: '/signin',

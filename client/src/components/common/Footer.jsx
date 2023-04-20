@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { Container, Flex, Text, Divider } from '@mantine/core';
 
 const FooterContainer = styled.footer`
+  padding-top: 0.5rem;
+  padding-bottom: 1.25rem;
   background-color: var(--footer-bg-color);
   color: var(--footer-font-color);
 `;
@@ -41,10 +43,10 @@ const Footer = () => {
     <FooterContainer>
       <Wrapper>
         <LogoContainer>
-          <img src="logo-dark.svg" alt="logo" />
+          <img src={document.body.dataset.theme === 'light' ? '/logo-dark.svg' : '/logo-light.svg'} alt="logo" />
         </LogoContainer>
       </Wrapper>
-      <Divider my="sm" sx={{ maxWidth: '1024px', margin: '0 auto' }} />
+      <Divider my="sm" m="0 auto" maw="1024px" />
       <Wrapper>
         <Flex justify="center" align="align-items" direction="column">
           {businessInfo.map((info, idx) => (
@@ -59,7 +61,7 @@ const Footer = () => {
             <li key={idx}>{regulation}</li>
           ))}
         </Flex>
-        <Text sx={{ fontWeight: '500' }}>대한민국</Text>
+        <Text fw="500">대한민국</Text>
       </Wrapper>
     </FooterContainer>
   );
