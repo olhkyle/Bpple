@@ -8,7 +8,7 @@ const Root = () => {
 
   return (
     <>
-      <div>{pathname === routesConstants.MAIN ? <div>Main</div> : <Outlet />}</div>
+      <main>{pathname === routesConstants.MAIN ? <div>Main</div> : <Outlet />}</main>
       <Footer />
     </>
   );
