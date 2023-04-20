@@ -1,10 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Title, Stack } from '@mantine/core';
 import { EmailInput, PasswordInput } from '.';
+import { signIn } from '../../../api/auth';
 
 const signinScheme = z.object({
   email: z.string().email({ message: '이메일 형식에 맞게 입력해 주세요.' }),
@@ -19,7 +19,7 @@ const SignInForm = () => {
 
   const onSubmit = async data => {
     try {
-      const res = await axios.post('api/signin', data);
+      const res = await signIn(data);
       // TODO : MAIN으로 이동 , 유저 정보 전역 상태로 관리하기
       console.log(res.data);
     } catch (e) {
