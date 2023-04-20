@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Table, Text } from '@mantine/core';
-import PopupModal from '../common/PopupModal';
+import { PopupModal } from '../common';
 
 const SubTitle = styled.h2`
   padding-top: 40px;

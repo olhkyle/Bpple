@@ -42,8 +42,6 @@ const Menu = styled(Title)`
 `;
 
 /**
- * - `title` : ㅇㄴㄹㄴㅇㄹ
- * - `menu` : asdfsd
  * @param {{
  * title: {path: string, content: string}
  * menuList: Array<{path: string, content: string}>
