@@ -47,12 +47,12 @@ router.post('/signin', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-	const { email, password, username } = req.body;
+	const { userInfo } = req.body;
 
-	if (users.findUserByUserid(email))
+	if (users.findUserByEmail(userInfo.email))
 		return res.status(401).send({ error: '이미 등록된 사용자입니다.' });
 
-	users.createUser(email, password, username);
+	users.createUser(userInfo);
 	res.send({ message: '회원가입에 성공하였습니다.' });
 });
 
