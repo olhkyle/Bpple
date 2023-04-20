@@ -11,7 +11,7 @@ const EmailInput = ({ type, name, label, control }) => {
 
   const [duplicated, setDuplicated] = React.useState(false);
 
-  const checkEmail = async () => {
+  const handleBlur = async () => {
     const { data } = await checkNickName(value);
 
     setDuplicated(data.duplicated);
@@ -22,10 +22,11 @@ const EmailInput = ({ type, name, label, control }) => {
       type={type}
       label={label}
       value={value}
+      decs="커뮤니티에서 사용될 닉네임입니다."
       error={error || duplicated}
       errorMessage={error?.message || '해당 닉네임을 사용할 수 없습니다. 다른 닉네임을 선택하십시오'}
       onChange={onChange}
-      onBlur={checkEmail}
+      onBlur={handleBlur}
     />
   );
 };

@@ -35,8 +35,22 @@ const InputContainer = styled.div`
     transition: transform 0.2s;
   }
 `;
+/**
+ * type : input type
+ * label : input label (animation 적용됨)
+ * decs : input에 입력하는 값 설명란 / input 하단에 표기됨
+ * value : controlled Input value
+ * error : input 요소가 invalid 한지 boolean 혹은 truthy / falsy한 값
+ *         true / truthy한 값일 경우 input 색상이 red로 변경
+ * errorMessage : error가 true / truthy한 값일 경우, 표기할 메세지. input 하단에 표기됨
+ * RenderInput : 기본 input요소가 아닌 다른 input을 랜더링
+ * 지원하는 이벤트 : onChange, onFocus, onBlur
+ *
+ * @param {{ type, value, label, decs, error, errorMessage, onChange,onFocus, onBlur, RenderInput }} param0
+ * @returns
+ */
 
-const Input = ({ type, value, onChange, label, error, errorMessage, RenderInput, onFocus, onBlur }) => {
+const Input = ({ type, value, onChange, label, decs, error, errorMessage, onFocus, onBlur, RenderInput }) => {
   const [focus, setFocus] = React.useState(false);
 
   const handleFocus = () => {
@@ -61,11 +75,18 @@ const Input = ({ type, value, onChange, label, error, errorMessage, RenderInput,
         )}
         <span>{label}</span>
       </InputContainer>
+
       {error && (
         <Flex w="100%" px="8px" mt="8px" c="red" align="center" gap="4px">
           <AiOutlineExclamationCircle />
           <Text fz="12px">{errorMessage}</Text>
         </Flex>
+      )}
+
+      {decs && (
+        <Text fz="12px" mt="4px" px="8px">
+          {decs}
+        </Text>
       )}
     </Container>
   );

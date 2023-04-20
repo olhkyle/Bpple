@@ -1,6 +1,7 @@
 import React from 'react';
 import { useController } from 'react-hook-form';
 import { Input } from '.';
+import { checkEmail } from '../../../api/auth';
 
 const EmailInput = ({ type, name, label, control }) => {
   const {
@@ -10,7 +11,7 @@ const EmailInput = ({ type, name, label, control }) => {
 
   const [duplicated, setDuplicated] = React.useState(false);
 
-  const checkEmail = async () => {
+  const handleBlur = async () => {
     const { data } = await checkEmail(value);
 
     setDuplicated(data.duplicated);
@@ -21,10 +22,11 @@ const EmailInput = ({ type, name, label, control }) => {
       type={type}
       label={label}
       value={value}
+      decs="새로운 FineApple ID로 사용될 주소입니다."
       error={error || duplicated}
       errorMessage={error?.message || '해당 이메일 주소를 사용할 수 없습니다. 다른 주소를 선택하십시오'}
       onChange={onChange}
-      onBlur={checkEmail}
+      onBlur={handleBlur}
     />
   );
 };
