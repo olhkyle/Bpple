@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormInput, CountrySelect, BirthDateInput, PasswordInput } from '../components/auth';
 
-const signinScheme = z
+const signupScheme = z
   .object({
     firstName: z.string().regex(/.+/, { message: '이름을 입력해주세요' }),
     lastName: z.string().regex(/.+/, { message: '성을 입력해주세요' }),
@@ -24,9 +24,9 @@ const signinScheme = z
     message: '패스워드가 일치하지 않습니다.',
   });
 
-const SignIn = () => {
+const SignUp = () => {
   const { handleSubmit, control } = useForm({
-    resolver: zodResolver(signinScheme),
+    resolver: zodResolver(signupScheme),
   });
 
   const onSubmit = () => {
@@ -64,4 +64,4 @@ const SignIn = () => {
     </Container>
   );
 };
-export default SignIn;
+export default SignUp;
