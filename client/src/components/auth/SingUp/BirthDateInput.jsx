@@ -5,8 +5,9 @@ import { Input } from '.';
 
 const BirthDateInput = ({ name, label, control }) => {
   const {
+    fieldState: { error },
     field: { value, onChange },
-  } = useController({ name, control, defaultValue: '' });
+  } = useController({ name, control });
 
   const handleChange = e => {
     onChange(e);
@@ -16,6 +17,8 @@ const BirthDateInput = ({ name, label, control }) => {
     <Input
       value={value}
       label={label}
+      error={error}
+      errorMessage={error?.message}
       RenderInput={({ onFocus, onBlur }) => (
         <DateInput
           bg="none"
