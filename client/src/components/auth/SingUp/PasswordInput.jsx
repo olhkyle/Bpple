@@ -33,6 +33,7 @@ const TooltipBox = ({ value }) => {
 
 const PasswordInput = ({ type, name, label, control }) => {
   const {
+    fieldState: { error },
     field: { value, onChange },
   } = useController({ name, control, defaultValue: '' });
 
@@ -52,6 +53,8 @@ const PasswordInput = ({ type, name, label, control }) => {
           type={type}
           label={label}
           value={value}
+          error={error}
+          errorMessage={error?.message}
           onChange={onChange}
           onFocus={() => setOpened(true)}
           onBlur={() => setOpened(false)}
