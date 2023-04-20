@@ -6,7 +6,7 @@ const PasswordTooltip = ({ opened, children }) => (
   <Tooltip
     label={
       <Text c="#000" fz="14px" fw="bold">
-        Apple ID 또는 암호가 올바르지 않습니다.
+        FineApple ID 또는 암호가 올바르지 않습니다.
       </Text>
     }
     bg="#fae9a3"
@@ -14,6 +14,7 @@ const PasswordTooltip = ({ opened, children }) => (
     position="bottom"
     withArrow
     arrowPosition="center"
+    arrowSize={10}
     opened={opened}
     sx={{ boxShadow: '0 5px 10px 2px rgba(0,0,0,.1)' }}>
     {children}
@@ -34,14 +35,16 @@ const PasswordInput = ({ control, trigger, subMit, toolTipOpened, closeTooltip }
 
   return (
     <PasswordTooltip opened={toolTipOpened}>
-      <Input
-        type="password"
-        placeholder="암호"
-        value={value}
-        onChange={handleChange}
-        borderRadius="0 0 5px 5px"
-        rightSection={<SubmitChecker isDirty={isDirty} invalid={invalid} callback={subMit} />}
-      />
+      <div>
+        <Input
+          type="password"
+          placeholder="암호"
+          value={value}
+          onChange={handleChange}
+          borderRadius="0 0 5px 5px"
+          rightSection={<SubmitChecker isDirty={isDirty} invalid={invalid} callback={subMit} />}
+        />
+      </div>
     </PasswordTooltip>
   );
 };
