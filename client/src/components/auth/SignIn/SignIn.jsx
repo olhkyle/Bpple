@@ -16,7 +16,7 @@ const SingIn = () => (
     <Stack align="center">
       <SignInForm />
       <Text fz="14px">
-        Apple ID가 없으십니까?
+        FineApple ID가 없으십니까?
         <Link to="/signup">
           지금 만드세요.
           <LinkBox>

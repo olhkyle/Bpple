@@ -32,7 +32,7 @@ const SignInForm = () => {
     <form>
       <Stack h="300px" justify="center" align="center">
         <Title c="#494949" fz="22px" order={2}>
-          Apple Store에 로그인하세요
+          FineApple Store에 로그인하세요
         </Title>
         <Stack w="340px" spacing="0">
           <EmailInput
