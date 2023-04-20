@@ -1,33 +1,13 @@
 import axios from 'axios';
 
-const auth = async () => {
-  const { data } = await axios.get('api/auth');
+const auth = () => axios.get('api/auth');
 
-  return data;
-};
+const checkEmail = email => axios.post('api/checkemail', { email });
 
-const checkEmail = async email => {
-  const { data } = await axios.post('api/checkemail', { email });
+const checkNickName = nickName => axios.post('api/checknickname', { nickName });
 
-  return data;
-};
+const signIn = async userInfo => axios.post('api/signin', { userInfo });
 
-const checkNickName = async nickName => {
-  const { data } = await axios.post('api/checknickname', { nickName });
-
-  return data;
-};
-
-const signIn = async userInfo => {
-  const { data } = await axios.post('api/signin', { userInfo });
-
-  return data;
-};
-
-const signUp = async userInfo => {
-  const { data } = await axios.post('api/signup', { userInfo });
-
-  return data;
-};
+const signUp = userInfo => axios.post('api/signup', { userInfo });
 
 export { auth, checkEmail, checkNickName, signIn, signUp };
