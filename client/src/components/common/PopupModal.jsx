@@ -16,7 +16,7 @@ const ModalContainer = styled(Modal)`
     height: 820px;
   }
 
-  button {
+  button.mantine-Modal-close {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -26,7 +26,7 @@ const ModalContainer = styled(Modal)`
     background-color: #e8e8ed;
   }
 
-  button:hover {
+  button.mantine-Modal-close:hover {
     border: 1px solid #6e6e73;
   }
 
