@@ -18,6 +18,8 @@ const GlobalStyle = css`
     --font-color: #000;
     --hover-font-color: #0071e2;
     --body-bg-color: #fff;
+    --opacity-bg-color: #e5e5e520;
+    --opacity-border-color: #e5e5e5;
     --footer-bg-color: #f5f5f7;
     --footer-font-color: #6e6e73;
   }
@@ -26,6 +28,8 @@ const GlobalStyle = css`
     --font-color: #fff;
     --hover-font-color: #56abff;
     --body-bg-color: #232323;
+    --opacity-bg-color: #e5e5e530;
+    --opacity-border-color: #141517;
     --footer-bg-color: #232323;
     --footer-font-color: #909296;
   }
