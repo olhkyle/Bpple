@@ -18,6 +18,7 @@ const EmailInput = ({ control, trigger, emailPassed, setEmailPassed, closeToolti
     <Input
       type="text"
       value={value}
+      placeholder="FineApple ID"
       onChange={handleChange}
       borderRadius={emailPassed ? '5px 5px 0 0' : '5px'}
       rightSection={
