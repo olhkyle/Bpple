@@ -1,12 +1,6 @@
 import React from 'react';
-import CommunityHeader from '../components/community/CommunityHeader';
-import CommunityMyPosts from '../components/community/CommunityMyPosts';
+import { CommunityMyPosts } from '../components/community';
 
-const CommunityMe = () => (
-  <>
-    <CommunityHeader />
-    <CommunityMyPosts />
-  </>
-);
+const CommunityMe = () => <CommunityMyPosts />;
 
 export default CommunityMe;
