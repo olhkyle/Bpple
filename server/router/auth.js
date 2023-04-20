@@ -3,6 +3,8 @@ const router = express.Router();
 const users = require('../mock-data/users');
 const jwt = require('jsonwebtoken');
 
+const TOKEN = 'accessToken';
+
 router.get('/auth', (req, res) => {
 	const accessToken = req.cookies.accessToken;
 
@@ -18,6 +20,8 @@ router.get('/auth', (req, res) => {
 
 router.post('/signin', (req, res) => {
 	const { email, password } = req.body;
+
+	console.log(email, password);
 
 	console.log(req);
 	// 401 Unauthorized
@@ -38,7 +42,7 @@ router.post('/signin', (req, res) => {
 	});
 
 	// TODO : 쿠키명 바꿔서 상수화하기
-	res.cookie('accessToken', accessToken, {
+	res.cookie(TOKEN, accessToken, {
 		maxAge: 1000 * 60 * 60 * 24 * 7, // 7d
 		httpOnly: true,
 	});
@@ -56,7 +60,9 @@ router.post('/signup', (req, res) => {
 	res.send({ message: '회원가입에 성공하였습니다.' });
 });
 
-router.post('/signout', () => {});
+router.get('/signout', (req, res) => {
+	return res.clearCookie(TOKEN).end();
+});
 
 router.post('/checkemail', (req, res) => {
 	const { email } = req.body;
