@@ -44,10 +44,10 @@ const SignInForm = () => {
           />
           {emailPassed && (
             <PasswordInput
-              toolTipOpened={toolTipOpened}
-              closeTooltip={() => setToolTipOpened(false)}
               control={control}
               trigger={trigger}
+              toolTipOpened={toolTipOpened}
+              closeTooltip={() => setToolTipOpened(false)}
               subMit={handleSubmit(onSubmit)}
             />
           )}
