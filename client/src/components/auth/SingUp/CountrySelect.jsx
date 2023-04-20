@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from '@mantine/core';
 import { useController } from 'react-hook-form';
-import countyList from '../../constants/countyList';
+import countyList from '../../../constants/countyList';
 
 const getKrNameCountryList = () => {
   const krNameCountryList = [];

@@ -3,7 +3,7 @@ import { Container, Title, Stack, Flex, Divider, Button } from '@mantine/core';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormInput, CountrySelect, BirthDateInput, PasswordInput } from '../components/auth';
+import { FormInput, CountrySelect, BirthDateInput, PasswordInput } from '../components/auth/SingUp';
 
 const signupScheme = z
   .object({
