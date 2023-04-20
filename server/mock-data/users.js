@@ -32,7 +32,7 @@ let users = [
 		phoneNumber: '010-2395-9282',
 		products: [],
 		point: 0,
-		level: 0,
+		level: 1,
 		avatar: null,
 	},
 ];
@@ -53,7 +53,7 @@ const createUser = (userInfo) => {
 			id: uuidv4(),
 			products: [],
 			point: 0,
-			level: 0,
+			level: 1,
 			avatar: null,
 		},
 	];
