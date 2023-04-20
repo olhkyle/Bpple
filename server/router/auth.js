@@ -58,4 +58,16 @@ router.post('/signup', (req, res) => {
 
 router.post('/signout', () => {});
 
+router.post('/checkemail', (req, res) => {
+	const { email } = req.body;
+
+	res.send({ duplicated: !!users.findUserByEmail(email) });
+});
+
+router.post('/checknickname', (req, res) => {
+	const { nickName } = req.body;
+
+	res.send({ duplicated: !!users.findUserByNickName(nickName) });
+});
+
 module.exports = router;
