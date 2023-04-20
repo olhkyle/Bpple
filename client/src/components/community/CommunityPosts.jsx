@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Badge, Flex, Group, Text, Title } from '@mantine/core';
 import { AiFillCheckCircle } from 'react-icons/ai';
-import ProfileAvatar from '../profile/ProfileAvatar';
+import ProfileAvatar from '../profile/avatar/ProfileAvatar';
 
 const Container = styled.ul`
   display: flex;
