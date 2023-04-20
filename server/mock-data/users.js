@@ -2,25 +2,48 @@
 
 /*
 Fake users database
-user => { userid: string, password: string, name: string }
+user => { 
+		firstName: string,
+		lastName: string,
+		country: string,
+		birthDate: date,
+		email: string,
+		password: string,
+		nickName: string,
+		phoneNumber: string, 
+	}
 */
 let users = [
-	{ userid: 'ungmo2@gmail.com', password: '111111', name: '이웅모' },
-	{ userid: 'test@test.com', password: '123456', name: 'test' },
+	{
+		firstName: '서',
+		lastName: '준표',
+		country: '대한민국',
+		birthDate: new Date('1995-09-15'),
+		email: 'cooljp95@naver.com',
+		password: 'ABcdef12',
+		nickName: '서준표',
+		phoneNumber: '010-2395-9282',
+	},
 ];
 
-const findUserByUserid = (userid) =>
-	users.find((user) => user.userid === userid);
+const findUserByEmail = (email) => users.find((user) => user.email === email);
 
-const findUser = (userid, password) =>
-	// users.find(user => user.userid === userid && bcrypt.compareSync(password, user.password));
-	users.find((user) => user.userid === userid && user.password === password);
+const findUserByNickName = (nickName) =>
+	users.find((user) => user.nickName === nickName);
 
-const createUser = (userid, password, name) => {
-	// users = [...users, { userid, password: bcrypt.hashSync(password, 10) }];
-	users = [...users, { userid, password, name }];
+const findUser = (email, password) =>
+	users.find((user) => user.email === email && user.password === password);
+
+const createUser = (userInfo) => {
+	users = [...users, userInfo];
 };
 
 const getUsers = () => users;
 
-module.exports = { createUser, findUserByUserid, findUser, getUsers };
+module.exports = {
+	findUser,
+	createUser,
+	findUserByEmail,
+	findUserByNickName,
+	getUsers,
+};
