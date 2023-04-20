@@ -18,7 +18,7 @@ const SingIn = () => (
       <Text fz="14px">
         Apple ID가 없으십니까?
         {/** TODO : SINGUP 페이지로 이동시키기 */}
-        <Link>
+        <Link to="/signup">
           지금 만드세요.
           <LinkBox>
             <WiDirectionUpRight size="24" />

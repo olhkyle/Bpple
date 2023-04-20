@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const authToken = async () => {
+const auth = async () => {
   const { data } = await axios.get('api/auth');
 
   return data;
@@ -18,7 +18,7 @@ const checkNickName = async nickName => {
   return data;
 };
 
-const singIn = async userInfo => {
+const signIn = async userInfo => {
   const { data } = await axios.post('api/signin', { userInfo });
 
   return data;
@@ -30,4 +30,4 @@ const signUp = async userInfo => {
   return data;
 };
 
-export { authToken, checkEmail, checkNickName, singIn, signUp };
+export { auth, checkEmail, checkNickName, signIn, signUp };
