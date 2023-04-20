@@ -46,21 +46,16 @@ const ModalContainer = styled(Modal)`
  * @param {{
  * opened: boolean
  * onClose: () => void
- * title: ReactNode
+ * title: string | undefined
  * children: React.ReactElement
  * }} props
  */
 
-const PopupModal = ({
-  opened,
-  onClose,
-  title = <ModalTitle>Apple 지원 커뮤니티에서 답변을 찾고 질문하기</ModalTitle>,
-  children,
-}) => (
+const PopupModal = ({ opened, onClose, title, children }) => (
   <ModalContainer
     opened={opened}
     onClose={onClose}
-    title={title}
+    title={<ModalTitle>{title}</ModalTitle>}
     padding="60px 60px 40px 60px"
     radius="18px"
     size="50%"
