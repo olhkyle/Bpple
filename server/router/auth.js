@@ -5,6 +5,10 @@ const jwt = require('jsonwebtoken');
 
 const TOKEN = 'accessToken';
 
+router.get('/users', (req, res) => {
+	res.send({ users: users.getUsers() });
+});
+
 router.get('/auth', (req, res) => {
 	const accessToken = req.cookies.accessToken;
 
@@ -41,7 +45,6 @@ router.post('/signin', (req, res) => {
 		expiresIn: '1d',
 	});
 
-	// TODO : 쿠키명 바꿔서 상수화하기
 	res.cookie(TOKEN, accessToken, {
 		maxAge: 1000 * 60 * 60 * 24 * 7, // 7d
 		httpOnly: true,
