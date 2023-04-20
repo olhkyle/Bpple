@@ -34,11 +34,17 @@ const signupScheme = z
   });
 
 const SignUpForm = () => {
-  const { handleSubmit, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { isDirty },
+  } = useForm({
     resolver: zodResolver(signupScheme),
   });
 
   const onSubmit = data => {
+    if (!isDirty) return;
+
     try {
       signUp(data);
     } catch (e) {
