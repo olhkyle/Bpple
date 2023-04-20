@@ -35,6 +35,11 @@ const GlobalStyle = css`
     list-style-type: none;
     padding-left: 0;
   }
+
+  a {
+    text-decoration: none;
+    color: #0070c9;
+  }
 `;
 
 export default GlobalStyle;
