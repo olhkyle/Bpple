@@ -40,7 +40,6 @@ const Nav = () => (
     <NavContainer>
       <Container>
         <Wrapper>
-          {/* <TextMenu trigger="hover"> */}
           <TextMenu trigger="hover">
             <Menu.Target>
               <NavItem>Mac</NavItem>

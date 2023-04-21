@@ -12,6 +12,7 @@ const CommunitySubMenu = () => {
 
   const rightMenuItems = [
     { size: 'sm', content: '질문하기', path: routesConstants.COMMUNITY_QUESTION },
+    { size: 'sm', content: '내가 작성한 글 목록', path: routesConstants.COMMUNITY_ME },
     { size: 'sm', content: '랭킹', path: routesConstants.COMMUNITY_RANK },
   ];
 
