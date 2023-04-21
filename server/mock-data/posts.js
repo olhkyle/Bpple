@@ -105,6 +105,11 @@ const updatePost = (postId, updateInfo) => {
 const deletePost = (postId) =>
 	(posts = posts.filter(({ id }) => id !== postId));
 
+const searchPost = (keyword) => {
+	console.log(keyword);
+	return posts.filter((post) => post.title.includes(keyword));
+};
+
 module.exports = {
 	getPosts,
 	getFilteredPosts,
@@ -113,4 +118,5 @@ module.exports = {
 	createPost,
 	updatePost,
 	deletePost,
+	searchPost,
 };

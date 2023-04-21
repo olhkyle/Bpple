@@ -7,6 +7,10 @@ GET http://localhost:8000/api/users
 GET http://localhost:8000/api/post/
 ###
 
+GET http://localhost:8000/api/post/search?keyword=아
+###
+
+
 // post 하나 가져오기
 GET http://localhost:8000/api/post/1
 

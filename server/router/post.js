@@ -8,6 +8,14 @@ router.get('/', (req, res) => {
 	res.send({ posts: posts.getPosts() });
 });
 
+router.get('/search', (req, res) => {
+	const { keyword } = req.query;
+
+	console.log('아');
+
+	res.send({ posts: posts.searchPost(keyword) });
+});
+
 router.get('/comments', (req, res) => {
 	res.send({ comments: comments.getComments() });
 });
