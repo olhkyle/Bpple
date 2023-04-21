@@ -35,7 +35,6 @@ router.post('/signin', (req, res) => {
 			.send({ error: '사용자 아이디 또는 패스워드가 전달되지 않았습니다.' });
 
 	const user = users.findUser(email, password);
-	console.log('사용자 정보:', user);
 
 	// 401 Unauthorized
 	if (!user)
@@ -50,7 +49,11 @@ router.post('/signin', (req, res) => {
 		httpOnly: true,
 	});
 
-	res.send({ email, username: user.name });
+	res.send({
+		email: user.email,
+		nickName: user.nickName,
+		avatarId: user.avatarId,
+	});
 });
 
 router.post('/signup', (req, res) => {
