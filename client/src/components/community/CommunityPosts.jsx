@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Badge, Flex, Group, Text, Title } from '@mantine/core';
-import { AiFillCheckCircle } from 'react-icons/ai';
+import { AiFillCheckCircle, AiFillApple } from 'react-icons/ai';
 import ProfileAvatar from '../profile/avatar/ProfileAvatar';
 
 const Container = styled.ul`
@@ -30,26 +30,19 @@ const Post = styled.li`
 
 const IconContainer = styled.div`
   display: flex;
+  align-items: center;
   gap: 10px;
   margin-top: 10px;
   font-size: 20px;
 `;
 
 const CheckCircleIcon = styled.i`
+  font-size: 24px;
   color: ${({ completed }) => (completed ? '#58be7d' : '#c2c2c2')};
 `;
 
-const AppleRecommendIcon = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
+const AppleLogoIcon = styled.i`
+  font-size: 24px;
 `;
 
 const CommunityPosts = ({ posts }) => (
@@ -68,12 +61,10 @@ const CommunityPosts = ({ posts }) => (
                 <CheckCircleIcon completed={completed}>
                   <AiFillCheckCircle />
                 </CheckCircleIcon>
-                <AppleRecommendIcon>
-                  <img
-                    src={document.body.dataset.theme === 'light' ? '/logo-dark.svg' : '/logo-light.svg'}
-                    alt="logo"
-                  />
-                </AppleRecommendIcon>
+
+                <AppleLogoIcon>
+                  <AiFillApple />
+                </AppleLogoIcon>
               </IconContainer>
             </div>
           </Group>
