@@ -86,6 +86,7 @@ const Container = styled.div`
  * autoClose : 딜레이 이후 자동으로 toast 삭제 여부 / boolean
  * autoCloseDelay : 자동으로 toast 삭제 시, 딜레이 지정 / number
  * children : toast에 포함할 내용 / jsx
+ *
  * @param {{h, c, bgc, fixed, position, closeOnClick, autoClose, autoCloseDelay, children}}
  * @returns
  */
