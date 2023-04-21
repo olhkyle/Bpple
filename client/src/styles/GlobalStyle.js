@@ -7,13 +7,6 @@ const GlobalStyle = css`
     padding: 0;
   }
 
-  body {
-    width: 100%;
-    height: 100%;
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: var(--body-bg-color);
-  }
-
   body[data-theme='light'] {
     --font-color: #000;
     --hover-font-color: #0071e2;
@@ -34,6 +27,13 @@ const GlobalStyle = css`
     --opacity-border-color: #141517;
     --footer-bg-color: #232323;
     --footer-font-color: #909296;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--body-bg-color);
   }
 
   ul,
