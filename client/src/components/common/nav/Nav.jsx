@@ -8,7 +8,7 @@ import CommunitySubMenu from './CommunitySubMenu';
 const NavContainer = styled(Header)`
   display: flex;
   width: 100%;
-  height: 60px;
+  padding: 6px 0;
   background-color: var(--footer-bg-color);
   color: var(--font-color);
 `;
@@ -28,6 +28,7 @@ const TextMenu = styled(Menu)`
 const NavItem = styled(Text)`
   font-size: 20px;
   font-weight: 500;
+  padding: 8px 15px;
   &[aria-expanded='true'] {
     color: var(--hover-font-color);
     cursor: default;
