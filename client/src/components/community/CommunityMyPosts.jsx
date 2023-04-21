@@ -89,7 +89,7 @@ const CommunityMyPosts = () => {
 
   return (
     <Wrapper>
-      <Title size="64px" mt="40px">
+      <Title size="52px" mt="40px">
         내가 작성한 글 목록
       </Title>
       <Flex justify="flex-end">

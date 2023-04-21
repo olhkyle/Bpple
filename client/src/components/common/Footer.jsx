@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Container, Flex, Text, Divider } from '@mantine/core';
+import { Container, Flex, Text, Divider, Image } from '@mantine/core';
 
 const FooterContainer = styled.footer`
   padding-top: 0.5rem;
@@ -43,7 +43,7 @@ const Footer = () => {
     <FooterContainer>
       <Wrapper>
         <LogoContainer>
-          <img src={document.body.dataset.theme === 'light' ? '/logo-dark.svg' : '/logo-light.svg'} alt="logo" />
+          <Image src={document.body.dataset.theme === 'light' ? '/logo-dark.svg' : '/logo-light.svg'} alt="logo" />
         </LogoContainer>
       </Wrapper>
       <Divider my="sm" m="0 auto" maw="1024px" />
