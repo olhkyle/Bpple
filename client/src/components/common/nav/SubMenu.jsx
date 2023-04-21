@@ -8,7 +8,7 @@ const SubMenuContainer = styled(Menu.Dropdown)`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: -1px;
   padding-top: 30px;
   padding-bottom: 20px;
   border: none;

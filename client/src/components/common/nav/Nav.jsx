@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Header, Container, Group, Menu, Text } from '@mantine/core';
+import { Header, Group, Menu, Text } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { BsCart } from 'react-icons/bs';
 import routesConstants from '../../../constants/routes';
@@ -12,6 +12,7 @@ import LoginButton from './LoginButton';
 
 const NavContainer = styled(Header)`
   display: flex;
+  justify-content: space-between;
   width: 100%;
   padding: 6px 0;
   background-color: var(--footer-bg-color);
@@ -23,11 +24,12 @@ const Wrapper = styled(Group)`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-left: 30px;
   gap: 20px;
 `;
 
 const SideWrapper = styled(Wrapper)`
-  margin-right: 30px;
+  margin-right: 50px;
 `;
 
 const TextMenu = styled(Menu)`
@@ -62,30 +64,28 @@ const IconLink = styled.i`
 const Nav = () => (
   <>
     <NavContainer>
-      <Container>
-        <Wrapper>
-          <TextMenu trigger="hover">
-            <Menu.Target>
-              <NavItem>Mac</NavItem>
-            </Menu.Target>
-            <MacSubMenu />
-          </TextMenu>
+      <Wrapper>
+        <TextMenu trigger="hover">
+          <Menu.Target>
+            <NavItem>Mac</NavItem>
+          </Menu.Target>
+          <MacSubMenu />
+        </TextMenu>
 
-          <TextMenu trigger="hover">
-            <Menu.Target>
-              <NavItem>iPhone</NavItem>
-            </Menu.Target>
-            <IphoneSubMenu />
-          </TextMenu>
+        <TextMenu trigger="hover">
+          <Menu.Target>
+            <NavItem>iPhone</NavItem>
+          </Menu.Target>
+          <IphoneSubMenu />
+        </TextMenu>
 
-          <TextMenu trigger="hover">
-            <Menu.Target>
-              <NavItem>커뮤니티</NavItem>
-            </Menu.Target>
-            <CommunitySubMenu />
-          </TextMenu>
-        </Wrapper>
-      </Container>
+        <TextMenu trigger="hover">
+          <Menu.Target>
+            <NavItem>커뮤니티</NavItem>
+          </Menu.Target>
+          <CommunitySubMenu />
+        </TextMenu>
+      </Wrapper>
 
       <SideWrapper>
         <CartLink to={routesConstants.CART}>
