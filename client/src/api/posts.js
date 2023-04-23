@@ -1,3 +1,6 @@
 import axios from 'axios';
 
-export const getSearchedPosts = (keyword = '') => axios.get(`api/post/search?keyword=${keyword}`);
+const getSearchedPosts = (keyword = '') => axios.get(`api/post/search?keyword=${keyword}`);
+const getMyPosts = () => {};
+
+export { getSearchedPosts, getMyPosts };
