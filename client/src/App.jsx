@@ -29,7 +29,14 @@ const router = createBrowserRouter([
   },
 ]);
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+      retry: 0,
+    },
+  },
+});
 
 const App = () => (
   <RecoilRoot>
