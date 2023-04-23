@@ -14,6 +14,7 @@ const CommunityAutoComplete = styled(Autocomplete)`
   }
 
   & .mantine-Autocomplete-input {
+    color: var(--font-color);
     padding-left: 3rem;
     height: 50px;
     font-size: 21px;
@@ -43,6 +44,10 @@ const AutoCompleteItemContainer = styled.div`
   color: var(--font-color);
   cursor: pointer;
 
+  &: [data-hovered= 'true'] {
+    background-color: var(--secondary-bg-color);
+  }
+
   &:hover {
     div {
       font-weight: 600;
@@ -67,11 +72,11 @@ const NothingFound = () => {
   );
 };
 
-const AutoCompleteItem = React.forwardRef(({ title, id, avatarId }, ref) => {
+const AutoCompleteItem = React.forwardRef(({ title, id, avatarId, ...rest }, ref) => {
   const navigate = useNavigate();
 
   return (
-    <AutoCompleteItemContainer ref={ref} tabIndex={-1} onClick={() => navigate(`/post/${id}`)}>
+    <AutoCompleteItemContainer ref={ref} tabIndex={-1} onClick={() => navigate(`/post/${id}`)} {...rest}>
       <Flex justify="flex-start" align="center" p="20px">
         <ProfileAvatar avatarId={avatarId} />
         <Text pl="20px" fz="20px" fw="400" ta="start" sx={{ wordBreak: 'keep-all' }}>
@@ -88,6 +93,8 @@ const AutoComplete = ({ width = 620, queryFn }) => {
   const [value, setValue] = React.useState('');
   const [debounced] = useDebouncedValue(value, 500);
 
+  const navigate = useNavigate();
+
   const { posts } = useAutoCompleteQuery(debounced, queryFn);
 
   return (
@@ -97,6 +104,7 @@ const AutoComplete = ({ width = 620, queryFn }) => {
       onChange={setValue}
       itemComponent={AutoCompleteItem}
       data={posts}
+      onItemSubmit={item => navigate(`/community/${item.id}`)}
       nothingFound={<NothingFound />}
       filter={() => true}
       icon={<FiSearch />}
