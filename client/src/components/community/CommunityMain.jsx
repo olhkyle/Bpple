@@ -8,6 +8,7 @@ import { Container, Divider, Flex, Group, List, Text, Title } from '@mantine/cor
 import { useDisclosure } from '@mantine/hooks';
 import { InfoCard } from '../common';
 import { AutoComplete, RuleModal, QuestionModal, FilterContentModal } from '.';
+import { getSearchedPosts } from '../../api/posts';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -102,7 +103,7 @@ const CommunityMain = () => {
           전 세계 FineApple 고객들과 소통해 보세요 🚀
         </Text>
 
-        <AutoComplete width={720} />
+        <AutoComplete width={720} queryFn={getSearchedPosts} />
       </Description>
 
       <CommunityImageWrapper>
