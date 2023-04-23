@@ -10,7 +10,14 @@ import Profile, { profileLoader } from './pages/Profile';
 import AuthenticationGuard from './guard/AuthenticationGuard';
 import routesConstants from './constants/routes';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+      retry: 0,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -38,15 +45,6 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
 ]);
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      suspense: true,
-      retry: 0,
-    },
-  },
-});
 
 const App = () => (
   <RecoilRoot>
