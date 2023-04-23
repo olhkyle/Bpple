@@ -9,6 +9,7 @@ import IphoneSubMenu from './IphoneSubMenu';
 import CommunitySubMenu from './CommunitySubMenu';
 import ThemeButton from './ThemeButton';
 import LoginButton from './LoginButton';
+import Logo from '../Logo';
 
 const NavContainer = styled(Header)`
   display: flex;
@@ -24,7 +25,7 @@ const Wrapper = styled(Group)`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-left: 30px;
+  margin-left: 60px;
   gap: 20px;
 `;
 
@@ -48,6 +49,10 @@ const NavItem = styled(Text)`
   }
 `;
 
+const LogoLink = styled(Link)`
+  margin-right: 30px;
+`;
+
 const CartLink = styled(Link)`
   display: flex;
   padding: 8px;
@@ -65,6 +70,9 @@ const Nav = () => (
   <>
     <NavContainer>
       <Wrapper>
+        <LogoLink to={routesConstants.COMMUNITY}>
+          <Logo clickable={true} />
+        </LogoLink>
         <TextMenu trigger="hover">
           <Menu.Target>
             <NavItem>Mac</NavItem>
