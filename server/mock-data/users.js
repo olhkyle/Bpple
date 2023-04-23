@@ -1,8 +1,9 @@
 // const bcrypt = require('bcrypt')
 
-/*
-Fake users database
-user => { 
+/* 
+	Fake users database
+
+	user => { 
 		id : uuid
 		firstName: string,
 		lastName: string,
@@ -16,6 +17,17 @@ user => {
 		point : number
 		level : number,
 		avatar : string | null
+	}
+
+	product-type 목록 : 
+		'ipad-basic', 'ipad-air', 'ipad-mini', 'ipad-pro',
+  	'iphone-13', 'iphone-14', 'iphone-14-pro', 'iphone-se',
+  	'macbook-air-m1', 'macbook-air-m2',
+  	'macbook-pro-13', 'macbook-pro-14', 'macbook-pro-16',
+
+	product: {
+		type: string,
+		// options: {}, // 상품 주문하기 기능 구현시 설정
 	}
 */
 
@@ -76,7 +88,12 @@ let users = [
 		password: 'Qwer1234',
 		nickName: '서나',
 		phoneNumber: '010-1234-1234',
-		products: [],
+		products: [
+			{ type: 'ipad-pro' },
+			{ type: 'ipad-basic' },
+			{ type: 'iphone-13' },
+			{ type: 'macbook-pro-13' },
+		],
 		point: 10,
 		level: 1,
 		avatarId: 'avatar-1',
