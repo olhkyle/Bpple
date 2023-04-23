@@ -10,4 +10,6 @@ const signIn = async userInfo => axios.post('api/signin', { email: userInfo.emai
 
 const signUp = userInfo => axios.post('api/signup', { userInfo });
 
-export { auth, checkEmail, checkNickName, signIn, signUp };
+const signOut = () => axios.get('api/signout');
+
+export { auth, checkEmail, checkNickName, signIn, signUp, signOut };

@@ -67,6 +67,21 @@ let users = [
 		avatarId: null,
 		aboutMe: '',
 	},
+	{
+		firstName: 'park',
+		lastName: 'sunhwa',
+		country: '대한민국',
+		birthDate: new Date('1994-06-03'),
+		email: 'qwer@qwer.ee',
+		password: 'Qwer1234',
+		nickName: '서나',
+		phoneNumber: '010-1234-1234',
+		products: [],
+		point: 10,
+		level: 1,
+		avatarId: 'avatar-1',
+		aboutMe: '응애 나 아기 프엔',
+	},
 ];
 
 const findUserByEmail = (email) => users.find((user) => user.email === email);

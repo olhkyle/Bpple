@@ -1,11 +1,12 @@
 import React from 'react';
 import Recoil from 'recoil';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Menu } from '@mantine/core';
 import routesConstants from '../../../constants/routes';
 import userState from '../../../recoil/atoms/userState';
 import { ProfileAvatar } from '../../profile';
+import { signOut } from '../../../api/auth';
 
 const AvatarWrapper = styled.div`
   background: none;
@@ -54,7 +55,19 @@ const MenuItem = styled(Menu.Item)`
 `;
 
 const LoginButton = () => {
-  const loginUser = Recoil.useRecoilValue(userState);
+  const navigate = useNavigate();
+  const [loginUser, setLoginUser] = Recoil.useRecoilState(userState);
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      setLoginUser(null);
+    } catch (e) {
+      // console.error(e);
+    } finally {
+      navigate(routesConstants.MAIN);
+    }
+  };
 
   return !loginUser ? (
     <LoginLink to={routesConstants.SIGNIN}>로그인</LoginLink>
@@ -70,7 +83,7 @@ const LoginButton = () => {
           <MenuItem component="a" href={routesConstants.PROFILE}>
             프로필
           </MenuItem>
-          <MenuItem component="a" href={'/'}>
+          <MenuItem component="button" onClick={handleLogout}>
             로그아웃
           </MenuItem>
         </MenuItemWrapper>
