@@ -27,7 +27,7 @@ const ModalContainer = styled(Modal)`
   h2.mantine-Modal-title {
     width: 650px;
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.2;
     word-break: keep-all;
     overflow-wrap: break-word;
