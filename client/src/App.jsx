@@ -6,6 +6,11 @@ import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import Root from './components/Root';
 import { SignIn, SignUp, Community, CommunityMe } from './pages';
+import Profile, { profileLoader } from './pages/Profile';
+import AuthenticationGuard from './guard/AuthenticationGuard';
+import routesConstants from './constants/routes';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -16,6 +21,11 @@ const router = createBrowserRouter([
         path: '/community',
         element: <Community />,
         children: [{ path: 'me', element: <CommunityMe /> }],
+      },
+      {
+        path: '/profile',
+        loader: profileLoader,
+        element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<Profile />} />,
       },
     ],
   },
@@ -28,8 +38,6 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
 ]);
-
-const queryClient = new QueryClient();
 
 const App = () => (
   <RecoilRoot>

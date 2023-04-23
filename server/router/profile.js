@@ -1,30 +1,43 @@
 const express = require('express');
 const router = express.Router();
+const users = require('../mock-data/users');
 
 // 사용자 프로필
-router.get('/:userid', (req, res) => {
-	const { userid } = req.params;
+router.post('/', (req, res) => {
+	const { userId } = req.body;
 
-	res.send({ hi: 'profile' });
+	const {
+		firstName,
+		lastName,
+		nickName,
+		country,
+		phoneNumber,
+		products,
+		point,
+		level,
+		avatarId,
+		aboutMe,
+	} = users.findUserByEmail(userId);
+
+	console.log('## 프로필 fetch -', nickName);
+
+	res.send({
+		name: firstName + lastName,
+		country,
+		phoneNumber,
+		products,
+		point,
+		level,
+		avatarId,
+		aboutMe,
+	});
 });
 
-// 사용자 커뮤니티 프로필
-router.get('/community/:userid', (req, res) => {
-	const { userid } = req.params;
+// TODO: 사용자 프로필 수정
+router.patch('/edit', (req, res) => {
+	const userInfo = req.body;
 
-	res.send();
-});
-
-// 사용자 프로필 수정
-router.patch('/:userid', (req, res) => {
-	const { userid } = req.params;
-
-	res.send();
-});
-
-// 사용자 커뮤니티 프로필 수정
-router.patch('/community/:userid', (req, res) => {
-	const { userid } = req.params;
+	console.log('## 프로필 수정', userInfo);
 
 	res.send();
 });
