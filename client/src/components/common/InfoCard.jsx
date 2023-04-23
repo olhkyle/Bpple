@@ -23,7 +23,7 @@ const RightArrowIcon = styled(RiArrowRightSLine)`
  */
 
 const InfoCard = ({ icon, title, desc, onClick }) => (
-  <Center sx={{ textAlign: 'center', wordBreak: 'keep-all' }}>
+  <Center ta="center" sx={{ wordBreak: 'keep-all' }}>
     <Stack align="center">
       <Icon>{icon}</Icon>
       <Text fz="28px" fw="600">

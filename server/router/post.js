@@ -11,8 +11,6 @@ router.get('/', (req, res) => {
 router.get('/search', (req, res) => {
 	const { keyword } = req.query;
 
-	console.log('아');
-
 	res.send({ posts: posts.searchPost(keyword) });
 });
 
