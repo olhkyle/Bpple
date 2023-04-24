@@ -52,5 +52,5 @@ const Profile = () => {
   );
 };
 
-export { profileLoader };
+export { profileLoader, profileQuery };
 export default Profile;
