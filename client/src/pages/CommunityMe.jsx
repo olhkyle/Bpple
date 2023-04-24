@@ -52,7 +52,7 @@ const CommunityMe = () => {
           </Group>
         </Chip.Group>
       </Flex>
-      <React.Suspense fallback={<CommunitySkeleton />}>
+      <React.Suspense fallback={<CommunitySkeleton length={10} />}>
         <CommunityPosts currentFilter={currentFilter} />
       </React.Suspense>
     </Wrapper>
