@@ -44,15 +44,12 @@ const AutoCompleteItemContainer = styled.div`
   color: var(--font-color);
   cursor: pointer;
 
-  &: [data-hovered= 'true'] {
-    background-color: var(--secondary-bg-color);
-  }
-
+  &[data-hovered='true'],
   &:hover {
     div {
       font-weight: 600;
     }
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e1e1e1;
     background-color: var(--opacity-bg-color);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
@@ -60,6 +57,7 @@ const AutoCompleteItemContainer = styled.div`
 
 const NothingFound = () => {
   const navigate = useNavigate();
+
   return (
     <>
       <Text fz="xl" fw="600" c={`var(--font-color)`}>
@@ -76,7 +74,7 @@ const AutoCompleteItem = React.forwardRef(({ title, id, avatarId, ...rest }, ref
   const navigate = useNavigate();
 
   return (
-    <AutoCompleteItemContainer ref={ref} tabIndex={-1} onClick={() => navigate(`/post/${id}`)} {...rest}>
+    <AutoCompleteItemContainer ref={ref} onClick={() => navigate(`/post/${id}`)} {...rest}>
       <Flex justify="flex-start" align="center" p="20px">
         <ProfileAvatar avatarId={avatarId} />
         <Text pl="20px" fz="20px" fw="400" ta="start" sx={{ wordBreak: 'keep-all' }}>
@@ -102,19 +100,24 @@ const AutoComplete = ({ width = 620, queryFn }) => {
       limit={LIMIT_OF_POSTS}
       value={value}
       onChange={setValue}
+      placeholder="검색 또는 질문하기"
+      // initiallyOpened={true}
       itemComponent={AutoCompleteItem}
       data={posts}
       onItemSubmit={item => navigate(`/community/${item.id}`)}
       nothingFound={<NothingFound />}
       filter={() => true}
       icon={<FiSearch />}
-      placeholder="검색 또는 질문하기"
       wrapperwidth={width}
       rightSection={<FiChevronDown size="1.5rem" stroke="grey" />}
       rightSectionWidth={50}
       sx={{ rightSection: { pointerEvents: 'none' } }}
       dropdownPosition="bottom"
-      transitionProps={{ transition: 'pop-top-left', duration: 80, timingFunction: 'ease' }}
+      transitionProps={{
+        transition: 'pop-top-left',
+        duration: 80,
+        timingFunction: 'ease',
+      }}
       zIndex={10}
     />
   );

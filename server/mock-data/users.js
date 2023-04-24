@@ -60,7 +60,7 @@ let users = [
 		phoneNumber: '010-2395-9282',
 		products: [],
 		point: 100,
-		level: 1,
+		level: 2,
 		avatarId: null,
 		aboutMe: '',
 	},
@@ -74,8 +74,8 @@ let users = [
 		nickName: '서준표',
 		phoneNumber: '010-2395-9282',
 		products: [],
-		point: 2,
-		level: 1,
+		point: 200,
+		level: 3,
 		avatarId: null,
 		aboutMe: '',
 	},
@@ -101,6 +101,10 @@ let users = [
 	},
 ];
 
+const calcLevel = (point) => {
+	return point < 100 ? 1 : point < 200 ? 2 : point < 300 ? 3 : 4;
+};
+
 const findUserByEmail = (email) => users.find((user) => user.email === email);
 
 const findUserByNickName = (nickName) =>
@@ -125,15 +129,15 @@ const createUser = (userInfo) => {
 const getUsersRank = () =>
 	users.sort((user1, user2) => user2.point - user1.point);
 
-const plusPoint = (email, point) => {
+const updatePoint = (email, point) => {
 	users = users.map((user) =>
-		user.email === email ? { ...user, point: user.point + point } : user
-	);
-};
-
-const minusPoint = (email, point) => {
-	users = users.map((user) =>
-		user.email === email ? { ...user, point: user.point - point } : user
+		user.email === email
+			? {
+					...user,
+					point: user.point + point,
+					level: calcLevel(user.point + point),
+			  }
+			: user
 	);
 };
 
@@ -146,6 +150,5 @@ module.exports = {
 	findUserByNickName,
 	getUsers,
 	getUsersRank,
-	plusPoint,
-	minusPoint,
+	updatePoint,
 };
