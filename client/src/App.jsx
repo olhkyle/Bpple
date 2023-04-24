@@ -41,15 +41,10 @@ const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        children: [
-          {
-            index: true,
-            loader: profileLoader,
-            element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<Profile />} />,
-          },
-          { path: 'edit', element: <ProfileEdit /> },
-        ],
+        loader: profileLoader,
+        element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<Profile />} />,
       },
+      { path: '/profile/edit', element: <ProfileEdit /> },
     ],
   },
   {
