@@ -4,3 +4,4 @@ export { default as Community } from './Community';
 export { default as CommunityMe } from './CommunityMe';
 export { default as Profile } from './Profile';
 export { default as ProfileEdit } from './ProfileEdit';
+export { default as CommunityPost } from './CommunityPost';
