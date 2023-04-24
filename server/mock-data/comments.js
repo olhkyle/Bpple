@@ -43,6 +43,12 @@ const createComment = (commentInfo) => {
 	];
 };
 
+const updateUsefulComment = (commentId, useful) => {
+	comments = comments.map((comment) =>
+		comment.id === commentId ? { ...comment, useful } : comment
+	);
+};
+
 const updateComment = (commentId, commentInfo) => {
 	comments = comments.map((comment) =>
 		comment.id === commentId
@@ -60,5 +66,6 @@ module.exports = {
 	getPostComments,
 	createComment,
 	updateComment,
+	updateUsefulComment,
 	deleteComment,
 };

@@ -5,10 +5,12 @@ const jwt = require('jsonwebtoken');
 
 const TOKEN = 'accessToken';
 
+// 유저 정보가져오기 (test 용)
 router.get('/users', (req, res) => {
 	res.send({ users: users.getUsers() });
 });
 
+// 유저 토큰 인증
 router.get('/auth', (req, res) => {
 	const accessToken = req.cookies.accessToken;
 
@@ -28,6 +30,7 @@ router.get('/auth', (req, res) => {
 	}
 });
 
+// 로그인
 router.post('/signin', (req, res) => {
 	const { email, password } = req.body;
 
@@ -62,6 +65,7 @@ router.post('/signin', (req, res) => {
 	});
 });
 
+// 회원가입
 router.post('/signup', (req, res) => {
 	const { userInfo } = req.body;
 
@@ -72,16 +76,19 @@ router.post('/signup', (req, res) => {
 	res.send({ message: '회원가입에 성공하였습니다.' });
 });
 
+// 로그아웃
 router.get('/signout', (req, res) => {
 	return res.clearCookie(TOKEN).end();
 });
 
+// 이메일 중복체크
 router.post('/checkemail', (req, res) => {
 	const { email } = req.body;
 
 	res.send({ duplicated: !!users.findUserByEmail(email) });
 });
 
+// 닉네임 중복체크
 router.post('/checknickname', (req, res) => {
 	const { nickName } = req.body;
 
