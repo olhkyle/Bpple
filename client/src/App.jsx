@@ -7,6 +7,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import Root from './components/Root';
 import { SignIn, SignUp, Community, CommunityMe } from './pages';
 import Profile, { profileLoader } from './pages/Profile';
+import { communityMeLoader } from './pages/CommunityMe';
 import AuthenticationGuard from './guard/AuthenticationGuard';
 import routesConstants from './constants/routes';
 
@@ -27,8 +28,15 @@ const router = createBrowserRouter([
       {
         path: '/community',
         element: <Community />,
-        children: [{ path: 'me', element: <CommunityMe /> }],
+        children: [
+          {
+            path: 'me',
+            loader: communityMeLoader,
+            element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<CommunityMe />} />,
+          },
+        ],
       },
+
       {
         path: '/profile',
         loader: profileLoader,
