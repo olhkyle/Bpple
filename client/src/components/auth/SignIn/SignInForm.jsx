@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useSetRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Title, Stack } from '@mantine/core';
-import { EmailInput, PasswordInput } from '.';
+import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { Stack, Input, Button } from '@mantine/core';
 import { signIn } from '../../../api/auth';
+import { InputWrapper } from '../../common/Form';
 import userState from '../../../recoil/atoms/userState';
 import routesConstants from '../../../constants/routes';
 
@@ -16,50 +16,45 @@ const signinScheme = z.object({
 });
 
 const SignInForm = () => {
+  const {
+    handleSubmit,
+    register,
+    reset,
+    setFocus,
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(signinScheme) });
+
+  const [errorMessage, setErrorMessage] = React.useState('');
   const navigate = useNavigate();
   const setUser = useSetRecoilState(userState);
 
-  // TODO : trigger 디바운스 하기
-  const { handleSubmit, control, trigger, setValue } = useForm({ resolver: zodResolver(signinScheme) });
-  const [emailPassed, setEmailPassed] = React.useState(false);
-  const [toolTipOpened, setToolTipOpened] = React.useState(false);
+  React.useEffect(() => {
+    setFocus('email');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errorMessage]);
 
   const onSubmit = async data => {
     try {
       const { data: user } = await signIn(data);
-      console.log(user);
+
       setUser(user);
       navigate(routesConstants.MAIN);
     } catch (e) {
-      setValue('password', '');
-      setToolTipOpened(true);
+      setErrorMessage(e.response.data.error);
+      reset();
     }
   };
 
   return (
-    <form>
-      <Stack h="300px" justify="center" align="center">
-        <Title c="#494949" fz="22px" order={2}>
-          FineApple Store에 로그인하세요
-        </Title>
-        <Stack w="340px" spacing="0">
-          <EmailInput
-            control={control}
-            trigger={trigger}
-            emailPassed={emailPassed}
-            setEmailPassed={setEmailPassed}
-            closeTooltip={() => setToolTipOpened(false)}
-          />
-          {emailPassed && (
-            <PasswordInput
-              control={control}
-              trigger={trigger}
-              toolTipOpened={toolTipOpened}
-              closeTooltip={() => setToolTipOpened(false)}
-              subMit={handleSubmit(onSubmit)}
-            />
-          )}
-        </Stack>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Stack w="340px" spacing="12px">
+        <InputWrapper error={errors?.email?.message}>
+          <Input {...register('email')} placeholder="FineApple ID" />
+        </InputWrapper>
+        <InputWrapper error={errorMessage || errors?.password?.message}>
+          <Input {...register('password')} placeholder="암호" />
+        </InputWrapper>
+        <Button type="submit">로그인</Button>
       </Stack>
     </form>
   );

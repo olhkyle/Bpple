@@ -50,12 +50,21 @@ const BirthDateInput = ({ name, placeholder, onChange, onBlur, setValue }, ref) 
         name={name}
         placeholder={placeholder}
         onChange={onChange}
+        onFocus={() => setOpened(true)}
         onBlur={onBlur}
         onClick={() => setOpened(!opened)}
         readOnly
       />
       {opened && (
-        <DatePicker p="12px" bg="var(--body-bg-color)" value={date} onChange={handleChange} sx={datePickerStyle} />
+        <DatePicker
+          p="12px"
+          bg="var(--body-bg-color)"
+          c="var(--font-color)"
+          value={date}
+          onChange={handleChange}
+          defaultLevel="decade"
+          sx={datePickerStyle}
+        />
       )}
     </>
   );

@@ -3,7 +3,7 @@ import { Container, Title } from '@mantine/core';
 import { SignUpForm } from '.';
 
 const SignUp = () => (
-  <Container size="xs">
+  <Container c="var(--font-color)" py="48px" size="xs">
     <Title mb="xl" align="center">
       FineApple ID 생성
     </Title>
