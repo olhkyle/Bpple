@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 ###
 
-PATCH  http://localhost:8000/api/post/2/comment/69452e28-1402-4a37-8d07-2b5a6a2c93b0
+PATCH  http://localhost:8000/api/post/2/comment/94e82750-d30c-49fc-a881-3f78ca4139d7
 Content-Type: application/json
 
 {
@@ -33,6 +33,12 @@ Content-Type: application/json
     "content" : "으으으으음"
   }
 }
+
+###
+
+PATCH  http://localhost:8000/api/post/2/comment/useful/94e82750-d30c-49fc-a881-3f78ca4139d7
+Content-Type: application/json
+
 
 ###
 
