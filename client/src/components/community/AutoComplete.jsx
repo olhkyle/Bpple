@@ -101,7 +101,6 @@ const AutoComplete = ({ width = 620, queryFn }) => {
       value={value}
       onChange={setValue}
       placeholder="검색 또는 질문하기"
-      // initiallyOpened={true}
       itemComponent={AutoCompleteItem}
       data={posts}
       onItemSubmit={item => navigate(`/community/${item.id}`)}

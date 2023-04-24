@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const auth = () => axios.get('api/auth');
+const auth = () => axios.get('/api/auth');
 
 const checkEmail = email => axios.post('api/checkemail', { email });
 
