@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
 	const { postInfo } = req.body;
 
 	posts.createPost(postInfo);
-	users.plusPoint(postInfo.author, 10);
+	users.updatePoint(postInfo.author, 10);
 
 	res.send({ postInfo });
 });
@@ -61,7 +61,7 @@ router.delete('/:postId', (req, res) => {
 	const { author } = posts.getPost(postId);
 
 	posts.deletePost(postId);
-	users.minusPoint(author, 10);
+	users.updatePoint(author, -10);
 
 	res.send({ postId });
 });
@@ -89,11 +89,12 @@ router.patch('/:postId/comment/:commentId', (req, res) => {
 // useful 댓글 설정
 router.patch('/:postId/comment/useful/:commentId', (req, res) => {
 	const { commentId, postId } = req.params;
+	const { useful } = req.body;
 	const { author } = posts.getPost(postId);
 
-	comments.updateUsefulComment(commentId);
+	comments.updateUsefulComment(commentId, useful);
 	posts.updateCompletedPost(postId);
-	users.plusPoint(author, 20);
+	users.plusPoint(author, useful ? 20 : -20);
 
 	res.send({ commentId, postId });
 });

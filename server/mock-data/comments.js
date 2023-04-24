@@ -43,9 +43,9 @@ const createComment = (commentInfo) => {
 	];
 };
 
-const updateUsefulComment = (commentId) => {
+const updateUsefulComment = (commentId, useful) => {
 	comments = comments.map((comment) =>
-		comment.id === commentId ? { ...comment, useful: true } : comment
+		comment.id === commentId ? { ...comment, useful } : comment
 	);
 };
 

@@ -112,25 +112,13 @@ const createUser = (userInfo) => {
 const getUsersRank = () =>
 	users.sort((user1, user2) => user2.point - user1.point);
 
-const plusPoint = (email, point) => {
+const updatePoint = (email, point) => {
 	users = users.map((user) =>
 		user.email === email
 			? {
 					...user,
 					point: user.point + point,
 					level: calcLevel(user.point + point),
-			  }
-			: user
-	);
-};
-
-const minusPoint = (email, point) => {
-	users = users.map((user) =>
-		user.email === email
-			? {
-					...user,
-					point: user.point - point,
-					level: calcLevel(user.point - point),
 			  }
 			: user
 	);
@@ -145,6 +133,5 @@ module.exports = {
 	findUserByNickName,
 	getUsers,
 	getUsersRank,
-	plusPoint,
-	minusPoint,
+	updatePoint,
 };
