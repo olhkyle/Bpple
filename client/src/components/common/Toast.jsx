@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { CloseButton, Flex } from '@mantine/core';
+import { Center, CloseButton } from '@mantine/core';
 import { keyframes } from '@emotion/react';
+import useToast from '../../hooks/useToast';
 
 const entryTop = keyframes`
   from {
@@ -65,7 +66,7 @@ const Container = styled.div`
   bottom: ${({ position }) => position === 'bottom' && '0'};
   width: 100%;
   height: ${({ h }) => h};
-  padding: 12px 48px;
+  padding: 12px 12px;
   background-color: ${({ bgc }) => bgc};
   color: ${({ c }) => c};
 
@@ -92,7 +93,8 @@ const Container = styled.div`
  */
 
 const Toast = ({
-  h = '75px',
+  id,
+  h = '50px',
   c = '#fff',
   bgc = '#339af0',
   fixed = true,
@@ -100,19 +102,18 @@ const Toast = ({
   closeOnClick = true,
   autoClose = true,
   autoCloseDelay = 3000,
-  children,
+  message,
 }) => {
   const [status, setStatus] = React.useState('entry');
-  const toastRef = React.useRef(null);
+  const { remove } = useToast();
 
   const handleAnimationEnd = () => {
     if (status === 'entry' && autoClose) setTimeout(() => setStatus('dismiss'), autoCloseDelay);
-    if (status === 'dismiss') toastRef.current.remove();
+    if (status === 'dismiss') remove(id);
   };
 
   return (
     <Container
-      ref={toastRef}
       h={h}
       fixed={fixed}
       c={c}
@@ -120,19 +121,16 @@ const Toast = ({
       position={position}
       status={status}
       onAnimationEnd={handleAnimationEnd}>
-      <Flex>
-        {children}
-        {closeOnClick && (
-          <CloseButton
-            c={c}
-            size="xl"
-            iconSize={20}
-            variant="transparent"
-            sx={{ alignSelf: 'start' }}
-            onClick={() => setStatus('dismiss')}
-          />
-        )}
-      </Flex>
+      {closeOnClick && (
+        <CloseButton
+          c={c}
+          iconSize="24px"
+          variant="transparent"
+          sx={{ position: 'absolute', right: '2.5%', alignSelf: 'start' }}
+          onClick={() => setStatus('dismiss')}
+        />
+      )}
+      <Center px="5%">{message}</Center>
     </Container>
   );
 };
