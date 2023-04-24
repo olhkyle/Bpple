@@ -4,7 +4,10 @@ import React from 'react';
 const formatPhoneNumber = value => {
   const phoneNumber = value.replace(/\D/g, '');
 
-  return phoneNumber.replace(phoneNumber.length >= 11 ? /(\d{3})(\d{4})(\d{4})/ : /(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+  return phoneNumber.replace(
+    phoneNumber.length >= 11 ? /(\d{3})(\d{4})(\d{4})/ : /(\d{3})(\d{3})(\d{1,4})/,
+    '$1-$2-$3'
+  );
 };
 
 const PhoneNumberInput = ({ name, placeholder, onChange, onBlur, setValue }, ref) => {

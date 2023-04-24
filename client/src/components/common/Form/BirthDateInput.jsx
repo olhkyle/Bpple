@@ -50,6 +50,7 @@ const BirthDateInput = ({ name, placeholder, onChange, onBlur, setValue }, ref) 
         name={name}
         placeholder={placeholder}
         onChange={onChange}
+        onFocus={() => setOpened(true)}
         onBlur={onBlur}
         onClick={() => setOpened(!opened)}
         readOnly
