@@ -4,8 +4,7 @@ import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Title, Stack } from '@mantine/core';
-import { EmailInput, PasswordInput } from '.';
+import { Title, Stack, Input, Button } from '@mantine/core';
 import { signIn } from '../../../api/auth';
 import userState from '../../../recoil/atoms/userState';
 import routesConstants from '../../../constants/routes';
@@ -15,53 +14,57 @@ const signinScheme = z.object({
   password: z.string().regex(/^[0-9a-zA-Z]{6,12}$/, { message: '영문 또는 숫자를 6~12자 입력하세요.' }),
 });
 
+const InputWrapper = ({ error, children }) => (
+  <Input.Wrapper
+    error={error}
+    sx={{
+      input: {
+        height: '50px',
+        color: 'var(--font-color)',
+        fontSize: '20px',
+        backgroundColor: 'rgba(255,255,255, 0.1)',
+      },
+    }}>
+    {children}
+  </Input.Wrapper>
+);
+
 const SignInForm = () => {
   const navigate = useNavigate();
   const setUser = useSetRecoilState(userState);
 
   // TODO : trigger 디바운스 하기
-  const { handleSubmit, control, trigger, setValue } = useForm({ resolver: zodResolver(signinScheme) });
-  const [emailPassed, setEmailPassed] = React.useState(false);
-  const [toolTipOpened, setToolTipOpened] = React.useState(false);
+  const { handleSubmit, register, setValue } = useForm({ resolver: zodResolver(signinScheme) });
 
   const onSubmit = async data => {
     try {
       const { data: user } = await signIn(data);
-      console.log(user);
+
       setUser(user);
       navigate(routesConstants.MAIN);
     } catch (e) {
       setValue('password', '');
-      setToolTipOpened(true);
+      setValue('email', '');
     }
   };
 
   return (
-    <form>
-      <Stack h="300px" justify="center" align="center">
-        <Title c="#494949" fz="22px" order={2}>
-          FineApple Store에 로그인하세요
-        </Title>
+    <Stack h="300px" justify="center" align="center">
+      <Title c="var(--font-color)" fz="22px" order={2}>
+        FineApple Store에 로그인하세요
+      </Title>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack w="340px" spacing="0">
-          <EmailInput
-            control={control}
-            trigger={trigger}
-            emailPassed={emailPassed}
-            setEmailPassed={setEmailPassed}
-            closeTooltip={() => setToolTipOpened(false)}
-          />
-          {emailPassed && (
-            <PasswordInput
-              control={control}
-              trigger={trigger}
-              toolTipOpened={toolTipOpened}
-              closeTooltip={() => setToolTipOpened(false)}
-              subMit={handleSubmit(onSubmit)}
-            />
-          )}
+          <InputWrapper>
+            <Input {...register('email')} placeholder="FineApple ID" />
+          </InputWrapper>
+          <InputWrapper>
+            <Input {...register('password')} placeholder="암호" />
+          </InputWrapper>
+          <Button type="submit">Sign In</Button>
         </Stack>
-      </Stack>
-    </form>
+      </form>
+    </Stack>
   );
 };
 

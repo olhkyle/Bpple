@@ -11,7 +11,7 @@ const LinkBox = styled.span`
 `;
 
 const SingIn = () => (
-  <Container>
+  <Container c="var(--font-color)">
     <Title>더욱 빠르게 결제하시려면 로그인하세요.</Title>
     <Stack align="center">
       <SignInForm />
