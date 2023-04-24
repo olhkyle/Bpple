@@ -1,8 +1,9 @@
 // const bcrypt = require('bcrypt')
 
-/*
-Fake users database
-user => { 
+/* 
+	Fake users database
+
+	user => { 
 		id : uuid
 		firstName: string,
 		lastName: string,
@@ -16,6 +17,17 @@ user => {
 		point : number
 		level : number,
 		avatar : string | null
+	}
+
+	product-type 목록 : 
+		'ipad-basic', 'ipad-air', 'ipad-mini', 'ipad-pro',
+  	'iphone-13', 'iphone-14', 'iphone-14-pro', 'iphone-se',
+  	'macbook-air-m1', 'macbook-air-m2',
+  	'macbook-pro-13', 'macbook-pro-14', 'macbook-pro-16',
+
+	product: {
+		type: string,
+		// options: {}, // 상품 주문하기 기능 구현시 설정
 	}
 */
 
@@ -48,7 +60,7 @@ let users = [
 		phoneNumber: '010-2395-9282',
 		products: [],
 		point: 100,
-		level: 1,
+		level: 2,
 		avatarId: null,
 		aboutMe: '',
 	},
@@ -62,8 +74,8 @@ let users = [
 		nickName: '서준표',
 		phoneNumber: '010-2395-9282',
 		products: [],
-		point: 2,
-		level: 1,
+		point: 200,
+		level: 3,
 		avatarId: null,
 		aboutMe: '',
 	},
@@ -76,13 +88,22 @@ let users = [
 		password: 'Qwer1234',
 		nickName: '서나',
 		phoneNumber: '010-1234-1234',
-		products: [],
+		products: [
+			{ type: 'ipad-pro' },
+			{ type: 'ipad-basic' },
+			{ type: 'iphone-13' },
+			{ type: 'macbook-pro-13' },
+		],
 		point: 10,
 		level: 1,
 		avatarId: 'avatar-1',
 		aboutMe: '응애 나 아기 프엔',
 	},
 ];
+
+const calcLevel = (point) => {
+	return point < 100 ? 1 : point < 200 ? 2 : point < 300 ? 3 : 4;
+};
 
 const findUserByEmail = (email) => users.find((user) => user.email === email);
 
@@ -108,15 +129,15 @@ const createUser = (userInfo) => {
 const getUsersRank = () =>
 	users.sort((user1, user2) => user2.point - user1.point);
 
-const plusPoint = (email, point) => {
+const updatePoint = (email, point) => {
 	users = users.map((user) =>
-		user.email === email ? { ...user, point: user.point + point } : user
-	);
-};
-
-const minusPoint = (email, point) => {
-	users = users.map((user) =>
-		user.email === email ? { ...user, point: user.point - point } : user
+		user.email === email
+			? {
+					...user,
+					point: user.point + point,
+					level: calcLevel(user.point + point),
+			  }
+			: user
 	);
 };
 
@@ -129,6 +150,5 @@ module.exports = {
 	findUserByNickName,
 	getUsers,
 	getUsersRank,
-	plusPoint,
-	minusPoint,
+	updatePoint,
 };

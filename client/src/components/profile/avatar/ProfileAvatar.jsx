@@ -13,6 +13,8 @@ const Container = styled(Avatar)`
  * - avatarId 목록 : /constants/avatars
  * @param {{avatarId?: string}} param
  */
-const ProfileAvatar = ({ avatarId }) => <Container src={avatarId ? avatars[avatarId] : null} alt="avatar image" />;
+const ProfileAvatar = ({ avatarId, size = 'md' }) => (
+  <Container src={avatarId ? avatars[avatarId] : null} alt="avatar image" size={size} />
+);
 
 export default ProfileAvatar;

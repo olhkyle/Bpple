@@ -4,13 +4,16 @@ const posts = require('../mock-data/posts');
 const comments = require('../mock-data/comments');
 const users = require('../mock-data/users');
 
+// post 목록 전체 가져오기 test 용)
 router.get('/', (req, res) => {
 	res.send({ posts: posts.getPosts() });
 });
 
+// comments 목록 전체 가져오기
 router.get('/comments', (req, res) => {
 	res.send({ comments: comments.getComments() });
 });
+
 
 // 커뮤니티 글 정보 (댓글 정보 포함)
 router.get('/:postId', (req, res) => {
@@ -31,7 +34,7 @@ router.post('/', (req, res) => {
 	const { postInfo } = req.body;
 
 	posts.createPost(postInfo);
-	users.plusPoint(postInfo.author, 10);
+	users.updatePoint(postInfo.author, 10);
 
 	res.send({ postInfo });
 });
@@ -52,13 +55,12 @@ router.delete('/:postId', (req, res) => {
 	const { author } = posts.getPost(postId);
 
 	posts.deletePost(postId);
-	users.minusPoint(author, 10);
+	users.updatePoint(author, -10);
 
 	res.send({ postId });
 });
 
 // 커뮤니티 글에 댓글 추가
-// userid 대신 commentInfo에 작성자 실어서 보내기
 router.post('/:postId/comment', (req, res) => {
 	const { postId } = req.params;
 	const { commentInfo } = req.body;
@@ -76,6 +78,19 @@ router.patch('/:postId/comment/:commentId', (req, res) => {
 	comments.updateComment(commentId, commentInfo);
 
 	res.send({ commentId });
+});
+
+// useful 댓글 설정
+router.patch('/:postId/comment/useful/:commentId', (req, res) => {
+	const { commentId, postId } = req.params;
+	const { useful } = req.body;
+	const { author } = posts.getPost(postId);
+
+	comments.updateUsefulComment(commentId, useful);
+	posts.updateCompletedPost(postId);
+	users.plusPoint(author, useful ? 20 : -20);
+
+	res.send({ commentId, postId });
 });
 
 // 커뮤니티 글에 댓글 삭제
