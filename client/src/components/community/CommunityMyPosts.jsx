@@ -36,7 +36,7 @@ const AppleLogoIcon = styled.i`
   color: var(--font-color);
 `;
 
-const CommunityPosts = ({ currentFilter }) => {
+const CommunityMyPosts = ({ currentFilter }) => {
   const loginUser = Recoil.useRecoilValue(userState);
   const { data } = useQuery(communityMeQuery(loginUser.email));
 
@@ -97,4 +97,4 @@ const CommunityPosts = ({ currentFilter }) => {
   );
 };
 
-export default CommunityPosts;
+export default CommunityMyPosts;

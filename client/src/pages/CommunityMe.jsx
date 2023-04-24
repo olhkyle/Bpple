@@ -4,7 +4,7 @@ import Recoil from 'recoil';
 import { Chip, Container, Flex, Group, Title } from '@mantine/core';
 import { getMyPosts } from '../api/posts';
 import userState from '../recoil/atoms/userState';
-import { CommunityPosts, CommunitySkeleton } from '../components/community';
+import { CommunityMyPosts, CommunitySkeleton } from '../components/community';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -26,6 +26,7 @@ const communityMeQuery = userId => ({
     return data;
   },
   staleTime: STALE_TIME,
+  suspense: true,
 });
 
 const communityMeLoader = queryClient => async () => {
@@ -53,7 +54,7 @@ const CommunityMe = () => {
         </Chip.Group>
       </Flex>
       <React.Suspense fallback={<CommunitySkeleton length={10} />}>
-        <CommunityPosts currentFilter={currentFilter} />
+        <CommunityMyPosts currentFilter={currentFilter} />
       </React.Suspense>
     </Wrapper>
   );
