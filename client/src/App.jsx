@@ -5,7 +5,19 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import Root from './components/Root';
-import { SignIn, SignUp, Community, CommunityMe } from './pages';
+import { Community, CommunityMe } from './pages';
+import Profile, { profileLoader } from './pages/Profile';
+import AuthenticationGuard from './guard/AuthenticationGuard';
+import routesConstants from './constants/routes';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+      retry: 0,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -18,18 +30,13 @@ const router = createBrowserRouter([
         children: [{ path: 'me', element: <CommunityMe /> }],
       },
       {
-        path: '/signin',
-        element: <SignIn />,
-      },
-      {
-        path: '/signup',
-        element: <SignUp />,
+        path: '/profile',
+        loader: profileLoader,
+        element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<Profile />} />,
       },
     ],
   },
 ]);
-
-const queryClient = new QueryClient();
 
 const App = () => (
   <RecoilRoot>

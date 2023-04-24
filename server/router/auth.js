@@ -5,29 +5,38 @@ const jwt = require('jsonwebtoken');
 
 const TOKEN = 'accessToken';
 
+// 유저 정보가져오기 (test 용)
 router.get('/users', (req, res) => {
 	res.send({ users: users.getUsers() });
 });
 
+// 유저 토큰 인증
 router.get('/auth', (req, res) => {
 	const accessToken = req.cookies.accessToken;
 
 	try {
 		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 		console.log(`😀 사용자 인증 성공`, decoded);
-		res.send({ auth: 'success' });
+
+		const user = users.findUserByEmail(decoded.email);
+		res.send({
+			email: user.email,
+			nickName: user.nickName,
+			avatarId: user.avatarId,
+		});
 	} catch (e) {
 		console.error('😱 사용자 인증 실패..', e);
 		res.status(401).send({ auth: 'fail' });
 	}
 });
 
+// 로그인
 router.post('/signin', (req, res) => {
 	const { email, password } = req.body;
 
 	console.log(email, password);
 
-	console.log(req);
+	// console.log(req);
 	// 401 Unauthorized
 	if (!email || !password)
 		return res
@@ -35,7 +44,6 @@ router.post('/signin', (req, res) => {
 			.send({ error: '사용자 아이디 또는 패스워드가 전달되지 않았습니다.' });
 
 	const user = users.findUser(email, password);
-	console.log('사용자 정보:', user);
 
 	// 401 Unauthorized
 	if (!user)
@@ -50,9 +58,14 @@ router.post('/signin', (req, res) => {
 		httpOnly: true,
 	});
 
-	res.send({ email, username: user.name });
+	res.send({
+		email: user.email,
+		nickName: user.nickName,
+		avatarId: user.avatarId,
+	});
 });
 
+// 회원가입
 router.post('/signup', (req, res) => {
 	const { userInfo } = req.body;
 
@@ -63,16 +76,19 @@ router.post('/signup', (req, res) => {
 	res.send({ message: '회원가입에 성공하였습니다.' });
 });
 
+// 로그아웃
 router.get('/signout', (req, res) => {
 	return res.clearCookie(TOKEN).end();
 });
 
+// 이메일 중복체크
 router.post('/checkemail', (req, res) => {
 	const { email } = req.body;
 
 	res.send({ duplicated: !!users.findUserByEmail(email) });
 });
 
+// 닉네임 중복체크
 router.post('/checknickname', (req, res) => {
 	const { nickName } = req.body;
 

@@ -1,5 +1,4 @@
 // const bcrypt = require('bcrypt')
-const { v4: uuidv4 } = require('uuid');
 
 /*
 Fake users database
@@ -19,9 +18,11 @@ user => {
 		avatar : string | null
 	}
 */
+
+// verify 시, 클라이언트에 전송할 데이터 :email, nickName, avatarId
+// 랭크에 접근 시 : level, point
 let users = [
 	{
-		id: uuidv4(),
 		firstName: '서',
 		lastName: '준표',
 		country: '대한민국',
@@ -33,9 +34,59 @@ let users = [
 		products: [],
 		point: 0,
 		level: 1,
-		avatar: null,
+		avatarId: null,
+		aboutMe: '',
+	},
+	{
+		firstName: '아',
+		lastName: '아아아',
+		country: '대한민국',
+		birthDate: new Date('1995-09-15'),
+		email: 'cooljp95@daum.net',
+		password: 'ABcdef12',
+		nickName: '서준표',
+		phoneNumber: '010-2395-9282',
+		products: [],
+		point: 100,
+		level: 2,
+		avatarId: null,
+		aboutMe: '',
+	},
+	{
+		firstName: '으',
+		lastName: '아니',
+		country: '대한민국',
+		birthDate: new Date('1995-09-15'),
+		email: 'cooljp95@gmail.com',
+		password: 'ABcdef12',
+		nickName: '서준표',
+		phoneNumber: '010-2395-9282',
+		products: [],
+		point: 200,
+		level: 3,
+		avatarId: null,
+		aboutMe: '',
+	},
+	{
+		firstName: 'park',
+		lastName: 'sunhwa',
+		country: '대한민국',
+		birthDate: new Date('1994-06-03'),
+		email: 'qwer@qwer.ee',
+		password: 'Qwer1234',
+		nickName: '서나',
+		phoneNumber: '010-1234-1234',
+		products: [],
+		point: 10,
+		level: 1,
+		avatarId: 'avatar-1',
+		aboutMe: '응애 나 아기 프엔',
 	},
 ];
+
+const calcLevel = (point) => {
+	return point < 100 ? 1 : point < 200 ? 2 : point < 300 ? 3 : 4;
+};
 
 const findUserByEmail = (email) => users.find((user) => user.email === email);
 
@@ -50,13 +101,27 @@ const createUser = (userInfo) => {
 		...users,
 		{
 			...userInfo,
-			id: uuidv4(),
 			products: [],
 			point: 0,
 			level: 1,
-			avatar: null,
+			avatarId: null,
 		},
 	];
+};
+
+const getUsersRank = () =>
+	users.sort((user1, user2) => user2.point - user1.point);
+
+const updatePoint = (email, point) => {
+	users = users.map((user) =>
+		user.email === email
+			? {
+					...user,
+					point: user.point + point,
+					level: calcLevel(user.point + point),
+			  }
+			: user
+	);
 };
 
 const getUsers = () => users;
@@ -67,4 +132,6 @@ module.exports = {
 	findUserByEmail,
 	findUserByNickName,
 	getUsers,
+	getUsersRank,
+	updatePoint,
 };

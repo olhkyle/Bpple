@@ -1,10 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useSetRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Title, Stack } from '@mantine/core';
 import { EmailInput, PasswordInput } from '.';
 import { signIn } from '../../../api/auth';
+import userState from '../../../recoil/atoms/userState';
+import routesConstants from '../../../constants/routes';
 
 const signinScheme = z.object({
   email: z.string().email({ message: '이메일 형식에 맞게 입력해 주세요.' }),
@@ -12,6 +16,9 @@ const signinScheme = z.object({
 });
 
 const SignInForm = () => {
+  const navigate = useNavigate();
+  const setUser = useSetRecoilState(userState);
+
   // TODO : trigger 디바운스 하기
   const { handleSubmit, control, trigger, setValue } = useForm({ resolver: zodResolver(signinScheme) });
   const [emailPassed, setEmailPassed] = React.useState(false);
@@ -19,9 +26,10 @@ const SignInForm = () => {
 
   const onSubmit = async data => {
     try {
-      const res = await signIn(data);
-      // TODO : MAIN으로 이동 , 유저 정보 전역 상태로 관리하기
-      console.log(res.data);
+      const { data: user } = await signIn(data);
+      console.log(user);
+      setUser(user);
+      navigate(routesConstants.MAIN);
     } catch (e) {
       setValue('password', '');
       setToolTipOpened(true);

@@ -1,53 +1,111 @@
 const express = require('express');
 const router = express.Router();
+const posts = require('../mock-data/posts');
+const comments = require('../mock-data/comments');
+const users = require('../mock-data/users');
+
+// post 목록 전체 가져오기 test 용)
+router.get('/', (req, res) => {
+	res.send({ posts: posts.getPosts() });
+});
+
+// comments 목록 전체 가져오기
+router.get('/comments', (req, res) => {
+	res.send({ comments: comments.getComments() });
+});
+
+// post 목록 검색
+router.get('/search', (req, res) => {
+	const { keyword } = req.query;
+
+	res.send({ posts: posts.searchPost(keyword) });
+});
 
 // 커뮤니티 글 정보 (댓글 정보 포함)
-router.get('/:postid', (req, res) => {
-	const { postid } = req.params;
+router.get('/:postId', (req, res) => {
+	const { postId } = req.params;
 
-	res.send({ hi: 'post' });
+	console.log(posts.getPost(postId));
+
+	res.send({
+		post: {
+			...posts.getPost(postId),
+			comments: comments.getPostComments(postId),
+		},
+	});
 });
 
 // 커뮤니티 글 작성 - 작성자 point + 10
-router.post('/:userid', (req, res) => {
-	const { userid } = req.params;
+router.post('/', (req, res) => {
+	const { postInfo } = req.body;
 
-	res.send({ hi: 'hi' });
+	posts.createPost(postInfo);
+	users.updatePoint(postInfo.author, 10);
+
+	res.send({ postInfo });
 });
 
 // 커뮤니티 글 수정
-router.patch('/:postid', (req, res) => {
-	const { postid } = req.params;
+router.patch('/:postId', (req, res) => {
+	const { postId } = req.params;
+	const { postInfo } = req.body;
 
-	res.send({ hi: 'hi' });
+	posts.updatePost(postId, postInfo);
+
+	res.send({ postInfo });
 });
 
 // 커뮤니티 글 삭제 - 작성자 point - 10
-router.delete('/:postid', (req, res) => {
-	const { postid } = req.params;
+router.delete('/:postId', (req, res) => {
+	const { postId } = req.params;
+	const { author } = posts.getPost(postId);
 
-	res.send({ hi: 'hi' });
+	posts.deletePost(postId);
+	users.updatePoint(author, -10);
+
+	res.send({ postId });
 });
 
 // 커뮤니티 글에 댓글 추가
-router.post('/:postid/comment/:userid', (req, res) => {
-	const { postid, userid } = req.params;
+router.post('/:postId/comment', (req, res) => {
+	const { postId } = req.params;
+	const { commentInfo } = req.body;
 
-	res.send({ hi: 'hi' });
+	comments.createComment({ ...commentInfo, postId });
+
+	res.send({ postId });
 });
 
 // 커뮤니티 글에 댓글 수정
-router.patch('/:postid/comment/:commentid', (req, res) => {
-	const { postid, commentid } = req.params;
+router.patch('/:postId/comment/:commentId', (req, res) => {
+	const { commentId } = req.params;
+	const { commentInfo } = req.body;
 
-	res.send({ hi: 'hi' });
+	comments.updateComment(commentId, commentInfo);
+
+	res.send({ commentId });
+});
+
+// useful 댓글 설정
+router.patch('/:postId/comment/useful/:commentId', (req, res) => {
+	const { commentId, postId } = req.params;
+	const { useful } = req.body;
+	const { author } = posts.getPost(postId);
+
+	comments.updateUsefulComment(commentId, useful);
+	posts.updateCompletedPost(postId);
+	users.plusPoint(author, useful ? 20 : -20);
+
+	res.send({ commentId, postId });
 });
 
 // 커뮤니티 글에 댓글 삭제
-router.delete('/:postid/comment/:commentid', (req, res) => {
-	const { postid, commentid } = req.params;
+router.delete('/:postid/comment/:commentId', (req, res) => {
+	const { commentId } = req.params;
 
-	res.send({ hi: 'hi' });
+	comments.deleteComment(commentId);
+
+	res.send({ commentId });
 });
 
 module.exports = router;

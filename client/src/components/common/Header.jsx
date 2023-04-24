@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
   width: 100%;
-  border-bottom: 1px solid #cdcdcd;
+  border-bottom: 1px solid #e9ecef50;
   background-color: var(--body-bg-color);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
   position: sticky;
   top: 0;
+  z-index: 99;
 `;
 
 const Wrapper = styled(Container)`

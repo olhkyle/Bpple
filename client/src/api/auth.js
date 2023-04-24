@@ -6,8 +6,10 @@ const checkEmail = email => axios.post('api/checkemail', { email });
 
 const checkNickName = nickName => axios.post('api/checknickname', { nickName });
 
-const signIn = async userInfo => axios.post('api/signin', { userInfo });
+const signIn = async userInfo => axios.post('api/signin', { email: userInfo.email, password: userInfo.password });
 
 const signUp = userInfo => axios.post('api/signup', { userInfo });
 
-export { auth, checkEmail, checkNickName, signIn, signUp };
+const signOut = () => axios.get('api/signout');
+
+export { auth, checkEmail, checkNickName, signIn, signUp, signOut };
