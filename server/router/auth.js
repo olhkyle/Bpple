@@ -17,7 +17,13 @@ router.get('/auth', (req, res) => {
 	try {
 		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 		console.log(`😀 사용자 인증 성공`, decoded);
-		res.send({ auth: 'success' });
+
+		const user = users.findUserByEmail(decoded.email);
+		res.send({
+			email: user.email,
+			nickName: user.nickName,
+			avatarId: user.avatarId,
+		});
 	} catch (e) {
 		console.error('😱 사용자 인증 실패..', e);
 		res.status(401).send({ auth: 'fail' });
@@ -30,7 +36,7 @@ router.post('/signin', (req, res) => {
 
 	console.log(email, password);
 
-	console.log(req);
+	// console.log(req);
 	// 401 Unauthorized
 	if (!email || !password)
 		return res

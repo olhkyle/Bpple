@@ -2,12 +2,6 @@ import React from 'react';
 import { Modal } from '@mantine/core';
 import styled from '@emotion/styled';
 
-const ModalTitle = styled.h2`
-  font-size: 40px;
-  line-height: 1.2;
-  word-break: keep-all;
-`;
-
 const ModalContainer = styled(Modal)`
   position: relative;
   word-break: keep-all;
@@ -28,6 +22,15 @@ const ModalContainer = styled(Modal)`
 
   button.mantine-Modal-close:hover {
     border: 1px solid #6e6e73;
+  }
+
+  h2.mantine-Modal-title {
+    width: 650px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   svg {
@@ -55,7 +58,7 @@ const PopupModal = ({ opened, onClose, title, children }) => (
   <ModalContainer
     opened={opened}
     onClose={onClose}
-    title={<ModalTitle>{title}</ModalTitle>}
+    title={title}
     padding="60px 60px 40px 60px"
     radius="18px"
     size="50%"

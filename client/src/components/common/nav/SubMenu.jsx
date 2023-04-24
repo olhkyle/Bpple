@@ -3,19 +3,19 @@ import { Menu, Text } from '@mantine/core';
 import React from 'react';
 
 const SubMenuContainer = styled(Menu.Dropdown)`
-  /* --secondary-bg-color: black; */
   min-width: 100vw;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: -1px;
   padding-top: 30px;
   padding-bottom: 20px;
   border: none;
   border-radius: 0;
   background-color: var(--secondary-bg-color);
   color: var(--footer-font-color);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   z-index: 9999;
 `;
 
