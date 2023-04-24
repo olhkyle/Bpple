@@ -14,12 +14,6 @@ router.get('/comments', (req, res) => {
 	res.send({ comments: comments.getComments() });
 });
 
-// post 목록 검색
-router.get('/search', (req, res) => {
-	const { keyword } = req.query;
-
-	res.send({ posts: posts.searchPost(keyword) });
-});
 
 // 커뮤니티 글 정보 (댓글 정보 포함)
 router.get('/:postId', (req, res) => {
