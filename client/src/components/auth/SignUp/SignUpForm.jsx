@@ -1,11 +1,14 @@
 import React from 'react';
-import { Stack, Flex, Button, Input, Divider } from '@mantine/core';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from 'react-router-dom';
+import { Stack, Flex, Button, Input, Divider } from '@mantine/core';
+import { checkEmail, checkNickName, signUp } from '../../../api/auth';
 import { PasswordTooltipInput } from '.';
 import { InputWrapper, CountrySelect, BirthDateInput, DuplicateCheckInput, PhoneNumberInput } from '../../common/Form';
-import { checkEmail, checkNickName, signUp } from '../../../api/auth';
+import routesConstants from '../../../constants/routes';
+import useToast from '../../../hooks/useToast';
 
 const signupScheme = z
   .object({
@@ -38,11 +41,16 @@ const SignUpForm = () => {
     resolver: zodResolver(signupScheme),
   });
 
-  const onSubmit = data => {
+  const navigate = useNavigate();
+  const toast = useToast();
+
+  const onSubmit = async data => {
     if (!isDirty) return;
 
     try {
-      signUp(data);
+      await signUp(data);
+      toast.create({ message: '회원가입에 성공하였습니다.' });
+      navigate(routesConstants.SIGNIN);
     } catch (e) {
       console.error(e);
     }
