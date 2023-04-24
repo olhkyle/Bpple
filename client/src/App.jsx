@@ -5,9 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import Root from './components/Root';
-
-import { SignIn, SignUp, Community, CommunityMe, ProfileEdit } from './pages';
-
+import { SignIn, SignUp, Community, CommunityMe, ProfileEdit, CommunityPost } from './pages';
 import Profile, { profileLoader } from './pages/Profile';
 import { communityMeLoader } from './pages/CommunityMe';
 import AuthenticationGuard from './guard/AuthenticationGuard';
@@ -16,7 +14,6 @@ import routesConstants from './constants/routes';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      suspense: true,
       retry: 0,
     },
   },
@@ -32,13 +29,16 @@ const router = createBrowserRouter([
         element: <Community />,
         children: [
           {
+            path: 'post/:id',
+            element: <CommunityPost />,
+          },
+          {
             path: 'me',
             loader: communityMeLoader,
             element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<CommunityMe />} />,
           },
         ],
       },
-
       {
         path: '/profile',
         children: [
@@ -51,6 +51,14 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: '/signin',
+    element: <SignIn />,
+  },
+  {
+    path: '/signup',
+    element: <SignUp />,
   },
 ]);
 

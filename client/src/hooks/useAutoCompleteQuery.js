@@ -11,11 +11,12 @@ const STALE_TIME = 3000;
 const useAutoCompleteQuery = (inputValue, queryFn) => {
   const { data: posts } = useQuery({
     queryKey: ['posts', inputValue],
-    staleTime: STALE_TIME,
     queryFn: async () => {
       const { data: posts } = await queryFn(inputValue);
       return posts;
     },
+    staleTime: STALE_TIME,
+    suspense: true,
   });
 
   return posts;
