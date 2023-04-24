@@ -21,6 +21,26 @@ let comments = [
 		certified: false,
 		useful: false,
 	},
+	{
+		id: uuidv4(),
+		postId: '3',
+		author: 'cooljp95@naver.com',
+		content: '음',
+		createAt: new Date(),
+		updateAt: new Date(),
+		certified: false,
+		useful: false,
+	},
+	{
+		id: uuidv4(),
+		postId: '5',
+		author: 'cooljp95@naver.com',
+		content: '음',
+		createAt: new Date(),
+		updateAt: new Date(),
+		certified: false,
+		useful: false,
+	},
 ];
 
 const getComments = () => comments;
