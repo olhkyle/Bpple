@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ImEarth } from 'react-icons/im';
 import { IoFilterCircleOutline } from 'react-icons/io5';
 import { HiOutlineTrophy } from 'react-icons/hi2';
-import { Container, Divider, Flex, Group, List, Text, Title } from '@mantine/core';
+import { Container, Divider, Flex, Group, Image, List, Text, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { InfoCard } from '../common';
 import { AutoComplete, RuleModal, QuestionModal, FilterContentModal } from '.';
@@ -26,17 +26,6 @@ const Wrapper = styled(Container)`
 const Description = styled.section`
   width: 730px;
   word-break: keep-all;
-`;
-
-const CommunityImageWrapper = styled.div`
-  padding-top: 6rem;
-  padding-bottom: 3rem;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 `;
 
 const CategoryList = styled(List)`
@@ -65,6 +54,7 @@ const Category = styled(List.Item)`
   }
 
   &:hover {
+    font-weight: 500;
     color: var(--hover-font-color);
     border: 1px solid var(--hover-font-color);
     background-color: var(--opacity-bg-color);
@@ -102,18 +92,14 @@ const CommunityMain = () => {
         <Text fz="26px" mb="40px">
           전 세계 FineApple 고객들과 소통해 보세요 🚀
         </Text>
-
         <AutoComplete width={720} queryFn={getSearchedPosts} />
       </Description>
 
-      <CommunityImageWrapper>
-        <img src="/community/community-main.png" alt="community" />
-      </CommunityImageWrapper>
+      <Image src="/community/community-main.png" alt="community" pt="6rem" pb="3rem" />
 
       <Text fz="21px" mt="4rem" mb="2rem" fw="600">
         제품을 선택하시면 관련 주제가 표시됩니다 ⭐️
       </Text>
-
       <CategoryList>
         {categoryList.map(({ imgPath, category }) => (
           <Category key={imgPath}>

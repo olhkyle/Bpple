@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const posts = require('../mock-data/posts');
+const comments = require('../mock-data/comments');
 
 const PAGE_SIZE = 10;
 
@@ -25,6 +26,26 @@ router.get('/', (req, res) => {
 	res.send({
 		posts: division(filteredPosts, PAGE_SIZE)[page - 1],
 		toTallength: filteredPosts.length,
+	});
+});
+
+// AutoComplete 검색결과
+router.get('/search', (req, res) => {
+	const { keyword } = req.query;
+
+	res.send({ posts: posts.searchPost(keyword).slice(0, 5) });
+});
+
+router.post('/me', (req, res) => {
+	const { userId } = req.body;
+
+	const myPosts = posts.getMyPosts(userId);
+
+	res.send({
+		posts: myPosts.map((myPost) => ({
+			...myPost,
+			comments: comments.getPostComments(myPost.id),
+		})),
 	});
 });
 
