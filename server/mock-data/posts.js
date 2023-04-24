@@ -178,10 +178,7 @@ const deletePost = (postId) =>
 
 // Autocomplete Search Posts -> Max Count :5
 const searchPost = (keyword) => {
-	return posts
-		.filter((post) => new RegExp(keyword, 'i').test(post.title))
-		.sort((prev, next) => prev.createdAt - next.createAt)
-		.slice(0, 5);
+	return posts.filter((post) => new RegExp(keyword, 'i').test(post.title));
 };
 
 module.exports = {
