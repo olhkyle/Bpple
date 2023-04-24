@@ -6,7 +6,7 @@ export default {
   'iphone-13': '/products/iphone/iphone-13/thumbnail.png',
   'iphone-14': '/products/iphone/iphone-14/thumbnail.png',
   'iphone-14-pro': '/products/iphone/iphone-14-pro/thumbnail.png',
-  'iphone-se': '/products/iphone/iphone-14-se/thumbnail.png',
+  'iphone-se': '/products/iphone/iphone-se/thumbnail.png',
   'macbook-air-m1': '/products/mac/macbook-air/m1/thumbnail.png',
   'macbook-air-m2': '/products/mac/macbook-air/m2/thumbnail.png',
   'macbook-pro-13': '/products/mac/macbook-pro/13/thumbnail.png',
