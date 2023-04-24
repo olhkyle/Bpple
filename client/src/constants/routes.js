@@ -3,6 +3,7 @@ export default {
   SIGNUP: '/signup',
   SIGNIN: '/signin',
   PROFILE: '/profile',
+  PROFILE_EDIT: '/profile/edit',
   CART: '/cart',
   MAC: '/shop/mac',
   IPHONE: '/shop/iphone',
