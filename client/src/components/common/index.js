@@ -6,3 +6,4 @@ export { default as PopupModal } from './PopupModal';
 export { default as TextCard } from './TextCard';
 export { default as AvatarCard } from './AvatarCard';
 export { default as InfoCard } from './InfoCard';
+export { default as FaqAccordion } from './FaqAccordion';
