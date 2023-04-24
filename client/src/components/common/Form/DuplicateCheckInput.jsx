@@ -1,0 +1,38 @@
+import React from 'react';
+import { Input, Flex } from '@mantine/core';
+import { AiOutlineExclamationCircle } from 'react-icons/ai';
+
+/**
+ * useForm의 register('inputName') props로 전달
+ * 중복 체크하는 함수 기입
+ * placeholder설정 가능
+ *
+ * @param {{...register('inputName'), placeholder, checker}, ref}
+ * @returns
+ */
+
+const DuplicateCheckInput = ({ checker, name, placeholder, onChange, onBlur }, ref) => {
+  const [duplicated, setDuplicated] = React.useState(false);
+
+  const handleBlur = async e => {
+    const { data } = await checker(e.target.value);
+
+    onBlur(e);
+    setDuplicated(data.duplicated);
+  };
+
+  return (
+    <Input.Wrapper
+      error={
+        duplicated && (
+          <Flex align="center" gap="4px">
+            <AiOutlineExclamationCircle /> {`중복된 ${name}입니다.`}
+          </Flex>
+        )
+      }>
+      <Input ref={ref} name={name} placeholder={placeholder} onChange={onChange} onBlur={handleBlur} />
+    </Input.Wrapper>
+  );
+};
+
+export default React.forwardRef(DuplicateCheckInput);

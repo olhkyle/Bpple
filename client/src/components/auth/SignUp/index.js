@@ -1,10 +1,3 @@
-export { default as CountrySelect } from './CountrySelect';
-export { default as FormInput } from './FormInput';
-export { default as PasswordInput } from './PasswordInput';
-export { default as BirthDateInput } from './BirthDateInput';
-export { default as EmailInput } from './EmailInput';
-export { default as NickNameInput } from './NickNameInput';
-export { default as PhoneNumberInput } from './PhoneNumberInput';
-export { default as Input } from './Input';
+export { default as PasswordTooltipInput } from './PasswordTooltipInput';
 export { default as SignUpForm } from './SignUpForm';
 export { default as SignUp } from './SignUp';

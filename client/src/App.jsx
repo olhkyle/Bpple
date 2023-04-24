@@ -5,7 +5,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import Root from './components/Root';
+
 import { SignIn, SignUp, Community, CommunityMe, ProfileEdit } from './pages';
+
 import Profile, { profileLoader } from './pages/Profile';
 import { communityMeLoader } from './pages/CommunityMe';
 import AuthenticationGuard from './guard/AuthenticationGuard';
@@ -49,14 +51,6 @@ const router = createBrowserRouter([
         ],
       },
     ],
-  },
-  {
-    path: '/signin',
-    element: <SignIn />,
-  },
-  {
-    path: '/signup',
-    element: <SignUp />,
   },
 ]);
 

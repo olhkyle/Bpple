@@ -5,7 +5,7 @@ import { SignUpForm } from '.';
 const SignUp = () => (
   <Container size="xs">
     <Title mb="xl" align="center">
-      Bpple ID 생성
+      FineApple ID 생성
     </Title>
     <SignUpForm />
   </Container>
