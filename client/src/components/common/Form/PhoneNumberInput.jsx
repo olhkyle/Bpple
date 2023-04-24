@@ -1,0 +1,19 @@
+import { Input } from '@mantine/core';
+import React from 'react';
+
+const formatPhoneNumber = value => {
+  const phoneNumber = value.replace(/\D/g, '');
+
+  return phoneNumber.replace(phoneNumber.length >= 11 ? /(\d{3})(\d{4})(\d{4})/ : /(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+};
+
+const PhoneNumberInput = ({ name, placeholder, onChange, onBlur, setValue }, ref) => {
+  const handleChange = e => {
+    setValue(name, formatPhoneNumber(e.target.value));
+    onChange(e);
+  };
+
+  return <Input ref={ref} name={name} placeholder={placeholder} onChange={handleChange} onBlur={onBlur} />;
+};
+
+export default React.forwardRef(PhoneNumberInput);
