@@ -15,11 +15,8 @@ const Title = styled.h1`
 
 const ProfileEdit = () => {
   const loginUser = Recoil.useRecoilValue(userState);
-  console.log(loginUser);
 
   const { data: userInfo } = useQuery(profileQuery(loginUser.email));
-
-  // TODO: Profile Edit
 
   return (
     <>
