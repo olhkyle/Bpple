@@ -45,7 +45,7 @@ const Footer = () => {
       </Wrapper>
       <Wrapper>
         <Text>Copyright © 2023 Apple Inc. 모든 권리 보유.</Text>
-        <Flex sx={{ gap: '1rem' }}>
+        <Flex gap="1rem">
           {regulations.map((regulation, idx) => (
             <li key={idx}>{regulation}</li>
           ))}
