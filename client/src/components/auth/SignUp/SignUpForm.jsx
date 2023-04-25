@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Stack, Flex, Button, Input, Divider } from '@mantine/core';
 import { checkEmail, checkNickName, signUp } from '../../../api/auth';
 import { PasswordTooltipInput } from '.';
-import { InputWrapper, CountrySelect, BirthDateInput, DuplicateCheckInput, PhoneNumberInput } from '../../common/Form';
+import { InputWrapper, CountrySelect, BirthDateInput, DuplicateCheckInput, PhoneNumberInput } from '../../common/form';
 import routesConstants from '../../../constants/routes';
 import useToast from '../../../hooks/useToast';
 
