@@ -1,72 +1,48 @@
 import React from 'react';
-import { DatePicker } from '@mantine/dates';
-import { Input } from '@mantine/core';
+import { DateInput } from '@mantine/dates';
 
 const datePickerStyle = {
-  position: 'absolute',
-  top: '54px',
-  zIndex: '9999',
-  borderRadius: '10px',
-  border: '1px solid #ced4da',
+  '.mantine-Popover-dropdown': {
+    borderRadius: '10px',
+    border: '1px solid #ced4da',
+    background: 'var(--body-bg-color)',
 
-  button: {
-    color: 'var(--font-color)',
-    ':hover': {
-      color: 'var(--hover-font-color)',
-      background: 'var(--opacity-bg-color)',
+    'button:not([data-weekend])': {
+      color: 'var(--font-color)',
+      ':hover': {
+        color: 'var(--hover-font-color)',
+        background: 'var(--opacity-bg-color)',
+      },
     },
   },
-};
-
-const formattedDate = date => {
-  if (!date) return '';
-
-  const format = n => (n < 10 ? `0${n}` : `${n}`);
-  return `${date.getFullYear()}-${format(date.getMonth() + 1)}-${format(date.getDate())}`;
 };
 
 /**
  * useForm의 register('inputName') props로 전달
  * useForm의 setValue props로 전달
  * placeholder설정 가능
- * @param {{...register('inputName'), placeholder, setValue}, ref}
+ * initDate 초기 띄울 날짜 설정
+ * @param {{...register('inputName'), placeholder, setValue, initDate}, ref}
  * @returns
  */
 
-const BirthDateInput = ({ name, placeholder, onChange, onBlur, setValue }, ref) => {
-  const [date, setDate] = React.useState();
-  const [opened, setOpened] = React.useState(false);
-
-  const handleChange = date => {
-    setDate(date);
-    setOpened(false);
-    setValue(name, formattedDate(date));
-  };
+const BirthDateInput = ({ name, placeholder, onBlur, setValue, initDate }, ref) => {
+  const [date, setDate] = React.useState(initDate);
 
   return (
-    <>
-      <Input
-        ref={ref}
-        name={name}
-        placeholder={placeholder}
-        onChange={onChange}
-        onFocus={() => setOpened(true)}
-        onBlur={onBlur}
-        onClick={() => setOpened(!opened)}
-        readOnly
-      />
-      {opened && (
-        <DatePicker
-          p="12px"
-          bg="var(--body-bg-color)"
-          c="var(--font-color)"
-          value={date}
-          onChange={handleChange}
-          defaultLevel="decade"
-          sx={datePickerStyle}
-        />
-      )}
-    </>
+    <DateInput
+      ref={ref}
+      name={name}
+      value={date}
+      onChange={date => {
+        setDate(date);
+        setValue(name, date);
+      }}
+      onBlur={onBlur}
+      valueFormat="YYYY-MM-DD"
+      placeholder={placeholder}
+      sx={datePickerStyle}
+    />
   );
 };
 
