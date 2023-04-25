@@ -48,13 +48,15 @@ const SignInForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack w="340px" spacing="12px">
-        <InputWrapper error={errors?.email?.message}>
+        <InputWrapper label="이메일" error={errors?.email?.message}>
           <Input {...register('email')} placeholder="FineApple ID" />
         </InputWrapper>
-        <InputWrapper error={errorMessage || errors?.password?.message}>
-          <Input {...register('password')} placeholder="암호" />
+        <InputWrapper label="비밀번호" error={errorMessage || errors?.password?.message}>
+          <Input {...register('password')} placeholder="비밀번호" />
         </InputWrapper>
-        <Button type="submit">로그인</Button>
+        <Button mt="xl" size="lg" type="submit">
+          로그인
+        </Button>
       </Stack>
     </form>
   );

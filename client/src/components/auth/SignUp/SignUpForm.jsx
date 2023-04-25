@@ -76,12 +76,12 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack align="center">
+      <Stack>
         <Flex w="100%" justify="center" gap="8px">
-          <InputWrapper error={errors?.lastName?.message}>
+          <InputWrapper label="성" error={errors?.lastName?.message}>
             <Input {...register('lastName')} placeholder="성" />
           </InputWrapper>
-          <InputWrapper error={errors?.firstName?.message}>
+          <InputWrapper label="이름" error={errors?.firstName?.message}>
             <Input {...register('firstName')} placeholder="이름" />
           </InputWrapper>
         </Flex>
@@ -89,32 +89,34 @@ const SignUpForm = () => {
         <InputWrapper label="국가 / 지역" error={errors?.country?.message}>
           <CountrySelect {...register('country')} />
         </InputWrapper>
-        <InputWrapper error={errors?.birthDate?.message}>
+        <InputWrapper label="생년월일" error={errors?.birthDate?.message}>
           <BirthDateInput {...register('birthDate')} setValue={setValue} placeholder="생년월일" />
         </InputWrapper>
 
-        <Divider />
+        <Divider size="xs" variant="dashed" my="10px" />
 
-        <InputWrapper desc="새 FineApple ID로 사용할 주소입니다." error={errors?.email?.message}>
+        <InputWrapper label="이메일" desc="새 FineApple ID로 사용할 주소입니다." error={errors?.email?.message}>
           <DuplicateCheckInput {...register('email')} checker={checkDuplicateEmail} placeholder="name@example.com" />
         </InputWrapper>
-        <InputWrapper error={errors?.password?.message}>
-          <PasswordTooltipInput {...register('password')} placeholder="암호" />
+        <InputWrapper label="비밀번호" error={errors?.password?.message}>
+          <PasswordTooltipInput {...register('password')} placeholder="비밀번호" />
         </InputWrapper>
-        <InputWrapper error={errors?.confirmPassword?.message}>
-          <Input type="password" {...register('confirmPassword')} placeholder="암호 확인" />
+        <InputWrapper label="비밀번호 확인" error={errors?.confirmPassword?.message}>
+          <Input type="password" {...register('confirmPassword')} placeholder="비밀번호 확인" />
         </InputWrapper>
 
-        <Divider />
+        <Divider size="xs" variant="dashed" my="10px" />
 
-        <InputWrapper desc="커뮤니티에서 사용할 닉네임입니다.." error={errors?.nickName?.message}>
+        <InputWrapper label="닉네임" desc="커뮤니티에서 사용할 닉네임입니다.." error={errors?.nickName?.message}>
           <DuplicateCheckInput {...register('nickName')} checker={checkDuplicateNickName} placeholder="닉네임" />
         </InputWrapper>
-        <InputWrapper error={errors?.phoneNumber?.message}>
+        <InputWrapper label="전화번호" error={errors?.phoneNumber?.message}>
           <PhoneNumberInput {...register('phoneNumber')} setValue={setValue} placeholder="전화번호" />
         </InputWrapper>
 
-        <Button type="submit">회원가입</Button>
+        <Button mt="xl" size="lg" type="submit">
+          회원가입
+        </Button>
       </Stack>
     </form>
   );
