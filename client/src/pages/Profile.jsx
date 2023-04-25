@@ -1,10 +1,10 @@
 import React from 'react';
 import Recoil from 'recoil';
-import { useQuery } from '@tanstack/react-query';
 import styled from '@emotion/styled';
 import userState from '../recoil/atoms/userState';
 import { fetchProfile } from '../api/profile';
-import { UserProfile, ProductList } from '../components/profile';
+import { ProfileInfo } from '../components/profile';
+import { Loader } from '../components/common';
 
 const staleTime = 3000;
 
@@ -18,6 +18,7 @@ const profileQuery = userId => ({
     return data;
   },
   staleTime,
+  suspense: true,
 });
 
 /**
@@ -41,13 +42,13 @@ const Title = styled.h1`
 const Profile = () => {
   const loginUser = Recoil.useRecoilValue(userState);
 
-  const { data: userInfo } = useQuery(profileQuery(loginUser.email));
-
   return (
     <>
       <Title>{loginUser.nickName}님, 안녕하세요.</Title>
-      <ProductList products={userInfo.products} />
-      <UserProfile {...loginUser} {...userInfo} />
+
+      <React.Suspense fallback={<Loader />}>
+        <ProfileInfo />
+      </React.Suspense>
     </>
   );
 };

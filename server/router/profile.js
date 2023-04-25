@@ -6,10 +6,14 @@ const users = require('../mock-data/users');
 router.post('/', (req, res) => {
 	const { userId } = req.body;
 
+	const user = users.findUserByEmail(userId);
+
+	if (!user)
+		return res.status(401).send({ error: '해당 사용자가 존재하지 않습니다.' });
+
 	const {
 		firstName,
 		lastName,
-		nickName,
 		country,
 		phoneNumber,
 		products,
@@ -17,9 +21,8 @@ router.post('/', (req, res) => {
 		level,
 		avatarId,
 		aboutMe,
-	} = users.findUserByEmail(userId);
-
-	console.log('## 프로필 fetch -', nickName);
+		birthDate,
+	} = user;
 
 	res.send({
 		name: firstName + lastName,
@@ -30,16 +33,16 @@ router.post('/', (req, res) => {
 		level,
 		avatarId,
 		aboutMe,
+		birthDate,
 	});
 });
 
-// TODO: 사용자 프로필 수정
-router.patch('/edit', (req, res) => {
+// 프로필 수정
+router.post('/edit', (req, res) => {
 	const userInfo = req.body;
 
-	console.log('## 프로필 수정', userInfo);
-
-	res.send();
+	users.updateProfile(userInfo);
+	res.send({ message: '회원 정보가 수정되었습니다.' });
 });
 
 module.exports = router;
