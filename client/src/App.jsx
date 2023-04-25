@@ -4,7 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
-import Root from './components/Root';
+import Layout from './components/Layout';
 import { SignIn, SignUp, Community, CommunityMe, ProfileEdit, CommunityPost } from './pages';
 import Profile, { profileLoader } from './pages/Profile';
 import { communityMeLoader } from './pages/CommunityMe';
@@ -22,7 +22,7 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <Layout />,
     children: [
       {
         path: '/community',
@@ -44,7 +44,10 @@ const router = createBrowserRouter([
         loader: profileLoader,
         element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<Profile />} />,
       },
-      { path: '/profile/edit', element: <ProfileEdit /> },
+      {
+        path: '/profile/edit',
+        element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<ProfileEdit />} />,
+      },
     ],
   },
   {

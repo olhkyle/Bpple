@@ -4,8 +4,12 @@ import routesConstants from '../constants/routes';
 import { Footer, ScrollToTopButton, Toasts } from './common';
 import { Nav } from './common/nav';
 
-const Root = () => {
+const Layout = () => {
   const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [pathname]);
 
   return (
     <>
@@ -18,4 +22,4 @@ const Root = () => {
   );
 };
 
-export default Root;
+export default Layout;

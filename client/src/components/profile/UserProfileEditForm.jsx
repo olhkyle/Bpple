@@ -24,7 +24,7 @@ const editProfileScheme = z.object({
 });
 
 const UserProfileEditForm = ({ userInfo }) => {
-  const loginUser = Recoil.useRecoilValue(userState);
+  const [loginUser, setLoginUser] = Recoil.useRecoilState(userState);
 
   const [avatarEditPopupOpened, { open: openAvatarEditPopup, close: closeAvatarEditPopup }] = useDisclosure(false);
 
@@ -53,6 +53,7 @@ const UserProfileEditForm = ({ userInfo }) => {
 
     try {
       await editProfile({ ...data, userId: loginUser.email });
+      setLoginUser({ email: loginUser.email, nickName: data.nickName, avatarId: data.avatarId });
       toast.create({ message: '회원정보가 수정되었습니다.' });
       navigate(routesConstants.PROFILE);
     } catch (e) {
