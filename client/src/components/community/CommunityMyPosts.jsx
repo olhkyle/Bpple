@@ -63,7 +63,7 @@ const CommunityMyPosts = ({ currentFilter }) => {
                 {title}
               </Title>
               <Flex direction="column">
-                <Text c="var(--font-color)">{createAt}</Text>
+                <Text c="var(--font-color)">{createAt.slice(0, 10)}</Text>
                 <Flex mt="10px" fz="20px" gap="1rem" align="center">
                   <CheckedCircleIcon completed={completed} />
                   {comments.some(({ certified }) => certified) && <AppleRecommendIcon />}
