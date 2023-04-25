@@ -11,7 +11,7 @@ import { editProfile } from '../../api/profile';
 import userState from '../../recoil/atoms/userState';
 import useToast from '../../hooks/useToast';
 import routesConstants from '../../constants/routes';
-import { BirthDateInput, CountrySelect, DuplicateCheckInput, InputWrapper, PhoneNumberInput } from '../common/Form';
+import { BirthDateInput, CountrySelect, DuplicateCheckInput, InputWrapper, PhoneNumberInput } from '../common/form';
 import { AvatarButton, AvatarEditModal } from './avatar';
 
 const editProfileScheme = z.object({

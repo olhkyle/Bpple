@@ -6,8 +6,8 @@ const Wrapper = styled(Input.Wrapper)`
   width: 100%;
   position: relative;
   input {
-    height: '50px';
-    border-radius: '10px';
+    height: 50px;
+    border-radius: 10px;
     background-color: var(--body-bg-color);
     color: var(--font-color);
   }

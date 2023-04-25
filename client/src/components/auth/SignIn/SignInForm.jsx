@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Stack, Input, Button } from '@mantine/core';
 import { signIn } from '../../../api/auth';
-import { InputWrapper } from '../../common/Form';
+import { InputWrapper } from '../../common/form';
 import userState from '../../../recoil/atoms/userState';
 import routesConstants from '../../../constants/routes';
 
