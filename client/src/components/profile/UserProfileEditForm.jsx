@@ -1,10 +1,130 @@
 import React from 'react';
+import Recoil from 'recoil';
+import { z } from 'zod';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, Container, Stack, Textarea } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import styled from '@emotion/styled';
+import { checkNickName } from '../../api/auth';
+import { editProfile } from '../../api/profile';
+import userState from '../../recoil/atoms/userState';
+import useToast from '../../hooks/useToast';
+import routesConstants from '../../constants/routes';
+import { BirthDateInput, CountrySelect, DuplicateCheckInput, InputWrapper, PhoneNumberInput } from '../common/Form';
+import { AvatarButton, AvatarEditModal } from './avatar';
+
+const EditProfileContainer = styled(Container)`
+  margin-bottom: 20px;
+`;
+
+const SubmitButton = styled(Button)`
+  width: 100%;
+`;
+
+const editProfileScheme = z.object({
+  country: z.string(),
+  birthDate: z.date(),
+  nickName: z.string().regex(/.+/, { message: '닉네임을 입력해주세요' }),
+  phoneNumber: z.string().regex(/^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/, { message: '적절한 전화번호가 아닙니다.' }),
+  avatarId: z.string(),
+  aboutMe: z.string().max(1000),
+});
 
 const UserProfileEditForm = ({ userInfo }) => {
-  console.log(userInfo);
+  const loginUser = Recoil.useRecoilValue(userState);
 
-  // TODO: Profile Edit Form
-  return <>사용자 프로필 수정 form</>;
+  const [avatarEditPopupOpened, { open: openAvatarEditPopup, close: closeAvatarEditPopup }] = useDisclosure(false);
+
+  const navigate = useNavigate();
+  const toast = useToast();
+
+  const {
+    handleSubmit,
+    register,
+    setValue,
+    getValues,
+    formState: { isDirty, errors },
+  } = useForm({
+    resolver: zodResolver(editProfileScheme),
+    defaultValues: {
+      nickName: userInfo.nickName,
+      phoneNumber: userInfo.phoneNumber,
+      birthDate: new Date(userInfo.birthDate),
+      aboutMe: userInfo.aboutMe,
+      avatarId: userInfo.avatarId,
+    },
+  });
+
+  const onSubmit = async data => {
+    if (!isDirty) return;
+
+    try {
+      await editProfile({ ...data, userId: loginUser.email });
+      toast.create({ message: '회원정보가 수정되었습니다.' });
+      navigate(routesConstants.PROFILE);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const checkChangeNickName = async newNickName => {
+    if (newNickName === userInfo.nickName) {
+      return false;
+    }
+    const {
+      data: { duplicated },
+    } = await checkNickName(newNickName);
+    return duplicated;
+  };
+
+  return (
+    <EditProfileContainer size="xs">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack align="center">
+          <>
+            <AvatarButton avatarId={getValues('avatarId')} onClick={openAvatarEditPopup} select />
+            <AvatarEditModal
+              avatarId={getValues('avatarId')}
+              opened={avatarEditPopupOpened}
+              onClose={closeAvatarEditPopup}
+              onSelect={newAvatarId => {
+                setValue('avatarId', newAvatarId);
+              }}
+            />
+          </>
+
+          <InputWrapper desc="커뮤니티에서 사용할 닉네임입니다.." error={errors?.nickName?.message}>
+            <DuplicateCheckInput {...register('nickName')} checker={checkChangeNickName} placeholder="닉네임" />
+          </InputWrapper>
+
+          <InputWrapper error={errors?.phoneNumber?.message}>
+            <PhoneNumberInput {...register('phoneNumber')} setValue={setValue} placeholder="전화번호" />
+          </InputWrapper>
+
+          <InputWrapper error={errors?.birthDate?.message}>
+            <BirthDateInput
+              {...register('birthDate')}
+              setValue={setValue}
+              placeholder="생년월일"
+              initDate={getValues('birthDate')}
+            />
+          </InputWrapper>
+
+          <InputWrapper label="국가 / 지역" error={errors?.country?.message}>
+            <CountrySelect {...register('country')} />
+          </InputWrapper>
+
+          <InputWrapper label="자기소개">
+            <Textarea {...register('aboutMe')} />
+          </InputWrapper>
+
+          <SubmitButton type="submit">수정하기</SubmitButton>
+        </Stack>
+      </form>
+    </EditProfileContainer>
+  );
 };
 
 export default UserProfileEditForm;
