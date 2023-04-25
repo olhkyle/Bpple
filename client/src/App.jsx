@@ -25,6 +25,14 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
+        path: '/signin',
+        element: <SignIn />,
+      },
+      {
+        path: '/signup',
+        element: <SignUp />,
+      },
+      {
         path: '/community',
         element: <Community />,
         children: [
@@ -49,14 +57,6 @@ const router = createBrowserRouter([
         element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<ProfileEdit />} />,
       },
     ],
-  },
-  {
-    path: '/signin',
-    element: <SignIn />,
-  },
-  {
-    path: '/signup',
-    element: <SignUp />,
   },
 ]);
 
