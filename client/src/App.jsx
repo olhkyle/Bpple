@@ -4,8 +4,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
-import Root from './components/Root';
-import { SignIn, SignUp, Community, CommunityMe, ProfileEdit, CommunityPost, Question } from './pages';
+import Layout from './components/Layout';
+import { SignIn, SignUp, Community, CommunityMe, ProfileEdit, CommunityPost,Question } from './pages';
 import Profile, { profileLoader } from './pages/Profile';
 import { communityMeLoader } from './pages/CommunityMe';
 import AuthenticationGuard from './guard/AuthenticationGuard';
@@ -22,7 +22,7 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <Layout />,
     children: [
       {
         path: '/community',
@@ -42,14 +42,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        children: [
-          {
-            index: true,
-            loader: profileLoader,
-            element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<Profile />} />,
-          },
-          { path: 'edit', element: <ProfileEdit /> },
-        ],
+        loader: profileLoader,
+        element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<Profile />} />,
+      },
+      {
+        path: '/profile/edit',
+        element: <AuthenticationGuard redirectTo={routesConstants.SIGNIN} element={<ProfileEdit />} />,
       },
     ],
   },

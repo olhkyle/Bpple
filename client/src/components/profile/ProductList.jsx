@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Carousel } from '@mantine/carousel';
 import { Image, Text } from '@mantine/core';
-import productThumbbnail from '../../constants/productThumbnail';
+import productThumbnail from '../../constants/productThumbnail';
 import { productTypes } from '../../constants/productList';
 
 const Container = styled.div`
@@ -41,11 +41,15 @@ const ProductCarousel = styled(Carousel)`
   padding: 40px;
   border-radius: 18px;
   border: 1px solid var(--opacity-border-color);
-  background-color: white;
-`;
+  background-color: var(--opacity-bg-color);
 
-const CarouselSlide = styled(Carousel.Slide)`
-  background-color: white;
+  .mantine-Carousel-indicator {
+    background-color: var(--footer-font-color);
+    &[data-active='true'] {
+      background-color: var(--hover-font-color);
+    }
+    border: 1px solid var(--opacity-border-color);
+  }
 `;
 
 const ProductImage = styled(Image)`
@@ -54,14 +58,18 @@ const ProductImage = styled(Image)`
     height: 300px !important;
     object-fit: scale-down !important;
   }
+
+  .mantine-Image-imageWrapper {
+    display: flex;
+  }
 `;
 
 const ProductName = styled(Text)`
   font-size: 1.4rem;
-  color: black;
   font-weight: 500;
   margin-top: 20px;
   user-select: none;
+  color: var(--font-color);
 `;
 
 const ProductList = ({ products }) => (
@@ -70,19 +78,18 @@ const ProductList = ({ products }) => (
       <Title>고객님의 기기</Title>
       {products.length > 0 ? (
         <ProductCarousel
-          withIndicators={false}
-          height={350}
+          withIndicators={true}
           slideGap="xl"
           slideSize="33.333333%"
           align="start"
           controlsOffset="xs"
-          slidesToScroll={2}
+          slidesToScroll={3}
           controlSize={50}>
           {products.map(({ type }, idx) => (
-            <CarouselSlide key={idx}>
-              <ProductImage src={productThumbbnail[type]} />
+            <Carousel.Slide key={idx} w={200} h={300}>
+              <ProductImage src={productThumbnail[type]} />
               <ProductName>{productTypes[type]}</ProductName>
-            </CarouselSlide>
+            </Carousel.Slide>
           ))}
         </ProductCarousel>
       ) : (

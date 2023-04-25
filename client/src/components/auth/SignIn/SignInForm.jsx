@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Stack, Input, Button } from '@mantine/core';
 import { signIn } from '../../../api/auth';
-import { InputWrapper } from '../../common/Form';
+import { InputWrapper } from '../../common/form';
 import userState from '../../../recoil/atoms/userState';
 import routesConstants from '../../../constants/routes';
 
@@ -48,13 +48,15 @@ const SignInForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack w="340px" spacing="12px">
-        <InputWrapper error={errors?.email?.message}>
+        <InputWrapper label="이메일" error={errors?.email?.message}>
           <Input {...register('email')} placeholder="FineApple ID" />
         </InputWrapper>
         <InputWrapper error={errorMessage || errors?.password?.message}>
           <Input type="password" {...register('password')} placeholder="암호" />
         </InputWrapper>
-        <Button type="submit">로그인</Button>
+        <Button mt="xl" size="lg" type="submit">
+          로그인
+        </Button>
       </Stack>
     </form>
   );

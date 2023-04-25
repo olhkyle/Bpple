@@ -165,11 +165,18 @@ const updatePoint = (email, point) => {
 	);
 };
 
+const updateProfile = ({ userInfo: { userId, ...newUserInfo } }) => {
+	users = users.map((user) =>
+		user.email === userId ? { ...user, ...newUserInfo } : user
+	);
+};
+
 const getUsers = () => users;
 
 module.exports = {
 	findUser,
 	createUser,
+	updateProfile,
 	findUserByEmail,
 	findUserByNickName,
 	getUsers,

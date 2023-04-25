@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const posts = require('../mock-data/posts');
 const comments = require('../mock-data/comments');
+const users = require('../mock-data/users');
 
 const PAGE_SIZE = 10;
 
@@ -33,17 +34,26 @@ router.get('/', (req, res) => {
 router.get('/search', (req, res) => {
 	const { keyword } = req.query;
 
-	res.send({ posts: posts.searchPost(keyword).slice(0, 5) });
+	const searchedPosts = posts.searchPost(keyword).slice(0, 5);
+
+	res.send({
+		posts: searchedPosts.map((searchedPost) => ({
+			...searchedPost,
+			avatarId: users.findUserByEmail(searchedPost.author).avatarId,
+		})),
+	});
 });
 
 router.post('/me', (req, res) => {
 	const { userId } = req.body;
 
 	const myPosts = posts.getMyPosts(userId);
+	const user = users.findUserByEmail(userId);
 
 	res.send({
 		posts: myPosts.map((myPost) => ({
 			...myPost,
+			avatarId: user.avatarId,
 			comments: comments.getPostComments(myPost.id),
 		})),
 	});

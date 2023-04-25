@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { Button, Divider, Flex, Grid, Text } from '@mantine/core';
 import { ProfileAvatar } from './avatar';
 import routesConstants from '../../constants/routes';
+import formattedDate from '../../utils/formattedDate';
 
 const Container = styled.div`
   min-width: 1024px;
@@ -93,7 +94,7 @@ const AboutMe = styled(Text)`
   padding: 20px;
 `;
 
-const UserProfile = ({ nickName, avatarId, name, country, phoneNumber, point, level, aboutMe }) => {
+const UserProfile = ({ nickName, avatarId, name, country, phoneNumber, point, level, aboutMe, birthDate }) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
@@ -123,14 +124,14 @@ const UserProfile = ({ nickName, avatarId, name, country, phoneNumber, point, le
           </AvatarWrapper>
           <ColorDivider size="md" />
           <InfoGrid gutter={30} columns={4} grow>
-            <GridLabel span={1}>배송 주소</GridLabel>
+            <GridLabel span={1}>국가</GridLabel>
             <GridCol span={3}>{country}</GridCol>
+
+            <GridLabel span={1}>생년월일</GridLabel>
+            <GridCol span={3}>{formattedDate(new Date(birthDate))}</GridCol>
 
             <GridLabel span={1}>연락처</GridLabel>
             <GridCol span={3}>{phoneNumber}</GridCol>
-
-            <GridLabel span={1}>국가</GridLabel>
-            <GridCol span={3}>{country}</GridCol>
 
             <GridLabel span={4}>자기소개</GridLabel>
             <GridCol span={4}>

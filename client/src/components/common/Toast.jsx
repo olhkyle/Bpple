@@ -73,6 +73,11 @@ const Container = styled.div`
   animation: ${({ position, status }) => animation[position][status]} 0.5s both;
 `;
 
+const ToastCloseButton = styled(CloseButton)`
+  position: absolute;
+  align-self: start;
+`;
+
 /**
  * h : toast의 height값 / string
  * c : toast 폰트 컬러 / string
@@ -114,20 +119,20 @@ const Toast = ({
 
   return (
     <Container
-      h={h}
-      fixed={fixed}
-      c={c}
-      bgc={bgc}
-      position={position}
       status={status}
-      onAnimationEnd={handleAnimationEnd}>
+      position={position}
+      onAnimationEnd={handleAnimationEnd}
+      fixed={fixed}
+      h={h}
+      c={c}
+      bgc={bgc}>
       {closeOnClick && (
-        <CloseButton
+        <ToastCloseButton
+          onClick={() => setStatus('dismiss')}
           c={c}
           iconSize="24px"
           variant="transparent"
-          sx={{ position: 'absolute', right: '2.5%', alignSelf: 'start' }}
-          onClick={() => setStatus('dismiss')}
+          right="2.5%"
         />
       )}
       <Center px="5%">{message}</Center>

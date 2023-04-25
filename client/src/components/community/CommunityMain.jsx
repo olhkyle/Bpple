@@ -69,6 +69,22 @@ const CategoryDescription = styled.p`
   text-decoration: none;
 `;
 
+
+const Tutorials = styled(Flex)`
+  margin-top: 6rem;
+  padding: 30px;
+  gap: 20px;
+  border-radius: 20px;
+  border: 1px solid #e5e5e5;
+  background-color: var(--opacity-bg-color);
+`;
+
+const categoryList = [
+  { imgPath: '/community/iphone-family.png', category: 'iPhone' },
+  { imgPath: '/community/mbp-notebooks.png', category: 'Mac' },
+  { imgPath: '/community/ipad-family.png', category: 'iPad' },
+];
+
 // Todo []
 // 1. 카테고리별 페이지로 이동 필요
 
@@ -106,12 +122,7 @@ const CommunityMain = () => {
         ))}
       </CategoryList>
 
-      <Flex
-        bg="var(--opacity)"
-        mt="6rem"
-        p="30px"
-        gap="20px"
-        sx={{ borderRadius: '20px', border: '1px solid #e5e5e5' }}>
+      <Tutorials>
         <Group>
           <InfoCard icon={<ImEarth />} title={'답변을 찾고 질문하기'} onClick={onQuestionModalOpen} />
           <QuestionModal opened={questionModalOpened} onClose={onQuestionModalClose} />
@@ -130,7 +141,7 @@ const CommunityMain = () => {
           <InfoCard icon={<HiOutlineTrophy />} title={'포인트 획득, 레벨 올리기'} onClick={onRuleModalOpen} />
           <RuleModal opened={ruleModalOpened} onClose={onRuleModalClose} />
         </Group>
-      </Flex>
+      </Tutorials>
     </Wrapper>
   );
 };
