@@ -11,3 +11,4 @@ export { default as FaqAccordion } from './FaqAccordion';
 export { default as Loader } from './Loader';
 export { default as Card } from './Card';
 export { default as Toast } from './Toast';
+export { default as ScrollToTopButton } from './ScrollToTopButton';
