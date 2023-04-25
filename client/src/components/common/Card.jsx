@@ -1,6 +1,15 @@
 import React from 'react';
 import { Card } from '@mantine/core';
 import { Link } from 'react-router-dom';
+import styled from '@emotion/styled';
+
+const CardContent = styled(Card)`
+    cursor: pointer;
+    &:hover{
+      transform: 'scale3d(1.02,1.02,1.02)',
+    transition: 'transform 0.2s',
+    }
+`;
 
 const sizes = {
   xs: { w: '280px', h: '200px' },
@@ -20,20 +29,9 @@ const sizes = {
  */
 const CardComponent = ({ to, size = 'md', bg, children }) => (
   <Link to={to}>
-    <Card
-      bg={bg}
-      {...sizes[size]}
-      shadow="xl"
-      radius="md"
-      sx={{
-        cursor: 'pointer',
-        ':hover': {
-          transform: 'scale3d(1.02,1.02,1.02)',
-          transition: 'transform 0.2s',
-        },
-      }}>
+    <CardContent bg={bg} {...sizes[size]} shadow="xl" radius="md">
       {children}
-    </Card>
+    </CardContent>
   </Link>
 );
 

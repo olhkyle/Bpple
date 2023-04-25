@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import { FiSearch, FiChevronDown } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi';
 import { Autocomplete, Button, Flex, Text } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import ProfileAvatar from '../profile/avatar/ProfileAvatar';
@@ -55,6 +55,14 @@ const AutoCompleteItemContainer = styled.div`
   }
 `;
 
+const AutoCompleteItemContent = styled(Text)`
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: start;
+  word-break: keep-all;
+`;
+
 const NothingFound = () => {
   const navigate = useNavigate();
 
@@ -77,9 +85,7 @@ const AutoCompleteItem = React.forwardRef(({ title, id, avatarId, ...rest }, ref
     <AutoCompleteItemContainer ref={ref} onClick={() => navigate(`/post/${id}`)} {...rest}>
       <Flex justify="flex-start" align="center" p="20px">
         <ProfileAvatar avatarId={avatarId} />
-        <Text pl="20px" fz="20px" fw="400" ta="start" sx={{ wordBreak: 'keep-all' }}>
-          {title}
-        </Text>
+        <AutoCompleteItemContent>{title}</AutoCompleteItemContent>
       </Flex>
     </AutoCompleteItemContainer>
   );
@@ -97,20 +103,17 @@ const AutoComplete = ({ width = 620, queryFn }) => {
 
   return (
     <CommunityAutoComplete
-      limit={LIMIT_OF_POSTS}
       value={value}
       onChange={setValue}
       placeholder="검색 또는 질문하기"
+      limit={LIMIT_OF_POSTS}
       itemComponent={AutoCompleteItem}
       data={posts}
-      onItemSubmit={item => navigate(`/community/${item.id}`)}
+      onItemSubmit={item => navigate(`/community/post/${item.id}`)}
       nothingFound={<NothingFound />}
       filter={() => true}
       icon={<FiSearch />}
       wrapperwidth={width}
-      rightSection={<FiChevronDown size="1.5rem" stroke="grey" />}
-      rightSectionWidth={50}
-      sx={{ rightSection: { pointerEvents: 'none' } }}
       dropdownPosition="bottom"
       transitionProps={{
         transition: 'pop-top-left',
