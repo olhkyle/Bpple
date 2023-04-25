@@ -4,10 +4,10 @@ import { NativeSelect } from '@mantine/core';
 import countyList from '../../../constants/countyList';
 
 const getKrNameCountryList = () => {
-  const krNameCountryList = [];
+  let krNameCountryList = [];
 
   for (const key of Object.keys(countyList)) {
-    krNameCountryList.push(countyList[key].CountryNameKR);
+    krNameCountryList = [...krNameCountryList, countyList[key].CountryNameKR];
   }
 
   return krNameCountryList.sort();
