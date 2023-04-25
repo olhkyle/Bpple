@@ -9,6 +9,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { InfoCard } from '../common';
 import { AutoComplete, RuleModal, QuestionModal, FilterContentModal } from '.';
 import { getSearchedPosts } from '../../api/posts';
+import categoryList from '../../constants/categoryList';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -67,6 +68,7 @@ const CategoryDescription = styled.p`
   color: var(--font-color);
   text-decoration: none;
 `;
+
 
 const Tutorials = styled(Flex)`
   margin-top: 6rem;
