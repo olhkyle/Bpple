@@ -6,3 +6,5 @@ export { default as QuestionModal } from './QuestionModal';
 export { default as FilterContentModal } from './FilterContentModal';
 export { default as RuleModal } from './RuleModal';
 export { default as CommunitySkeleton } from './CommunitySkeleton';
+export { default as CheckedCircleIcon } from './CheckedCircleIcon';
+export { default as AppleRecommendIcon } from './AppleRecommendIcon';
