@@ -69,7 +69,6 @@ const CategoryDescription = styled.p`
   text-decoration: none;
 `;
 
-
 const Tutorials = styled(Flex)`
   margin-top: 6rem;
   padding: 30px;
@@ -78,12 +77,6 @@ const Tutorials = styled(Flex)`
   border: 1px solid #e5e5e5;
   background-color: var(--opacity-bg-color);
 `;
-
-const categoryList = [
-  { imgPath: '/community/iphone-family.png', category: 'iPhone' },
-  { imgPath: '/community/mbp-notebooks.png', category: 'Mac' },
-  { imgPath: '/community/ipad-family.png', category: 'iPad' },
-];
 
 // Todo []
 // 1. 카테고리별 페이지로 이동 필요
