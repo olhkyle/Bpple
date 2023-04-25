@@ -1,21 +1,22 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { DateInput } from '@mantine/dates';
 
-const datePickerStyle = {
-  '.mantine-Popover-dropdown': {
-    borderRadius: '10px',
-    border: '1px solid #ced4da',
-    background: 'var(--body-bg-color)',
+const MantineDateInput = styled(DateInput)`
+  .mantine-Popover-dropdown {
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    background: var(--body-bg-color);
 
-    'button:not([data-weekend])': {
-      color: 'var(--font-color)',
-      ':hover': {
-        color: 'var(--hover-font-color)',
-        background: 'var(--opacity-bg-color)',
+    button:not([data-weekend]){
+      color: var(--font-color);
+      &:hover: {
+        color: var(--hover-font-color);
+        background-color: var(--opacity-bg-color);
       },
     },
   },
-};
+`;
 
 /**
  * useForm의 register('inputName') props로 전달
@@ -30,7 +31,7 @@ const BirthDateInput = ({ name, placeholder, onBlur, setValue, initDate }, ref) 
   const [date, setDate] = React.useState(initDate);
 
   return (
-    <DateInput
+    <MantineDateInput
       ref={ref}
       name={name}
       value={date}
@@ -41,7 +42,6 @@ const BirthDateInput = ({ name, placeholder, onBlur, setValue, initDate }, ref) 
       onBlur={onBlur}
       valueFormat="YYYY-MM-DD"
       placeholder={placeholder}
-      sx={datePickerStyle}
     />
   );
 };

@@ -32,7 +32,7 @@ const Overlay = styled(Container)`
 `;
 
 const AvatarButton = ({ avatarId, onClick }) => (
-  <Container sx={{ position: 'relative', padding: '0' }}>
+  <Container pos="relative" p="0">
     <AvatarWrapper size="xl" src={avatars[avatarId]} alt="avatar image button" />
     {onClick && <Overlay onClick={onClick} />}
   </Container>
