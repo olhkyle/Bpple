@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Container, Stack, Textarea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import styled from '@emotion/styled';
 import { checkNickName } from '../../api/auth';
 import { editProfile } from '../../api/profile';
 import userState from '../../recoil/atoms/userState';
@@ -14,14 +13,6 @@ import useToast from '../../hooks/useToast';
 import routesConstants from '../../constants/routes';
 import { BirthDateInput, CountrySelect, DuplicateCheckInput, InputWrapper, PhoneNumberInput } from '../common/Form';
 import { AvatarButton, AvatarEditModal } from './avatar';
-
-const EditProfileContainer = styled(Container)`
-  margin-bottom: 20px;
-`;
-
-const SubmitButton = styled(Button)`
-  width: 100%;
-`;
 
 const editProfileScheme = z.object({
   country: z.string(),
@@ -80,30 +71,28 @@ const UserProfileEditForm = ({ userInfo }) => {
   };
 
   return (
-    <EditProfileContainer size="xs">
+    <Container size="xs" mb="xl">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack align="center">
-          <>
-            <AvatarButton avatarId={getValues('avatarId')} onClick={openAvatarEditPopup} select />
-            <AvatarEditModal
-              avatarId={getValues('avatarId')}
-              opened={avatarEditPopupOpened}
-              onClose={closeAvatarEditPopup}
-              onSelect={newAvatarId => {
-                setValue('avatarId', newAvatarId);
-              }}
-            />
-          </>
+        <Stack>
+          <AvatarButton avatarId={getValues('avatarId')} onClick={openAvatarEditPopup} select />
+          <AvatarEditModal
+            avatarId={getValues('avatarId')}
+            opened={avatarEditPopupOpened}
+            onClose={closeAvatarEditPopup}
+            onSelect={newAvatarId => {
+              setValue('avatarId', newAvatarId);
+            }}
+          />
 
-          <InputWrapper desc="커뮤니티에서 사용할 닉네임입니다.." error={errors?.nickName?.message}>
+          <InputWrapper label="닉네임" desc="커뮤니티에서 사용할 닉네임입니다.." error={errors?.nickName?.message}>
             <DuplicateCheckInput {...register('nickName')} checker={checkChangeNickName} placeholder="닉네임" />
           </InputWrapper>
 
-          <InputWrapper error={errors?.phoneNumber?.message}>
+          <InputWrapper label="전화번호" error={errors?.phoneNumber?.message}>
             <PhoneNumberInput {...register('phoneNumber')} setValue={setValue} placeholder="전화번호" />
           </InputWrapper>
 
-          <InputWrapper error={errors?.birthDate?.message}>
+          <InputWrapper label="생년월일" error={errors?.birthDate?.message}>
             <BirthDateInput
               {...register('birthDate')}
               setValue={setValue}
@@ -120,10 +109,12 @@ const UserProfileEditForm = ({ userInfo }) => {
             <Textarea {...register('aboutMe')} />
           </InputWrapper>
 
-          <SubmitButton type="submit">수정하기</SubmitButton>
+          <Button type="submit" mt="xl" size="lg">
+            수정하기
+          </Button>
         </Stack>
       </form>
-    </EditProfileContainer>
+    </Container>
   );
 };
 
