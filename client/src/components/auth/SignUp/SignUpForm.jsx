@@ -15,9 +15,7 @@ const signupScheme = z
     firstName: z.string().regex(/.+/, { message: '이름을 입력해주세요' }),
     lastName: z.string().regex(/.+/, { message: '성을 입력해주세요' }),
     country: z.string(),
-    birthDate: z
-      .string()
-      .regex(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/, { message: '생년월일을 입력해주세요' }),
+    birthDate: z.date(),
     email: z.string().email({ message: '적절한 이메일이 아닙니다.' }),
     password: z.string().regex(/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/, { message: '적절한 패스워드가 아닙니다.' }),
     confirmPassword: z.string().regex(/.+/, { message: '확인을 위해 패스워드를 한 번 더 입력해주세요' }),
@@ -56,6 +54,26 @@ const SignUpForm = () => {
     }
   };
 
+  const checkDuplicateEmail = async email => {
+    try {
+      const { data } = await checkEmail(email);
+
+      return data.duplicated;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  const checkDuplicateNickName = async email => {
+    try {
+      const { data } = await checkNickName(email);
+
+      return data.duplicated;
+    } catch (e) {
+      return false;
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack align="center">
@@ -78,7 +96,7 @@ const SignUpForm = () => {
         <Divider />
 
         <InputWrapper desc="새 FineApple ID로 사용할 주소입니다." error={errors?.email?.message}>
-          <DuplicateCheckInput {...register('email')} checker={checkEmail} placeholder="name@example.com" />
+          <DuplicateCheckInput {...register('email')} checker={checkDuplicateEmail} placeholder="name@example.com" />
         </InputWrapper>
         <InputWrapper error={errors?.password?.message}>
           <PasswordTooltipInput {...register('password')} placeholder="암호" />
@@ -90,7 +108,7 @@ const SignUpForm = () => {
         <Divider />
 
         <InputWrapper desc="커뮤니티에서 사용할 닉네임입니다.." error={errors?.nickName?.message}>
-          <DuplicateCheckInput {...register('nickName')} checker={checkNickName} placeholder="닉네임" />
+          <DuplicateCheckInput {...register('nickName')} checker={checkDuplicateNickName} placeholder="닉네임" />
         </InputWrapper>
         <InputWrapper error={errors?.phoneNumber?.message}>
           <PhoneNumberInput {...register('phoneNumber')} setValue={setValue} placeholder="전화번호" />
