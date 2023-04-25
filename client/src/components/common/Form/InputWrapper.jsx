@@ -1,8 +1,35 @@
+import styled from '@emotion/styled';
 import { Input, Flex } from '@mantine/core';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 
+const Wrapper = styled(Input.Wrapper)`
+  width: 100%;
+  position: relative;
+  input {
+    height: '50px';
+    border-radius: '10px';
+    background-color: var(--body-bg-color);
+    color: var(--font-color);
+  }
+  select {
+    height: 50px;
+    border-radius: 10px;
+    background-color: var(--body-bg-color);
+    color: var(--font-color);
+  }
+  textarea {
+    height: 150px;
+    border-radius: 10px;
+    background-color: var(--body-bg-color);
+    color: var(--font-color);
+  }
+  .mantine-InputWrapper-label {
+    color: var(--font-color);
+  }
+`;
+
 const InputWrapper = ({ label, desc, error, children }) => (
-  <Input.Wrapper
+  <Wrapper
     label={label}
     error={
       error && (
@@ -10,33 +37,10 @@ const InputWrapper = ({ label, desc, error, children }) => (
           <AiOutlineExclamationCircle /> {error}
         </Flex>
       )
-    }
-    sx={{
-      width: '100%',
-      position: 'relative',
-
-      input: {
-        height: '50px',
-        borderRadius: '10px',
-        backgroundColor: 'var(--body-bg-color)',
-        color: 'var(--font-color)',
-      },
-      select: {
-        height: '50px',
-        borderRadius: '10px',
-        backgroundColor: 'var(--body-bg-color)',
-        color: 'var(--font-color)',
-      },
-      textarea: {
-        height: '150px',
-        borderRadius: '10px',
-        backgroundColor: 'var(--body-bg-color)',
-        color: 'var(--font-color)',
-      },
-    }}>
+    }>
     {children}
     <Input.Description mt="8px">{desc}</Input.Description>
-  </Input.Wrapper>
+  </Wrapper>
 );
 
 export default InputWrapper;
