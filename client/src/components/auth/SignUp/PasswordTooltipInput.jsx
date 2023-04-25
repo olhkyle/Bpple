@@ -1,10 +1,15 @@
 import React from 'react';
-import { Tooltip, Stack, Title, Flex, Text, Input } from '@mantine/core';
 import styled from '@emotion/styled';
+import { Tooltip, Stack, Title, Flex, Text, Input, Container } from '@mantine/core';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 
-const Wrapper = styled.div`
-  width: 100%;
+const TooltipBoxContainer = styled(Stack)`
+  width: 300px;
+  color: var(--font-color);
+  background-color: var(--body-bg-color);
+  padding: 20px;
+  border: 1px solid #a3a3a3;
+  border-radius: 6px;
 `;
 
 const TooltipBox = ({ value }) => {
@@ -15,7 +20,7 @@ const TooltipBox = ({ value }) => {
   ];
 
   return (
-    <Stack spacing="sm">
+    <TooltipBoxContainer>
       <Title order={6}>암호 필수 조건</Title>
       {validList.map(({ regExp, text }) => (
         <Flex key={text} c={regExp.test(value) ? '#00a000' : '#a3a3a3'} align="center" gap="xs">
@@ -23,7 +28,7 @@ const TooltipBox = ({ value }) => {
           <Text>{text}</Text>
         </Flex>
       ))}
-    </Stack>
+    </TooltipBoxContainer>
   );
 };
 
@@ -42,16 +47,8 @@ const PasswordTooltipInput = ({ name, placeholder, onChange, onBlur }, ref) => {
   };
 
   return (
-    <Tooltip
-      label={<TooltipBox value={value} />}
-      opened={opened}
-      position="bottom"
-      p="lg"
-      w="300px"
-      c="var(--font-color)"
-      bg="var(--body-bg-color)"
-      sx={{ border: '1px solid #a3a3a3' }}>
-      <Wrapper>
+    <Container w="100%" p="0">
+      <Tooltip label={<TooltipBox value={value} />} opened={opened} p="0">
         <Input
           type="password"
           placeholder={placeholder}
@@ -61,8 +58,8 @@ const PasswordTooltipInput = ({ name, placeholder, onChange, onBlur }, ref) => {
           onBlur={handleBlur}
           onChange={handleChange}
         />
-      </Wrapper>
-    </Tooltip>
+      </Tooltip>
+    </Container>
   );
 };
 
