@@ -9,6 +9,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { InfoCard } from '../common';
 import { AutoComplete, RuleModal, QuestionModal, FilterContentModal } from '.';
 import { getSearchedPosts } from '../../api/posts';
+import categoryList from '../../constants/categoryList';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -67,12 +68,6 @@ const CategoryDescription = styled.p`
   color: var(--font-color);
   text-decoration: none;
 `;
-
-const categoryList = [
-  { imgPath: '/community/iphone-family.png', category: 'iPhone' },
-  { imgPath: '/community/mbp-notebooks.png', category: 'Mac' },
-  { imgPath: '/community/ipad-family.png', category: 'iPad' },
-];
 
 // Todo []
 // 1. 카테고리별 페이지로 이동 필요

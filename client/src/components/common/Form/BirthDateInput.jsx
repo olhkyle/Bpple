@@ -26,7 +26,7 @@ const datePickerStyle = {
  * @returns
  */
 
-const BirthDateInput = ({ name, placeholder, onBlur, setValue, initDate }, ref) => {
+const BirthDateInput = ({ name, placeholder, onBlur, setValue, initDate = new Date('2022-12-12') }, ref) => {
   const [date, setDate] = React.useState(initDate);
 
   return (
