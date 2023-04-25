@@ -8,14 +8,14 @@ const MantineDateInput = styled(DateInput)`
     border-radius: 10px;
     background: var(--body-bg-color);
 
-    button:not([data-weekend]){
+    button:not([data-weekend]) {
       color: var(--font-color);
-      &:hover: {
+      :hover {
         color: var(--hover-font-color);
         background-color: var(--opacity-bg-color);
-      },
-    },
-  },
+      }
+    }
+  }
 `;
 
 /**
