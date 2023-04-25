@@ -4,7 +4,7 @@ import { AiOutlineExclamationCircle } from 'react-icons/ai';
 
 /**
  * useForm의 register('inputName') props로 전달
- * 중복 체크하는 함수 기입
+ * 중복 체크하는 함수 기입 / boolean또는 프로스미스를 반환하는 함수
  * placeholder설정 가능
  *
  * @param {{...register('inputName'), placeholder, checker}, ref}
@@ -15,10 +15,10 @@ const DuplicateCheckInput = ({ checker, name, placeholder, onChange, onBlur }, r
   const [duplicated, setDuplicated] = React.useState(false);
 
   const handleBlur = async e => {
-    const { data } = await checker(e.target.value);
+    const duplicated = await checker(e.target.value);
 
     onBlur(e);
-    setDuplicated(data.duplicated);
+    setDuplicated(duplicated);
   };
 
   return (
