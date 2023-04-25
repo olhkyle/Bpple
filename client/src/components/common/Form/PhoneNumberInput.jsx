@@ -2,7 +2,7 @@ import { Input } from '@mantine/core';
 import React from 'react';
 
 const formatPhoneNumber = value => {
-  const phoneNumber = value.replace(/\D/g, '');
+  const phoneNumber = value.replace(/\D/g, '').slice(0, 11);
 
   return phoneNumber.replace(
     phoneNumber.length >= 11 ? /(\d{3})(\d{4})(\d{4})/ : /(\d{3})(\d{3})(\d{1,4})/,
