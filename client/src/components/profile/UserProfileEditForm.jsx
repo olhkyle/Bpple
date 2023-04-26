@@ -3,6 +3,7 @@ import Recoil from 'recoil';
 import { z } from 'zod';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useQuery } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Container, Stack, Textarea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -10,7 +11,8 @@ import { checkNickName } from '../../api/auth';
 import { editProfile } from '../../api/profile';
 import userState from '../../recoil/atoms/userState';
 import useToast from '../../hooks/useToast';
-import routesConstants from '../../constants/routes';
+import { PROFILE_PATH } from '../../routes/routePaths';
+import { profileQuery } from '../../pages/Profile';
 import { BirthDateInput, CountrySelect, DuplicateCheckInput, InputWrapper, PhoneNumberInput } from '../common/form';
 import { AvatarButton, AvatarEditModal } from './avatar';
 
@@ -23,12 +25,15 @@ const editProfileScheme = z.object({
   aboutMe: z.string().max(1000),
 });
 
-const UserProfileEditForm = ({ userInfo }) => {
+const UserProfileEditForm = () => {
+  const navigate = useNavigate();
+
   const [loginUser, setLoginUser] = Recoil.useRecoilState(userState);
+
+  const { data: userInfo } = useQuery(profileQuery(loginUser.email));
 
   const [avatarEditPopupOpened, { open: openAvatarEditPopup, close: closeAvatarEditPopup }] = useDisclosure(false);
 
-  const navigate = useNavigate();
   const toast = useToast();
 
   const {
@@ -55,7 +60,7 @@ const UserProfileEditForm = ({ userInfo }) => {
       await editProfile({ ...data, userId: loginUser.email });
       setLoginUser({ email: loginUser.email, nickName: data.nickName, avatarId: data.avatarId });
       toast.create({ message: '회원정보가 수정되었습니다.' });
-      navigate(routesConstants.PROFILE);
+      navigate(PROFILE_PATH);
     } catch (e) {
       console.error(e);
     }

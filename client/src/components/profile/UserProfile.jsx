@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Button, Divider, Flex, Grid, Text } from '@mantine/core';
 import { ProfileAvatar } from './avatar';
-import routesConstants from '../../constants/routes';
 import formattedDate from '../../utils/formattedDate';
+import { PROFILE_EDIT_PATH } from '../../routes/routePaths';
 
 const Container = styled.div`
   min-width: 1024px;
@@ -98,7 +98,7 @@ const UserProfile = ({ nickName, avatarId, name, country, phoneNumber, point, le
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate(routesConstants.PROFILE_EDIT);
+    navigate(PROFILE_EDIT_PATH);
   };
 
   return (

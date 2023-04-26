@@ -8,7 +8,7 @@ import { Stack, Input, Button } from '@mantine/core';
 import { signIn } from '../../../api/auth';
 import { InputWrapper } from '../../common/form';
 import userState from '../../../recoil/atoms/userState';
-import routesConstants from '../../../constants/routes';
+import { MAIN_PATH } from '../../../routes/routePaths';
 
 const signinScheme = z.object({
   email: z.string().email({ message: '이메일 형식에 맞게 입력해 주세요.' }),
@@ -38,7 +38,7 @@ const SignInForm = () => {
       const { data: user } = await signIn(data);
 
       setUser(user);
-      navigate(routesConstants.MAIN);
+      navigate(MAIN_PATH);
     } catch (e) {
       setErrorMessage(e.response.data.error);
       reset();

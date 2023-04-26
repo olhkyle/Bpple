@@ -1,17 +1,22 @@
 import React from 'react';
-import routesConstants from '../../constants/routes';
+import {
+  COMMUNITY_ME_PATH,
+  COMMUNITY_PATH,
+  COMMUNITY_QUESTION_PATH,
+  COMMUNITY_RANK_PATH,
+} from '../../routes/routePaths';
 import { Header } from '../common';
 
 const CommunityHeader = () => (
   <Header
     title={{
-      path: routesConstants.COMMUNITY,
+      path: COMMUNITY_PATH,
       content: '커뮤니티',
     }}
     menuList={[
-      { path: routesConstants.COMMUNITY_QUESTION, content: '질문하기' },
-      { path: routesConstants.COMMUNITY_RANK, content: '랭킹' },
-      { path: routesConstants.COMMUNITY_ME, content: '내가 작성한 글 목록' },
+      { path: COMMUNITY_QUESTION_PATH, content: '질문하기' },
+      { path: COMMUNITY_RANK_PATH, content: '랭킹' },
+      { path: COMMUNITY_ME_PATH, content: '내가 작성한 글 목록' },
     ]}
   />
 );

@@ -3,10 +3,10 @@ import Recoil from 'recoil';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Menu } from '@mantine/core';
-import routesConstants from '../../../constants/routes';
 import userState from '../../../recoil/atoms/userState';
 import { ProfileAvatar } from '../../profile';
 import { signOut } from '../../../api/auth';
+import { MAIN_PATH, PROFILE_PATH, SIGNIN_PATH } from '../../../routes/routePaths';
 
 const AvatarWrapper = styled.div`
   background: none;
@@ -65,12 +65,12 @@ const LoginButton = () => {
     } catch (e) {
       // console.error(e);
     } finally {
-      navigate(routesConstants.MAIN);
+      navigate(MAIN_PATH);
     }
   };
 
   return !loginUser ? (
-    <LoginLink to={routesConstants.SIGNIN}>로그인</LoginLink>
+    <LoginLink to={SIGNIN_PATH}>로그인</LoginLink>
   ) : (
     <Menu trigger="hover">
       <Menu.Target>
@@ -80,7 +80,7 @@ const LoginButton = () => {
       </Menu.Target>
       <MenuDropdown>
         <MenuItemWrapper>
-          <MenuItem component="a" href={routesConstants.PROFILE}>
+          <MenuItem component="a" href={PROFILE_PATH}>
             프로필
           </MenuItem>
           <MenuItem component="button" onClick={handleLogout}>
