@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const CardContent = styled(Card)`
-    cursor: pointer;
-    &:hover{
-      transform: 'scale3d(1.02,1.02,1.02)',
-    transition: 'transform 0.2s',
-    }
+  cursor: pointer;
+  &:hover {
+    transform: scale3d(1.02, 1.02, 1.02);
+    transition: transform 0.2s;
+  }
 `;
 
 const sizes = {
