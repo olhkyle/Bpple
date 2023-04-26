@@ -5,26 +5,17 @@ import { AiOutlineExclamationCircle } from 'react-icons/ai';
 const Wrapper = styled(Input.Wrapper)`
   width: 100%;
   position: relative;
-  input {
+  input,
+  select,
+  textarea {
     height: 50px;
     border-radius: 10px;
     background-color: var(--body-bg-color);
     color: var(--font-color);
   }
-  select {
-    height: 50px;
-    border-radius: 10px;
-    background-color: var(--body-bg-color);
-    color: var(--font-color);
-  }
+
   textarea {
     height: 150px;
-    border-radius: 10px;
-    background-color: var(--body-bg-color);
-    color: var(--font-color);
-  }
-  .mantine-InputWrapper-label {
-    color: var(--font-color);
   }
 `;
 

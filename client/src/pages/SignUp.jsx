@@ -1,12 +1,13 @@
 import React from 'react';
+import { Container, Title } from '@mantine/core';
+import { SignUpForm } from '../components/auth';
 
-import { SignUp } from '../components/auth/SignUp';
-
-const SignUpPage = () => (
-  <>
-    {/* Header */}
-    <SignUp />
-    {/* Footer */}
-  </>
+const SignUp = () => (
+  <Container c="var(--font-color)" py="48px" size="xs">
+    <Title mb="xl" align="center">
+      FineApple ID 생성
+    </Title>
+    <SignUpForm />
+  </Container>
 );
-export default SignUpPage;
+export default SignUp;

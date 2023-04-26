@@ -6,44 +6,44 @@ import useToast from '../../hooks/useToast';
 
 const entryTop = keyframes`
   from {
-    transform: translate3D(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
     opacity : 0;
   }
   to {
-    transform: translate3D(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 `;
 
 const entryBottom = keyframes`
-    from {
-    transform: translate3D(0, 100%, 0);
+  from {
+    transform: translate3d(0, 100%, 0);
     opacity : 0;
   }
   to {
-    transform: translate3D(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     opacity : 1;
   }
 `;
 
 const dismissTop = keyframes`
   from {
-    transform: translate3D(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     opacity : 1;
   }
   to {
-    transform: translate3D(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
     opacity : 0;
   }
 `;
 
 const dismissBottom = keyframes`
   from {
-    transform: translate3D(0, 0, 0);
+    transform: translate3d(0, 0, 0);
      opacity : 1;
   }
   to {
-    transform: translate3D(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
     opacity : 0;
   }
 `;

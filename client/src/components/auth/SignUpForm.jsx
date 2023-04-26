@@ -4,11 +4,11 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 import { Stack, Flex, Button, Input, Divider } from '@mantine/core';
-import { checkEmail, checkNickName, signUp } from '../../../api/auth';
-import { SIGNIN_PATH } from '../../../routes/routePaths';
-import useToast from '../../../hooks/useToast';
+import { checkEmail, checkNickName, signUp } from '../../api/auth';
+import { SIGNIN_PATH } from '../../routes/routePaths';
+import useToast from '../../hooks/useToast';
 import { PasswordTooltipInput } from '.';
-import { InputWrapper, CountrySelect, BirthDateInput, DuplicateCheckInput, PhoneNumberInput } from '../../common/form';
+import { InputWrapper, CountrySelect, BirthDateInput, DuplicateCheckInput, PhoneNumberInput } from '../common/form';
 
 const signupScheme = z
   .object({
