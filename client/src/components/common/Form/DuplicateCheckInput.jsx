@@ -7,7 +7,7 @@ import { AiOutlineExclamationCircle } from 'react-icons/ai';
  * 중복 체크하는 함수 기입 / boolean또는 프로스미스를 반환하는 함수
  * placeholder설정 가능
  *
- * @param {{...register('inputName'), placeholder, checker}, ref}
+ * @param {{...register('inputName'), placeholder, checker}}
  * @returns
  */
 

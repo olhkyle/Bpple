@@ -16,7 +16,7 @@ const getKrNameCountryList = () => {
 /**
  * useForm의 register('inputName') props로 전달
  *
- * @param {{...register('inputName') }, ref}
+ * @param {{...register('inputName') }}
  * @returns
  */
 
