@@ -55,7 +55,7 @@ const ProductCarousel = styled(Carousel)`
 const ProductImage = styled(Image)`
   img {
     width: 100% !important;
-    height: 300px !important;
+    height: 250px !important;
     object-fit: scale-down !important;
   }
 
@@ -86,7 +86,7 @@ const ProductList = ({ products }) => (
           slidesToScroll={3}
           controlSize={50}>
           {products.map(({ type }, idx) => (
-            <Carousel.Slide key={idx} w={200} h={300}>
+            <Carousel.Slide key={idx} w="200px" h="300px">
               <ProductImage src={productThumbnail[type]} />
               <ProductName>{productTypes[type]}</ProductName>
             </Carousel.Slide>

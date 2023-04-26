@@ -10,7 +10,6 @@ const MantineDateInput = styled(DateInput)`
 
     button:not([data-weekend]) {
       color: var(--font-color);
-
       :hover {
         color: var(--hover-font-color);
         background-color: var(--opacity-bg-color);

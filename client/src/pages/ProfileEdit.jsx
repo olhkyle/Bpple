@@ -1,10 +1,7 @@
 import React from 'react';
-import Recoil from 'recoil';
-import { useQuery } from '@tanstack/react-query';
 import styled from '@emotion/styled';
-import userState from '../recoil/atoms/userState';
-import UserProfileEditForm from '../components/profile/UserProfileEditForm';
-import { profileQuery } from './Profile';
+import { UserProfileEditForm } from '../components/profile';
+import { Loader } from '../components/common';
 
 const Title = styled.h1`
   color: var(--font-color);
@@ -13,17 +10,13 @@ const Title = styled.h1`
   padding: 50px 0;
 `;
 
-const ProfileEdit = () => {
-  const loginUser = Recoil.useRecoilValue(userState);
-
-  const { data: userInfo } = useQuery(profileQuery(loginUser.email));
-
-  return (
-    <>
-      <Title>프로필 수정</Title>
-      <UserProfileEditForm userInfo={{ ...loginUser, ...userInfo }} />
-    </>
-  );
-};
+const ProfileEdit = () => (
+  <>
+    <Title>프로필 수정</Title>
+    <React.Suspense fallback={<Loader />}>
+      <UserProfileEditForm />
+    </React.Suspense>
+  </>
+);
 
 export default ProfileEdit;

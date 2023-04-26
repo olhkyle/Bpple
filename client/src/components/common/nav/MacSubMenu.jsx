@@ -1,13 +1,13 @@
 import React from 'react';
-import routesConstants from '../../../constants/routes';
+import { MACBOOK_AIR_INTRO_PATH, MACBOOK_PRO_INTRO_PATH, MAC_COMPARE_PATH, MAC_PATH } from '../../../routes/routePaths';
 import SubMenu from './SubMenu';
 
 const MacSubMenu = () => {
   const leftMenuItems = [
-    { size: 'lg', content: 'Mac', path: routesConstants.MAC },
-    { size: 'lg', content: 'MacBook Air', path: routesConstants.MACBOOK_AIR_INTRO },
-    { size: 'lg', content: 'MacBook Pro', path: routesConstants.MACBOOK_PRO_INTRO },
-    { size: 'sm', content: 'Mac 비교하기', path: routesConstants.MAC_COMPARE },
+    { size: 'lg', content: 'Mac', path: MAC_PATH },
+    { size: 'lg', content: 'MacBook Air', path: MACBOOK_AIR_INTRO_PATH },
+    { size: 'lg', content: 'MacBook Pro', path: MACBOOK_PRO_INTRO_PATH },
+    { size: 'sm', content: 'Mac 비교하기', path: MAC_COMPARE_PATH },
   ];
 
   const rightMenuItems = [

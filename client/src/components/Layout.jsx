@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
-import routesConstants from '../constants/routes';
 import { Footer, ScrollToTopButton, Toasts } from './common';
 import { Nav } from './common/nav';
+import { MAIN_PATH } from '../routes/routePaths';
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -14,7 +14,7 @@ const Layout = () => {
   return (
     <>
       <Nav />
-      <main>{pathname === routesConstants.MAIN ? <div>Main</div> : <Outlet />}</main>
+      <main>{pathname === MAIN_PATH ? <div>Main</div> : <Outlet />}</main>
       <Footer />
       <Toasts />
       <ScrollToTopButton />
