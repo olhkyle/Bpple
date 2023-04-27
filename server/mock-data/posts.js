@@ -37,6 +37,7 @@ let posts = [
 		category: 'iPhone',
 		completed: false,
 	},
+
 	{
 		id: '2',
 		title: '아이폰12 메인보드 고장이 연속으로 났습니다.',
@@ -162,9 +163,9 @@ const updatePost = (postId, updateInfo) => {
 	);
 };
 
-const updateCompletedPost = (postId) => {
+const updateCompletedPost = (postId, completed) => {
 	posts = posts.map((post) =>
-		post.id === postId ? { ...post, completed: true } : post
+		post.id === postId ? { ...post, completed } : post
 	);
 };
 

@@ -59,8 +59,6 @@ const getPostComments = (postId) =>
 	comments.filter((comment) => postId === comment.postId);
 
 const createComment = (commentInfo) => {
-	console.log(commentInfo);
-
 	comments = [
 		{
 			...commentInfo,
