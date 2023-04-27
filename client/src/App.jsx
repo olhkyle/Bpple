@@ -1,7 +1,6 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RouterProvider } from 'react-router-dom';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
