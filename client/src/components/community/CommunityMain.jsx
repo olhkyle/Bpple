@@ -10,6 +10,7 @@ import { InfoCard } from '../common';
 import { AutoComplete, RuleModal, QuestionModal, FilterContentModal } from '.';
 import { getSearchedPosts } from '../../api/posts';
 import categoryList from '../../constants/categoryList';
+import { COMMUNITY_PATH } from '../../routes/routePaths';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -78,9 +79,6 @@ const Tutorials = styled(Flex)`
   background-color: var(--opacity-bg-color);
 `;
 
-// Todo []
-// 1. 카테고리별 페이지로 이동 필요
-
 const CommunityMain = () => {
   const [questionModalOpened, { close: onQuestionModalClose, open: onQuestionModalOpen }] = useDisclosure(false);
   const [filterContentModalOpened, { close: onFilterContentModalClose, open: onFilterContentModalOpen }] =
@@ -101,14 +99,14 @@ const CommunityMain = () => {
 
       <Image src="/community/community-main.png" alt="community" pt="6rem" pb="3rem" />
 
-      <Text fz="21px" mt="4rem" mb="2rem" fw="600">
+      <Text mt="4rem" mb="2rem" fz="21px" fw="600">
         제품을 선택하시면 관련 주제가 표시됩니다 ⭐️
       </Text>
       <CategoryList>
         {categoryList.map(({ imgPath, category }) => (
           <Category key={imgPath}>
-            <Link to={`/community/${category.toLowerCase()}`}>
-              <img src={imgPath} alt="iphone-category" />
+            <Link to={`${COMMUNITY_PATH}/${category.toLowerCase()}`}>
+              <img src={imgPath} alt={`category-${category}`} />
               <CategoryDescription>{category}</CategoryDescription>
             </Link>
           </Category>
