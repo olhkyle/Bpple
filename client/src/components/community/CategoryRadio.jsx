@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Radio, Flex, Text, Group } from '@mantine/core';
+import { Radio, Flex, Text, Group, Image } from '@mantine/core';
 import categoryList from '../../constants/categoryList';
 
 const RadioInput = styled(Radio)`
@@ -31,17 +31,15 @@ const RadioLabel = styled(Group)`
   }
 `;
 
-const CategoryRadio = ({ name, setValue }, ref) => {
+const CategoryRadio = ({ setValue }) => {
   const [currentCategory, setCategory] = React.useState('iPhone');
 
   return (
     <Radio.Group
-      name={name}
-      ref={ref}
       value={currentCategory}
       onChange={category => {
         setCategory(category);
-        setValue(name, category);
+        setValue(category);
       }}>
       <Flex gap="20px">
         {categoryList.map(({ imgPath, category }) => (
@@ -50,7 +48,7 @@ const CategoryRadio = ({ name, setValue }, ref) => {
             value={category}
             label={
               <RadioLabel checked={currentCategory === category}>
-                <img src={imgPath} alt="" />
+                <Image src={imgPath} alt="" />
                 <Text>{category}</Text>
               </RadioLabel>
             }
@@ -61,4 +59,4 @@ const CategoryRadio = ({ name, setValue }, ref) => {
   );
 };
 
-export default React.forwardRef(CategoryRadio);
+export default CategoryRadio;

@@ -24,10 +24,11 @@ const EditorButtonGroup = styled(RichTextEditor.ControlsGroup)`
   }
 `;
 
-const TextEditor = ({ name, setValue }, ref) => {
+const TextEditor = ({ placeholder, setValue }) => {
   const editor = useEditor({
-    extensions: [StarterKit, Underline, Highlight, Placeholder.configure({ placeholder: '질문이 무엇입니까?' })],
+    extensions: [StarterKit, Underline, Highlight, Placeholder.configure({ placeholder })],
     content: '',
+    onUpdate: ({ editor }) => setValue(editor.getHTML()),
   });
 
   return (
@@ -51,15 +52,9 @@ const TextEditor = ({ name, setValue }, ref) => {
           <RichTextEditor.ClearFormatting />
         </EditorButtonGroup>
       </RichTextEditor.Toolbar>
-      <RichTextEditor.Content
-        name={name}
-        ref={ref}
-        onBlur={() => setValue(name, editor.getHTML())}
-        bg="var(--body-bg-color)"
-        c="var(--font-color)"
-      />
+      <RichTextEditor.Content bg="var(--body-bg-color)" c="var(--font-color)" />
     </EditorWrapper>
   );
 };
 
-export default React.forwardRef(TextEditor);
+export default TextEditor;

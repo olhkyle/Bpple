@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Text } from '@mantine/core';
 import styled from '@emotion/styled';
-import ProfileAvatar from '../profile/avatar/ProfileAvatar';
+import { ProfileAvatar } from './avatar';
 
 const Container = styled(Flex)`
   padding: 10px;

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import { Autocomplete, Button, Flex, Text } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
-import ProfileAvatar from '../profile/avatar/ProfileAvatar';
+import { ProfileAvatar } from '../common';
 import useAutoCompleteQuery from '../../hooks/useAutoCompleteQuery';
 import { COMMUNITY_POST_PATH, COMMUNITY_QUESTION_PATH } from '../../routes/routePaths';
 
