@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Recoil from 'recoil';
 import { Badge, Flex, Group, List, Text, Title } from '@mantine/core';
 import { communityMeQuery } from '../../pages/CommunityMe';
-import ProfileAvatar from '../profile/avatar/ProfileAvatar';
+import { ProfileAvatar } from '../common';
 import userState from '../../recoil/atoms/userState';
 import { AppleRecommendIcon, CheckedCircleIcon } from '.';
 

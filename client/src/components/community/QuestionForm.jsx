@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Flex, Input, Title, Button, Group } from '@mantine/core';
-import { InputWrapper } from '../common/form';
+import { InputWrapper } from '../common';
 import { TextEditor, CategoryRadio } from '.';
 import { createNewPost } from '../../api/post';
 

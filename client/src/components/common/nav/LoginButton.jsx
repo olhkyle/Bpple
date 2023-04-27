@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Menu } from '@mantine/core';
 import userState from '../../../recoil/atoms/userState';
-import { ProfileAvatar } from '../../profile';
+import { ProfileAvatar } from '../avatar';
 import { signOut } from '../../../api/auth';
 import { MAIN_PATH, PROFILE_PATH, SIGNIN_PATH } from '../../../routes/routePaths';
 
