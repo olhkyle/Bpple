@@ -71,6 +71,7 @@ const Container = styled.div`
   color: ${({ c }) => c};
 
   animation: ${({ position, status }) => animation[position][status]} 0.5s both;
+  z-index: 9999;
 `;
 
 const ToastCloseButton = styled(CloseButton)`
