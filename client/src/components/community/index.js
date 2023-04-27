@@ -13,3 +13,5 @@ export { default as QuestionForm } from './QuestionForm';
 
 export { default as CheckedCircleIcon } from './CheckedCircleIcon';
 export { default as AppleRecommendIcon } from './AppleRecommendIcon';
+export { default as RankTable } from './RankTable';
+export { default as RankItem } from './RankItem';

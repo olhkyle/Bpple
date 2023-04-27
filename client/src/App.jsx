@@ -8,6 +8,7 @@ import AuthenticationGuard from './guard/AuthenticationGuard';
 import { Community, CommunityPost, ProfileEdit, Question, SignIn, SignUp } from './pages';
 import CommunityMe, { communityMeLoader } from './pages/CommunityMe';
 import Profile, { profileLoader } from './pages/Profile';
+import Rank, { rankLoader } from './pages/Rank';
 import { Layout } from './components';
 import { SIGNIN_PATH } from './routes/routePaths';
 
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
             element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<CommunityMe />} />,
           },
           { path: 'question', element: <Question /> },
+          { path: 'rank', loader: rankLoader(queryClient), element: <Rank /> },
         ],
       },
       {
