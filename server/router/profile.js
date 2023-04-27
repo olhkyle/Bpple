@@ -12,6 +12,7 @@ router.post('/', (req, res) => {
 		return res.status(401).send({ error: '해당 사용자가 존재하지 않습니다.' });
 
 	const {
+		nickName,
 		firstName,
 		lastName,
 		country,
@@ -25,6 +26,7 @@ router.post('/', (req, res) => {
 	} = user;
 
 	res.send({
+		nickName,
 		name: firstName + lastName,
 		country,
 		phoneNumber,
