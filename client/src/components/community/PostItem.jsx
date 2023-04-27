@@ -3,10 +3,11 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { Badge, Flex, Group, List, Text, Title } from '@mantine/core';
 import { COMMUNITY_POST_PATH } from '../../routes/routePaths';
-import ProfileAvatar from '../profile/avatar/ProfileAvatar';
+
 import formattedDate from '../../utils/formattedDate';
 import AppleRecommendIcon from './AppleRecommendIcon';
 import CheckedCircleIcon from './CheckedCircleIcon';
+import { ProfileAvatar } from '../common';
 
 const Post = styled(List.Item)`
   border: 1px solid var(--opacity-border-color);
