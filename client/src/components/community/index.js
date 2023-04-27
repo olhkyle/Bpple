@@ -9,7 +9,7 @@ export { default as CommunitySkeleton } from './CommunitySkeleton';
 
 export { default as TextEditor } from './TextEditor';
 export { default as CategoryRadio } from './CategoryRadio';
+export { default as QuestionForm } from './QuestionForm';
 
 export { default as CheckedCircleIcon } from './CheckedCircleIcon';
 export { default as AppleRecommendIcon } from './AppleRecommendIcon';
-
