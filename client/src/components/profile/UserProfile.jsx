@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Button, Divider, Flex, Grid, Text } from '@mantine/core';
-import { ProfileAvatar } from './avatar';
+import { ProfileAvatar } from '../common';
 import formattedDate from '../../utils/formattedDate';
 import { PROFILE_EDIT_PATH } from '../../routes/routePaths';
 

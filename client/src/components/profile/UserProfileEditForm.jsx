@@ -14,7 +14,7 @@ import useToast from '../../hooks/useToast';
 import { PROFILE_PATH } from '../../routes/routePaths';
 import { profileQuery } from '../../pages/Profile';
 import { BirthDateInput, CountrySelect, DuplicateCheckInput, InputWrapper, PhoneNumberInput } from '../common/form';
-import { AvatarButton, AvatarEditModal } from './avatar';
+import { AvatarButton, AvatarEditModal } from '../common';
 
 const editProfileScheme = z.object({
   country: z.string(),
