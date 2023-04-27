@@ -4,6 +4,8 @@ const posts = require('../mock-data/posts');
 const comments = require('../mock-data/comments');
 const users = require('../mock-data/users');
 
+// nickName, 아바타 / level point //
+
 const PAGE_SIZE = 10;
 
 // post 목록 전체 가져오기 test 용)
@@ -16,11 +18,16 @@ router.get('/comments', (req, res) => {
 	res.send({ comments: comments.getComments() });
 });
 
-// 커뮤니티 글 정보 (댓글 정보 포함)
+// 커뮤니티 글 정보
 router.get('/:postId', (req, res) => {
 	const { postId } = req.params;
 
-	res.send({ post: posts.getPost(postId) });
+	const post = posts.getPost(postId);
+	const { nickName, avatarId, level, point } = users.findUserByEmail(
+		post.author
+	);
+
+	res.send({ post: { ...post, nickName, avatarId, level, point } });
 });
 
 // 커뮤니티 글 작성 - 작성자 point + 10
@@ -63,8 +70,18 @@ router.get('/:postId/comment', (req, res) => {
 
 	const commentList = comments.getPostComments(postId);
 
+	const commentsDate = commentList
+		.slice(startIdx, startIdx + PAGE_SIZE)
+		.map((comment) => {
+			const { nickName, avatarId, level, point } = users.findUserByEmail(
+				comment.author
+			);
+
+			return { ...comment, nickName, avatarId, level, point };
+		});
+
 	res.send({
-		comments: commentList.slice(startIdx, startIdx + PAGE_SIZE),
+		comments: commentsDate,
 		totalLength: commentList.length,
 	});
 });
