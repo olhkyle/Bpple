@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Radio, Flex, Text, Group, Img } from '@mantine/core';
+import { Radio, Flex, Text, Group, Image } from '@mantine/core';
 import categoryList from '../../constants/categoryList';
 
 const RadioInput = styled(Radio)`
@@ -48,7 +48,7 @@ const CategoryRadio = ({ setValue }) => {
             value={category}
             label={
               <RadioLabel checked={currentCategory === category}>
-                <Img src={imgPath} alt="" />
+                <Image src={imgPath} alt="" />
                 <Text>{category}</Text>
               </RadioLabel>
             }
