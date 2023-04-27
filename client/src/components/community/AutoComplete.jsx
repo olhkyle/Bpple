@@ -6,6 +6,7 @@ import { Autocomplete, Button, Flex, Text } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import ProfileAvatar from '../profile/avatar/ProfileAvatar';
 import useAutoCompleteQuery from '../../hooks/useAutoCompleteQuery';
+import { COMMUNITY_POST_PATH, COMMUNITY_QUESTION_PATH } from '../../routes/routePaths';
 
 const CommunityAutoComplete = styled(Autocomplete)`
   & .mantine-Autocomplete-wrapper {
@@ -14,11 +15,11 @@ const CommunityAutoComplete = styled(Autocomplete)`
   }
 
   & .mantine-Autocomplete-input {
-    color: var(--font-color);
     padding-left: 3rem;
     height: 50px;
     font-size: 21px;
     border-radius: 10px;
+    color: var(--font-color);
     background-color: var(--secondary-bg-color);
   }
 
@@ -71,7 +72,7 @@ const NothingFound = () => {
       <Text fz="xl" fw="600" c={`var(--font-color)`}>
         커뮤니티에서 비슷한 질문을 찾지 못했습니다 ❗️
       </Text>
-      <Button radius="10px" mt="10px" onClick={() => navigate('/community/question')}>
+      <Button radius="10px" mt="10px" onClick={() => navigate(COMMUNITY_QUESTION_PATH)}>
         질문하기
       </Button>
     </>
@@ -82,7 +83,7 @@ const AutoCompleteItem = React.forwardRef(({ title, id, avatarId, ...rest }, ref
   const navigate = useNavigate();
 
   return (
-    <AutoCompleteItemContainer ref={ref} onClick={() => navigate(`/post/${id}`)} {...rest}>
+    <AutoCompleteItemContainer ref={ref} onClick={() => navigate(`${COMMUNITY_POST_PATH}/${id}`)} {...rest}>
       <Flex justify="flex-start" align="center" p="20px">
         <ProfileAvatar avatarId={avatarId} />
         <AutoCompleteItemContent>{title}</AutoCompleteItemContent>
@@ -99,7 +100,7 @@ const AutoComplete = ({ width = 620, queryFn }) => {
 
   const navigate = useNavigate();
 
-  const { posts } = useAutoCompleteQuery(debounced, queryFn);
+  const posts = useAutoCompleteQuery(debounced, queryFn);
 
   return (
     <CommunityAutoComplete
@@ -108,8 +109,8 @@ const AutoComplete = ({ width = 620, queryFn }) => {
       placeholder="검색 또는 질문하기"
       limit={LIMIT_OF_POSTS}
       itemComponent={AutoCompleteItem}
-      data={posts}
-      onItemSubmit={item => navigate(`/community/post/${item.id}`)}
+      data={posts ?? []}
+      onItemSubmit={item => navigate(`${COMMUNITY_POST_PATH}/${item.id}`)}
       nothingFound={<NothingFound />}
       filter={() => true}
       icon={<FiSearch />}
