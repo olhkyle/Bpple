@@ -14,3 +14,4 @@ export { default as ScrollToTopButton } from './ScrollToTopButton';
 export * from './avatar';
 export * from './form';
 export * from './nav';
+export * from './selectProduct';
