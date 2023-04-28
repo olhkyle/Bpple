@@ -22,17 +22,18 @@ router.get('/', (req, res) => {
 		posts: slicedPosts.map((post) => ({
 			...post,
 			avatarId: users.findUserByEmail(post.author).avatarId,
-			commentLength: comments.getPostComments(post.id).length,
+			commentsLength: comments.getPostComments(post.id).length,
 		})),
-		toTallength: postList.length,
+		totalLength: postList.length,
 	});
 });
 
 // AutoComplete 검색결과
 router.get('/search', (req, res) => {
-	const { keyword } = req.query;
+	const { keyword, category } = req.query;
 
-	const searchedPosts = posts.searchPost(keyword).slice(0, 5);
+	const filteredPosts = posts.getFilteredPosts(category);
+	const searchedPosts = posts.searchPost(filteredPosts, keyword).slice(0, 5);
 
 	res.send({
 		posts: searchedPosts.map((searchedPost) => ({
