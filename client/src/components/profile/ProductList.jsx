@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Carousel } from '@mantine/carousel';
-import { Image, Text } from '@mantine/core';
+import { Flex, Image, Text } from '@mantine/core';
 import productThumbnail from '../../constants/productThumbnail';
 import { productTypes } from '../../constants/productList';
+import RegisterProductButton from './RegisterProductButton';
 
 const Container = styled.div`
   min-width: 1024px;
@@ -77,24 +78,34 @@ const ProductList = ({ products }) => (
     <Wrapper>
       <Title>고객님의 기기</Title>
       {products.length > 0 ? (
-        <ProductCarousel
-          withIndicators={true}
-          slideGap="xl"
-          slideSize="33.333333%"
-          align="start"
-          controlsOffset="xs"
-          slidesToScroll={3}
-          controlSize={50}>
-          {products.map(({ type }, idx) => (
-            <Carousel.Slide key={idx} w="200px" h="300px">
-              <ProductImage src={productThumbnail[type]} />
-              <ProductName>{productTypes[type]}</ProductName>
-            </Carousel.Slide>
-          ))}
-        </ProductCarousel>
+        <>
+          <ProductCarousel
+            withIndicators={true}
+            slideGap="xl"
+            slideSize="33.333333%"
+            align="start"
+            controlsOffset="xs"
+            slidesToScroll={3}
+            controlSize={50}>
+            {products.map(({ type }, idx) => (
+              <Carousel.Slide key={idx} w="200px" h="300px">
+                <ProductImage src={productThumbnail[type]} />
+                <ProductName>{productTypes[type]}</ProductName>
+              </Carousel.Slide>
+            ))}
+          </ProductCarousel>
+
+          <Flex mt="20px" justify="flex-end">
+            <RegisterProductButton />
+          </Flex>
+        </>
       ) : (
         <NoProduct>
           <Text>등록된 기기 정보가 없습니다.</Text>
+
+          <Flex mt="20px">
+            <RegisterProductButton />
+          </Flex>
         </NoProduct>
       )}
     </Wrapper>
