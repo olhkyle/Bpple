@@ -73,7 +73,7 @@ const CategoryDescription = styled.p`
 const Tutorials = styled(Flex)`
   margin-top: 6rem;
   padding: 30px;
-  gap: 20px;
+  gap: 30px;
   border-radius: 20px;
   border: 1px solid #e5e5e5;
   background-color: var(--opacity-bg-color);
@@ -106,7 +106,7 @@ const CommunityMain = () => {
         {categoryList.map(({ imgPath, category }) => (
           <Category key={imgPath}>
             <Link to={`${COMMUNITY_PATH}/${category.toLowerCase()}`}>
-              <img src={imgPath} alt={`category-${category}`} />
+              <Image src={imgPath} alt={`category-${category}`} />
               <CategoryDescription>{category}</CategoryDescription>
             </Link>
           </Category>

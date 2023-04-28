@@ -9,13 +9,13 @@ const STALE_TIME = 3000;
  * queryFn: () => promise
  * }} props
  */
-const useAutoCompleteQuery = (inputValue, queryFn) => {
+const useAutoCompleteQuery = ({ inputValue, queryFn, category }) => {
   const [value, setValue] = React.useState([]);
 
   const { data: posts, isFetched } = useQuery({
-    queryKey: ['posts', inputValue],
+    queryKey: ['posts', inputValue, category],
     queryFn: async () => {
-      const { data: posts } = await queryFn(inputValue);
+      const { data: posts } = await queryFn({ keyword: inputValue, category });
       return posts;
     },
     staleTime: STALE_TIME,

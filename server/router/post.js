@@ -70,7 +70,7 @@ router.get('/:postId/comment', (req, res) => {
 
 	const commentList = comments.getPostComments(postId);
 
-	const commentsDate = commentList
+	const commentsData = commentList
 		.slice(startIdx, startIdx + PAGE_SIZE)
 		.map((comment) => {
 			const { nickName, avatarId, level, point } = users.findUserByEmail(
@@ -81,7 +81,7 @@ router.get('/:postId/comment', (req, res) => {
 		});
 
 	res.send({
-		comments: commentsDate,
+		comments: commentsData,
 		totalLength: commentList.length,
 	});
 });

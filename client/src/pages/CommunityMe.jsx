@@ -37,28 +37,16 @@ const communityMeLoader = queryClient => async () => {
   return queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));
 };
 
-const CommunityMe = () => {
-  const [currentFilter, setCurrentFilter] = React.useState('recent');
-
-  return (
-    <Wrapper>
-      <Title size="52px" mt="40px">
-        내가 작성한 글 목록
-      </Title>
-      <Flex justify="flex-end">
-        <Chip.Group value={currentFilter} onChange={setCurrentFilter}>
-          <Group position="center">
-            <Chip value="recent">최신 순</Chip>
-            <Chip value="old">오래된 순</Chip>
-          </Group>
-        </Chip.Group>
-      </Flex>
-      <React.Suspense fallback={<CommunitySkeleton length={10} />}>
-        <CommunityMyPosts currentFilter={currentFilter} />
-      </React.Suspense>
-    </Wrapper>
-  );
-};
+const CommunityMe = () => (
+  <Wrapper>
+    <Title size="52px" mt="40px">
+      내가 작성한 글 목록
+    </Title>
+    <React.Suspense fallback={<CommunitySkeleton length={10} />}>
+      <CommunityMyPosts />
+    </React.Suspense>
+  </Wrapper>
+);
 
 export { communityMeQuery, communityMeLoader };
 export default CommunityMe;

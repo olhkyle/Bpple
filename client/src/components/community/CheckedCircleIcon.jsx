@@ -17,7 +17,7 @@ const CheckedCircleIcon = ({ completed }) => (
       <AiFillCheckCircle />
     </CheckCircleIcon>
     <Text pt="2px" fz="15px" fw="500" c="var(--font-color)">
-      해결된 질문
+      {completed ? '해결된 ' : '해결되지 않은 '}질문
     </Text>
   </Flex>
 );
