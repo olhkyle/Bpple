@@ -30,12 +30,41 @@ let posts = [
 	{
 		id: '1',
 		title: 'IOS 16.4 업데이트 후 앱 실행 시마다 셀룰러 네트워크가 자주 끊어짐',
-		content: '',
+		content: `워낙 휴대폰을 애지중지 사용하고있느라, 애플케어 및 통신사보험을 사용하지 않고있습니다. 물에 빠트리거나, 간단한
+		충격조차 없었고요, 작년 여름 정식수리업체에서 메인보드 결함 판정 후 무상수리, 메인보드 교체받았습니다. 물론
+		데이터는 1도 복구 못하였구요.. 당시 교체시 카메라와 액정? 빼고 전체 {'새 제품'}으로 교체가 되었다고
+		말씀하더군요. (작년 여름 사무실에서 가만히 멜론어플 사용중 전원OFF 후 켜지지 않았음) 그 같은 증상이 지난
+		4월20일, 수리한지 1년도 되지 않아 발생하였습니다. 또 방문을 했지요. 메인보드 교체 후 90일 이내 무상이라고
+		하네요. 결국 58만7천원을 수리비로 내야한다고 합니다. 너무 어이가 없고 억울하네요. 사운드결함은 있다고 들었는데
+		어떻게하면 새 제품이 1년도 안 되서 똑같이 발생할 수가 있을까요. 교체 한 메인보드 조차 결함이 있던건 아닐까요.
+		60만원이라는 거금을 투자해서 다시 수리를 해도 또 같은 증상이 발생하면 또 60만원이라는 큰 돈이 나가겠지요. 수리
+		못하고있습니다. 6년된 안드로이드폰에 유심침만 꼽아놓고 있습니다. 어떤사람은 6년.. 5년.. 같은제품을 써도 이런
+		증상이 없다고 하는데, 이런일이 있을수 있나요? 워낙 휴대폰을 애지중지 사용하고있느라, 애플케어 및 통신사보험을
+		사용하지 않고있습니다. 물에 빠트리거나, 간단한 충격조차 없었고요, 작년 여름 정식수리업체에서 메인보드 결함 판정
+		후 무상수리, 메인보드 교체받았습니다. 물론 데이터는 1도 복구 못하였구요.. 당시 교체시 카메라와 액정? 빼고 전체{' '}
+		{'새 제품'}으로 교체가 되었다고 말씀하더군요. (작년 여름 사무실에서 가만히 멜론어플 사용중 전원OFF 후 켜지지
+		않았음) 그 같은 증상이 지난 4월20일, 수리한지 1년도 되지 않아 발생하였습니다. 또 방문을 했지요. 메인보드 교체 후
+		90일 이내 무상이라고 하네요. 결국 58만7천원을 수리비로 내야한다고 합니다. 너무 어이가 없고 억울하네요.
+		사운드결함은 있다고 들었는데 어떻게하면 새 제품이 1년도 안 되서 똑같이 발생할 수가 있을까요. 교체 한 메인보드
+		조차 결함이 있던건 아닐까요. 60만원이라는 거금을 투자해서 다시 수리를 해도 또 같은 증상이 발생하면 또
+		60만원이라는 큰 돈이 나가겠지요. 수리 못하고있습니다. 6년된 안드로이드폰에 유심침만 꼽아놓고 있습니다.
+		어떤사람은 6년.. 5년.. 같은제품을 써도 이런 증상이 없다고 하는데, 이런일이 있을수 있나요? 워낙 휴대폰을 애지중지
+		사용하고있느라, 애플케어 및 통신사보험을 사용하지 않고있습니다. 물에 빠트리거나, 간단한 충격조차 없었고요, 작년
+		여름 정식수리업체에서 메인보드 결함 판정 후 무상수리, 메인보드 교체받았습니다. 물론 데이터는 1도 복구
+		못하였구요.. 당시 교체시 카메라와 액정? 빼고 전체 {'새 제품'}으로 교체가 되었다고 말씀하더군요. (작년 여름
+		사무실에서 가만히 멜론어플 사용중 전원OFF 후 켜지지 않았음) 그 같은 증상이 지난 4월20일, 수리한지 1년도 되지
+		않아 발생하였습니다. 또 방문을 했지요. 메인보드 교체 후 90일 이내 무상이라고 하네요. 결국 58만7천원을 수리비로
+		내야한다고 합니다. 너무 어이가 없고 억울하네요. 사운드결함은 있다고 들었는데 어떻게하면 새 제품이 1년도 안 되서
+		똑같이 발생할 수가 있을까요. 교체 한 메인보드 조차 결함이 있던건 아닐까요. 60만원이라는 거금을 투자해서 다시
+		수리를 해도 또 같은 증상이 발생하면 또 60만원이라는 큰 돈이 나가겠지요. 수리 못하고있습니다. 6년된
+		안드로이드폰에 유심침만 꼽아놓고 있습니다. 어떤사람은 6년.. 5년.. 같은제품을 써도 이런 증상이 없다고 하는데,
+		이런일이 있을수 있나요?`,
 		author: 'cooljp95@naver.com',
 		createAt: new Date('2022-11-01'),
 		updateAt: new Date(),
 		category: 'iPhone',
 		completed: false,
+		certified: true,
 	},
 
 	{
@@ -47,6 +76,7 @@ let posts = [
 		updateAt: new Date(),
 		category: 'iPhone',
 		completed: false,
+		certified: false,
 	},
 	{
 		id: '3',
@@ -55,8 +85,9 @@ let posts = [
 		author: 'cooljp95@naver.com',
 		createAt: new Date('2022-12-15'),
 		updateAt: new Date(),
-		category: 'iphone',
+		category: 'iPhone',
 		completed: false,
+		certified: false,
 	},
 	{
 		id: '4',
@@ -67,6 +98,7 @@ let posts = [
 		updateAt: new Date(),
 		category: 'iPhone',
 		completed: true,
+		certified: false,
 	},
 	{
 		id: '5',
@@ -78,6 +110,7 @@ let posts = [
 		updateAt: new Date(),
 		category: 'iPhone',
 		completed: false,
+		certified: false,
 	},
 	{
 		id: '6',
@@ -88,6 +121,7 @@ let posts = [
 		updateAt: new Date(),
 		category: 'Mac',
 		completed: false,
+		certified: false,
 	},
 	{
 		id: '7',
@@ -98,6 +132,7 @@ let posts = [
 		updateAt: new Date(),
 		category: 'Mac',
 		completed: false,
+		certified: false,
 	},
 	{
 		id: '8',
@@ -108,6 +143,7 @@ let posts = [
 		updateAt: new Date(),
 		category: 'Mac',
 		completed: true,
+		certified: false,
 	},
 	{
 		id: '9',
@@ -118,6 +154,7 @@ let posts = [
 		updateAt: new Date(),
 		category: 'Mac',
 		completed: false,
+		certified: false,
 	},
 	{
 		id: '10',
@@ -128,13 +165,16 @@ let posts = [
 		updateAt: new Date(),
 		category: 'Mac',
 		completed: false,
+		certified: false,
 	},
 ];
 
 const getPosts = () => posts;
 
 const getFilteredPosts = (category) => {
-	return posts.filter((post) => post.category === category);
+	return category === ''
+		? posts
+		: posts.filter((post) => post.category.toLowerCase() === category);
 };
 
 const getMyPosts = (author) => {
@@ -152,6 +192,7 @@ const createPost = (postInfo) => {
 			createAt: new Date(),
 			comments: [],
 			completed: false,
+			certified: false,
 		},
 		...posts,
 	];
@@ -174,7 +215,7 @@ const deletePost = (postId) =>
 	(posts = posts.filter(({ id }) => id !== postId));
 
 // Autocomplete Search Posts -> Max Count :5
-const searchPost = (keyword) => {
+const searchPost = (posts, keyword) => {
 	return posts.filter((post) => new RegExp(keyword, 'i').test(post.title));
 };
 
