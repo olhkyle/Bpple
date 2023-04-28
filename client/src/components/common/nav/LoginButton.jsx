@@ -6,7 +6,7 @@ import { Menu } from '@mantine/core';
 import userState from '../../../recoil/atoms/userState';
 import { ProfileAvatar } from '../avatar';
 import { signOut } from '../../../api/auth';
-import { MAIN_PATH, PROFILE_PATH, SIGNIN_PATH } from '../../../routes/routePaths';
+import { MAIN_PATH, PROFILE_PATH, REGISTER_PRODUCT_PATH, SIGNIN_PATH } from '../../../routes/routePaths';
 
 const AvatarWrapper = styled.div`
   background: none;
@@ -63,7 +63,7 @@ const LoginButton = () => {
       await signOut();
       setLoginUser(null);
     } catch (e) {
-      // console.error(e);
+      console.error(e);
     } finally {
       navigate(MAIN_PATH);
     }
@@ -82,6 +82,9 @@ const LoginButton = () => {
         <MenuItemWrapper>
           <MenuItem component="a" href={PROFILE_PATH}>
             프로필
+          </MenuItem>
+          <MenuItem component="a" href={REGISTER_PRODUCT_PATH}>
+            기기등록
           </MenuItem>
           <MenuItem component="button" onClick={handleLogout}>
             로그아웃

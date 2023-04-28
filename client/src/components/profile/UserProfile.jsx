@@ -67,11 +67,6 @@ const PointInfo = styled(Text)`
   margin-right: 20px;
 `;
 
-const EditButton = styled(Button)`
-  margin-top: 5px;
-  width: fit-content;
-`;
-
 const InfoGrid = styled(Grid)`
   margin: 50px;
 `;
@@ -117,9 +112,10 @@ const UserProfile = ({ nickName, avatarId, name, country, phoneNumber, point, le
 
                 <PointInfo>포인트 {point}</PointInfo>
               </SummaryRow>
-              <EditButton compact radius="sm" onClick={handleEdit}>
+
+              <Button compact radius="sm" mt="5px" w="fit-content" onClick={handleEdit}>
                 프로필 편집
-              </EditButton>
+              </Button>
             </SummaryWrapper>
           </AvatarWrapper>
           <ColorDivider size="md" />
