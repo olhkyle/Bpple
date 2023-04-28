@@ -1,6 +1,7 @@
 import React from 'react';
 import { Accordion, Title } from '@mantine/core';
 import SelectProductAccordionPanel from './SelectProductAccordionPanel';
+import { ipadProductTypes, iphoneProductTypes, macbookProductTypes } from '../../../constants/productList';
 
 /**
  * @param {{
@@ -11,19 +12,31 @@ import SelectProductAccordionPanel from './SelectProductAccordionPanel';
  * multiple?: boolean
  * }} props
  */
-const SelectProductAccordion = ({ selectedProductType, productCategoryList, multiple = false }) => (
-  <Accordion variant="contained" multiple={multiple}>
-    {productCategoryList.map(({ categoryType, productTypes }) => (
-      <Accordion.Item value={categoryType} key={categoryType}>
-        <Accordion.Control>
-          <Title size="lg" c={'var(--font-color)'}>
-            {categoryType}
-          </Title>
-        </Accordion.Control>
-        <SelectProductAccordionPanel productTypes={productTypes} selectedProductType={selectedProductType} />
-      </Accordion.Item>
-    ))}
-  </Accordion>
-);
+const SelectProductAccordion = ({ selectedProductType, onSelectProduct, multiple = false }) => {
+  const productCategoryList = [
+    { categoryType: 'iPhone', productTypes: iphoneProductTypes },
+    { categoryType: 'iPad', productTypes: ipadProductTypes },
+    { categoryType: 'Macbook', productTypes: macbookProductTypes },
+  ];
+
+  return (
+    <Accordion variant="contained" multiple={multiple}>
+      {productCategoryList.map(({ categoryType, productTypes }) => (
+        <Accordion.Item value={categoryType} key={categoryType}>
+          <Accordion.Control>
+            <Title size="lg" c={'var(--font-color)'}>
+              {categoryType}
+            </Title>
+          </Accordion.Control>
+          <SelectProductAccordionPanel
+            productTypes={productTypes}
+            selectedProductType={selectedProductType}
+            onSelectProduct={onSelectProduct}
+          />
+        </Accordion.Item>
+      ))}
+    </Accordion>
+  );
+};
 
 export default SelectProductAccordion;
