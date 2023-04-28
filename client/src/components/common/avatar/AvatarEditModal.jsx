@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Avatar, Button, Flex, SimpleGrid, Text } from '@mantine/core';
-import { PopupModal } from '../../common';
+import PopupModal from '../PopupModal';
 import avatars from '../../../constants/avatars';
 
 const Container = styled.div`
@@ -9,10 +9,8 @@ const Container = styled.div`
 `;
 
 const List = styled(SimpleGrid)`
-  margin-top: 30px;
+  margin: 30px 0;
   justify-items: center;
-  height: 300px;
-  overflow-y: scroll;
 `;
 
 const AvatarWrapper = styled(Avatar)`
@@ -28,9 +26,8 @@ const AvatarWrapper = styled(Avatar)`
 `;
 
 const ButtonWrapper = styled(Flex)`
-  position: absolute;
-  bottom: 40px;
-  right: 60px;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 `;
 
 /**
