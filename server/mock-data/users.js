@@ -578,6 +578,17 @@ const updateProfile = ({ userInfo: { userId, ...newUserInfo } }) => {
 	);
 };
 
+const addProduct = ({ userId, productInfo }) => {
+	users = users.map((user) =>
+		user.email === userId
+			? {
+					...user,
+					products: [...user.products, { type: productInfo.productType }],
+			  }
+			: user
+	);
+};
+
 const getUsers = () => users;
 
 module.exports = {
@@ -589,4 +600,5 @@ module.exports = {
 	getUsers,
 	getUsersRank,
 	updatePoint,
+	addProduct,
 };
