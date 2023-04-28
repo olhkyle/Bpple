@@ -1,6 +1,9 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 const users = require('../mock-data/users');
+
+const TOKEN = 'accessToken';
 
 // 사용자 프로필
 router.post('/', (req, res) => {
@@ -41,10 +44,36 @@ router.post('/', (req, res) => {
 
 // 프로필 수정
 router.post('/edit', (req, res) => {
-	const userInfo = req.body;
+	try {
+		const accessToken = req.cookies.accessToken;
+		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	users.updateProfile(userInfo);
-	res.send({ message: '회원 정보가 수정되었습니다.' });
+		const { email: userId } = users.findUserByEmail(decoded.email);
+
+		users.updateProfile(userInfo);
+		res.send({ message: '회원 정보가 수정되었습니다.' });
+	} catch (e) {
+		console.error('😱 사용자 인증 실패..', e);
+		res.status(401).send({ auth: 'fail' });
+	}
+});
+
+router.post('/register-product', (req, res) => {
+	try {
+		const accessToken = req.cookies.accessToken;
+		const { productInfo } = req.body;
+
+		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+
+		const { email: userId } = users.findUserByEmail(decoded.email);
+
+		users.addProduct({ userId, productInfo });
+
+		res.send({ message: '기기 등록이 완료되었습니다.' });
+	} catch (e) {
+		console.error('😱 사용자 인증 실패..', e);
+		res.status(401).send({ auth: 'fail' });
+	}
 });
 
 module.exports = router;
