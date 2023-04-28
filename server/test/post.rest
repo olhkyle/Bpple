@@ -7,7 +7,7 @@ GET http://localhost:8000/api/users
 GET http://localhost:8000/api/post/
 ###
 
-GET http://localhost:8000/api/posts?category=iPhone&page=2
+GET http://localhost:8000/api/posts?category=iPhone&page=1
 
 ###
 
