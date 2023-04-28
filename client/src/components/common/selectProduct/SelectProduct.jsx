@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Container, Radio } from '@mantine/core';
-import { ipadProductTypes, iphoneProductTypes, macbookProductTypes } from '../../../constants/productList';
 import SelectProductAccordion from './SelectProductAccordion';
 
 const Wrapper = styled(Container)`
@@ -29,26 +28,14 @@ const Wrapper = styled(Container)`
  * onChange: (e) => void
  * }} props
  */
-const SelectProduct = ({ selectedProductType, onChange }) => {
-  const productCategoryList = [
-    { categoryType: 'iPhone', productTypes: iphoneProductTypes },
-    { categoryType: 'iPad', productTypes: ipadProductTypes },
-    { categoryType: 'Macbook', productTypes: macbookProductTypes },
-  ];
-
-  return (
-    <Container w="100%">
-      <Wrapper>
-        <Radio.Group value={selectedProductType} onChange={onChange}>
-          <SelectProductAccordion
-            selectedProductType={selectedProductType}
-            productCategoryList={productCategoryList}
-            multiple={true}
-          />
-        </Radio.Group>
-      </Wrapper>
-    </Container>
-  );
-};
+const SelectProduct = ({ selectedProductType, onChange }) => (
+  <Container w="100%">
+    <Wrapper>
+      <Radio.Group value={selectedProductType} onChange={onChange}>
+        <SelectProductAccordion selectedProductType={selectedProductType} multiple={true} />
+      </Radio.Group>
+    </Wrapper>
+  </Container>
+);
 
 export default SelectProduct;
