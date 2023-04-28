@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import AuthenticationGuard from './guard/AuthenticationGuard';
-import { Community, CommunityPost, ProfileEdit, Question, SignIn, SignUp } from './pages';
+import { Community, CommunityPost, ProfileEdit, Question, RegisterProduct, SignIn, SignUp } from './pages';
 import CommunityMe, { communityMeLoader } from './pages/CommunityMe';
 import Profile, { profileLoader } from './pages/Profile';
 import Rank, { rankLoader } from './pages/Rank';
@@ -58,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: '/profile/edit',
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<ProfileEdit />} />,
+      },
+      {
+        path: '/profile/register',
+        element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<RegisterProduct />} />,
       },
     ],
   },
