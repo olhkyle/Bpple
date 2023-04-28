@@ -59,7 +59,7 @@ const RegisterProduct = () => {
 
         <SelectedProduct selectedProductType={selectedProductType} />
 
-        <Container align="center">
+        <Container align="center" mb="30px">
           <Button type="submit" size="lg" w="100%" disabled={!isDirty && !isValid} loading={isSubmitting}>
             등록하기
           </Button>

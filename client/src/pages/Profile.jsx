@@ -11,10 +11,10 @@ const staleTime = 3000;
 /**
  * query
  */
-const profileQuery = userId => ({
-  queryKey: ['profile', userId],
+const profileQuery = () => ({
+  queryKey: ['profile'],
   queryFn: async () => {
-    const { data } = await fetchProfile(userId);
+    const { data } = await fetchProfile();
     return data;
   },
   staleTime,

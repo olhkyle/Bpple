@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { useForm } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Flex, Input, Title, Button, Group } from '@mantine/core';
+import { Flex, Input, Title, Button, Container } from '@mantine/core';
 import { InputWrapper } from '../common';
-import { TextEditor, CategoryRadio } from '.';
+import { TextEditor, CategoryRadio, SelectProductRadio } from '.';
 import { createNewPost } from '../../api/post';
 import useTextEditor from '../../hooks/useTextEditor';
+import { ipadProductTypes, iphoneProductTypes, macbookProductTypes } from '../../constants/productList';
+import SelectedCategoryAndProductType from './SelectedCategoryAndProductType';
 
 const TitleInput = styled(Input)`
   input {
@@ -16,17 +18,33 @@ const TitleInput = styled(Input)`
   }
 `;
 
+const Wrapper = styled(Container)`
+  background-color: var(--opacity-bg-color);
+  border: 1px solid var(--opacity-border-color);
+  padding: 30px 20px;
+  border-radius: 10px;
+`;
+
 const questionScheme = z.object({
   title: z.string(),
   content: z.string(),
   category: z.string(),
+  productType: z.string(),
 });
 
 const QuestionForm = () => {
   const { handleSubmit, register, setValue, control } = useForm({
     resolver: zodResolver(questionScheme),
-    defaultValues: { category: 'iPhone' },
+    defaultValues: { category: '', productType: '' },
   });
+
+  const {
+    field: { value: selectedCategory, onChange: onChangeCategory },
+  } = useController({ control, name: 'category' });
+
+  const {
+    field: { value: selectedProductType, onChange: onChangeProductType },
+  } = useController({ control, name: 'productType' });
 
   const editor = useTextEditor({
     initContent: '',
@@ -45,6 +63,22 @@ const QuestionForm = () => {
     }
   };
 
+  const onResetProduct = () => {
+    onChangeProductType('');
+  };
+
+  const onSelectProduct = productType => {
+    onChangeCategory(
+      Object.keys(iphoneProductTypes).includes(productType)
+        ? 'iPhone'
+        : Object.keys(ipadProductTypes).includes(productType)
+        ? 'iPad'
+        : Object.keys(macbookProductTypes).includes(productType)
+        ? 'Mac'
+        : ''
+    );
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit, e => console.log(e))}>
       <Flex direction="column" gap="xl">
@@ -52,11 +86,27 @@ const QuestionForm = () => {
           <TitleInput {...register('title')} placeholder="게시글 제목" />
         </InputWrapper>
         <TextEditor editor={editor} />
-        <Group>
-          <Title order={4}>어떤 주제에 대한 것입니까?</Title>
-          <CategoryRadio control={control} />
-        </Group>
-        <Button type="submit">글쓰기</Button>
+
+        <Container w="100%" p="0">
+          <Title order={4} mt="40px" mb="20px">
+            어떤 주제에 대한 것입니까?
+          </Title>
+          <Wrapper>
+            <CategoryRadio value={selectedCategory} onChange={onChangeCategory} onResetProduct={onResetProduct} />
+
+            <SelectProductRadio
+              value={selectedProductType}
+              onChange={onChangeProductType}
+              onSelectProduct={onSelectProduct}
+            />
+          </Wrapper>
+        </Container>
+
+        <SelectedCategoryAndProductType categoryType={selectedCategory} selectedProductType={selectedProductType} />
+
+        <Button type="submit" size="lg" mt="20px">
+          글쓰기
+        </Button>
       </Flex>
     </form>
   );

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const fetchProfile = userId => axios.post('/api/profile', { userId });
+const fetchProfile = () => axios.post('/api/profile');
 
 const editProfile = userInfo => axios.post('/api/profile/edit', { userInfo });
 
