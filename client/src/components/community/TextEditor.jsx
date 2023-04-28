@@ -1,10 +1,6 @@
 import React from 'react';
 import { RichTextEditor } from '@mantine/tiptap';
-import { useEditor, BubbleMenu } from '@tiptap/react';
-import Highlight from '@tiptap/extension-highlight';
-import StarterKit from '@tiptap/starter-kit';
-import Underline from '@tiptap/extension-underline';
-import Placeholder from '@tiptap/extension-placeholder';
+import { BubbleMenu } from '@tiptap/react';
 import styled from '@emotion/styled';
 
 const EditorWrapper = styled(RichTextEditor)`
@@ -24,37 +20,29 @@ const EditorButtonGroup = styled(RichTextEditor.ControlsGroup)`
   }
 `;
 
-const TextEditor = ({ placeholder, setValue }) => {
-  const editor = useEditor({
-    extensions: [StarterKit, Underline, Highlight, Placeholder.configure({ placeholder })],
-    content: '',
-    onUpdate: ({ editor }) => setValue(editor.getHTML()),
-  });
-
-  return (
-    <EditorWrapper editor={editor}>
-      <RichTextEditor.Toolbar bg="var(--body-bg-color)">
-        {editor && (
-          <BubbleMenu editor={editor}>
-            <EditorButtonGroup>
-              <RichTextEditor.Bold />
-              <RichTextEditor.Italic />
-              <RichTextEditor.Link />
-            </EditorButtonGroup>
-          </BubbleMenu>
-        )}
-        <EditorButtonGroup>
-          <RichTextEditor.Bold />
-          <RichTextEditor.Italic />
-          <RichTextEditor.Underline />
-          <RichTextEditor.Strikethrough />
-          <RichTextEditor.Highlight />
-          <RichTextEditor.ClearFormatting />
-        </EditorButtonGroup>
-      </RichTextEditor.Toolbar>
-      <RichTextEditor.Content bg="var(--body-bg-color)" c="var(--font-color)" />
-    </EditorWrapper>
-  );
-};
+const TextEditor = ({ editor, useBubble = true }) => (
+  <EditorWrapper editor={editor}>
+    <RichTextEditor.Toolbar bg="var(--body-bg-color)">
+      {useBubble && editor && (
+        <BubbleMenu editor={editor}>
+          <EditorButtonGroup>
+            <RichTextEditor.Bold />
+            <RichTextEditor.Italic />
+            <RichTextEditor.Link />
+          </EditorButtonGroup>
+        </BubbleMenu>
+      )}
+      <EditorButtonGroup>
+        <RichTextEditor.Bold />
+        <RichTextEditor.Italic />
+        <RichTextEditor.Underline />
+        <RichTextEditor.Strikethrough />
+        <RichTextEditor.Highlight />
+        <RichTextEditor.ClearFormatting />
+      </EditorButtonGroup>
+    </RichTextEditor.Toolbar>
+    <RichTextEditor.Content bg="var(--body-bg-color)" c="var(--font-color)" />
+  </EditorWrapper>
+);
 
 export default TextEditor;

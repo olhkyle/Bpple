@@ -7,6 +7,7 @@ import { Flex, Input, Title, Button, Group } from '@mantine/core';
 import { InputWrapper } from '../common';
 import { TextEditor, CategoryRadio } from '.';
 import { createNewPost } from '../../api/post';
+import useTextEditor from '../../hooks/useTextEditor';
 
 const TitleInput = styled(Input)`
   input {
@@ -22,15 +23,22 @@ const questionScheme = z.object({
 });
 
 const QuestionForm = () => {
-  const { handleSubmit, register, setValue } = useForm({
+  const { handleSubmit, register, setValue, control } = useForm({
     resolver: zodResolver(questionScheme),
     defaultValues: { category: 'iPhone' },
   });
 
+  const editor = useTextEditor({
+    initContent: '',
+    placeholder: '질문이 무엇입니까?',
+    option: {
+      onUpdate: () => setValue('content', editor.getHTML()),
+    },
+  });
+
   const onSubmit = data => {
     try {
-      console.log(data);
-      createNewPost({ ...data });
+      createNewPost(data);
       // TODO : 카테고리 게시물 목록으로 이동
     } catch (e) {
       console.log(e);
@@ -43,10 +51,10 @@ const QuestionForm = () => {
         <InputWrapper>
           <TitleInput {...register('title')} placeholder="게시글 제목" />
         </InputWrapper>
-        <TextEditor placeholder="질문이 무엇입니까?" setValue={value => setValue('content', value)} />
+        <TextEditor editor={editor} />
         <Group>
           <Title order={4}>어떤 주제에 대한 것입니까?</Title>
-          <CategoryRadio setValue={category => setValue('category', category)} />
+          <CategoryRadio control={control} />
         </Group>
         <Button type="submit">글쓰기</Button>
       </Flex>
