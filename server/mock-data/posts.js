@@ -10,6 +10,7 @@ const comments = require('./comments');
 		updateAt: date,
 		comments: array[],
 		category: string,
+		productType: string,
 		completed: boolean,
 	},
  */
@@ -35,6 +36,7 @@ let posts = [
 		createAt: new Date('2022-11-01'),
 		updateAt: new Date(),
 		category: 'iPhone',
+		productType: '',
 		completed: false,
 	},
 
@@ -46,6 +48,7 @@ let posts = [
 		createAt: new Date('2022-12-01'),
 		updateAt: new Date(),
 		category: 'iPhone',
+		productType: '',
 		completed: false,
 	},
 	{
@@ -56,6 +59,7 @@ let posts = [
 		createAt: new Date('2022-12-15'),
 		updateAt: new Date(),
 		category: 'iphone',
+		productType: '',
 		completed: false,
 	},
 	{
@@ -66,6 +70,7 @@ let posts = [
 		createAt: new Date('2022-12-24'),
 		updateAt: new Date(),
 		category: 'iPhone',
+		productType: '',
 		completed: true,
 	},
 	{
@@ -77,6 +82,7 @@ let posts = [
 		createAt: new Date('2022-12-31'),
 		updateAt: new Date(),
 		category: 'iPhone',
+		productType: '',
 		completed: false,
 	},
 	{
@@ -87,6 +93,7 @@ let posts = [
 		createAt: new Date('2023-01-01'),
 		updateAt: new Date(),
 		category: 'Mac',
+		productType: '',
 		completed: false,
 	},
 	{
@@ -97,6 +104,7 @@ let posts = [
 		createAt: new Date('2023-01-31'),
 		updateAt: new Date(),
 		category: 'Mac',
+		productType: '',
 		completed: false,
 	},
 	{
@@ -107,6 +115,7 @@ let posts = [
 		createAt: new Date('2023-02-01'),
 		updateAt: new Date(),
 		category: 'Mac',
+		productType: '',
 		completed: true,
 	},
 	{
@@ -117,6 +126,7 @@ let posts = [
 		createAt: new Date('2023-02-28'),
 		updateAt: new Date(),
 		category: 'Mac',
+		productType: '',
 		completed: false,
 	},
 	{
@@ -127,6 +137,7 @@ let posts = [
 		createAt: new Date('2023-03-01'),
 		updateAt: new Date(),
 		category: 'Mac',
+		productType: '',
 		completed: false,
 	},
 ];

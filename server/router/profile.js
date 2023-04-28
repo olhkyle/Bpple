@@ -7,39 +7,49 @@ const TOKEN = 'accessToken';
 
 // 사용자 프로필
 router.post('/', (req, res) => {
-	const { userId } = req.body;
+	try {
+		const accessToken = req.cookies.accessToken;
+		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	const user = users.findUserByEmail(userId);
+		const { email: userId } = users.findUserByEmail(decoded.email);
 
-	if (!user)
-		return res.status(401).send({ error: '해당 사용자가 존재하지 않습니다.' });
+		const user = users.findUserByEmail(userId);
 
-	const {
-		nickName,
-		firstName,
-		lastName,
-		country,
-		phoneNumber,
-		products,
-		point,
-		level,
-		avatarId,
-		aboutMe,
-		birthDate,
-	} = user;
+		if (!user)
+			return res
+				.status(401)
+				.send({ error: '해당 사용자가 존재하지 않습니다.' });
 
-	res.send({
-		nickName,
-		name: firstName + lastName,
-		country,
-		phoneNumber,
-		products,
-		point,
-		level,
-		avatarId,
-		aboutMe,
-		birthDate,
-	});
+		const {
+			nickName,
+			firstName,
+			lastName,
+			country,
+			phoneNumber,
+			products,
+			point,
+			level,
+			avatarId,
+			aboutMe,
+			birthDate,
+		} = user;
+
+		res.send({
+			nickName,
+			name: firstName + lastName,
+			country,
+			phoneNumber,
+			products,
+			point,
+			level,
+			avatarId,
+			aboutMe,
+			birthDate,
+		});
+	} catch (e) {
+		console.error('😱 사용자 인증 실패..', e);
+		res.status(401).send({ auth: 'fail' });
+	}
 });
 
 // 프로필 수정
