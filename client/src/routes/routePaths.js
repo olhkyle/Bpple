@@ -3,6 +3,7 @@ export const SIGNUP_PATH = '/signup';
 export const SIGNIN_PATH = '/signin';
 export const PROFILE_PATH = '/profile';
 export const PROFILE_EDIT_PATH = '/profile/edit';
+export const REGISTER_PRODUCT_PATH = '/profile/register';
 export const CART_PATH = '/cart';
 export const MAC_PATH = '/shop/mac';
 export const IPHONE_PATH = '/shop/iphone';
