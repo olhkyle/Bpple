@@ -45,7 +45,7 @@ const PostDescription = styled(Group)`
 `;
 
 const PostItem = ({ post }) => {
-  const { id, title, createAt, category, completed, comments, avatarId } = post;
+  const { id, title, createAt, category, completed, avatarId, certified, commentsLength } = post;
 
   return (
     <Post key={id} fz="15px" bg="var(--opacity-bg-color)">
@@ -60,7 +60,7 @@ const PostItem = ({ post }) => {
               <Text c="var(--font-color)">{formattedDate(new Date(createAt))}</Text>
               <Flex mt="10px" fz="20px" gap="1rem" align="center">
                 <CheckedCircleIcon completed={completed} />
-                {comments.some(({ certified }) => certified) && <AppleRecommendIcon />}
+                {certified && <AppleRecommendIcon />}
               </Flex>
             </Flex>
           </PostDescription>
@@ -74,7 +74,7 @@ const PostItem = ({ post }) => {
             </Badge>
             {/* 갖고 있는 기기 목록 Badge 추가 */}
             <Text pr="0.8rem" c="var(--font-color)">
-              답글 {comments.length}
+              답글 {commentsLength}
             </Text>
           </Flex>
         </Flex>
