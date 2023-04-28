@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Radio, Flex, Text, Group, Image } from '@mantine/core';
+import { useController } from 'react-hook-form';
 import categoryList from '../../constants/categoryList';
 
 const RadioInput = styled(Radio)`
@@ -31,23 +32,20 @@ const RadioLabel = styled(Group)`
   }
 `;
 
-const CategoryRadio = ({ setValue }) => {
-  const [currentCategory, setCategory] = React.useState('iPhone');
+const CategoryRadio = ({ control }) => {
+  const {
+    field: { value, onChange },
+  } = useController({ control, name: 'category' });
 
   return (
-    <Radio.Group
-      value={currentCategory}
-      onChange={category => {
-        setCategory(category);
-        setValue(category);
-      }}>
+    <Radio.Group value={value} onChange={onChange}>
       <Flex gap="20px">
         {categoryList.map(({ imgPath, category }) => (
           <RadioInput
             key={category}
             value={category}
             label={
-              <RadioLabel checked={currentCategory === category}>
+              <RadioLabel checked={value === category}>
                 <Image src={imgPath} alt="" />
                 <Text>{category}</Text>
               </RadioLabel>
