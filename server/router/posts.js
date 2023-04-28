@@ -16,8 +16,14 @@ router.get('/', (req, res) => {
 		? posts.getFilteredPosts(category)
 		: posts.getPosts();
 
+	const slicedPosts = postList.slice(startIdx, startIdx + PAGE_SIZE);
+
 	res.send({
-		posts: postList.slice(startIdx, startIdx + PAGE_SIZE),
+		posts: slicedPosts.map((post) => ({
+			...post,
+			avatarId: users.findUserByEmail(post.author).avatarId,
+			commentLength: comments.getPostComments(post.id).length,
+		})),
 		toTallength: postList.length,
 	});
 });
@@ -46,7 +52,7 @@ router.post('/me', (req, res) => {
 		posts: myPosts.map((myPost) => ({
 			...myPost,
 			avatarId: user.avatarId,
-			comments: comments.getPostComments(myPost.id),
+			commentLength: comments.getPostComments(myPost.id).length,
 		})),
 	});
 });
