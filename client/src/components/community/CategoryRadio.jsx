@@ -19,15 +19,15 @@ const RadioInput = styled(Radio)`
 `;
 
 const RadioLabel = styled(Container)`
-  --color: ${({ checked }) => `var(${checked ? '--hover-font-color' : '--font-color'})`};
   display: flex;
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   font-size: 20px;
   align-items: center;
-  color: var(--color);
-  border: 1px solid var(--color);
+  color: ${({ checked }) => (checked ? 'var(--hover-font-color)' : 'var(--font-color)')};
+  border: ${({ checked }) => (checked ? '1px solid var(--hover-font-color)' : '1px solid #e5e5e5')};
   border-radius: 10px;
+  cursor: pointer;
 
   img {
     max-width: 40px;
@@ -47,13 +47,16 @@ const CategoryRadio = ({ value, onChange, onResetProduct }) => (
       {categoryList.map(({ imgPath, category }) => (
         <RadioInput
           key={category}
-          w="32%"
           value={category}
           onClick={onResetProduct}
+          w="32%"
+          active={category}
           label={
             <RadioLabel checked={value === category}>
-              <Image src={imgPath} alt="" />
-              <Text ml="lg">{category}</Text>
+              <Image src={imgPath} alt="imgPath" />
+              <Text ml="lg" fz="15px">
+                {category}
+              </Text>
             </RadioLabel>
           }
         />

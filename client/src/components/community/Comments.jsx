@@ -97,33 +97,36 @@ const Comments = () => {
           💿 궁금한 점이 있다면 의견을 남겨주세요.
         </Title>
         <TextEditor editor={editor} />
-        <Button
-          onClick={() => {
-            add(
-              {
-                commentInfo: {
-                  postId,
-                  author: email,
-                  nickName,
-                  avatarId,
-                  content: textEditorContent,
-                  createAt: new Date(),
+        <Flex justify="center">
+          <Button
+            onClick={() => {
+              add(
+                {
+                  commentInfo: {
+                    postId,
+                    author: email,
+                    nickName,
+                    avatarId,
+                    content: textEditorContent,
+                    createAt: new Date(),
+                  },
                 },
-              },
-              {
-                onSuccess: () => refetch(),
-              }
-            );
-            editor.commands.clearContent();
-            editor.commands.focus();
-          }}
-          disabled={textEditorContent.replace(/<\/?p>/gi, '').trim() === ''}
-          mt="1rem"
-          ml="auto"
-          radius="xl"
-          variant="outline">
-          글쓰기
-        </Button>
+                {
+                  onSuccess: () => refetch(),
+                }
+              );
+              editor.commands.clearContent();
+              editor.commands.focus();
+            }}
+            disabled={textEditorContent.replace(/<\/?p>/gi, '').trim() === ''}
+            mt="1rem"
+            ml="auto"
+            fz="14px"
+            w={90}
+            radius="xl">
+            글쓰기
+          </Button>
+        </Flex>
       </Container>
       <Divider mb="2rem" variant="dashed" />
       <CommentList>
