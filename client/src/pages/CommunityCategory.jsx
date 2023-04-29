@@ -22,6 +22,17 @@ const Wrapper = styled(Container)`
   color: var(--font-color);
 `;
 
+const CategoryImage = styled(Image)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+
+  figure.mantine-Image-figure {
+    width: ${({ category }) => (category === 'mac' ? '90%' : category === 'ipad' ? '65%' : '70%')};
+  }
+`;
+
 const PostsContainer = styled(Flex)`
   margin-top: 1rem;
   width: 100%;
@@ -108,12 +119,10 @@ const CommunityCategory = () => {
         </Link>
       </Flex>
       <Flex gap="0.5rem" mt="2rem">
-        <Image
-          miw={240}
-          width={category !== 'mac' ? '180px' : '220px'}
+        <CategoryImage
           src={`/community/${category}/${category}-category.png`}
           alt={`${category}-category-img`}
-          fit="cover"
+          category={category}
         />
         <Flex direction="column" justify="center">
           <Title mb="3rem">{CATEGORY[category]}</Title>
