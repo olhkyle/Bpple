@@ -60,18 +60,27 @@ const animation = {
   },
 };
 
+const bgc = {
+  success: '#339af0',
+  error: '#ff6b6b',
+};
+
 const Container = styled.div`
-  position: ${({ fixed }) => fixed && 'fixed'};
+  position: fixed;
   top: ${({ position }) => position === 'top' && '0'};
   bottom: ${({ position }) => position === 'bottom' && '0'};
   width: 100%;
   height: ${({ h }) => h};
   padding: 12px 12px;
   background-color: ${({ bgc }) => bgc};
-  color: ${({ c }) => c};
+  color: #fff;
 
   animation: ${({ position, status }) => animation[position][status]} 0.5s both;
   z-index: 9999;
+
+  button {
+    color: #fff;
+  }
 `;
 
 const ToastCloseButton = styled(CloseButton)`
@@ -84,26 +93,20 @@ const ToastCloseButton = styled(CloseButton)`
  * c : toast 폰트 컬러 / string
  * bgc : toast 배경 컬러 / string
  *
- * fixed : toast fixed 속성 여부 / boolean
- *         true일 경우 상단 / 하단에 고정되서 등장
- *         false일 경우 아래 요소들을 밀어내면서 등장
- *
  * position : toast가 등장할 위치  / 'top' | 'bottom'
  * closeOnClick : toast 닫기 버튼 노출 여부 / boolean
  * autoClose : 딜레이 이후 자동으로 toast 삭제 여부 / boolean
  * autoCloseDelay : 자동으로 toast 삭제 시, 딜레이 지정 / number
  * children : toast에 포함할 내용 / jsx
  *
- * @param {{h, c, bgc, fixed, position, closeOnClick, autoClose, autoCloseDelay, children}}
+ * @param {{h, c, bgc, position, closeOnClick, autoClose, autoCloseDelay, children}}
  * @returns
  */
 
 const Toast = ({
   id,
   h = '50px',
-  c = '#fff',
-  bgc = '#339af0',
-  fixed = true,
+  type = 'success',
   position = 'top',
   closeOnClick = true,
   autoClose = true,
@@ -119,22 +122,9 @@ const Toast = ({
   };
 
   return (
-    <Container
-      status={status}
-      position={position}
-      onAnimationEnd={handleAnimationEnd}
-      fixed={fixed}
-      h={h}
-      c={c}
-      bgc={bgc}>
+    <Container status={status} position={position} onAnimationEnd={handleAnimationEnd} h={h} bgc={bgc[type]}>
       {closeOnClick && (
-        <ToastCloseButton
-          onClick={() => setStatus('dismiss')}
-          c={c}
-          iconSize="24px"
-          variant="transparent"
-          right="2.5%"
-        />
+        <ToastCloseButton onClick={() => setStatus('dismiss')} iconSize="24px" variant="transparent" right="2.5%" />
       )}
       <Center px="5%">{message}</Center>
     </Container>
