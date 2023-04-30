@@ -60,6 +60,15 @@ router.post('/edit', (req, res) => {
 
 		const { email: userId } = users.findUserByEmail(decoded.email);
 
+		const user = users.findUserByEmail(userId);
+
+		if (!user)
+			return res
+				.status(401)
+				.send({ error: '해당 사용자가 존재하지 않습니다.' });
+
+		const userInfo = req.body;
+
 		users.updateProfile(userInfo);
 		res.send({ message: '회원 정보가 수정되었습니다.' });
 	} catch (e) {
@@ -75,7 +84,13 @@ router.post('/register-product', (req, res) => {
 
 		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-		const { email: userId } = users.findUserByEmail(decoded.email);
+		const user = users.findUserByEmail(decoded.email);
+		if (!user)
+			return res
+				.status(401)
+				.send({ error: '해당 사용자가 존재하지 않습니다.' });
+
+		const { email: userId } = user;
 
 		users.addProduct({ userId, productInfo });
 
