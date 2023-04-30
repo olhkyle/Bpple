@@ -31,18 +31,20 @@ const SelectProductRadio = ({ value, onChange, onSelectProduct }) => {
     <PanelContainer>
       <Radio.Group value={value} onChange={onChange}>
         <Accordion variant="default">
-          <Accordion.Item value="나의 기기 목록">
-            <Accordion.Control>
-              <Title size="lg" c={'var(--font-color)'}>
-                나의 기기 목록
-              </Title>
-            </Accordion.Control>
-            <MyProductListPanel
-              products={userInfo?.products ?? []}
-              selectedProductType={value}
-              onSelectProduct={onSelectProduct}
-            />
-          </Accordion.Item>
+          {userInfo?.products.length > 0 && (
+            <Accordion.Item value="나의 기기 목록">
+              <Accordion.Control>
+                <Title size="lg" c={'var(--font-color)'}>
+                  나의 기기 목록
+                </Title>
+              </Accordion.Control>
+              <MyProductListPanel
+                products={userInfo.products}
+                selectedProductType={value}
+                onSelectProduct={onSelectProduct}
+              />
+            </Accordion.Item>
+          )}
 
           <Accordion.Item value="제품 목록">
             <Accordion.Control>
