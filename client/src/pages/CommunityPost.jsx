@@ -57,7 +57,7 @@ const CommunityPost = () => {
       </Link>
       <PostContent post={post} />
       <Divider variant="dashed" />
-      <Comments />
+      <Comments postAuthor={post.author} />
     </Wrapper>
   );
 };
