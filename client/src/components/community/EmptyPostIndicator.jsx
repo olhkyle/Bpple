@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Button, Flex, Title } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
+import { Button, Flex, Title } from '@mantine/core';
 import { COMMUNITY_QUESTION_PATH } from '../../routes/routePaths';
 
 const Container = styled(Flex)`
