@@ -16,6 +16,13 @@ const Wrapper = styled(Container)`
   color: var(--font-color);
 `;
 
+const RankChip = styled(Chip)`
+  .mantine-Chip-label {
+    background: none;
+    color: var(--font-color);
+  }
+`;
+
 const staleTime = 3000;
 
 const rankQuery = (topCount = '10') => ({
@@ -44,8 +51,6 @@ const Rank = () => {
     if (isFetched) setUsers(data.usersRank);
   }, [curTopCount, data, isFetched]);
 
-  console.log('[Rank]', curTopCount, data);
-
   return (
     <Wrapper>
       <Title size="52px" mt="40px" mb="40px">
@@ -56,9 +61,9 @@ const Rank = () => {
           <Flex justify="flex-end" mb="30px">
             <Chip.Group value={curTopCount} onChange={setCurTopCount}>
               <Group position="center">
-                <Chip value="10">top 10</Chip>
-                <Chip value="20">top 20</Chip>
-                <Chip value="30">top 30</Chip>
+                <RankChip value="10">top 10</RankChip>
+                <RankChip value="20">top 20</RankChip>
+                <RankChip value="30">top 30</RankChip>
               </Group>
             </Chip.Group>
           </Flex>
