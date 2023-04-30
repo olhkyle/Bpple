@@ -24,7 +24,7 @@ const PanelContainer = styled(Container)`
   }
 `;
 
-const SelectProductRadio = ({ value, onChange, onSelectProduct }) => {
+const SelectProductRadio = ({ value, onChange }) => {
   const { data: userInfo } = useQuery({ ...profileQuery(), suspense: false });
 
   return (
@@ -38,11 +38,7 @@ const SelectProductRadio = ({ value, onChange, onSelectProduct }) => {
                   나의 기기 목록
                 </Title>
               </Accordion.Control>
-              <MyProductListPanel
-                products={userInfo.products}
-                selectedProductType={value}
-                onSelectProduct={onSelectProduct}
-              />
+              <MyProductListPanel products={userInfo.products} selectedProductType={value} />
             </Accordion.Item>
           )}
 
@@ -53,7 +49,7 @@ const SelectProductRadio = ({ value, onChange, onSelectProduct }) => {
               </Title>
             </Accordion.Control>
             <Accordion.Panel>
-              <SelectProductAccordion selectedProductType={value} onSelectProduct={onSelectProduct} />
+              <SelectProductAccordion selectedProductType={value} />
             </Accordion.Panel>
           </Accordion.Item>
         </Accordion>

@@ -13,6 +13,7 @@ export { default as SelectProductRadio } from './SelectProductRadio';
 export { default as SelectedCategoryAndProductType } from './SelectedCategoryAndProductType';
 export { default as MyProductListPanel } from './MyProductListPanel';
 export { default as QuestionForm } from './QuestionForm';
+export { default as SubjectSelect } from './SubjectSelect';
 export { default as CheckedCircleIcon } from './CheckedCircleIcon';
 export { default as AppleRecommendIcon } from './AppleRecommendIcon';
 export { default as RankTable } from './RankTable';
