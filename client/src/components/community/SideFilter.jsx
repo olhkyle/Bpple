@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, Box, NavLink, Stack } from '@mantine/core';
 import styled from '@emotion/styled';
+import { Text, Box, NavLink, Stack } from '@mantine/core';
 import FILTERS from '../../constants/filters';
 
 const Container = styled(Box)`
@@ -25,15 +25,39 @@ const Container = styled(Box)`
   }
 `;
 
-const SideFilter = ({ open, setCurrentFilter }) => (
+const navLinkList = [
+  {
+    title: '전체보기',
+    filter: FILTERS.all,
+  },
+  {
+    title: '해결된 질문',
+    filter: FILTERS.completed,
+  },
+  {
+    title: 'FineApple 권장 답변',
+    filter: FILTERS.certified,
+  },
+  {
+    title: '해결되지 않은 질문',
+    filter: FILTERS.active,
+  },
+];
+
+const SideFilter = ({ open, currentFilter, setCurrentFilter }) => (
   <Container open={open}>
     <Text fz="20px" fw="600">
       유형
     </Text>
     <Stack my="xl" spacing="xl">
-      <NavLink label="해결된 질문" onClick={() => setCurrentFilter(FILTERS.completed)} />
-      <NavLink label="FineApple 권장 답변" onClick={() => setCurrentFilter(FILTERS.certified)} />
-      <NavLink label="해결되지 않은 질문" onClick={() => setCurrentFilter(FILTERS.active)} />
+      {navLinkList.map(({ title, filter }) => (
+        <NavLink
+          key={filter}
+          label={title}
+          active={currentFilter === filter}
+          onClick={() => setCurrentFilter(filter)}
+        />
+      ))}
     </Stack>
   </Container>
 );
