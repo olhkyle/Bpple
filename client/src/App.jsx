@@ -13,6 +13,7 @@ import Rank, { rankLoader } from './pages/Rank';
 import { Layout } from './components';
 import { SIGNIN_PATH } from './routes/routePaths';
 import CommunityCategory, { communityCategoryLoader } from './pages/CommunityCategory';
+import { CommunityMain } from './components/community';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         path: '/community',
         element: <Community />,
         children: [
+          {
+            index: true,
+            element: <CommunityMain />,
+          },
           {
             path: ':category',
             loader: communityCategoryLoader(queryClient),
