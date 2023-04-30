@@ -5,7 +5,16 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import AuthenticationGuard from './guard/AuthenticationGuard';
-import { Community, CommunityPost, ProfileEdit, Question, RegisterProduct, SignIn, SignUp } from './pages';
+import {
+  Community,
+  CommunityFaq,
+  CommunityPost,
+  ProfileEdit,
+  Question,
+  RegisterProduct,
+  SignIn,
+  SignUp,
+} from './pages';
 import CommunityMe, { communityMeLoader } from './pages/CommunityMe';
 import Profile, { profileLoader } from './pages/Profile';
 import { communityPostLoader } from './pages/CommunityPost';
@@ -61,6 +70,7 @@ const router = createBrowserRouter([
           },
           { path: 'question', element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Question />} /> },
           { path: 'rank', loader: rankLoader(queryClient), element: <Rank /> },
+          { path: 'faq', element: <CommunityFaq /> },
         ],
       },
       {
