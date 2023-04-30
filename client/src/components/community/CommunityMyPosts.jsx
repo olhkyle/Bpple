@@ -2,8 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { Chip, Flex, Group, List, Text } from '@mantine/core';
-import { EmptyPostIndicator, PostItem } from '.';
 import { communityMeQuery } from '../../pages/CommunityMe';
+import { EmptyPostIndicator, PostItem } from '.';
 
 const MyPosts = styled(List)`
   display: flex;

@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import { Badge, Flex, Text, Title } from '@mantine/core';
+import { BsArrowUpRightSquare } from 'react-icons/bs';
 import formattedDate from '../../utils/formattedDate';
 import { ProfileAvatar } from '../common';
-import CheckedCircleIcon from './CheckedCircleIcon';
-import AppleRecommendIcon from './AppleRecommendIcon';
+import { CheckedCircleIcon, AppleRecommendIcon } from '.';
+import { COMMUNITY_PATH } from '../../routes/routePaths';
 
 const PostSection = styled.section`
   margin-top: 2.5rem;
@@ -36,38 +38,46 @@ const Content = styled(Text)`
 `;
 
 const PostContent = ({ post }) => {
-  const { title, createAt, content, completed, avatarId, certified, nickName, level, point } = post;
+  const { title, category, createAt, content, completed, avatarId, certified, nickName, level, point } = post;
 
   return (
-    <PostSection>
-      <Flex gap="1rem" mb="0.5rem" ml="auto" h="30px">
-        <CheckedCircleIcon completed={completed} />
-        {certified && <AppleRecommendIcon />}
-      </Flex>
-
-      <PostTitle>{title}</PostTitle>
-
-      <Text mt="0.5rem" ml="0.2rem" fz="15px" c="grey">
-        {formattedDate(new Date(createAt))}
-      </Text>
-      <AuthorProfile>
-        <ProfileAvatar avatarId={avatarId} />
-        <Flex display="flex" gap="10px" direction="column">
-          <Text mt="-3px" ml="2px" fz="21px" fw="500">
-            {nickName}
-          </Text>
-          <Flex gap="8px" align="center">
-            <Badge variant="outline" size="lg" fz="14px">
-              레벨 {level}
-            </Badge>
-            <Badge variant="outline" size="lg" fz="14px">
-              포인트 {point}
-            </Badge>
-          </Flex>
+    <>
+      <Link to={`${COMMUNITY_PATH}/${category.toLowerCase()}`}>
+        <Flex gap="5px" align="center" fz="15px" fw="600" td="none" c="var(--font-color)">
+          <Text>{category}</Text>
+          <BsArrowUpRightSquare />
         </Flex>
-      </AuthorProfile>
-      <Content>{content}</Content>
-    </PostSection>
+      </Link>
+      <PostSection>
+        <Flex gap="1rem" mb="0.5rem" ml="auto" h="30px">
+          <CheckedCircleIcon completed={completed} />
+          {certified && <AppleRecommendIcon />}
+        </Flex>
+
+        <PostTitle>{title}</PostTitle>
+
+        <Text mt="0.5rem" ml="0.2rem" fz="15px" c="grey">
+          {formattedDate(new Date(createAt))}
+        </Text>
+        <AuthorProfile>
+          <ProfileAvatar avatarId={avatarId} />
+          <Flex display="flex" gap="10px" direction="column">
+            <Text mt="-3px" ml="2px" fz="21px" fw="500">
+              {nickName}
+            </Text>
+            <Flex gap="8px" align="center">
+              <Badge variant="outline" size="lg" fz="14px">
+                레벨 {level}
+              </Badge>
+              <Badge variant="outline" size="lg" fz="14px">
+                포인트 {point}
+              </Badge>
+            </Flex>
+          </Flex>
+        </AuthorProfile>
+        <Content>{content}</Content>
+      </PostSection>
+    </>
   );
 };
 
