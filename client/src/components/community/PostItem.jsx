@@ -45,7 +45,7 @@ const PostDescription = styled(Group)`
 `;
 
 const PostItem = ({ post }) => {
-  const { id, title, createAt, category, completed, avatarId, certified, commentsLength } = post;
+  const { id, title, createAt, category, completed, avatarId, certified, commentsLength, productType } = post;
 
   return (
     <Post key={id} fz="15px" bg="var(--opacity-bg-color)">
@@ -65,17 +65,26 @@ const PostItem = ({ post }) => {
             </Flex>
           </PostDescription>
           <Flex ml="auto" direction="column" justify="space-between" align="flex-end">
-            <Badge
-              w={100}
-              size="lg"
-              variant="outline"
-              color={category === 'iPhone' ? 'red' : category === 'mac' ? 'green' : 'blue'}>
-              {category}
-            </Badge>
-            {/* 갖고 있는 기기 목록 Badge 추가 */}
-            <Text pr="0.8rem" c="var(--font-color)">
-              답글 {commentsLength}
-            </Text>
+            <Flex gap="8px" mt="4px">
+              <Badge
+                size="md"
+                variant="outline"
+                color={category === 'iPhone' ? 'red' : category === 'mac' ? 'green' : 'blue'}>
+                {category}
+              </Badge>
+              <Badge
+                size="md"
+                variant="filled"
+                color={category === 'iPhone' ? 'red' : category === 'mac' ? 'green' : 'blue'}>
+                {productType}
+              </Badge>
+            </Flex>
+            <Flex gap="4px" align="center" pr="0.8rem" fz="15px" c="var(--font-color)">
+              <Text>답글</Text>
+              <Text fz="16px" fw="600">
+                {commentsLength}
+              </Text>
+            </Flex>
           </Flex>
         </Flex>
       </PostLink>
