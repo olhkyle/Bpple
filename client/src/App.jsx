@@ -14,6 +14,9 @@ import { Layout } from './components';
 import { SIGNIN_PATH } from './routes/routePaths';
 import CommunityCategory, { communityCategoryLoader } from './pages/CommunityCategory';
 
+// TODO : CommunityMain Page로 이동할지 논의하기
+import { CommunityMain } from './components/community';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -28,6 +31,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
+        index: true,
+        element: <div>Main</div>,
+      },
+      {
         path: '/signin',
         element: <SignIn />,
       },
@@ -39,6 +46,10 @@ const router = createBrowserRouter([
         path: '/community',
         element: <Community />,
         children: [
+          {
+            index: true,
+            element: <CommunityMain />,
+          },
           {
             path: ':category',
             loader: communityCategoryLoader(queryClient),
