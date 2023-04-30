@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Flex, Input, Button, Container } from '@mantine/core';
+import { Flex, Input, Button } from '@mantine/core';
 import { InputWrapper } from '../common';
 import { TextEditor, SubjectSelect } from '.';
 import { createNewPost } from '../../api/post';
@@ -61,7 +61,7 @@ const QuestionForm = () => {
           <TitleInput {...register('title')} placeholder="게시글 제목" />
         </InputWrapper>
         <TextEditor editor={editor} />
-        <SubjectSelect control={control} />
+        <SubjectSelect name="subject" control={control} />
         <Button type="submit" size="lg" mt="20px" radius="10px">
           글쓰기
         </Button>

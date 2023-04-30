@@ -17,12 +17,12 @@ const DEFAULT_VALUE = {
   productType: '',
 };
 
-const SubjectSelect = ({ control }) => {
+const SubjectSelect = ({ name, control }) => {
   const {
     field: { value, onChange },
   } = useController({
     control,
-    name: 'subject',
+    name,
     defaultValue: DEFAULT_VALUE,
   });
 
