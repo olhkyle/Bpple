@@ -51,7 +51,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'me',
-            loader: communityMeLoader,
+            loader: communityMeLoader(queryClient),
             element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<CommunityMe />} />,
           },
           { path: 'question', element: <Question /> },
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        loader: profileLoader,
+        loader: profileLoader(queryClient),
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Profile />} />,
       },
       {

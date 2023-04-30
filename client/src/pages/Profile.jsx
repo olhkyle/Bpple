@@ -25,9 +25,8 @@ const profileQuery = () => ({
  * loader
  */
 const profileLoader = queryClient => async () => {
-  const loginUser = Recoil.useRecoilValue(userState);
+  const query = profileQuery();
 
-  const query = profileQuery(loginUser.email);
   // eslint-disable-next-line no-return-await
   return queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));
 };
