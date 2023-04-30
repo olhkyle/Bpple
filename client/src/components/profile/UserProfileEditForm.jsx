@@ -2,10 +2,10 @@ import React from 'react';
 import Recoil from 'recoil';
 import { z } from 'zod';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Container, Stack, Textarea } from '@mantine/core';
+import { Button, Container, Radio, Stack, Textarea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { checkNickName } from '../../api/auth';
 import { editProfile } from '../../api/profile';
@@ -27,6 +27,7 @@ const editProfileScheme = z.object({
 
 const UserProfileEditForm = () => {
   const navigate = useNavigate();
+  const toast = useToast();
 
   const [loginUser, setLoginUser] = Recoil.useRecoilState(userState);
 
@@ -34,13 +35,12 @@ const UserProfileEditForm = () => {
 
   const [avatarEditPopupOpened, { open: openAvatarEditPopup, close: closeAvatarEditPopup }] = useDisclosure(false);
 
-  const toast = useToast();
-
   const {
     handleSubmit,
     register,
     setValue,
     getValues,
+    control,
     formState: { isDirty, errors },
   } = useForm({
     resolver: zodResolver(editProfileScheme),
@@ -52,6 +52,10 @@ const UserProfileEditForm = () => {
       avatarId: userInfo.avatarId,
     },
   });
+
+  const {
+    field: { value: selectedAvatarId, onChange: onChangeSelectedAvatarId },
+  } = useController({ name: 'avatarId', control });
 
   const onSubmit = async data => {
     if (!isDirty) return;
@@ -80,15 +84,14 @@ const UserProfileEditForm = () => {
     <Container size="xs" mb="xl">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack>
-          <AvatarButton avatarId={getValues('avatarId')} onClick={openAvatarEditPopup} select />
-          <AvatarEditModal
-            avatarId={getValues('avatarId')}
-            opened={avatarEditPopupOpened}
-            onClose={closeAvatarEditPopup}
-            onSelect={newAvatarId => {
-              setValue('avatarId', newAvatarId);
-            }}
-          />
+          <Radio.Group m="auto" value={selectedAvatarId} onChange={onChangeSelectedAvatarId}>
+            <AvatarButton avatarId={getValues('avatarId')} onClick={openAvatarEditPopup} select />
+            <AvatarEditModal
+              avatarId={selectedAvatarId}
+              opened={avatarEditPopupOpened}
+              onClose={closeAvatarEditPopup}
+            />
+          </Radio.Group>
 
           <InputWrapper label="닉네임" desc="커뮤니티에서 사용할 닉네임입니다.." error={errors?.nickName?.message}>
             <DuplicateCheckInput {...register('nickName')} checker={checkChangeNickName} placeholder="닉네임" />
@@ -115,7 +118,7 @@ const UserProfileEditForm = () => {
             <Textarea {...register('aboutMe')} />
           </InputWrapper>
 
-          <Button type="submit" mt="xl" size="lg" radius="10px">
+          <Button type="submit" mt="xl" size="lg" disabled={!isDirty} radius="10px">
             수정하기
           </Button>
         </Stack>
