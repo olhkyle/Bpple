@@ -14,6 +14,7 @@ export { default as SelectedCategoryAndProductType } from './SelectedCategoryAnd
 export { default as MyProductListPanel } from './MyProductListPanel';
 export { default as QuestionForm } from './QuestionForm';
 export { default as SubjectSelect } from './SubjectSelect';
+export { default as ContentEditor } from './ContentEditor';
 export { default as CheckedCircleIcon } from './CheckedCircleIcon';
 export { default as AppleRecommendIcon } from './AppleRecommendIcon';
 export { default as RankTable } from './RankTable';
