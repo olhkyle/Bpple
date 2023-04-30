@@ -44,8 +44,6 @@ const Rank = () => {
     if (isFetched) setUsers(data.usersRank);
   }, [curTopCount, data, isFetched]);
 
-  console.log('[Rank]', curTopCount, data);
-
   return (
     <Wrapper>
       <Title size="52px" mt="40px" mb="40px">
