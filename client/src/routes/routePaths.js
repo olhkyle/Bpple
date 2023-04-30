@@ -23,4 +23,5 @@ export const COMMUNITY_CATEGORY_MAC_PATH = '/community/mac';
 export const COMMUNITY_POST_PATH = '/community/post';
 export const COMMUNITY_QUESTION_PATH = '/community/question';
 export const COMMUNITY_RANK_PATH = '/community/rank';
+export const COMMUNITY_FAQ_PATH = '/community/faq';
 export const COMMUNITY_ME_PATH = '/community/me';
