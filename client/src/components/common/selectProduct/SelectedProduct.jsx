@@ -16,8 +16,8 @@ const SelectedProduct = ({ selectedProductType }) => (
   <SelectedGroup>
     {selectedProductType ? (
       <Flex align="flex-end" w="100%">
-        <Text size="lg" mr="sm" c="var(--font-color)">
-          {'선택한 제품 타입 : '}
+        <Text size="lg" mr="sm" fw="600" c="var(--font-color)">
+          {'💿 선택한 제품 타입 : '}
         </Text>
         <Badge variant="outline" size="lg">
           {productTypes[selectedProductType]}
