@@ -36,7 +36,7 @@ const CommentList = styled(List)`
   min-width: 720px;
 `;
 
-const Comments = () => {
+const Comments = ({ postAuthor }) => {
   const { email, nickName, avatarId } = useRecoilValue(userState);
   const [textEditorContent, setTextEditorContent] = React.useState('');
 
@@ -68,6 +68,9 @@ const Comments = () => {
     },
   });
 
+  const appleRecommendComment = data?.comments.filter(({ certified }) => certified);
+  const filteredComments = data?.comments.filter(({ certified }) => !certified);
+
   return (
     <CommentsContainer>
       <CommentsHeader>
@@ -92,8 +95,22 @@ const Comments = () => {
           <FaLocationArrow size="16" />
         </Button>
       </CommentsHeader>
+      <CommentList>
+        {appleRecommendComment?.map(comment => (
+          <Comment
+            key={`${comment.id}_${comment.content}`}
+            comment={comment}
+            isAuthor={email === comment.author}
+            isPostAuthorAndLoginUserSame={email === postAuthor}
+            oneOfCommentsIsUseful={data?.comments?.some(({ useful }) => useful)}
+            editMutate={edit}
+            removeMutate={remove}
+          />
+        ))}
+      </CommentList>
+      <Divider mt="2rem" variant="dashed" />
       <Container miw="990px" my="20px" ref={targetRef}>
-        <Title m="3rem 0 2rem" ta="center" fz="2rem">
+        <Title m="5rem 0 2rem" ta="center" fz="2rem">
           💿 궁금한 점이 있다면 의견을 남겨주세요.
         </Title>
         <TextEditor editor={editor} />
@@ -128,13 +145,15 @@ const Comments = () => {
           </Button>
         </Flex>
       </Container>
-      <Divider mb="2rem" variant="dashed" />
+      <Divider mb="5rem" variant="dashed" />
       <CommentList>
-        {data?.comments.map(comment => (
+        {filteredComments?.map(comment => (
           <Comment
             key={`${comment.id}_${comment.content}`}
             comment={comment}
             isAuthor={email === comment.author}
+            isPostAuthorAndLoginUserSame={email === postAuthor}
+            oneOfCommentsIsUseful={data?.comments.some(({ useful }) => useful)}
             editMutate={edit}
             removeMutate={remove}
           />

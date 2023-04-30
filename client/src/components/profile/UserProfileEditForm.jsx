@@ -118,7 +118,7 @@ const UserProfileEditForm = () => {
             <Textarea {...register('aboutMe')} />
           </InputWrapper>
 
-          <Button type="submit" mt="xl" size="lg" disabled={!isDirty}>
+          <Button type="submit" mt="xl" size="lg" disabled={!isDirty} radius="10px">
             수정하기
           </Button>
         </Stack>

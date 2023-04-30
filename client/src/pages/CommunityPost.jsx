@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { Container, Divider, Flex, Text } from '@mantine/core';
 import { BsArrowUpRightSquare } from 'react-icons/bs';
 import { COMMUNITY_PATH } from '../routes/routePaths';
@@ -41,7 +42,10 @@ export const communityPostLoader =
   };
 
 const CommunityPost = () => {
-  const post = useLoaderData();
+  const params = useParams();
+  const {
+    data: { post },
+  } = useQuery(communityPostQuery(params.postId));
 
   return (
     <Wrapper>
@@ -53,7 +57,7 @@ const CommunityPost = () => {
       </Link>
       <PostContent post={post} />
       <Divider variant="dashed" />
-      <Comments />
+      <Comments postAuthor={post.author} />
     </Wrapper>
   );
 };

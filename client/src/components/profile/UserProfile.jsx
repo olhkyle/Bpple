@@ -113,7 +113,7 @@ const UserProfile = ({ nickName, avatarId, name, country, phoneNumber, point, le
                 <PointInfo>포인트 {point}</PointInfo>
               </SummaryRow>
 
-              <Button compact radius="sm" mt="5px" w="fit-content" onClick={handleEdit}>
+              <Button compact radius="10px" mt="5px" w="fit-content" onClick={handleEdit}>
                 프로필 편집
               </Button>
             </SummaryWrapper>

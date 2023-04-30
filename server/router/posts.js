@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 const posts = require('../mock-data/posts');
 const comments = require('../mock-data/comments');
 const users = require('../mock-data/users');
 
 const PAGE_SIZE = 10;
 
-// 카테고리별 글 목록
+// GET | 카테고리별 글 목록
 router.get('/', (req, res) => {
 	const { category, page } = req.query;
 
@@ -28,7 +29,7 @@ router.get('/', (req, res) => {
 	});
 });
 
-// AutoComplete 검색결과
+// GET | AutoComplete 검색 결과
 router.get('/search', (req, res) => {
 	const { keyword, category } = req.query;
 
@@ -43,19 +44,33 @@ router.get('/search', (req, res) => {
 	});
 });
 
-router.post('/me', (req, res) => {
-	const { userId } = req.body;
+// GET | 내가 작성한 글 목록
+router.get('/me', (req, res) => {
+	try {
+		const accessToken = req.cookies.accessToken;
 
-	const myPosts = posts.getMyPosts(userId);
-	const user = users.findUserByEmail(userId);
+		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+		const { email: userId } = users.findUserByEmail(decoded.email);
 
-	res.send({
-		posts: myPosts.map((myPost) => ({
-			...myPost,
-			avatarId: user.avatarId,
-			commentLength: comments.getPostComments(myPost.id).length,
-		})),
-	});
+		const myPosts = posts.getMyPosts(userId);
+		const user = users.findUserByEmail(userId);
+
+		if (!user)
+			return res
+				.status(401)
+				.send({ error: '해당 사용자가 존재하지 않습니다.' });
+
+		res.send({
+			posts: myPosts.map((myPost) => ({
+				...myPost,
+				avatarId: user.avatarId,
+				commentsLength: comments.getPostComments(myPost.id).length,
+			})),
+		});
+	} catch (e) {
+		console.error('😱 사용자 인증 실패..', e);
+		res.status(401).send({ auth: 'fail' });
+	}
 });
 
 module.exports = router;

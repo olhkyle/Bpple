@@ -7,7 +7,7 @@ const RegisterProductButton = () => {
   const navigate = useNavigate();
 
   return (
-    <Button radius="sm" size="md" w="fit-content" onClick={() => navigate(REGISTER_PRODUCT_PATH)}>
+    <Button onClick={() => navigate(REGISTER_PRODUCT_PATH)} radius="xl" size="md" w="fit-content">
       기기 등록
     </Button>
   );
