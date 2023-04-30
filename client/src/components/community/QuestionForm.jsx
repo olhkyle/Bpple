@@ -4,10 +4,14 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Flex, Input, Button } from '@mantine/core';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import { InputWrapper } from '../common';
-import { TextEditor, SubjectSelect } from '.';
+import { SubjectSelect, ContentEditor } from '.';
 import { createNewPost } from '../../api/post';
-import useTextEditor from '../../hooks/useTextEditor';
+import { COMMUNITY_PATH } from '../../routes/routePaths';
+import userState from '../../recoil/atoms/userState';
+import useToast from '../../hooks/useToast';
 
 const TitleInput = styled(Input)`
   input {
@@ -17,52 +21,45 @@ const TitleInput = styled(Input)`
 `;
 
 const questionScheme = z.object({
-  title: z.string(),
-  content: z.string(),
+  title: z.string().regex(/.+/, { message: '제목을 입력해주세요' }),
+  content: z.string({ required_error: '질문 하실 내용을 입력해주세요' }),
   subject: z.object({
-    category: z.string(),
+    category: z.string().regex(/.+/, { message: '카테고리를 선택해주세요' }),
     productType: z.string(),
   }),
 });
 
 const QuestionForm = () => {
-  const { handleSubmit, register, setValue, control } = useForm({
+  const user = useRecoilValue(userState);
+  const navigate = useNavigate();
+  const toast = useToast();
+
+  const { handleSubmit, register, control, formState } = useForm({
     resolver: zodResolver(questionScheme),
-    defaultValues: { category: '', productType: '' },
   });
 
-  const editor = useTextEditor({
-    initContent: '',
-    placeholder: '질문이 무엇입니까?',
-    option: {
-      onUpdate: () => setValue('content', editor.getHTML()),
-    },
-  });
-
-  const onSubmit = data => {
+  const onSubmit = async data => {
     try {
-      const {
-        title,
-        content,
-        subject: { category, productType },
-      } = data;
+      const { title, content, subject } = data;
 
-      createNewPost({ title, content, category, productType });
-      // TODO : 카테고리 게시물 목록으로 이동
+      await createNewPost({ author: user.email, title, content, ...subject });
+
+      navigate(`${COMMUNITY_PATH}/${subject.category.toLowerCase()}`);
+      toast.success({ message: '작성하신 글이 등록되었습니다.' });
     } catch (e) {
-      console.log(e);
+      toast.error({ message: '글 작성에 실패하였습니다. 잠시 후 다시 시도해주세요' });
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, e => console.log(e))}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" gap="xl">
         <InputWrapper>
           <TitleInput {...register('title')} placeholder="게시글 제목" />
         </InputWrapper>
-        <TextEditor editor={editor} />
+        <ContentEditor name="content" control={control} />
         <SubjectSelect name="subject" control={control} />
-        <Button type="submit" size="lg" mt="20px" radius="10px">
+        <Button type="submit" size="lg" mt="20px" radius="10px" disabled={!formState.isValid}>
           글쓰기
         </Button>
       </Flex>

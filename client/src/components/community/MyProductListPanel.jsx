@@ -66,7 +66,7 @@ const MyProductListPanel = ({ products, selectedProductType, onSelectProduct }) 
           checked={selectedProductType === productType}
           value={productType}
           onClick={() => {
-            onSelectProduct(productType);
+            if (onSelectProduct) onSelectProduct(productType);
           }}
           label={
             <ItemCard>
