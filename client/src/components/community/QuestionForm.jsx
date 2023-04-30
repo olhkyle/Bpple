@@ -104,7 +104,7 @@ const QuestionForm = () => {
 
         <SelectedCategoryAndProductType categoryType={selectedCategory} selectedProductType={selectedProductType} />
 
-        <Button type="submit" size="lg" mt="20px">
+        <Button type="submit" size="lg" mt="20px" radius="10px">
           글쓰기
         </Button>
       </Flex>

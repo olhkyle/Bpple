@@ -5,7 +5,7 @@ import { FiSearch } from 'react-icons/fi';
 import { Autocomplete, Button, Flex, Text } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import { ProfileAvatar } from '../common';
-import useAutoCompleteQuery from '../../hooks/useAutoCompleteQuery';
+import useAutoCompleteQuery from '../../hooks/queries/useAutoCompleteQuery';
 import { COMMUNITY_POST_PATH, COMMUNITY_QUESTION_PATH } from '../../routes/routePaths';
 
 const CommunityAutoComplete = styled(Autocomplete)`
@@ -94,13 +94,13 @@ const AutoCompleteItem = React.forwardRef(({ title, id, avatarId, ...rest }, ref
 
 const LIMIT_OF_POSTS = 10;
 
-const AutoComplete = ({ width = 620, queryFn }) => {
+const AutoComplete = ({ width = 620, queryFn, category = '' }) => {
   const [value, setValue] = React.useState('');
   const [debounced] = useDebouncedValue(value, 500);
 
   const navigate = useNavigate();
 
-  const posts = useAutoCompleteQuery(debounced, queryFn);
+  const posts = useAutoCompleteQuery({ inputValue: debounced, queryFn, category });
 
   return (
     <CommunityAutoComplete

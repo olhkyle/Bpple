@@ -5,19 +5,16 @@ import productThumbnail from '../../constants/productThumbnail';
 import { productTypes } from '../../constants/productList';
 
 const RadioInput = styled(Radio)`
-  --color: ${({ checked }) => `var(${checked ? '--hover-font-color' : '--opacity-border-color'})`};
-
   flex-basis: calc(25% - 10px);
   width: 100%;
   height: 100%;
   background: var(--opacity-bg-color);
-  color: var(--color);
-  border: 2px solid var(--color);
+  border: ${({ checked }) => (checked ? '1px solid var(--hover-font-color)' : '1px solid #e5e5e5')};
   border-radius: 10px;
-  /* cursor: pointer; */
+  cursor: pointer;
 
   :hover {
-    border: 2px solid #0071e285;
+    border: 1px solid var(--hover-font-color);
   }
 
   input,
@@ -35,6 +32,10 @@ const RadioInput = styled(Radio)`
 
   .mantine-Accordion-item:last-child {
     border: none;
+  }
+
+  .mantine-Text-root {
+    color: ${({ checked }) => (checked ? 'var(--hover-font-color)' : 'var(--font-color)')};
   }
 `;
 
@@ -70,7 +71,7 @@ const MyProductListPanel = ({ products, selectedProductType, onSelectProduct }) 
           label={
             <ItemCard>
               <ItemImage src={productThumbnail[productType]} alt={`product-${productType}`} />
-              <Text size="md" c={'var(--font-color)'} w="100%">
+              <Text ml="8px" size="15px" c={'var(--font-color)'} w="100%">
                 {productTypes[productType]}
               </Text>
             </ItemCard>

@@ -1,12 +1,14 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { RichTextEditor } from '@mantine/tiptap';
 import { BubbleMenu } from '@tiptap/react';
-import styled from '@emotion/styled';
+import transientOptions from '../../utils/transientOptions';
 
-const EditorWrapper = styled(RichTextEditor)`
+const EditorWrapper = styled(RichTextEditor, transientOptions)`
   border-radius: 10px;
   background-color: var(--body-bg-color);
   overflow: hidden;
+  border: ${({ $isFocused }) => ($isFocused ? '1px solid var(--hover-font-color)' : 'undefined')};
 `;
 
 const EditorButtonGroup = styled(RichTextEditor.ControlsGroup)`
@@ -21,7 +23,7 @@ const EditorButtonGroup = styled(RichTextEditor.ControlsGroup)`
 `;
 
 const TextEditor = ({ editor, useBubble = true }) => (
-  <EditorWrapper editor={editor}>
+  <EditorWrapper editor={editor} $isFocused={editor?.isFocused}>
     <RichTextEditor.Toolbar bg="var(--body-bg-color)">
       {useBubble && editor && (
         <BubbleMenu editor={editor}>

@@ -1,6 +1,6 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { Badge, Container, Flex, Text } from '@mantine/core';
-import React from 'react';
 import { productTypes } from '../../constants/productList';
 
 const SelectedGroup = styled(Flex)`
@@ -16,8 +16,8 @@ const SelectedCategoryAndProductType = ({ categoryType, selectedProductType }) =
     {categoryType ? (
       <Container w="100%">
         <Flex align="flex-end" w="100%">
-          <Text size="lg" mr="sm" c="var(--font-color)">
-            {'선택 카테고리 : '}
+          <Text size="lg" mr="sm" fw="600" c="var(--font-color)">
+            {'💿 선택 카테고리 : '}
           </Text>
           <Badge variant="outline" size="lg">
             {categoryType}
@@ -25,8 +25,8 @@ const SelectedCategoryAndProductType = ({ categoryType, selectedProductType }) =
         </Flex>
         {selectedProductType && (
           <Flex align="flex-end" w="100%" mt="10px">
-            <Text size="lg" mr="sm" c="var(--font-color)">
-              {'선택 제품 타입 : '}
+            <Text size="lg" mr="sm" fw="600" c="var(--font-color)">
+              {'💿 선택 제품 타입 :'}
             </Text>
             <Badge variant="outline" size="lg">
               {productTypes[selectedProductType]}

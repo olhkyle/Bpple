@@ -8,9 +8,11 @@ import AuthenticationGuard from './guard/AuthenticationGuard';
 import { Community, CommunityPost, ProfileEdit, Question, RegisterProduct, SignIn, SignUp } from './pages';
 import CommunityMe, { communityMeLoader } from './pages/CommunityMe';
 import Profile, { profileLoader } from './pages/Profile';
+import { communityPostLoader } from './pages/CommunityPost';
 import Rank, { rankLoader } from './pages/Rank';
 import { Layout } from './components';
 import { SIGNIN_PATH } from './routes/routePaths';
+import CommunityCategory, { communityCategoryLoader } from './pages/CommunityCategory';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,7 +40,13 @@ const router = createBrowserRouter([
         element: <Community />,
         children: [
           {
-            path: 'post/:id',
+            path: ':category',
+            loader: communityCategoryLoader(queryClient),
+            element: <CommunityCategory />,
+          },
+          {
+            path: 'post/:postId',
+            loader: communityPostLoader(queryClient),
             element: <CommunityPost />,
           },
           {

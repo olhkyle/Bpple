@@ -7,10 +7,10 @@ import MyProductListPanel from './MyProductListPanel';
 import { SelectProductAccordion } from '../common';
 
 const PanelContainer = styled(Container)`
+  margin-top: 30px;
+  padding: 10px;
   width: 100%;
   color: var(--font-color);
-  padding: 10px;
-  margin-top: 30px;
 
   .mantine-Accordion-item,
   .mantine-Accordion-itemTitle,

@@ -20,7 +20,7 @@ const SelectProductAccordion = ({ selectedProductType, onSelectProduct, multiple
   ];
 
   return (
-    <Accordion variant="contained" multiple={multiple}>
+    <Accordion variant="contained" multiple={multiple} radius="10px">
       {productCategoryList.map(({ categoryType, productTypes }) => (
         <Accordion.Item value={categoryType} key={categoryType}>
           <Accordion.Control>

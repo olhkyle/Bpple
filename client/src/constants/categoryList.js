@@ -1,7 +1,7 @@
 const categoryList = [
-  { imgPath: '/community/iphone-family.png', category: 'iPhone' },
-  { imgPath: '/community/mbp-notebooks.png', category: 'Mac' },
-  { imgPath: '/community/ipad-family.png', category: 'iPad' },
+  { imgPath: '/community/iphone/iphone-family.png', category: 'iPhone' },
+  { imgPath: '/community/mac/mbp-notebooks.png', category: 'Mac' },
+  { imgPath: '/community/ipad/ipad-family.png', category: 'iPad' },
 ];
 
 export default categoryList;
