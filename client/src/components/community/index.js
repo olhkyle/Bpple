@@ -1,7 +1,7 @@
 export { default as CommunityHeader } from './CommunityHeader';
 export { default as CommunityMain } from '../../pages/CommunityMain';
 export { default as SideFilter } from './SideFilter';
-export { default as CommunityMyPosts } from './CommunityMyPosts';
+export { default as Posts } from './Posts';
 export { default as AutoComplete } from './AutoComplete';
 export { default as QuestionModal } from './QuestionModal';
 export { default as FilterContentModal } from './FilterContentModal';
