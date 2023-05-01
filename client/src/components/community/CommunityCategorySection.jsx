@@ -9,7 +9,7 @@ import { getSearchedPosts } from '../../api/posts';
 import { category as CATEGORY } from '../../constants/category';
 import { AutoComplete } from '.';
 import CommunityCategoryPosts from './CommunityCategoryPosts';
-import { categoryQuery } from '../../pages/CommunityCategory';
+import { categoryQuery } from '../../query';
 
 const CategoryImage = styled(Image)`
   display: flex;
@@ -18,7 +18,7 @@ const CategoryImage = styled(Image)`
   margin-right: 2rem;
 
   figure.mantine-Image-figure {
-    width: ${({ category }) => (category === 'mac' ? '90%' : category === 'ipad' ? '65%' : '70%')};
+    width: ${({ category }) => (category === CATEGORY.mac ? '90%' : category === CATEGORY.ipad ? '65%' : '70%')};
   }
 `;
 
