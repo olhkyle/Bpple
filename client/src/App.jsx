@@ -9,6 +9,7 @@ import { Layout } from './components';
 import { communityCategoryLoader, communityPostLoader, communityMeLoader, rankLoader, profileLoader } from './loader';
 import {
   Community,
+  CommunityMain,
   CommunityPost,
   ProfileEdit,
   Question,
@@ -19,12 +20,10 @@ import {
   CommunityMe,
   CommunityCategory,
   Profile,
+  NotFound,
 } from './pages';
 
 import { SIGNIN_PATH } from './routes/routePaths';
-
-// TODO : CommunityMain Page로 이동할지 논의하기
-import { CommunityMain } from './components/community';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -90,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: '/profile/register',
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<RegisterProduct />} />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },

@@ -61,7 +61,7 @@ let users = [
 		products: [],
 		point: 140,
 		level: 2,
-		avatarId: null,
+		avatarId: 'avatar-19',
 		aboutMe: '',
 	},
 	{
