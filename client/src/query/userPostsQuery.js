@@ -12,14 +12,13 @@ const userPostsQuery = nickName => ({
     const nextPage = allPages.length + 1;
 
     const { totalLength } = lastPage;
-    return totalLength === 0 || Math.ceil(totalLength / 10) === allPages.length ? undefined : nextPage;
+    return totalLength === 0 || Math.ceil(totalLength / 5) === allPages.length ? undefined : nextPage;
   },
-  staleTime,
   select: data => ({
     posts: data.pages.map(({ posts }) => posts).flat(),
     totalLength: data.pages[0].totalLength,
   }),
-  suspense: true,
+  staleTime,
 });
 
 export default userPostsQuery;
