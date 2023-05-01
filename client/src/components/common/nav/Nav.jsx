@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Header, Group, Menu, Text } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { BsCart } from 'react-icons/bs';
-import { CART_PATH, COMMUNITY_PATH } from '../../../routes/routePaths';
+import { CART_PATH, MAIN_PATH } from '../../../routes/routePaths';
 import MacSubMenu from './MacSubMenu';
 import IphoneSubMenu from './IphoneSubMenu';
 import CommunitySubMenu from './CommunitySubMenu';
@@ -70,7 +70,7 @@ const Nav = () => (
   <>
     <NavContainer>
       <Wrapper>
-        <LogoLink to={COMMUNITY_PATH}>
+        <LogoLink to={MAIN_PATH}>
           <Logo clickable={true} />
         </LogoLink>
         <TextMenu trigger="hover">

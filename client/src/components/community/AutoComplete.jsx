@@ -110,7 +110,10 @@ const AutoComplete = ({ width = 620, queryFn, category = '' }) => {
       limit={LIMIT_OF_POSTS}
       itemComponent={AutoCompleteItem}
       data={posts ?? []}
-      onItemSubmit={item => navigate(`${COMMUNITY_POST_PATH}/${item.id}`)}
+      onItemSubmit={item => {
+        navigate(`${COMMUNITY_POST_PATH}/${item.id}`);
+        setValue('');
+      }}
       nothingFound={<NothingFound />}
       filter={() => true}
       icon={<FiSearch />}
