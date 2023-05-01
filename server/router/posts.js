@@ -5,7 +5,7 @@ const posts = require('../mock-data/posts');
 const comments = require('../mock-data/comments');
 const users = require('../mock-data/users');
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 5;
 
 const slicePost = (post, page) => {
 	const startIdx = PAGE_SIZE * (page - 1);
@@ -70,6 +70,7 @@ router.get('/me', (req, res) => {
 				avatarId: user.avatarId,
 				commentsLength: comments.getPostComments(myPost.id).length,
 			})),
+			totalLength: myPosts.length,
 		});
 	} catch (e) {
 		console.error('😱 사용자 인증 실패..', e);

@@ -14,11 +14,11 @@ const categoryQuery = category => ({
     const { totalLength } = lastPage;
     return totalLength === 0 || Math.ceil(totalLength / 10) === allPages.length ? undefined : nextPage;
   },
-  staleTime,
   select: data => ({
     posts: data.pages.map(({ posts }) => posts).flat(),
     totalLength: data.pages[0].totalLength,
   }),
+  staleTime,
 });
 
 export default categoryQuery;

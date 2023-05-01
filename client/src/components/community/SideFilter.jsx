@@ -9,12 +9,12 @@ const Container = styled(Box)`
   --x: ${({ open }) => (open ? 0 : 280)};
 
   width: calc(var(--width) * 1px);
-  margin-top: 3rem;
+
   margin-right: calc(var(--spacing) * 1px);
   padding-right: calc(var(--spacing) * 1px);
   transform: translate3d(calc(var(--x) * -1px), 0, 0);
   transition: all 0.2s;
-  border-right: 1px solid var(--footer-font-color);
+  border-right: 1px solid #e5e5e5;
 
   button {
     color: var(--font-color);
