@@ -8,7 +8,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import { BsArrowUpRightSquare } from 'react-icons/bs';
 import { COMMUNITY_PATH } from '../../routes/routePaths';
 import { getSearchedPosts } from '../../api/posts';
-import { categoryQuery } from '../../pages/CommunityCategory';
+import { categoryQuery } from '../../query';
 import FILTERS from '../../constants/filters';
 import { category as CATEGORY } from '../../constants/category';
 import { AutoComplete, EmptyPostIndicator, SideFilter, PostItem, ShowMoreButton } from '.';

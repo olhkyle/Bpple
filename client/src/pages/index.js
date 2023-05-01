@@ -9,4 +9,5 @@ export { default as RegisterProduct } from './RegisterProduct';
 export { default as CommunityPost } from './CommunityPost';
 export { default as Question } from './Question';
 export { default as Rank } from './Rank';
+export { default as CommunityCategory } from './CommunityCategory';
 export { default as NotFound } from './NotFound';
