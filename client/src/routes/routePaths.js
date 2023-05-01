@@ -25,3 +25,4 @@ export const COMMUNITY_QUESTION_PATH = '/community/question';
 export const COMMUNITY_RANK_PATH = '/community/rank';
 export const COMMUNITY_FAQ_PATH = '/community/faq';
 export const COMMUNITY_ME_PATH = '/community/me';
+export const COMMUNITY_PROFILE_PATH = '/community/profile';
