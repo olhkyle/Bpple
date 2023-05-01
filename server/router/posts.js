@@ -74,7 +74,7 @@ router.get('/me', (req, res) => {
 		});
 	} catch (e) {
 		console.error('😱 사용자 인증 실패..', e);
-		res.status(401).send({ auth: 'fail' });
+		res.status(403).send({ auth: 'fail' });
 	}
 });
 

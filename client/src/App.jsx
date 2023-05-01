@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import AuthenticationGuard from './guard/AuthenticationGuard';
-import { Layout } from './components';
+import { Layout, RootError } from './components';
 import {
   communityCategoryLoader,
   communityMeLoader,
@@ -47,6 +47,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <RootError />,
     children: [
       {
         index: true,
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
             element: <CommunityMain />,
           },
           {
-            path: ':category',
+            path: 'category/:category',
             loader: communityCategoryLoader(queryClient),
             element: <CommunityCategory />,
           },
@@ -81,7 +82,7 @@ const router = createBrowserRouter([
           {
             path: 'me',
             loader: communityMeLoader(queryClient),
-            element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<CommunityMe />} />,
+            element: <CommunityMe />,
           },
           { path: 'faq', element: <CommunityFaq /> },
           { path: 'question', element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Question />} /> },
@@ -96,7 +97,7 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         loader: profileLoader(queryClient),
-        element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Profile />} />,
+        element: <Profile />,
       },
       {
         path: '/profile/edit',
