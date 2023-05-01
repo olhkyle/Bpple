@@ -1,6 +1,6 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { Container, Title } from '@mantine/core';
-import React from 'react';
 import { Faq } from '../components';
 
 const Wrapper = styled(Container)`
