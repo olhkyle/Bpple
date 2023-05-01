@@ -5,6 +5,7 @@ export { default as CommunityMe } from './CommunityMe';
 export { default as CommunityPost } from './CommunityPost';
 export { default as CommunityCategory } from './CommunityCategory';
 export { default as CommunityFaq } from './CommunityFaq';
+export { default as CommunityProfile } from './CommunityProfile';
 export { default as Profile } from './Profile';
 export { default as ProfileEdit } from './ProfileEdit';
 export { default as RegisterProduct } from './RegisterProduct';
