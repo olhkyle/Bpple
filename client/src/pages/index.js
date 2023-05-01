@@ -12,5 +12,4 @@ export { default as ProfileEdit } from './ProfileEdit';
 export { default as RegisterProduct } from './RegisterProduct';
 export { default as Question } from './Question';
 export { default as Rank } from './Rank';
-export { default as CommunityCategory } from './CommunityCategory';
 export { default as NotFound } from './NotFound';
