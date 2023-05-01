@@ -8,4 +8,6 @@ const getPostsByCategory = ({ param: category, pageParam }) =>
 
 const getMyPosts = () => axios.get('/api/posts/me');
 
-export { getSearchedPosts, getPostsByCategory, getMyPosts };
+const getUserPosts = nickName => axios.get(`/api/posts/profile/${nickName}`);
+
+export { getSearchedPosts, getPostsByCategory, getMyPosts, getUserPosts };
