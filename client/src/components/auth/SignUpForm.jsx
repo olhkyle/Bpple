@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -15,7 +16,7 @@ const signupScheme = z
     firstName: z.string().regex(/.+/, { message: '이름을 입력해주세요' }),
     lastName: z.string().regex(/.+/, { message: '성을 입력해주세요' }),
     country: z.string(),
-    birthDate: z.date(),
+    birthDate: z.date({ invalid_type_error: '생년월일을 선택해주세요' }),
     email: z.string().email({ message: '적절한 이메일이 아닙니다.' }),
     password: z.string().regex(/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/, { message: '적절한 패스워드가 아닙니다.' }),
     confirmPassword: z.string().regex(/.+/, { message: '확인을 위해 패스워드를 한 번 더 입력해주세요' }),
@@ -37,6 +38,7 @@ const SignUpForm = () => {
     formState: { isDirty, errors },
   } = useForm({
     resolver: zodResolver(signupScheme),
+    shouldFocusError: true,
   });
 
   const navigate = useNavigate();
@@ -47,10 +49,11 @@ const SignUpForm = () => {
 
     try {
       await signUp(data);
-      toast.create({ message: '회원가입에 성공하였습니다.' });
+
+      toast.success({ message: '회원가입에 성공하였습니다.' });
       navigate(SIGNIN_PATH);
     } catch (e) {
-      console.error(e);
+      toast.error({ message: '회원가입에 실패하였습니다. 잠시 후 다시 시도해주세요' });
     }
   };
 
@@ -79,7 +82,7 @@ const SignUpForm = () => {
       <Stack>
         <Flex w="100%" justify="center" gap="8px">
           <InputWrapper label="성" error={errors?.lastName?.message}>
-            <Input {...register('lastName')} placeholder="성" />
+            <Input {...register('lastName')} placeholder="성" autoFocus />
           </InputWrapper>
           <InputWrapper label="이름" error={errors?.firstName?.message}>
             <Input {...register('firstName')} placeholder="이름" />
