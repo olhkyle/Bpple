@@ -1,17 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link, useParams } from 'react-router-dom';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { useDisclosure } from '@mantine/hooks';
-import { Burger, Divider, Flex, List, Text, Title, Image } from '@mantine/core';
+import { Flex, Text, Title, Image } from '@mantine/core';
 import { FiArrowRight } from 'react-icons/fi';
 import { BsArrowUpRightSquare } from 'react-icons/bs';
 import { COMMUNITY_PATH } from '../../routes/routePaths';
 import { getSearchedPosts } from '../../api/posts';
-import { categoryQuery } from '../../query';
-import FILTERS from '../../constants/filters';
 import { category as CATEGORY } from '../../constants/category';
-import { AutoComplete, EmptyPostIndicator, SideFilter, PostItem, ShowMoreButton } from '.';
+import { AutoComplete } from '.';
+import CommunityCategoryPosts from './CommunityCategoryPosts';
+import { categoryQuery } from '../../pages/CommunityCategory';
 
 const CategoryImage = styled(Image)`
   display: flex;
@@ -24,38 +22,8 @@ const CategoryImage = styled(Image)`
   }
 `;
 
-const PostsContainer = styled(Flex)`
-  margin-top: 1rem;
-  width: 100%;
-  overflow: hidden;
-`;
-
-const CategoryPosts = styled(List)`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 3rem;
-  width: 100%;
-`;
-
 const CommunityCategorySection = () => {
   const { category } = useParams();
-
-  const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = useInfiniteQuery(categoryQuery(category));
-
-  const [opened, { toggle }] = useDisclosure(false);
-  const [currentFilter, setCurrentFilter] = React.useState(FILTERS.all);
-
-  const filteredPosts =
-    data?.posts.filter(post =>
-      currentFilter === FILTERS.active
-        ? !post.completed
-        : currentFilter === FILTERS.completed
-        ? post.completed
-        : currentFilter === FILTERS.certified
-        ? post.certified
-        : true
-    ) ?? [];
 
   return (
     <>
@@ -85,40 +53,7 @@ const CommunityCategorySection = () => {
           <AutoComplete width={720} queryFn={getSearchedPosts} category={category} />
         </Flex>
       </Flex>
-      <Flex gap="10px" mt="5.5rem" mb="10px" align="center" fw="600">
-        <Text fz="2rem" fw="600" mt="1px">
-          질문
-        </Text>
-        <Text c="blue" fz="2.5rem">
-          {data?.totalLength}
-        </Text>
-      </Flex>
-
-      <Divider mb="1rem" variant="dashed" />
-      <Flex pos="relative">
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          pos="absolute"
-          top="0.5rem"
-          left="0"
-          color="var(--font-color)"
-          aria-label={opened ? 'Close' : 'Open'}
-        />
-        <PostsContainer>
-          <SideFilter open={opened} currentFilter={currentFilter} setCurrentFilter={setCurrentFilter} />
-          {filteredPosts.length === 0 ? (
-            <EmptyPostIndicator />
-          ) : (
-            <CategoryPosts>
-              {filteredPosts.map(post => (
-                <PostItem key={post.id} post={post} />
-              ))}
-            </CategoryPosts>
-          )}
-        </PostsContainer>
-      </Flex>
-      {hasNextPage && <ShowMoreButton loading={isFetchingNextPage} onClick={fetchNextPage} />}
+      <CommunityCategoryPosts queryFn={categoryQuery(category)} />
     </>
   );
 };
