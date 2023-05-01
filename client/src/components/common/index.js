@@ -6,7 +6,6 @@ export { default as TextCard } from './TextCard';
 export { default as AvatarCard } from './AvatarCard';
 export { default as InfoCard } from './InfoCard';
 export { default as Toasts } from './Toasts';
-export { default as FaqAccordion } from './FaqAccordion';
 export { default as Loader } from './Loader';
 export { default as Card } from './Card';
 export { default as Toast } from './Toast';
