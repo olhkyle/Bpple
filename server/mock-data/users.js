@@ -44,8 +44,8 @@ let users = [
 		nickName: '서준표',
 		phoneNumber: '010-2395-9282',
 		products: [],
-		point: 100,
-		level: 2,
+		point: 520,
+		level: 6,
 		avatarId: 'avatar-2',
 		aboutMe: '',
 	},
@@ -81,8 +81,8 @@ let users = [
 			{ type: 'iphone-14-pro' },
 			{ type: 'iphone-se' },
 		],
-		point: 10,
-		level: 1,
+		point: 590,
+		level: 6,
 		avatarId: 'avatar-1',
 		aboutMe: '응애 나 아기 프엔',
 	},
@@ -97,13 +97,11 @@ let users = [
 		phoneNumber: '010-1111-0615',
 		products: [
 			{ type: 'ipad-pro' },
-			{ type: 'iphone-13' },
-			{ type: 'iphone-14' },
 			{ type: 'iphone-14-pro' },
 			{ type: 'iphone-se' },
 		],
-		point: 250,
-		level: 3,
+		point: 550,
+		level: 6,
 		avatarId: 'avatar-0',
 		aboutMe: 'junior fe dev',
 	},
@@ -132,8 +130,8 @@ let users = [
 		nickName: '하하25',
 		phoneNumber: '010-1234-1234',
 		products: [],
-		point: 500,
-		level: 4,
+		point: 490,
+		level: 5,
 		avatarId: 'avatar-26',
 		aboutMe: '',
 	},
@@ -148,7 +146,7 @@ let users = [
 		phoneNumber: '010-1234-1234',
 		products: [],
 		point: 480,
-		level: 4,
+		level: 5,
 		avatarId: 'avatar-25',
 		aboutMe: '',
 	},
@@ -163,7 +161,7 @@ let users = [
 		phoneNumber: '010-1234-1234',
 		products: [],
 		point: 460,
-		level: 4,
+		level: 5,
 		avatarId: 'avatar-24',
 		aboutMe: '',
 	},
@@ -178,7 +176,7 @@ let users = [
 		phoneNumber: '010-1234-1234',
 		products: [],
 		point: 440,
-		level: 4,
+		level: 5,
 		avatarId: 'avatar-23',
 		aboutMe: '',
 	},
@@ -193,7 +191,7 @@ let users = [
 		phoneNumber: '010-1234-1234',
 		products: [],
 		point: 420,
-		level: 4,
+		level: 5,
 		avatarId: 'avatar-22',
 		aboutMe: '',
 	},
@@ -208,7 +206,7 @@ let users = [
 		phoneNumber: '010-1234-1234',
 		products: [],
 		point: 400,
-		level: 4,
+		level: 5,
 		avatarId: 'avatar-21',
 		aboutMe: '',
 	},
@@ -515,7 +513,7 @@ let users = [
 ];
 
 const calcLevel = (point) => {
-	return point < 100 ? 1 : point < 200 ? 2 : point < 300 ? 3 : 4;
+	return Math.floor(point / 100) + 1;
 };
 
 const findUserByEmail = (email) => users.find((user) => user.email === email);
@@ -537,6 +535,14 @@ const createUser = (userInfo) => {
 			avatarId: null,
 		},
 	];
+};
+
+const findUserProfileByNickName = (userNickName) => {
+	const { email, nickName, level, point, avatarId, aboutMe } = users.find(
+		(user) => user.nickName === userNickName
+	);
+
+	return { email, nickName, level, point, avatarId, aboutMe };
 };
 
 const getUsersRank = (topCount) => {
@@ -596,6 +602,7 @@ module.exports = {
 	updateProfile,
 	findUserByEmail,
 	findUserByNickName,
+	findUserProfileByNickName,
 	getUsers,
 	getUsersRank,
 	updatePoint,

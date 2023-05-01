@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { ProfileAvatar } from '../common';
+import { COMMUNITY_PROFILE_PATH } from '../../routes/routePaths';
 
 const AvatarWrapper = styled.td`
   display: flex;
@@ -8,13 +10,16 @@ const AvatarWrapper = styled.td`
 `;
 
 const RankItem = ({ rank, avatarId, nickName, level, point }) => (
-  // TODO: user profile modal or page
   <tr>
     <td>{rank}</td>
     <AvatarWrapper>
-      <ProfileAvatar avatarId={avatarId} />
+      <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
+        <ProfileAvatar avatarId={avatarId} />
+      </Link>
     </AvatarWrapper>
-    <td>{nickName}</td>
+    <td>
+      <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>{nickName}</Link>
+    </td>
     <td>{level}</td>
     <td>{point}</td>
   </tr>

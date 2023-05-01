@@ -34,41 +34,15 @@ const ColorDivider = styled(Divider)`
   border-color: var(--body-bg-color);
 `;
 
-const AvatarWrapper = styled(Flex)`
-  padding: 30px;
-`;
-
-const SummaryWrapper = styled(Flex)`
-  flex-direction: column;
-  margin-left: 30px;
-  width: 100%;
-`;
-
-const SummaryRow = styled(Flex)`
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-`;
-
-const NickName = styled(Text)`
-  font-size: 1.6rem;
-  font-weight: 600;
-`;
-
 const Name = styled(Text)`
   font-size: 1.2rem;
-  font-weight: 400;
-  margin-left: 10px;
+  font-weight: 600;
 `;
 
 const PointInfo = styled(Text)`
   font-size: 1.1rem;
   font-weight: 300;
   margin-right: 20px;
-`;
-
-const InfoGrid = styled(Grid)`
-  margin: 50px;
 `;
 
 const GridCol = styled(Grid.Col)`
@@ -100,26 +74,26 @@ const UserProfile = ({ nickName, avatarId, name, country, phoneNumber, point, le
     <Container>
       <Wrapper>
         <ProfileWrapper>
-          <AvatarWrapper>
+          <Flex p="30px">
             <ProfileAvatar avatarId={avatarId} size="xl" />
-            <SummaryWrapper>
-              <SummaryRow>
-                <NickName>{nickName}</NickName>
-                <Name>{`(${name})`}</Name>
-              </SummaryRow>
-              <SummaryRow>
-                <PointInfo>레벨 {level}</PointInfo>
 
+            <Flex direction="column" ml="30px" w="100%">
+              <Flex direction="row" align="center" justify="flex-start">
+                <Name>{nickName}</Name>
+                <Name fw="400" ml="10px">{`(${name})`}</Name>
+              </Flex>
+              <Flex>
+                <PointInfo>레벨 {level}</PointInfo>
                 <PointInfo>포인트 {point}</PointInfo>
-              </SummaryRow>
+              </Flex>
 
               <Button compact radius="10px" mt="5px" w="fit-content" onClick={handleEdit}>
                 프로필 편집
               </Button>
-            </SummaryWrapper>
-          </AvatarWrapper>
+            </Flex>
+          </Flex>
           <ColorDivider size="md" />
-          <InfoGrid gutter={30} columns={4} grow>
+          <Grid gutter={30} columns={4} m="50px" grow>
             <GridLabel span={1}>국가</GridLabel>
             <GridCol span={3}>{country}</GridCol>
 
@@ -133,7 +107,7 @@ const UserProfile = ({ nickName, avatarId, name, country, phoneNumber, point, le
             <GridCol span={4}>
               <AboutMe>{aboutMe || '등록된 자기소개가 없습니다.'}</AboutMe>
             </GridCol>
-          </InfoGrid>
+          </Grid>
         </ProfileWrapper>
       </Wrapper>
     </Container>

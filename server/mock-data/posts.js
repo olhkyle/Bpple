@@ -258,6 +258,18 @@ let posts = [
 		completed: false,
 		certified: false,
 	},
+	{
+		id: '16',
+		title: '애플 정품 15w 충전기로 아이패드 미니 5세대 충전해도 괜찮나요?',
+		content: '',
+		author: 'qwer@qwer.ee',
+		createAt: new Date('2022-12-12'),
+		updateAt: new Date(),
+		category: 'Ipad',
+		productType: 'ipad-mini',
+		completed: false,
+		certified: false,
+	},
 ];
 
 const getPosts = () => posts;

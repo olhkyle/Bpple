@@ -35,7 +35,7 @@ const Rank = () => {
 
   return (
     <Wrapper>
-      <Title size="52px" mt="40px" mb="40px">
+      <Title size="52px" mt="40px" mb="40px" ta="center">
         사용자 순위
       </Title>
       {users.length > 0 ? (
