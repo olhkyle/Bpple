@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Divider, Flex, Text } from '@mantine/core';
 import styled from '@emotion/styled';
 import { ProfileAvatar } from '../common';
-import { userProfileQuery } from '../../query';
+import { profileByNickNameQuery } from '../../queries';
 
 const ProfileWrapper = styled.div`
   width: 100%;
@@ -41,7 +41,7 @@ const AboutMe = styled(Text)`
 const AvatarProfileInfo = ({ nickName }) => {
   const {
     data: { userInfo },
-  } = useQuery(userProfileQuery(nickName));
+  } = useQuery(profileByNickNameQuery(nickName));
 
   const { avatarId, level, point, aboutMe } = userInfo;
 

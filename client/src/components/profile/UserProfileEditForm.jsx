@@ -12,7 +12,7 @@ import { editProfile } from '../../api/profile';
 import userState from '../../recoil/atoms/userState';
 import useToast from '../../hooks/useToast';
 import { PROFILE_PATH } from '../../routes/routePaths';
-import { profileQuery } from '../../query';
+import { profileQuery } from '../../queries';
 import { BirthDateInput, CountrySelect, DuplicateCheckInput, InputWrapper, PhoneNumberInput } from '../common/form';
 import { AvatarButton, AvatarEditModal } from '../common';
 

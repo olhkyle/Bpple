@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Container, Divider } from '@mantine/core';
-import { communityPostQuery } from '../query';
+import { postDetailQuery } from '../queries';
 import Comments from '../components/community/Comments';
 import PostContent from '../components/community/PostContent';
 
@@ -22,7 +22,7 @@ const CommunityPost = () => {
   const params = useParams();
   const {
     data: { post },
-  } = useQuery(communityPostQuery(params.postId));
+  } = useQuery(postDetailQuery(params.postId));
 
   return (
     <Wrapper>

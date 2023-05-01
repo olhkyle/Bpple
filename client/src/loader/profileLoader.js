@@ -1,4 +1,4 @@
-import { profileQuery } from '../query';
+import { profileQuery } from '../queries';
 
 const profileLoader = queryClient => async () => {
   const query = profileQuery();

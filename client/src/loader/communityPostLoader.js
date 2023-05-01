@@ -1,9 +1,9 @@
-import { communityPostQuery } from '../query';
+import { postDetailQuery } from '../queries';
 
 const communityPostLoader =
   queryClient =>
   async ({ params }) => {
-    const query = communityPostQuery(params.postId);
+    const query = postDetailQuery(params.postId);
 
     // eslint-disable-next-line no-return-await
     const { post } = queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));

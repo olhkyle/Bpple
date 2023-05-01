@@ -8,7 +8,7 @@ import { COMMUNITY_CATEGORY_PATH, COMMUNITY_PATH } from '../../routes/routePaths
 import { getSearchedPosts } from '../../api/posts';
 import { category as CATEGORY } from '../../constants/category';
 import { AutoComplete, Posts } from '.';
-import { categoryQuery } from '../../query';
+import { postsByCategoryQuery } from '../../queries';
 
 const CategoryImage = styled(Image)`
   display: flex;
@@ -52,7 +52,7 @@ const CommunityCategorySection = () => {
           <AutoComplete width={720} queryFn={getSearchedPosts} category={category} />
         </Flex>
       </Flex>
-      <Posts queryFn={categoryQuery(category)} />
+      <Posts queryFn={postsByCategoryQuery(category)} />
     </>
   );
 };

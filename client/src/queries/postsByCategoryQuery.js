@@ -1,18 +1,18 @@
-import { getMyPosts } from '../api/posts';
+import { getPostsByCategory } from '../api/posts';
 
 const staleTime = 3000;
 
-const communityMeQuery = () => ({
-  queryKey: ['communityMe'],
+const postsByCategoryQuery = category => ({
+  queryKey: ['category', category],
   queryFn: async ({ pageParam = 1 }) => {
-    const { data } = await getMyPosts({ pageParam });
+    const { data } = await getPostsByCategory({ param: category, pageParam });
     return data;
   },
   getNextPageParam: (lastPage, allPages) => {
     const nextPage = allPages.length + 1;
 
     const { totalLength } = lastPage;
-    return totalLength === 0 || Math.ceil(totalLength / 5) === allPages.length ? undefined : nextPage;
+    return totalLength === 0 || Math.ceil(totalLength / 10) === allPages.length ? undefined : nextPage;
   },
   select: data => ({
     posts: data.pages.map(({ posts }) => posts).flat(),
@@ -21,4 +21,4 @@ const communityMeQuery = () => ({
   staleTime,
 });
 
-export default communityMeQuery;
+export default postsByCategoryQuery;

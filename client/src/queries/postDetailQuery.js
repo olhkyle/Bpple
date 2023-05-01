@@ -2,8 +2,8 @@ import { getPost } from '../api/post';
 
 const staleTime = 3000;
 
-const communityPostQuery = postId => ({
-  queryKey: ['communityPost', postId],
+const postDetailQuery = postId => ({
+  queryKey: ['postDetail', postId],
   queryFn: async () => {
     const { data } = await getPost(postId);
     return data;
@@ -11,4 +11,4 @@ const communityPostQuery = postId => ({
   staleTime,
 });
 
-export default communityPostQuery;
+export default postDetailQuery;
