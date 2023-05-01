@@ -9,6 +9,7 @@ import {
   Community,
   CommunityFaq,
   CommunityPost,
+  CommunityProfile,
   ProfileEdit,
   Question,
   RegisterProduct,
@@ -71,6 +72,7 @@ const router = createBrowserRouter([
           { path: 'question', element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Question />} /> },
           { path: 'rank', loader: rankLoader(queryClient), element: <Rank /> },
           { path: 'faq', element: <CommunityFaq /> },
+          { path: 'profile/:nickName', element: <CommunityProfile /> },
         ],
       },
       {
