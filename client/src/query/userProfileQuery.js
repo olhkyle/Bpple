@@ -9,7 +9,6 @@ const userProfileQuery = nickName => ({
     return data;
   },
   staleTime,
-  suspense: true,
 });
 
 export default userProfileQuery;
