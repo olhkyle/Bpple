@@ -101,4 +101,12 @@ router.post('/register-product', (req, res) => {
 	}
 });
 
+router.get('/community/:nickName', (req, res) => {
+	const { nickName } = req.params;
+
+	const userInfo = users.findUserProfileByNickName(nickName);
+
+	res.send({ userInfo });
+});
+
 module.exports = router;
