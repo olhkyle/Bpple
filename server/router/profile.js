@@ -3,8 +3,6 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const users = require('../mock-data/users');
 
-const TOKEN = 'accessToken';
-
 // 사용자 프로필
 router.post('/', (req, res) => {
 	try {
