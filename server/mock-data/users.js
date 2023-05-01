@@ -546,8 +546,6 @@ const findUserProfileByNickName = (userNickName) => {
 };
 
 const getUsersRank = (topCount) => {
-	console.log('[mock-data]', topCount);
-
 	// TODO:알고리즘 수정
 	const usersRank = users.sort((user1, user2) => user2.point - user1.point);
 
