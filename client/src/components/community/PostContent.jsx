@@ -75,7 +75,9 @@ const PostContent = ({ post }) => {
             </Flex>
           </Flex>
         </AuthorProfile>
-        <Content>{content}</Content>
+        <Content>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </Content>
       </PostSection>
     </>
   );
