@@ -63,8 +63,15 @@ const UsefulBadge = styled(Group)`
   font-weight: 600;
 `;
 
-const Comment = ({ comment, isAuthor, editMutate, removeMutate }) => {
-  const { id, avatarId, certified, content, createAt, level, nickName, point, useful } = comment;
+const Comment = ({
+  comment,
+  isAuthor,
+  isPostAuthorAndLoginUserSame,
+  oneOfCommentsIsUseful,
+  editMutate,
+  removeMutate,
+}) => {
+  const { id, avatarId, certified, content, createAt, level, nickName, useful } = comment;
 
   const [commentEditable, setCommentEditable] = React.useState(false);
 
@@ -95,21 +102,18 @@ const Comment = ({ comment, isAuthor, editMutate, removeMutate }) => {
           <ProfileAvatar avatarId={avatarId} />
           <Flex direction="column" w="100%">
             <Flex display="flex" gap="10px">
-              <Text mt="-3px" ml="2px" fz="21px" fw="500" c="var(--font-color)">
-                {nickName}
-              </Text>
-              <Flex gap="8px" align="center" mb="1rem">
-                <Badge variant="outline" size="lg" fz="14px">
-                  레벨 {level}
-                </Badge>
-                <Badge variant="outline" size="lg" fz="14px">
-                  포인트 {point}
+              <Flex gap="10px" align="center">
+                <Text mt="-3px" ml="2px" fz="21px" fw="500" c="var(--font-color)">
+                  {nickName}
+                </Text>
+                <Badge variant="outline" size="sm" fz="14px" radius="xl" color="dark">
+                  L{level}
                 </Badge>
               </Flex>
 
               <Flex ml="auto" gap="10px">
-                {isAuthor ? (
-                  <UsefulCommentChip useful={useful} commentId={id} />
+                {isPostAuthorAndLoginUserSame ? (
+                  <UsefulCommentChip useful={useful} commentId={id} oneOfCommentsIsUseful={oneOfCommentsIsUseful} />
                 ) : (
                   <UsefulBadge>
                     <AiFillCheckCircle pos="absolute" top="0" size="16" />
@@ -117,17 +121,19 @@ const Comment = ({ comment, isAuthor, editMutate, removeMutate }) => {
                   </UsefulBadge>
                 )}
 
-                <Button
-                  onClick={() => {
-                    setCommentEditable(!commentEditable);
-                    editor.commands.focus('end');
-                  }}
-                  mb="4px"
-                  h="32px"
-                  color={commentEditable ? 'red' : 'blue'}
-                  radius="xl">
-                  {commentEditable ? '편집 취소' : '답글 편집'}
-                </Button>
+                {isAuthor && (
+                  <Button
+                    onClick={() => {
+                      setCommentEditable(!commentEditable);
+                      editor.commands.focus('end');
+                    }}
+                    mb="4px"
+                    h="32px"
+                    color={commentEditable ? 'red' : 'blue'}
+                    radius="xl">
+                    {commentEditable ? '편집 취소' : '답글 편집'}
+                  </Button>
+                )}
               </Flex>
             </Flex>
             <Text mb="10px" c="grey">

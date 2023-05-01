@@ -97,7 +97,6 @@ let users = [
 		phoneNumber: '010-1111-0615',
 		products: [
 			{ type: 'ipad-pro' },
-			{ type: 'ipad-pro' },
 			{ type: 'iphone-13' },
 			{ type: 'iphone-14' },
 			{ type: 'iphone-14-pro' },
@@ -105,7 +104,7 @@ let users = [
 		],
 		point: 250,
 		level: 3,
-		avatarId: 'avatar-10',
+		avatarId: 'avatar-0',
 		aboutMe: 'junior fe dev',
 	},
 	{

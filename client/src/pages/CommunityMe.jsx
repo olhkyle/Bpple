@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Recoil from 'recoil';
-import { Chip, Container, Flex, Group, Title } from '@mantine/core';
+import { Container, Title } from '@mantine/core';
 import { getMyPosts } from '../api/posts';
-import userState from '../recoil/atoms/userState';
 import { CommunityMyPosts, CommunitySkeleton } from '../components/community';
 
 const Wrapper = styled(Container)`
@@ -17,22 +15,19 @@ const Wrapper = styled(Container)`
   color: var(--font-color);
 `;
 
-const STALE_TIME = 3000;
+const staleTime = 3000;
 
-const communityMeQuery = userId => ({
-  queryKey: ['communityMe', userId],
+const communityMeQuery = () => ({
+  queryKey: ['communityMe'],
   queryFn: async () => {
-    const { data } = await getMyPosts(userId);
+    const { data } = await getMyPosts();
     return data;
   },
-  staleTime: STALE_TIME,
-  suspense: true,
+  staleTime,
 });
 
 const communityMeLoader = queryClient => async () => {
-  const loginUser = Recoil.useRecoilValue(userState);
-
-  const query = communityMeQuery(loginUser.email);
+  const query = communityMeQuery();
   // eslint-disable-next-line no-return-await
   return queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));
 };

@@ -14,7 +14,15 @@ const useToast = () => {
     setToasts(toasts => toasts.filter(toast => toast.id !== toastId));
   };
 
-  return { create, remove };
+  const success = toastInfo => {
+    create({ ...toastInfo, type: 'success' });
+  };
+
+  const error = toastInfo => {
+    create({ ...toastInfo, type: 'error' });
+  };
+
+  return { create, remove, success, error };
 };
 
 export default useToast;

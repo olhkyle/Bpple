@@ -41,7 +41,7 @@ let comments = [
 			'또한 분실하신 아이폰을 누군가 초기화하여 사용하려한다면 유석160님의 계정 비밀번호를 알아야만 활성화가 가능합니다.',
 		createAt: new Date('2023-01-26'),
 		updateAt: new Date(),
-		certified: true,
+		certified: false,
 		useful: false,
 	},
 	{
@@ -52,7 +52,7 @@ let comments = [
 			'또한 분실하신 아이폰을 누군가 초기화하여 사용하려한다면 유석160님의 계정 비밀번호를 알아야만 활성화가 가능합니다.',
 		createAt: new Date('2023-01-26'),
 		updateAt: new Date(),
-		certified: true,
+		certified: false,
 		useful: false,
 	},
 	{
@@ -63,7 +63,7 @@ let comments = [
 			'또한 분실하신 아이폰을 누군가 초기화하여 사용하려한다면 유석160님의 계정 비밀번호를 알아야만 활성화가 가능합니다.',
 		createAt: new Date('2023-01-26'),
 		updateAt: new Date(),
-		certified: true,
+		certified: false,
 		useful: false,
 	},
 	{
@@ -74,7 +74,7 @@ let comments = [
 			'또한 분실하신 아이폰을 누군가 초기화하여 사용하려한다면 유석160님의 계정 비밀번호를 알아야만 활성화가 가능합니다.',
 		createAt: new Date('2023-01-26'),
 		updateAt: new Date(),
-		certified: true,
+		certified: false,
 		useful: false,
 	},
 	{
@@ -85,7 +85,7 @@ let comments = [
 			'또한 분실하신 아이폰을 누군가 초기화하여 사용하려한다면 유석160님의 계정 비밀번호를 알아야만 활성화가 가능합니다.',
 		createAt: new Date('2023-01-26'),
 		updateAt: new Date(),
-		certified: true,
+		certified: false,
 		useful: false,
 	},
 	{
@@ -96,7 +96,7 @@ let comments = [
 			'또한 분실하신 아이폰을 누군가 초기화하여 사용하려한다면 유석160님의 계정 비밀번호를 알아야만 활성화가 가능합니다.',
 		createAt: new Date('2023-01-26'),
 		updateAt: new Date(),
-		certified: true,
+		certified: false,
 		useful: false,
 	},
 	{
@@ -107,7 +107,7 @@ let comments = [
 			'또한 분실하신 아이폰을 누군가 초기화하여 사용하려한다면 유석160님의 계정 비밀번호를 알아야만 활성화가 가능합니다.',
 		createAt: new Date('2023-01-26'),
 		updateAt: new Date(),
-		certified: true,
+		certified: false,
 		useful: false,
 	},
 	{
@@ -118,7 +118,7 @@ let comments = [
 			'또한 분실하신 아이폰을 누군가 초기화하여 사용하려한다면 유석160님의 계정 비밀번호를 알아야만 활성화가 가능합니다.',
 		createAt: new Date('2023-01-26'),
 		updateAt: new Date(),
-		certified: true,
+		certified: false,
 		useful: false,
 	},
 	{
@@ -129,7 +129,7 @@ let comments = [
 			'또한 분실하신 아이폰을 누군가 초기화하여 사용하려한다면 유석160님의 계정 비밀번호를 알아야만 활성화가 가능합니다.',
 		createAt: new Date('2023-01-26'),
 		updateAt: new Date(),
-		certified: true,
+		certified: false,
 		useful: false,
 	},
 	{
@@ -139,7 +139,7 @@ let comments = [
 		content: '음',
 		createAt: new Date(),
 		updateAt: new Date(),
-		certified: false,
+		certified: true,
 		useful: false,
 	},
 	{

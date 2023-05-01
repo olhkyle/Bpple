@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Link, useLoaderData } from 'react-router-dom';
-import { Container, Divider, Flex, Text } from '@mantine/core';
-import { BsArrowUpRightSquare } from 'react-icons/bs';
-import { COMMUNITY_PATH } from '../routes/routePaths';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { Container, Divider } from '@mantine/core';
 import { getPost } from '../api/post';
 import Comments from '../components/community/Comments';
 import PostContent from '../components/community/PostContent';
@@ -41,19 +40,16 @@ export const communityPostLoader =
   };
 
 const CommunityPost = () => {
-  const post = useLoaderData();
+  const params = useParams();
+  const {
+    data: { post },
+  } = useQuery(communityPostQuery(params.postId));
 
   return (
     <Wrapper>
-      <Link to={`${COMMUNITY_PATH}/${post.category.toLowerCase()}`}>
-        <Flex gap="5px" align="center" fz="15px" fw="600" td="none" c="var(--font-color)">
-          <Text>{post.category}</Text>
-          <BsArrowUpRightSquare />
-        </Flex>
-      </Link>
       <PostContent post={post} />
       <Divider variant="dashed" />
-      <Comments />
+      <Comments postAuthor={post.author} />
     </Wrapper>
   );
 };
