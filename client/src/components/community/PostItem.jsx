@@ -6,6 +6,7 @@ import { COMMUNITY_POST_PATH } from '../../routes/routePaths';
 import formattedDate from '../../utils/formattedDate';
 import { ProfileAvatar } from '../common';
 import { AppleRecommendIcon, CheckedCircleIcon } from '.';
+import { category as CATEGORY } from '../../constants/category';
 
 const Post = styled(List.Item)`
   border: 1px solid var(--opacity-border-color);
@@ -45,6 +46,8 @@ const PostDescription = styled(Group)`
 const PostItem = ({ post }) => {
   const { id, title, createAt, category, completed, avatarId, certified, commentsLength, productType } = post;
 
+  const conditionalColor = category === CATEGORY.iphone ? 'red' : category === CATEGORY.mac ? 'green' : 'blue';
+
   return (
     <Post key={id} fz="15px" bg="var(--opacity-bg-color)">
       <PostLink to={`${COMMUNITY_POST_PATH}/${id}`}>
@@ -64,18 +67,14 @@ const PostItem = ({ post }) => {
           </PostDescription>
           <Flex ml="auto" direction="column" justify="space-between" align="flex-end">
             <Flex gap="8px" mt="4px">
-              <Badge
-                size="md"
-                variant="outline"
-                color={category === 'iPhone' ? 'red' : category === 'mac' ? 'green' : 'blue'}>
+              <Badge size="md" variant="outline" color={conditionalColor}>
                 {category}
               </Badge>
-              <Badge
-                size="md"
-                variant="filled"
-                color={category === 'iPhone' ? 'red' : category === 'mac' ? 'green' : 'blue'}>
-                {productType}
-              </Badge>
+              {productType && (
+                <Badge size="md" variant="filled" color={conditionalColor}>
+                  {productType}
+                </Badge>
+              )}
             </Flex>
             <Flex gap="4px" align="center" pr="0.8rem" fz="15px" c="var(--font-color)">
               <Text>답글</Text>

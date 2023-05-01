@@ -6,11 +6,11 @@ import { IoFilterCircleOutline } from 'react-icons/io5';
 import { HiOutlineTrophy } from 'react-icons/hi2';
 import { Container, Divider, Flex, Group, Image, List, Text, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { InfoCard } from '../common';
-import { AutoComplete, RuleModal, QuestionModal, FilterContentModal } from '.';
-import { getSearchedPosts } from '../../api/posts';
-import categoryList from '../../constants/categoryList';
-import { COMMUNITY_PATH } from '../../routes/routePaths';
+import { InfoCard } from '../components/common';
+import { AutoComplete, RuleModal, QuestionModal, FilterContentModal } from '../components/community';
+import { getSearchedPosts } from '../api/posts';
+import categoryList from '../constants/categoryList';
+import { COMMUNITY_PATH } from '../routes/routePaths';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
