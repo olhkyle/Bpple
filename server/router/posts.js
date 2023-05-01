@@ -81,6 +81,7 @@ router.get('/me', (req, res) => {
 // GET | 사용자 프로필 - 글 목록
 router.get('/profile', (req, res) => {
 	const { page, nickname } = req.query;
+
 	const user = users.findUserByNickName(nickname);
 	if (!user)
 		return res.status(401).send({ error: '해당 사용자가 존재하지 않습니다.' });
@@ -93,6 +94,7 @@ router.get('/profile', (req, res) => {
 			avatarId: user.avatarId,
 			commentsLength: comments.getPostComments(post.id).length,
 		})),
+		totalLength: userPosts.length,
 	});
 });
 
