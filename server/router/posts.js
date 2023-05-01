@@ -79,20 +79,22 @@ router.get('/me', (req, res) => {
 });
 
 // GET | 사용자 프로필 - 글 목록
-router.get('/profile/:nickName', (req, res) => {
-	const { nickName } = req.params;
+router.get('/profile', (req, res) => {
+	const { page, nickname } = req.query;
 
-	const user = users.findUserByNickName(nickName);
+	const user = users.findUserByNickName(nickname);
 	if (!user)
 		return res.status(401).send({ error: '해당 사용자가 존재하지 않습니다.' });
 
 	const userPosts = posts.getMyPosts(user.email);
+
 	res.send({
-		posts: userPosts.map((post) => ({
+		posts: slicePost(userPosts, page).map((post) => ({
 			...post,
 			avatarId: user.avatarId,
 			commentsLength: comments.getPostComments(post.id).length,
 		})),
+		totalLength: userPosts.length,
 	});
 });
 
