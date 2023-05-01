@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { Badge, Flex, Group, List, Text, Title } from '@mantine/core';
 import { COMMUNITY_POST_PATH } from '../../routes/routePaths';
 import formattedDate from '../../utils/formattedDate';
-import { ProfileAvatar } from '../common';
-import { AppleRecommendIcon, CheckedCircleIcon } from '.';
+import { AvatarIcon, AppleRecommendIcon, CheckedCircleIcon } from '../index';
 import { category as CATEGORY } from '../../constants/category';
 
 const Post = styled(List.Item)`
@@ -52,7 +51,7 @@ const PostItem = ({ post }) => {
     <Post key={id} fz="15px" bg="var(--opacity-bg-color)">
       <PostLink to={`${COMMUNITY_POST_PATH}/${id}`}>
         <Flex mih={50} gap="xl">
-          <ProfileAvatar avatarId={avatarId} />
+          <AvatarIcon avatarId={avatarId} />
           <PostDescription>
             <Title size="21px" fw="600" c="var(--font-color)">
               {title}

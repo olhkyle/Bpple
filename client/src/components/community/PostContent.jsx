@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { Badge, Flex, Text, Title } from '@mantine/core';
 import { BsArrowUpRightSquare } from 'react-icons/bs';
 import formattedDate from '../../utils/formattedDate';
-import { ProfileAvatar } from '../common';
-import { CheckedCircleIcon, AppleRecommendIcon } from '.';
+import { AvatarIcon, CheckedCircleIcon, AppleRecommendIcon } from '../index';
 import { COMMUNITY_CATEGORY_PATH, COMMUNITY_PROFILE_PATH } from '../../routes/routePaths';
 
 const PostSection = styled.section`
@@ -61,7 +60,7 @@ const PostContent = ({ post }) => {
         </Text>
         <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
           <AuthorProfile>
-            <ProfileAvatar avatarId={avatarId} />
+            <AvatarIcon avatarId={avatarId} />
             <Flex display="flex" gap="10px" direction="column">
               <Text mt="-3px" ml="2px" fz="21px" fw="500" c="var(--font-color)">
                 {nickName}

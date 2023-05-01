@@ -2,8 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { Badge, Box, Button, CloseButton, Divider, Flex, Group, List, Text } from '@mantine/core';
-import { ProfileAvatar } from '../common';
-import { AppleRecommendIcon, TextEditor, UsefulCommentChip } from '.';
+import { AvatarIcon, AppleRecommendIcon, TextEditor, UsefulCommentChip } from '../index';
 import formattedDate from '../../utils/formattedDate';
 import transientOptions from '../../utils/transientOptions';
 import useTextEditor from '../../hooks/useTextEditor';
@@ -99,7 +98,7 @@ const Comment = ({
           )}
         </CommentHeader>
         <CommentBody>
-          <ProfileAvatar avatarId={avatarId} />
+          <AvatarIcon avatarId={avatarId} />
           <Flex direction="column" w="100%">
             <Flex display="flex" gap="10px">
               <Flex gap="10px" align="center">

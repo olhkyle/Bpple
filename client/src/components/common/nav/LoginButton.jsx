@@ -1,10 +1,10 @@
 import React from 'react';
 import Recoil from 'recoil';
-import { Link, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu } from '@mantine/core';
 import userState from '../../../recoil/atoms/userState';
-import { ProfileAvatar } from '../avatar';
+import { AvatarIcon } from '..';
 import { signOut } from '../../../api/auth';
 import { MAIN_PATH, PROFILE_PATH, REGISTER_PRODUCT_PATH, SIGNIN_PATH } from '../../../routes/routePaths';
 
@@ -75,7 +75,7 @@ const LoginButton = () => {
     <Menu trigger="hover">
       <Menu.Target>
         <AvatarWrapper>
-          <ProfileAvatar avatarId={loginUser.avatarId} />
+          <AvatarIcon avatarId={loginUser.avatarId} />
         </AvatarWrapper>
       </Menu.Target>
       <MenuDropdown>

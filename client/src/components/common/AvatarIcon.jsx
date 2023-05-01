@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Avatar } from '@mantine/core';
-import avatars from '../../../constants/avatars';
+import avatars from '../../constants/avatars';
 
 const Container = styled(Avatar)`
   background-color: #d1d1d1;
@@ -13,8 +13,8 @@ const Container = styled(Avatar)`
  * - avatarId 목록 : /constants/avatars
  * @param {{avatarId?: string}} param
  */
-const ProfileAvatar = ({ avatarId, size = 'md' }) => (
+const AvatarIcon = ({ avatarId, size = 'md' }) => (
   <Container src={avatarId ? avatars[avatarId] : null} alt="avatar image" size={size} />
 );
 
-export default ProfileAvatar;
+export default AvatarIcon;

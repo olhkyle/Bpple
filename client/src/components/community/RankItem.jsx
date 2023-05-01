@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { ProfileAvatar } from '../common';
+import { AvatarIcon } from '..';
 import { COMMUNITY_PROFILE_PATH } from '../../routes/routePaths';
 
 const AvatarWrapper = styled.td`
@@ -14,7 +14,7 @@ const RankItem = ({ rank, avatarId, nickName, level, point }) => (
     <td>{rank}</td>
     <AvatarWrapper>
       <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
-        <ProfileAvatar avatarId={avatarId} />
+        <AvatarIcon avatarId={avatarId} />
       </Link>
     </AvatarWrapper>
     <td>

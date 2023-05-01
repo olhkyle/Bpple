@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Avatar, Container } from '@mantine/core';
 import React from 'react';
-import avatars from '../../../constants/avatars';
+import avatars from '../../constants/avatars';
 
 const AvatarWrapper = styled(Avatar)`
   background-color: #d1d1d1;
@@ -31,11 +31,11 @@ const Overlay = styled(Container)`
   }
 `;
 
-const AvatarButton = ({ avatarId, onClick }) => (
+const AvatarEditButton = ({ avatarId, onClick }) => (
   <Container pos="relative" p="0">
     <AvatarWrapper size="xl" src={avatars[avatarId]} alt="avatar image button" />
     {onClick && <Overlay onClick={onClick} />}
   </Container>
 );
 
-export default AvatarButton;
+export default AvatarEditButton;

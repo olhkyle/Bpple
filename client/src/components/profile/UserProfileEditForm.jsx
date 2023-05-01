@@ -13,8 +13,15 @@ import userState from '../../recoil/atoms/userState';
 import useToast from '../../hooks/useToast';
 import { PROFILE_PATH } from '../../routes/routePaths';
 import { myProfileQuery } from '../../queries';
-import { BirthDateInput, CountrySelect, DuplicateCheckInput, InputWrapper, PhoneNumberInput } from '../common/form';
-import { AvatarButton, AvatarEditModal } from '../common';
+import {
+  AvatarEditButton,
+  AvatarEditModal,
+  BirthDateInput,
+  CountrySelect,
+  DuplicateCheckInput,
+  InputWrapper,
+  PhoneNumberInput,
+} from '../index';
 
 const editProfileScheme = z.object({
   country: z.string(),
@@ -85,7 +92,7 @@ const UserProfileEditForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack>
           <Radio.Group m="auto" value={selectedAvatarId} onChange={onChangeSelectedAvatarId}>
-            <AvatarButton avatarId={getValues('avatarId')} onClick={openAvatarEditPopup} select />
+            <AvatarEditButton avatarId={getValues('avatarId')} onClick={openAvatarEditPopup} select />
             <AvatarEditModal
               avatarId={selectedAvatarId}
               opened={avatarEditPopupOpened}

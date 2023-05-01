@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import { Autocomplete, Button, Flex, Text } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
-import { ProfileAvatar } from '../common';
+import { AvatarIcon } from '..';
 import useAutoCompleteQuery from '../../hooks/queries/useAutoCompleteQuery';
 import { COMMUNITY_POST_PATH, COMMUNITY_QUESTION_PATH } from '../../routes/routePaths';
 
@@ -85,7 +85,7 @@ const AutoCompleteItem = React.forwardRef(({ title, id, avatarId, ...rest }, ref
   return (
     <AutoCompleteItemContainer ref={ref} onClick={() => navigate(`${COMMUNITY_POST_PATH}/${id}`)} {...rest}>
       <Flex justify="flex-start" align="center" p="20px">
-        <ProfileAvatar avatarId={avatarId} />
+        <AvatarIcon avatarId={avatarId} />
         <AutoCompleteItemContent>{title}</AutoCompleteItemContent>
       </Flex>
     </AutoCompleteItemContainer>
