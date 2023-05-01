@@ -6,7 +6,7 @@ import { BsArrowUpRightSquare } from 'react-icons/bs';
 import formattedDate from '../../utils/formattedDate';
 import { ProfileAvatar } from '../common';
 import { CheckedCircleIcon, AppleRecommendIcon } from '.';
-import { COMMUNITY_PATH } from '../../routes/routePaths';
+import { COMMUNITY_CATEGORY_PATH, COMMUNITY_PROFILE_PATH } from '../../routes/routePaths';
 
 const PostSection = styled.section`
   margin-top: 2.5rem;
@@ -42,7 +42,7 @@ const PostContent = ({ post }) => {
 
   return (
     <>
-      <Link to={`${COMMUNITY_PATH}/${category.toLowerCase()}`}>
+      <Link to={`${COMMUNITY_CATEGORY_PATH}/${category.toLowerCase()}`}>
         <Flex gap="5px" align="center" fz="15px" fw="600" td="none" c="var(--font-color)">
           <Text>{category}</Text>
           <BsArrowUpRightSquare />
@@ -59,22 +59,24 @@ const PostContent = ({ post }) => {
         <Text mt="0.5rem" ml="0.2rem" fz="15px" c="grey">
           {formattedDate(new Date(createAt))}
         </Text>
-        <AuthorProfile>
-          <ProfileAvatar avatarId={avatarId} />
-          <Flex display="flex" gap="10px" direction="column">
-            <Text mt="-3px" ml="2px" fz="21px" fw="500">
-              {nickName}
-            </Text>
-            <Flex gap="8px" align="center">
-              <Badge variant="outline" size="lg" fz="14px">
-                레벨 {level}
-              </Badge>
-              <Badge variant="outline" size="lg" fz="14px">
-                포인트 {point}
-              </Badge>
+        <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
+          <AuthorProfile>
+            <ProfileAvatar avatarId={avatarId} />
+            <Flex display="flex" gap="10px" direction="column">
+              <Text mt="-3px" ml="2px" fz="21px" fw="500" c="var(--font-color)">
+                {nickName}
+              </Text>
+              <Flex gap="8px" align="center">
+                <Badge variant="outline" size="lg" fz="14px">
+                  레벨 {level}
+                </Badge>
+                <Badge variant="outline" size="lg" fz="14px">
+                  포인트 {point}
+                </Badge>
+              </Flex>
             </Flex>
-          </Flex>
-        </AuthorProfile>
+          </AuthorProfile>
+        </Link>
         <Content>
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </Content>
