@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import styled from '@emotion/styled';
 import { Accordion, Container, Radio, Title } from '@mantine/core';
-import { profileQuery } from '../../pages/Profile';
+import { profileQuery } from '../../query';
 import MyProductListPanel from './MyProductListPanel';
 import { SelectProductAccordion } from '../common';
 
