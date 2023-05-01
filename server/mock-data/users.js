@@ -513,7 +513,7 @@ let users = [
 ];
 
 const calcLevel = (point) => {
-	return point < 100 ? 1 : point < 200 ? 2 : point < 300 ? 3 : 4;
+	return Math.floor(point / 100) + 1;
 };
 
 const findUserByEmail = (email) => users.find((user) => user.email === email);
