@@ -37,7 +37,7 @@ const CommentList = styled(List)`
 `;
 
 const Comments = ({ postAuthor }) => {
-  const { email, nickName, avatarId } = useRecoilValue(userState);
+  const user = useRecoilValue(userState);
   const [textEditorContent, setTextEditorContent] = React.useState('');
 
   const { postId } = useParams();
@@ -82,26 +82,28 @@ const Comments = ({ postAuthor }) => {
             {data?.totalLength}
           </Text>
         </Flex>
-        <Button
-          onClick={() => {
-            scrollIntoView({ alignment: 'start' });
-            editor.commands.focus();
-          }}
-          variant="subtle"
-          radius="xl">
-          <Text mr="8px" fz="1rem">
-            답글 작성하기
-          </Text>
-          <FaLocationArrow size="16" />
-        </Button>
+        {user && (
+          <Button
+            onClick={() => {
+              scrollIntoView({ alignment: 'start' });
+              editor.commands.focus();
+            }}
+            variant="subtle"
+            radius="xl">
+            <Text mr="8px" fz="1rem">
+              답글 작성하기
+            </Text>
+            <FaLocationArrow size="16" />
+          </Button>
+        )}
       </CommentsHeader>
       <CommentList>
         {appleRecommendComment?.map(comment => (
           <Comment
             key={`${comment.id}_${comment.content}`}
             comment={comment}
-            isAuthor={email === comment.author}
-            isPostAuthorAndLoginUserSame={email === postAuthor}
+            isAuthor={user?.email === comment.author}
+            isPostAuthorAndLoginUserSame={user?.email === postAuthor}
             oneOfCommentsIsUseful={data?.comments?.some(({ useful }) => useful)}
             editMutate={edit}
             removeMutate={remove}
@@ -109,50 +111,52 @@ const Comments = ({ postAuthor }) => {
         ))}
       </CommentList>
       {filteredComments?.length > 0 && <Divider mt="2rem" variant="dashed" />}
-      <Container miw="990px" my="20px" ref={targetRef}>
-        <Title m="5rem 0 2rem" ta="center" fz="2rem">
-          💿 궁금한 점이 있다면 의견을 남겨주세요.
-        </Title>
-        <TextEditor editor={editor} />
-        <Flex justify="center">
-          <Button
-            onClick={() => {
-              add(
-                {
-                  commentInfo: {
-                    postId,
-                    author: email,
-                    nickName,
-                    avatarId,
-                    content: textEditorContent,
-                    createAt: new Date(),
+      {user && (
+        <Container miw="990px" my="20px" ref={targetRef}>
+          <Title m="5rem 0 2rem" ta="center" fz="2rem">
+            💿 궁금한 점이 있다면 의견을 남겨주세요.
+          </Title>
+          <TextEditor editor={editor} />
+          <Flex justify="center">
+            <Button
+              onClick={() => {
+                add(
+                  {
+                    commentInfo: {
+                      postId,
+                      author: user.email,
+                      nickName: user.nickName,
+                      avatarId: user.avatarId,
+                      content: textEditorContent,
+                      createAt: new Date(),
+                    },
                   },
-                },
-                {
-                  onSuccess: () => refetch(),
-                }
-              );
-              editor.commands.clearContent();
-              editor.commands.focus();
-            }}
-            disabled={textEditorContent.replace(/<\/?p>/gi, '').trim() === ''}
-            mt="1rem"
-            ml="auto"
-            fz="14px"
-            w={90}
-            radius="xl">
-            글쓰기
-          </Button>
-        </Flex>
-      </Container>
+                  {
+                    onSuccess: () => refetch(),
+                  }
+                );
+                editor.commands.clearContent();
+                editor.commands.focus();
+              }}
+              disabled={textEditorContent.replace(/<\/?p>/gi, '').trim() === ''}
+              mt="1rem"
+              ml="auto"
+              fz="14px"
+              w={90}
+              radius="xl">
+              글쓰기
+            </Button>
+          </Flex>
+        </Container>
+      )}
       {filteredComments?.length > 0 && <Divider mb="4rem" variant="dashed" />}
       <CommentList>
         {filteredComments?.map(comment => (
           <Comment
             key={`${comment.id}_${comment.content}`}
             comment={comment}
-            isAuthor={email === comment.author}
-            isPostAuthorAndLoginUserSame={email === postAuthor}
+            isAuthor={user?.email === comment.author}
+            isPostAuthorAndLoginUserSame={user?.email === postAuthor}
             oneOfCommentsIsUseful={data?.comments.some(({ useful }) => useful)}
             editMutate={edit}
             removeMutate={remove}
