@@ -540,6 +540,14 @@ const createUser = (userInfo) => {
 	];
 };
 
+const findUserProfileByNickName = (userNickName) => {
+	const { email, nickName, level, point, avatarId, aboutMe } = users.find(
+		(user) => user.nickName === userNickName
+	);
+
+	return { email, nickName, level, point, avatarId, aboutMe };
+};
+
 const getUsersRank = (topCount) => {
 	console.log('[mock-data]', topCount);
 
@@ -597,6 +605,7 @@ module.exports = {
 	updateProfile,
 	findUserByEmail,
 	findUserByNickName,
+	findUserProfileByNickName,
 	getUsers,
 	getUsersRank,
 	updatePoint,
