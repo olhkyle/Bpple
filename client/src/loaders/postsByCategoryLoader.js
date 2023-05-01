@@ -1,6 +1,6 @@
 import { postsByCategoryQuery } from '../queries';
 
-const communityCategoryLoader =
+const postsByCategoryLoader =
   queryClient =>
   async ({ params }) => {
     const query = postsByCategoryQuery(params.category);
@@ -9,4 +9,4 @@ const communityCategoryLoader =
     return queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchInfiniteQuery(query));
   };
 
-export default communityCategoryLoader;
+export default postsByCategoryLoader;

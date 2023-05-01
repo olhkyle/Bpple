@@ -1,6 +1,6 @@
 import { postDetailQuery } from '../queries';
 
-const communityPostLoader =
+const postDetailLoader =
   queryClient =>
   async ({ params }) => {
     const query = postDetailQuery(params.postId);
@@ -10,4 +10,4 @@ const communityPostLoader =
     return post;
   };
 
-export default communityPostLoader;
+export default postDetailLoader;

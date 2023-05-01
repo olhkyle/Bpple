@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import styled from '@emotion/styled';
 import { Accordion, Container, Radio, Title } from '@mantine/core';
-import { profileQuery } from '../../queries';
+import { myProfileQuery } from '../../queries';
 import MyProductListPanel from './MyProductListPanel';
 import { SelectProductAccordion } from '../common';
 
@@ -25,7 +25,7 @@ const PanelContainer = styled(Container)`
 `;
 
 const SelectProductRadio = ({ value, onChange }) => {
-  const { data: userInfo } = useQuery({ ...profileQuery(), suspense: false });
+  const { data: userInfo } = useQuery({ ...myProfileQuery(), suspense: false });
 
   return (
     <PanelContainer>

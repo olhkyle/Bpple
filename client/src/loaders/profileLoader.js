@@ -1,6 +1,6 @@
 import { postsByNickNameQuery, profileByNickNameQuery } from '../queries';
 
-const communityProfileLoader =
+const profileLoader =
   queryClient =>
   async ({ params }) => {
     const { nickName } = params;
@@ -19,4 +19,4 @@ const communityProfileLoader =
     return { profile, posts };
   };
 
-export default communityProfileLoader;
+export default profileLoader;

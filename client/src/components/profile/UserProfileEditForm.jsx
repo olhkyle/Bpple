@@ -12,7 +12,7 @@ import { editProfile } from '../../api/profile';
 import userState from '../../recoil/atoms/userState';
 import useToast from '../../hooks/useToast';
 import { PROFILE_PATH } from '../../routes/routePaths';
-import { profileQuery } from '../../queries';
+import { myProfileQuery } from '../../queries';
 import { BirthDateInput, CountrySelect, DuplicateCheckInput, InputWrapper, PhoneNumberInput } from '../common/form';
 import { AvatarButton, AvatarEditModal } from '../common';
 
@@ -31,7 +31,7 @@ const UserProfileEditForm = () => {
 
   const [loginUser, setLoginUser] = Recoil.useRecoilState(userState);
 
-  const { data: userInfo } = useQuery(profileQuery());
+  const { data: userInfo } = useQuery(myProfileQuery());
 
   const [avatarEditPopupOpened, { open: openAvatarEditPopup, close: closeAvatarEditPopup }] = useDisclosure(false);
 

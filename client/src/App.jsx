@@ -7,13 +7,13 @@ import GlobalStyle from './styles/GlobalStyle';
 import AuthenticationGuard from './guard/AuthenticationGuard';
 import { Layout, RootError } from './components';
 import {
-  communityCategoryLoader,
-  communityMeLoader,
-  communityPostLoader,
-  communityProfileLoader,
+  postsByCategoryLoader,
+  myPostsLoader,
+  postDetailLoader,
   rankLoader,
   profileLoader,
-} from './loader';
+  myProfileLoader,
+} from './loaders';
 import {
   Home,
   Community,
@@ -71,17 +71,17 @@ const router = createBrowserRouter([
           },
           {
             path: 'category/:category',
-            loader: communityCategoryLoader(queryClient),
+            loader: postsByCategoryLoader(queryClient),
             element: <CommunityCategory />,
           },
           {
             path: 'post/:postId',
-            loader: communityPostLoader(queryClient),
+            loader: postDetailLoader(queryClient),
             element: <CommunityPost />,
           },
           {
             path: 'me',
-            loader: communityMeLoader(queryClient),
+            loader: myPostsLoader(queryClient),
             element: <CommunityMe />,
           },
           { path: 'faq', element: <CommunityFaq /> },
@@ -92,14 +92,14 @@ const router = createBrowserRouter([
           { path: 'rank', loader: rankLoader(queryClient), element: <CommunityRank /> },
           {
             path: 'profile/:nickName',
-            loader: communityProfileLoader(queryClient),
+            loader: profileLoader(queryClient),
             element: <CommunityProfile />,
           },
         ],
       },
       {
         path: '/profile',
-        loader: profileLoader(queryClient),
+        loader: myProfileLoader(queryClient),
         element: <Profile />,
       },
       {
