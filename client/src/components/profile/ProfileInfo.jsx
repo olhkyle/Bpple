@@ -3,7 +3,7 @@ import Recoil from 'recoil';
 import { useQuery } from '@tanstack/react-query';
 import { UserProfile, ProductList } from '.';
 import userState from '../../recoil/atoms/userState';
-import { profileQuery } from '../../pages/Profile';
+import { profileQuery } from '../../query';
 
 const ProfileInfo = () => {
   const loginUser = Recoil.useRecoilValue(userState);
