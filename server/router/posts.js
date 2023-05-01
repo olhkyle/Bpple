@@ -7,20 +7,22 @@ const users = require('../mock-data/users');
 
 const PAGE_SIZE = 10;
 
+const slicePost = (post, page) => {
+	const startIdx = PAGE_SIZE * (page - 1);
+
+	return post.slice(startIdx, startIdx + PAGE_SIZE);
+};
+
 // GET | 카테고리별 글 목록
 router.get('/', (req, res) => {
 	const { category, page } = req.query;
-
-	const startIdx = PAGE_SIZE * (page - 1);
 
 	const postList = category
 		? posts.getFilteredPosts(category)
 		: posts.getPosts();
 
-	const slicedPosts = postList.slice(startIdx, startIdx + PAGE_SIZE);
-
 	res.send({
-		posts: slicedPosts.map((post) => ({
+		posts: slicePost(postList, page).map((post) => ({
 			...post,
 			avatarId: users.findUserByEmail(post.author).avatarId,
 			commentsLength: comments.getPostComments(post.id).length,
@@ -60,8 +62,10 @@ router.get('/me', (req, res) => {
 				.status(401)
 				.send({ error: '해당 사용자가 존재하지 않습니다.' });
 
+		const { page } = req.query;
+
 		res.send({
-			posts: myPosts.map((myPost) => ({
+			posts: slicePost(myPosts, page).map((myPost) => ({
 				...myPost,
 				avatarId: user.avatarId,
 				commentsLength: comments.getPostComments(myPost.id).length,
