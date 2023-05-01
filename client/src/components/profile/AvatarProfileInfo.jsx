@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Divider, Flex, Text } from '@mantine/core';
 import styled from '@emotion/styled';
 import { ProfileAvatar } from '../common';
-import { userProfileQuery } from '../../pages/CommunityProfile';
+import { userProfileQuery } from '../../query';
 
 const ProfileWrapper = styled.div`
   width: 100%;
