@@ -21,6 +21,7 @@ import {
   CommunityCategory,
   Profile,
   NotFound,
+  CommunityProfile,
 } from './pages';
 
 import { SIGNIN_PATH } from './routes/routePaths';
@@ -75,6 +76,7 @@ const router = createBrowserRouter([
           },
           { path: 'question', element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Question />} /> },
           { path: 'rank', loader: rankLoader(queryClient), element: <Rank /> },
+          { path: 'profile/:nickName', element: <CommunityProfile /> },
         ],
       },
       {
