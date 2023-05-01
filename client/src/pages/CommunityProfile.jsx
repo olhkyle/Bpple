@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Skeleton } from '@mantine/core';
+import { Container } from '@mantine/core';
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 import { userPostsQuery } from '../query';
-import { AvatarProfileInfo, CommunityCategoryPosts } from '../components';
+import { AvatarProfileInfo, Posts } from '../components';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -21,12 +21,8 @@ const CommunityProfile = () => {
 
   return (
     <Wrapper>
-      <React.Suspense fallback={<Skeleton width="100%" height={200} m="40px 0" />}>
-        <AvatarProfileInfo nickName={nickName} />
-      </React.Suspense>
-      <React.Suspense fallback={<Skeleton width="100%" height={500} m="40px 0" />}>
-        <CommunityCategoryPosts queryFn={userPostsQuery(nickName)} />
-      </React.Suspense>
+      <AvatarProfileInfo nickName={nickName} />
+      <Posts queryFn={userPostsQuery(nickName)} />
     </Wrapper>
   );
 };
