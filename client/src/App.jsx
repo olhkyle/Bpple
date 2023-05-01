@@ -6,7 +6,14 @@ import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import AuthenticationGuard from './guard/AuthenticationGuard';
 import { Layout } from './components';
-import { communityCategoryLoader, communityPostLoader, communityMeLoader, rankLoader, profileLoader } from './loader';
+import {
+  communityCategoryLoader,
+  communityMeLoader,
+  communityPostLoader,
+  communityProfileLoader,
+  rankLoader,
+  profileLoader,
+} from './loader';
 import {
   Home,
   Community,
@@ -79,7 +86,11 @@ const router = createBrowserRouter([
           { path: 'faq', element: <CommunityFaq /> },
           { path: 'question', element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Question />} /> },
           { path: 'rank', loader: rankLoader(queryClient), element: <Rank /> },
-          { path: 'profile/:nickName', element: <CommunityProfile /> },
+          {
+            path: 'profile/:nickName',
+            loader: communityProfileLoader(queryClient),
+            element: <CommunityProfile />,
+          },
         ],
       },
       {
