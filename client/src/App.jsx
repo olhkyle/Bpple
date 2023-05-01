@@ -5,14 +5,23 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import AuthenticationGuard from './guard/AuthenticationGuard';
-import { Community, CommunityPost, ProfileEdit, Question, RegisterProduct, SignIn, SignUp } from './pages';
-import CommunityMe, { communityMeLoader } from './pages/CommunityMe';
-import Profile, { profileLoader } from './pages/Profile';
-import { communityPostLoader } from './pages/CommunityPost';
-import Rank, { rankLoader } from './pages/Rank';
 import { Layout } from './components';
+import { communityCategoryLoader, communityPostLoader, communityMeLoader, rankLoader, profileLoader } from './loader';
+import {
+  Community,
+  CommunityPost,
+  ProfileEdit,
+  Question,
+  RegisterProduct,
+  SignIn,
+  SignUp,
+  Rank,
+  CommunityMe,
+  CommunityCategory,
+  Profile,
+} from './pages';
+
 import { SIGNIN_PATH } from './routes/routePaths';
-import CommunityCategory, { communityCategoryLoader } from './pages/CommunityCategory';
 
 // TODO : CommunityMain Page로 이동할지 논의하기
 import { CommunityMain } from './components/community';
