@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { Chip, Container, Flex, Group, Text, Title } from '@mantine/core';
-import { getRank } from '../api/rank';
+import { rankQuery } from '../query';
 import { RankTable } from '../components/community';
 
 const Wrapper = styled(Container)`
@@ -22,24 +22,6 @@ const RankChip = styled(Chip)`
     color: var(--font-color);
   }
 `;
-
-const staleTime = 3000;
-
-const rankQuery = (topCount = '10') => ({
-  queryKey: ['rank', topCount],
-  queryFn: async () => {
-    const { data: usersRank } = await getRank(topCount);
-    return usersRank;
-  },
-  staleTime,
-});
-
-const rankLoader = queryClient => async () => {
-  const query = rankQuery();
-
-  // eslint-disable-next-line no-return-await
-  return queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));
-};
 
 const Rank = () => {
   const [users, setUsers] = React.useState([]);
@@ -76,5 +58,4 @@ const Rank = () => {
   );
 };
 
-export { rankLoader, rankQuery };
 export default Rank;

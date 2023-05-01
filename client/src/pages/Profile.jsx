@@ -2,34 +2,8 @@ import React from 'react';
 import Recoil from 'recoil';
 import styled from '@emotion/styled';
 import userState from '../recoil/atoms/userState';
-import { fetchProfile } from '../api/profile';
 import { ProfileInfo } from '../components/profile';
 import { Loader } from '../components/common';
-
-const staleTime = 3000;
-
-/**
- * query
- */
-const profileQuery = () => ({
-  queryKey: ['profile'],
-  queryFn: async () => {
-    const { data } = await fetchProfile();
-    return data;
-  },
-  staleTime,
-  suspense: true,
-});
-
-/**
- * loader
- */
-const profileLoader = queryClient => async () => {
-  const query = profileQuery();
-
-  // eslint-disable-next-line no-return-await
-  return queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));
-};
 
 const Title = styled.h1`
   color: var(--font-color);
@@ -52,5 +26,4 @@ const Profile = () => {
   );
 };
 
-export { profileLoader, profileQuery };
 export default Profile;

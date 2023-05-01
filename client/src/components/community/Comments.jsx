@@ -108,7 +108,7 @@ const Comments = ({ postAuthor }) => {
           />
         ))}
       </CommentList>
-      <Divider mt="2rem" variant="dashed" />
+      {filteredComments?.length > 0 && <Divider mt="2rem" variant="dashed" />}
       <Container miw="990px" my="20px" ref={targetRef}>
         <Title m="5rem 0 2rem" ta="center" fz="2rem">
           💿 궁금한 점이 있다면 의견을 남겨주세요.
@@ -145,7 +145,7 @@ const Comments = ({ postAuthor }) => {
           </Button>
         </Flex>
       </Container>
-      <Divider mb="5rem" variant="dashed" />
+      {filteredComments?.length > 0 && <Divider mb="4rem" variant="dashed" />}
       <CommentList>
         {filteredComments?.map(comment => (
           <Comment

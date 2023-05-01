@@ -5,28 +5,25 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import AuthenticationGuard from './guard/AuthenticationGuard';
+import { Layout } from './components';
+import { communityCategoryLoader, communityPostLoader, communityMeLoader, rankLoader, profileLoader } from './loader';
 import {
   Community,
-  CommunityFaq,
+  CommunityMain,
   CommunityPost,
-  CommunityProfile,
   ProfileEdit,
   Question,
   RegisterProduct,
   SignIn,
   SignUp,
+  Rank,
+  CommunityMe,
+  CommunityCategory,
+  Profile,
+  NotFound,
 } from './pages';
-import CommunityMe, { communityMeLoader } from './pages/CommunityMe';
-import Profile, { profileLoader } from './pages/Profile';
-import { communityPostLoader } from './pages/CommunityPost';
-import Rank, { rankLoader } from './pages/Rank';
-import { Layout } from './components';
-import { SIGNIN_PATH } from './routes/routePaths';
-import CommunityCategory, { communityCategoryLoader } from './pages/CommunityCategory';
-import { CommunityMain } from './components/community';
 
-// TODO : CommunityMain Page로 이동할지 논의하기
-import { CommunityMain } from './components/community';
+import { SIGNIN_PATH } from './routes/routePaths';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -78,8 +75,6 @@ const router = createBrowserRouter([
           },
           { path: 'question', element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Question />} /> },
           { path: 'rank', loader: rankLoader(queryClient), element: <Rank /> },
-          { path: 'faq', element: <CommunityFaq /> },
-          { path: 'profile/:nickName', element: <CommunityProfile /> },
         ],
       },
       {
@@ -94,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: '/profile/register',
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<RegisterProduct />} />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },
