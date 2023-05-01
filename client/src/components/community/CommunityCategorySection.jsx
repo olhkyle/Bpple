@@ -7,8 +7,7 @@ import { BsArrowUpRightSquare } from 'react-icons/bs';
 import { COMMUNITY_PATH } from '../../routes/routePaths';
 import { getSearchedPosts } from '../../api/posts';
 import { category as CATEGORY } from '../../constants/category';
-import { AutoComplete } from '.';
-import CommunityCategoryPosts from './CommunityCategoryPosts';
+import { AutoComplete, Posts } from '.';
 import { categoryQuery } from '../../query';
 
 const CategoryImage = styled(Image)`
@@ -53,7 +52,7 @@ const CommunityCategorySection = () => {
           <AutoComplete width={720} queryFn={getSearchedPosts} category={category} />
         </Flex>
       </Flex>
-      <CommunityCategoryPosts queryFn={categoryQuery(category)} />
+      <Posts queryFn={categoryQuery(category)} />
     </>
   );
 };

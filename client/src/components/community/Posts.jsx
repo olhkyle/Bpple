@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Chip, Flex, Group, List, Text, Burger } from '@mantine/core';
+import { Chip, Flex, Group, List, Text, Burger, Divider } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import FILTERS from '../../constants/filters';
 import { EmptyPostIndicator, PostItem, ShowMoreButton, SideFilter } from '.';
@@ -16,9 +16,9 @@ const PostsContainer = styled(Flex)`
 
 const MyPosts = styled(List)`
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 2rem;
 `;
 
 const Posts = ({ queryFn }) => {
@@ -32,10 +32,16 @@ const Posts = ({ queryFn }) => {
 
   return (
     <>
-      <Flex justify="end" pos="relative">
-        <Text pos="absolute" top="-6.3rem" fz="5rem" fw="600" color="var(--font-color)">
-          {data.totalLength}
+      <Flex gap="10px" mt="5.5rem" mb="10px" align="center" fw="600">
+        <Text fz="2rem" fw="600" mt="1px">
+          질문
         </Text>
+        <Text c="blue" fz="2.5rem">
+          {data?.totalLength}
+        </Text>
+      </Flex>
+      <Divider mb="1rem" variant="dashed" />
+      <Flex justify="end" pos="relative">
         <Burger
           opened={opened}
           onClick={toggle}
