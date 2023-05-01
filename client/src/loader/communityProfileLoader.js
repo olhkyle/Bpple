@@ -4,6 +4,11 @@ const communityProfileLoader =
   queryClient =>
   async ({ params }) => {
     const { nickName } = params;
+
+    if (!nickName) {
+      throw new Response('Not Found', { status: 404 });
+    }
+
     const profileQuery = userProfileQuery(nickName);
     const postsQuery = userPostsQuery(nickName);
 
