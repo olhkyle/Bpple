@@ -1,18 +1,18 @@
-import { getPostsByCategory } from '../api/posts';
+import { getMyPosts } from '../api/posts';
 
 const staleTime = 3000;
 
-const categoryQuery = category => ({
-  queryKey: ['category', category],
+const myPostsQuery = () => ({
+  queryKey: ['myPosts'],
   queryFn: async ({ pageParam = 1 }) => {
-    const { data } = await getPostsByCategory({ param: category, pageParam });
+    const { data } = await getMyPosts({ pageParam });
     return data;
   },
   getNextPageParam: (lastPage, allPages) => {
     const nextPage = allPages.length + 1;
 
     const { totalLength } = lastPage;
-    return totalLength === 0 || Math.ceil(totalLength / 10) === allPages.length ? undefined : nextPage;
+    return totalLength === 0 || Math.ceil(totalLength / 5) === allPages.length ? undefined : nextPage;
   },
   select: data => ({
     posts: data.pages.map(({ posts }) => posts).flat(),
@@ -21,4 +21,4 @@ const categoryQuery = category => ({
   staleTime,
 });
 
-export default categoryQuery;
+export default myPostsQuery;

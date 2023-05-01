@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Avatar, Radio, SimpleGrid, Text } from '@mantine/core';
-import PopupModal from '../PopupModal';
-import avatars from '../../../constants/avatars';
+import PopupModal from '../common/PopupModal';
+import avatars from '../../constants/avatars';
 
 const Container = styled.div`
   min-height: 480px;

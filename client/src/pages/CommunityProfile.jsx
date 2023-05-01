@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '@mantine/core';
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
-import { userPostsQuery } from '../query';
+import { postsByNickNameQuery } from '../queries';
 import { AvatarProfileInfo, Posts } from '../components';
 
 const Wrapper = styled(Container)`
@@ -22,7 +22,7 @@ const CommunityProfile = () => {
   return (
     <Wrapper>
       <AvatarProfileInfo nickName={nickName} />
-      <Posts queryFn={userPostsQuery(nickName)} />
+      <Posts queryFn={postsByNickNameQuery(nickName)} />
     </Wrapper>
   );
 };

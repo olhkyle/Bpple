@@ -2,7 +2,7 @@ import { getUserPosts } from '../api/posts';
 
 const staleTime = 3000;
 
-const userPostsQuery = nickName => ({
+const postsByNickNameQuery = nickName => ({
   queryKey: ['posts', nickName],
   queryFn: async ({ pageParam = 1 }) => {
     const { data } = await getUserPosts({ param: nickName, pageParam });
@@ -21,4 +21,4 @@ const userPostsQuery = nickName => ({
   staleTime,
 });
 
-export default userPostsQuery;
+export default postsByNickNameQuery;

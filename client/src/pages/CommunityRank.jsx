@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { Chip, Container, Flex, Group, Text, Title } from '@mantine/core';
-import { rankQuery } from '../query';
+import { rankQuery } from '../queries';
 import { RankTable } from '../components/community';
 
 const Wrapper = styled(Container)`
@@ -23,7 +23,7 @@ const RankChip = styled(Chip)`
   }
 `;
 
-const Rank = () => {
+const CommunityRank = () => {
   const [users, setUsers] = React.useState([]);
 
   const [curTopCount, setCurTopCount] = React.useState('10');
@@ -58,4 +58,4 @@ const Rank = () => {
   );
 };
 
-export default Rank;
+export default CommunityRank;

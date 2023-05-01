@@ -1,6 +1,6 @@
-import { userPostsQuery, userProfileQuery } from '../query';
+import { postsByNickNameQuery, profileByNickNameQuery } from '../queries';
 
-const communityProfileLoader =
+const profileLoader =
   queryClient =>
   async ({ params }) => {
     const { nickName } = params;
@@ -9,8 +9,8 @@ const communityProfileLoader =
       throw new Response('Not Found', { status: 404 });
     }
 
-    const profileQuery = userProfileQuery(nickName);
-    const postsQuery = userPostsQuery(nickName);
+    const profileQuery = profileByNickNameQuery(nickName);
+    const postsQuery = postsByNickNameQuery(nickName);
 
     // eslint-disable-next-line no-return-await
     const profile = queryClient.getQueryData(profileQuery.queryKey) ?? (await queryClient.fetchQuery(profileQuery));
@@ -19,4 +19,4 @@ const communityProfileLoader =
     return { profile, posts };
   };
 
-export default communityProfileLoader;
+export default profileLoader;

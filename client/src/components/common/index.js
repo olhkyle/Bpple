@@ -11,7 +11,7 @@ export { default as Card } from './Card';
 export { default as Toast } from './Toast';
 export { default as Faq } from './Faq';
 export { default as ScrollToTopButton } from './ScrollToTopButton';
-export * from './avatar';
+export { default as AvatarIcon } from './AvatarIcon';
 export * from './form';
 export * from './nav';
 export * from './selectProduct';

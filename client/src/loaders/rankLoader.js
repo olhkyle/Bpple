@@ -1,4 +1,4 @@
-import { rankQuery } from '../query';
+import { rankQuery } from '../queries';
 
 const rankLoader = queryClient => async () => {
   const query = rankQuery();
