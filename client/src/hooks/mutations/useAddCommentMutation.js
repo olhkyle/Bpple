@@ -8,7 +8,7 @@ const useAddCommentMutation = postId =>
     requestFn: addComment,
     queryKeyword: commentsQueryKey,
     postId,
-    onMutate: add,
+    updateFn: add,
   });
 
 export default useAddCommentMutation;

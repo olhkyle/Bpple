@@ -5,7 +5,7 @@ import userState from '../../recoil/atoms/userState';
 
 const keyword = 'comments';
 
-const useCommentMutation = ({ requestFn, queryKeyword = keyword, postId, onMutate: expected, ...options }) => {
+const useCommentMutation = ({ requestFn, queryKeyword = keyword, postId, updateFn, ...options }) => {
   const queryClient = useQueryClient();
   const toast = useToast();
   const setUser = useSetRecoilState(userState);
@@ -19,7 +19,7 @@ const useCommentMutation = ({ requestFn, queryKeyword = keyword, postId, onMutat
 
       const prevComments = queryClient.getQueryData([queryKeyword, postId]);
 
-      queryClient.setQueryData([queryKeyword, postId], oldData => expected(oldData, variables));
+      queryClient.setQueryData([queryKeyword, postId], oldData => updateFn(oldData, variables));
 
       return { prevComments };
     },

@@ -8,7 +8,7 @@ const useRemoveCommentMutation = postId =>
     requestFn: removeComment,
     queryKeyword: commentsQueryKey,
     postId,
-    onMutate: remove,
+    updateFn: remove,
   });
 
 export default useRemoveCommentMutation;
