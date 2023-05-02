@@ -12,7 +12,7 @@ import { ipadProductTypes, iphoneProductTypes, macbookProductTypes } from '../..
  * multiple?: boolean
  * }} props
  */
-const SelectProductAccordion = ({ selectedProductType, onSelectProduct, multiple = false }) => {
+const SelectProductAccordion = ({ selectedProductType, multiple = false }) => {
   const productCategoryList = [
     { categoryType: 'iPhone', productTypes: iphoneProductTypes },
     { categoryType: 'iPad', productTypes: ipadProductTypes },
@@ -28,11 +28,7 @@ const SelectProductAccordion = ({ selectedProductType, onSelectProduct, multiple
               {categoryType}
             </Title>
           </Accordion.Control>
-          <SelectProductAccordionPanel
-            productTypes={productTypes}
-            selectedProductType={selectedProductType}
-            onSelectProduct={onSelectProduct}
-          />
+          <SelectProductAccordionPanel productTypes={productTypes} selectedProductType={selectedProductType} />
         </Accordion.Item>
       ))}
     </Accordion>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Title } from '@mantine/core';
-import { QuestionForm } from '../components/community';
+import { QuestionForm } from '../components';
 
 const Question = () => (
   <Container my="xl" py="xl" c="var(--font-color)">

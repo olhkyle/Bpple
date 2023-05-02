@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Container } from '@mantine/core';
-import { CommunityCategorySection } from '../components/community';
+import { CommunityCategorySection } from '../components';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;

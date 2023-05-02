@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { Container, Image, List, Text, Title } from '@mantine/core';
-import { AutoComplete, Tutorials } from '../components/community';
+import { AutoComplete, Tutorials } from '../components';
 import { getSearchedPosts } from '../api/posts';
 import categoryList from '../constants/categoryList';
 import { COMMUNITY_CATEGORY_PATH } from '../routes/routePaths';

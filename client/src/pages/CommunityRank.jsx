@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { Chip, Container, Flex, Group, Text, Title } from '@mantine/core';
 import { rankQuery } from '../queries';
-import { RankTable } from '../components/community';
+import { RankTable } from '../components';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;

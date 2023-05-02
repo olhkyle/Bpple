@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Container, Divider } from '@mantine/core';
 import { postDetailQuery } from '../queries';
-import Comments from '../components/community/Comments';
-import PostContent from '../components/community/PostContent';
+import { PostContent, Comments } from '../components';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
