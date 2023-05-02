@@ -3,6 +3,7 @@ const router = express.Router();
 const posts = require('../mock-data/posts');
 const comments = require('../mock-data/comments');
 const users = require('../mock-data/users');
+const jwt = require('jsonwebtoken');
 
 // nickName, 아바타 / level point //
 
@@ -88,12 +89,22 @@ router.get('/:postId/comment', (req, res) => {
 
 // 커뮤니티 글에 댓글 추가
 router.post('/:postId/comment', (req, res) => {
-	const { postId } = req.params;
-	const { commentInfo } = req.body;
+	const accessToken = req.cookies.accessToken;
 
-	comments.createComment({ ...commentInfo, postId });
+	try {
+		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	res.send({ postId });
+		const { postId } = req.params;
+		const { commentInfo } = req.body;
+
+		comments.createComment({ ...commentInfo, postId });
+
+		res.send({ postId });
+	} catch {
+		res
+			.status(401)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 작성해주세요.' });
+	}
 });
 
 // 커뮤니티 글에 댓글 수정

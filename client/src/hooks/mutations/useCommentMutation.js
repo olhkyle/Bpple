@@ -2,7 +2,14 @@ import { useQueryClient, useMutation } from '@tanstack/react-query';
 
 const keyword = 'comments';
 
-const useCommentMutation = ({ requestFn, queryKeyword = keyword, postId, onMutate: expected, ...options }) => {
+const useCommentMutation = ({
+  requestFn,
+  queryKeyword = keyword,
+  postId,
+  onMutate: expected,
+  onError: handleError,
+  ...options
+}) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
@@ -19,6 +26,8 @@ const useCommentMutation = ({ requestFn, queryKeyword = keyword, postId, onMutat
       return { prevComments };
     },
     onError: (error, variables, { prevComments }) => {
+      if (handleError) handleError(error);
+
       queryClient.setQueryData([queryKeyword, postId], prevComments);
     },
     ...options,
