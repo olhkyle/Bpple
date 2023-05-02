@@ -8,6 +8,7 @@ import RegisterProductButton from './RegisterProductButton';
 
 const Container = styled.div`
   min-width: 1024px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -21,6 +22,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   max-width: 1024px;
+  width: 100%;
 `;
 
 const Title = styled.h2`
@@ -39,6 +41,7 @@ const NoProduct = styled(Container)`
 `;
 
 const ProductCarousel = styled(Carousel)`
+  width: 100%;
   padding: 40px;
   border-radius: 18px;
   border: 1px solid var(--opacity-border-color);
@@ -80,7 +83,8 @@ const MyProductList = ({ products }) => (
       {products.length > 0 ? (
         <>
           <ProductCarousel
-            withIndicators={true}
+            withIndicators={products.length > 3}
+            withControls={products.length > 3}
             slideGap="xl"
             slideSize="33.333333%"
             align="start"
