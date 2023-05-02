@@ -17,7 +17,7 @@ const Wrapper = styled(Container)`
   color: var(--font-color);
 `;
 
-const CommunityPost = () => {
+const CommunityPostDetail = () => {
   const params = useParams();
   const {
     data: { post },
@@ -32,4 +32,4 @@ const CommunityPost = () => {
   );
 };
 
-export default CommunityPost;
+export default CommunityPostDetail;
