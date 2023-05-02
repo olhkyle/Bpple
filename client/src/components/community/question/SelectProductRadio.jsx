@@ -24,7 +24,7 @@ const PanelContainer = styled(Container)`
 `;
 
 const SelectProductRadio = ({ value, onChange }) => {
-  const { data: userInfo } = useQuery({ ...myProfileQuery(), suspense: false });
+  const { data: userInfo } = useQuery(myProfileQuery());
 
   return (
     <PanelContainer>
