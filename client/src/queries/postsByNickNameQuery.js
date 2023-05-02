@@ -19,6 +19,7 @@ const postsByNickNameQuery = nickName => ({
     totalLength: data.pages[0].totalLength,
   }),
   staleTime,
+  suspense: true,
 });
 
 export default postsByNickNameQuery;
