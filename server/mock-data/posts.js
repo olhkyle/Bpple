@@ -288,10 +288,12 @@ const getPost = (postId) => posts.find((post) => post.id === postId);
 
 // TODO : 작성자 point 추가하기
 const createPost = (postInfo) => {
+	const id = uuidv4();
+
 	posts = [
 		{
 			...postInfo,
-			id: uuidv4(),
+			id,
 			createAt: new Date(),
 			comments: [],
 			completed: false,
@@ -299,6 +301,8 @@ const createPost = (postInfo) => {
 		},
 		...posts,
 	];
+
+	return id;
 };
 
 const updatePost = (postId, updateInfo) => {

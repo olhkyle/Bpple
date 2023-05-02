@@ -34,10 +34,10 @@ router.get('/:postId', (req, res) => {
 router.post('/', (req, res) => {
 	const { postInfo } = req.body;
 
-	posts.createPost(postInfo);
+	const postId = posts.createPost(postInfo);
 	users.updatePoint(postInfo.author, 10);
 
-	res.send({ postInfo });
+	res.send({ postId });
 });
 
 // 커뮤니티 글 수정
