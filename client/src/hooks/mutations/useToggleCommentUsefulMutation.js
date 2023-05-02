@@ -8,7 +8,7 @@ const useToggleCommentUsefulMutation = postId =>
     requestFn: checkIsUseFul,
     queryKeyword: commentsQueryKey,
     postId,
-    onMutate: toggleUseful,
+    updateFn: toggleUseful,
   });
 
 export default useToggleCommentUsefulMutation;

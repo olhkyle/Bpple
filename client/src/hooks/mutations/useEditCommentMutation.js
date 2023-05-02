@@ -8,7 +8,7 @@ const useEditCommentMutation = postId =>
     requestFn: editComment,
     queryKeyword: commentsQueryKey,
     postId,
-    onMutate: edit,
+    updateFn: edit,
   });
 
 export default useEditCommentMutation;

@@ -10,7 +10,12 @@ import { Comment, ShowMoreButton, TextEditor } from '..';
 import { getComments } from '../../../api/post';
 import usePaginationQuery from '../../../hooks/queries/usePaginationQuery';
 import commentsQueryKey from '../../../constants/commentsQueryKey';
-import { useAddCommentMutation, useEditCommentMutation, useRemoveCommentMutation } from '../../../hooks/mutations';
+import {
+  useAddCommentMutation,
+  useEditCommentMutation,
+  useRemoveCommentMutation,
+  useUpdateCertifiedMutation,
+} from '../../../hooks/mutations';
 import useTextEditor from '../../../hooks/useTextEditor';
 
 const CommentsContainer = styled.section`
@@ -56,6 +61,7 @@ const Comments = ({ postAuthor, certifiedPost }) => {
   const add = useAddCommentMutation(postId);
   const edit = useEditCommentMutation(postId);
   const remove = useRemoveCommentMutation(postId);
+  const updateCertified = useUpdateCertifiedMutation(postId);
 
   const { scrollIntoView, targetRef } = useScrollIntoView({
     offset: 180,
@@ -110,6 +116,7 @@ const Comments = ({ postAuthor, certifiedPost }) => {
             oneOfCommentsIsUseful={data?.comments?.some(({ useful }) => useful)}
             editMutate={edit}
             removeMutate={remove}
+            updateCertifiedMutate={updateCertified}
           />
         ))}
       </CommentList>
@@ -135,7 +142,9 @@ const Comments = ({ postAuthor, certifiedPost }) => {
                     },
                   },
                   {
-                    onSuccess: () => refetch(),
+                    onSuccess: async () => {
+                      refetch();
+                    },
                   }
                 );
                 editor.commands.clearContent();
@@ -165,6 +174,7 @@ const Comments = ({ postAuthor, certifiedPost }) => {
             oneOfCommentsIsUseful={data?.comments.some(({ useful }) => useful)}
             editMutate={edit}
             removeMutate={remove}
+            updateCertifiedMutate={updateCertified}
           />
         ))}
       </CommentList>
