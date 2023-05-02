@@ -71,6 +71,7 @@ const Comment = ({
   oneOfCommentsIsUseful,
   editMutate,
   removeMutate,
+  updateCertifiedMutate,
 }) => {
   const { id, avatarId, certified, content, createAt, level, nickName, useful } = comment;
 
@@ -80,6 +81,8 @@ const Comment = ({
     initContent: content,
     placeholder: '의견을 알려주세요.',
   });
+
+  const handleClickCertified = (commentId, certified) => () => updateCertifiedMutate({ commentId, certified });
 
   return (
     <Container>
@@ -113,9 +116,11 @@ const Comment = ({
               </Flex>
 
               <Flex ml="auto" gap="10px">
-                {isAdmin && !certifiedPost && !certified && <AppleRecommendButton />}
+                {isAdmin && !certifiedPost && !certified && (
+                  <AppleRecommendButton onClick={handleClickCertified(id, true)} />
+                )}
                 {isAdmin && certifiedPost && certified && (
-                  <Button onClick={() => {}} radius="xl" color="dark">
+                  <Button onClick={handleClickCertified(id, false)} radius="xl" color="dark">
                     권장 답변 취소
                   </Button>
                 )}
