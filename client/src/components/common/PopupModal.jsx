@@ -1,6 +1,6 @@
 import React from 'react';
-import { Modal } from '@mantine/core';
 import styled from '@emotion/styled';
+import { Modal } from '@mantine/core';
 
 const ModalContainer = styled(Modal)`
   position: relative;

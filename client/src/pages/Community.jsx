@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { CommunityHeader } from '../components/community';
+import { CommunityHeader } from '../components';
 
 const Community = () => (
   <>

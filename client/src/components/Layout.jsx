@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
-import { Footer, ScrollToTopButton, Toasts } from './common';
-import { Nav } from './common/nav';
+import { Nav, Footer, ScrollToTopButton, Toasts } from './common';
 
 const Layout = () => {
   const { pathname } = useLocation();

@@ -1,15 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Header, Group, Menu, Text } from '@mantine/core';
+import { Header, Group } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { BsCart } from 'react-icons/bs';
 import { CART_PATH, MAIN_PATH } from '../../../routes/routePaths';
-import MacSubMenu from './MacSubMenu';
-import IphoneSubMenu from './IphoneSubMenu';
-import CommunitySubMenu from './CommunitySubMenu';
-import ThemeButton from './ThemeButton';
-import LoginButton from './LoginButton';
-import Logo from '../Logo';
+import { MenuList, ThemeButton, UserMenu, Logo } from '..';
 
 const NavContainer = styled(Header)`
   display: flex;
@@ -31,22 +26,6 @@ const Wrapper = styled(Group)`
 
 const SideWrapper = styled(Wrapper)`
   margin-right: 50px;
-`;
-
-const TextMenu = styled(Menu)`
-  color: var(--font-color);
-`;
-
-const NavItem = styled(Text)`
-  font-size: 20px;
-  font-weight: 500;
-  padding: 8px 15px;
-  :hover {
-    color: var(--hover-font-color);
-  }
-  &[aria-expanded='true'] {
-    cursor: default;
-  }
 `;
 
 const LogoLink = styled(Link)`
@@ -73,28 +52,8 @@ const Nav = () => (
         <LogoLink to={MAIN_PATH}>
           <Logo clickable={true} />
         </LogoLink>
-        <TextMenu trigger="hover">
-          <Menu.Target>
-            <NavItem>Mac</NavItem>
-          </Menu.Target>
-          <MacSubMenu />
-        </TextMenu>
-
-        <TextMenu trigger="hover">
-          <Menu.Target>
-            <NavItem>iPhone</NavItem>
-          </Menu.Target>
-          <IphoneSubMenu />
-        </TextMenu>
-
-        <TextMenu trigger="hover">
-          <Menu.Target>
-            <NavItem>커뮤니티</NavItem>
-          </Menu.Target>
-          <CommunitySubMenu />
-        </TextMenu>
+        <MenuList />
       </Wrapper>
-
       <SideWrapper>
         <CartLink to={CART_PATH}>
           <IconLink>
@@ -102,7 +61,7 @@ const Nav = () => (
           </IconLink>
         </CartLink>
         <ThemeButton />
-        <LoginButton />
+        <UserMenu />
       </SideWrapper>
     </NavContainer>
   </>
