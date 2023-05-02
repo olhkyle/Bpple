@@ -42,9 +42,10 @@ const QuestionForm = () => {
     try {
       const { title, content, subject } = data;
 
-      await createNewPost({ author: user.email, title, content, ...subject });
+      const res = await createNewPost({ author: user.email, title, content, ...subject });
+      const { postId } = res.data;
 
-      navigate(`${COMMUNITY_PATH}/${subject.category.toLowerCase()}`);
+      navigate(`${COMMUNITY_PATH}/post/${postId}`);
       toast.success({ message: '작성하신 글이 등록되었습니다.' });
     } catch (e) {
       toast.error({ message: '글 작성에 실패하였습니다. 잠시 후 다시 시도해주세요' });
