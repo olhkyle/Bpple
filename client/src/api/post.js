@@ -18,4 +18,17 @@ const getComments = ({ param: postId, pageParam }) => axios.get(`/api/post/${pos
 const checkIsUseFul = ({ postId, commentId, useful }) =>
   axios.patch(`/api/post/${postId}/comment/useful/${commentId}`, { useful });
 
-export { getPost, createNewPost, updatePost, addComment, editComment, removeComment, getComments, checkIsUseFul };
+const updateCommentCertified = ({ postId, commentId, certified }) =>
+  axios.patch(`/api/post/${postId}/comment/certified/${commentId}`, { certified });
+
+export {
+  getPost,
+  createNewPost,
+  updatePost,
+  addComment,
+  editComment,
+  removeComment,
+  getComments,
+  checkIsUseFul,
+  updateCommentCertified,
+};
