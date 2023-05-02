@@ -30,24 +30,22 @@ const signupScheme = z
   });
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+  const toast = useToast();
+
   const {
     handleSubmit,
     register,
     setValue,
-    formState: { isDirty, errors },
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(signupScheme),
   });
 
-  const navigate = useNavigate();
-  const toast = useToast();
-
   const onSubmit = async data => {
-    if (!isDirty) return;
-
     try {
       await signUp(data);
-      toast.create({ message: '회원가입에 성공하였습니다.' });
+      toast.success({ message: '회원가입에 성공하였습니다.' });
       navigate(SIGNIN_PATH);
     } catch (e) {
       console.error(e);

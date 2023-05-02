@@ -17,6 +17,10 @@ const DEFAULT_VALUE = {
   productType: '',
 };
 
+const iphoneTypes = Object.keys(iphoneProductTypes);
+const ipadTypes = Object.keys(ipadProductTypes);
+const macTypes = Object.keys(macbookProductTypes);
+
 const SubjectSelect = ({ name, control }) => {
   const {
     field: { value, onChange },
@@ -27,11 +31,11 @@ const SubjectSelect = ({ name, control }) => {
   });
 
   const onChangeProduct = productType => {
-    const category = Object.keys(iphoneProductTypes).includes(productType)
+    const category = iphoneTypes.includes(productType)
       ? 'iPhone'
-      : Object.keys(ipadProductTypes).includes(productType)
+      : ipadTypes.includes(productType)
       ? 'iPad'
-      : Object.keys(macbookProductTypes).includes(productType)
+      : macTypes.includes(productType)
       ? 'Mac'
       : '';
 
