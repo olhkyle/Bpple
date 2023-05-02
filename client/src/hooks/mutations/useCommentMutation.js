@@ -1,9 +1,14 @@
 import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useSetRecoilState } from 'recoil';
+import useToast from '../useToast';
+import userState from '../../recoil/atoms/userState';
 
 const keyword = 'comments';
 
 const useCommentMutation = ({ requestFn, queryKeyword = keyword, postId, onMutate: expected, ...options }) => {
   const queryClient = useQueryClient();
+  const toast = useToast();
+  const setUser = useSetRecoilState(userState);
 
   const { mutate } = useMutation({
     mutationFn: async variables => {
@@ -19,6 +24,9 @@ const useCommentMutation = ({ requestFn, queryKeyword = keyword, postId, onMutat
       return { prevComments };
     },
     onError: (error, variables, { prevComments }) => {
+      toast.error({ message: error.response.data.error });
+      setUser(null);
+
       queryClient.setQueryData([queryKeyword, postId], prevComments);
     },
     ...options,

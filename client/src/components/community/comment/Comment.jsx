@@ -6,6 +6,7 @@ import { AvatarIcon, AppleRecommendIcon, TextEditor, UsefulCommentChip } from '.
 import formattedDate from '../../../utils/formattedDate';
 import transientOptions from '../../../utils/transientOptions';
 import useTextEditor from '../../../hooks/useTextEditor';
+import AppleRecommendChip from '../AppleRecommendChip';
 
 const Container = styled(List.Item)`
   .mantine-List-itemWrapper {
@@ -66,6 +67,8 @@ const Comment = ({
   comment,
   isAuthor,
   isPostAuthorAndLoginUserSame,
+  isAdmin,
+  certifiedPost,
   oneOfCommentsIsUseful,
   editMutate,
   removeMutate,
@@ -111,13 +114,22 @@ const Comment = ({
               </Flex>
 
               <Flex ml="auto" gap="10px">
+                {isAdmin && !certifiedPost && !certified && <AppleRecommendChip />}
+                {isAdmin && certifiedPost && certified && (
+                  <Button onClick={() => {}} radius="xl" color="dark">
+                    권장 답변 취소
+                  </Button>
+                )}
+
                 {isPostAuthorAndLoginUserSame ? (
                   <UsefulCommentChip useful={useful} commentId={id} oneOfCommentsIsUseful={oneOfCommentsIsUseful} />
                 ) : (
-                  <UsefulBadge>
-                    <AiFillCheckCircle pos="absolute" top="0" size="16" />
-                    <Text>유용함</Text>
-                  </UsefulBadge>
+                  useful && (
+                    <UsefulBadge>
+                      <AiFillCheckCircle pos="absolute" top="0" size="16" />
+                      <Text>유용함</Text>
+                    </UsefulBadge>
+                  )
                 )}
 
                 {isAuthor && (

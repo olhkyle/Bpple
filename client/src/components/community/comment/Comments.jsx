@@ -36,7 +36,7 @@ const CommentList = styled(List)`
   min-width: 720px;
 `;
 
-const Comments = ({ postAuthor }) => {
+const Comments = ({ postAuthor, certifiedPost }) => {
   const user = useRecoilValue(userState);
   const [textEditorContent, setTextEditorContent] = React.useState('');
 
@@ -47,6 +47,7 @@ const Comments = ({ postAuthor }) => {
     queryKeyword: commentsQueryKey,
     param: postId,
     select: data => ({
+      isAdmin: data.pages[0].isAdmin,
       comments: data.pages.map(({ comments }) => comments).flat(),
       totalLength: data.pages[0].totalLength,
     }),
@@ -104,6 +105,8 @@ const Comments = ({ postAuthor }) => {
             comment={comment}
             isAuthor={user?.email === comment.author}
             isPostAuthorAndLoginUserSame={user?.email === postAuthor}
+            isAdmin={data?.isAdmin}
+            certifiedPost={certifiedPost}
             oneOfCommentsIsUseful={data?.comments?.some(({ useful }) => useful)}
             editMutate={edit}
             removeMutate={remove}
@@ -157,6 +160,8 @@ const Comments = ({ postAuthor }) => {
             comment={comment}
             isAuthor={user?.email === comment.author}
             isPostAuthorAndLoginUserSame={user?.email === postAuthor}
+            isAdmin={data?.isAdmin}
+            certifiedPost={certifiedPost}
             oneOfCommentsIsUseful={data?.comments.some(({ useful }) => useful)}
             editMutate={edit}
             removeMutate={remove}
