@@ -90,53 +90,82 @@ router.get('/:postId/comment', (req, res) => {
 // 커뮤니티 글에 댓글 추가
 router.post('/:postId/comment', (req, res) => {
 	const accessToken = req.cookies.accessToken;
+	const { postId } = req.params;
+	const { commentInfo } = req.body;
 
 	try {
 		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
-
-		const { postId } = req.params;
-		const { commentInfo } = req.body;
 
 		comments.createComment({ ...commentInfo, postId });
 
 		res.send({ postId });
 	} catch {
 		res
-			.status(401)
-			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 작성해주세요.' });
+			.status(403)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
 	}
 });
 
 // 커뮤니티 글에 댓글 수정
 router.patch('/:postId/comment/:commentId', (req, res) => {
-	const { commentId } = req.params;
-	const { commentInfo } = req.body;
+	const accessToken = req.cookies.accessToken;
 
-	comments.updateComment(commentId, commentInfo);
+	try {
+		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	res.send({ commentId });
+		const { commentId } = req.params;
+		const { commentInfo } = req.body;
+
+		comments.updateComment(commentId, commentInfo);
+
+		res.send({ commentId });
+	} catch {
+		res
+			.status(403)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
+	}
 });
 
 // useful 댓글 설정
 router.patch('/:postId/comment/useful/:commentId', (req, res) => {
-	const { commentId, postId } = req.params;
-	const { useful } = req.body;
-	const { author } = posts.getPost(postId);
+	const accessToken = req.cookies.accessToken;
 
-	comments.updateUsefulComment(commentId, useful);
-	posts.updateCompletedPost(postId, useful);
-	users.updatePoint(author, useful ? 20 : -20);
+	try {
+		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	res.send({ commentId, postId });
+		const { commentId, postId } = req.params;
+		const { useful } = req.body;
+		const { author } = posts.getPost(postId);
+
+		comments.updateUsefulComment(commentId, useful);
+		posts.updateCompletedPost(postId, useful);
+		users.updatePoint(author, useful ? 20 : -20);
+
+		res.send({ commentId, postId });
+	} catch {
+		res
+			.status(403)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
+	}
 });
 
 // 커뮤니티 글에 댓글 삭제
 router.delete('/:postid/comment/:commentId', (req, res) => {
-	const { commentId } = req.params;
+	const accessToken = req.cookies.accessToken;
 
-	comments.deleteComment(commentId);
+	try {
+		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	res.send({ commentId });
+		const { commentId } = req.params;
+
+		comments.deleteComment(commentId);
+
+		res.send({ commentId });
+	} catch {
+		res
+			.status(403)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
+	}
 });
 
 module.exports = router;
