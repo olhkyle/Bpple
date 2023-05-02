@@ -1,3 +1,4 @@
+export { default as Home } from './Home';
 export { default as SignIn } from './SignIn';
 export { default as SignUp } from './SignUp';
 export { default as Community } from './Community';
@@ -10,6 +11,6 @@ export { default as CommunityProfile } from './CommunityProfile';
 export { default as Profile } from './Profile';
 export { default as ProfileEdit } from './ProfileEdit';
 export { default as RegisterProduct } from './RegisterProduct';
-export { default as Question } from './Question';
-export { default as Rank } from './Rank';
+export { default as CommunityQuestion } from './CommunityQuestion';
+export { default as CommunityRank } from './CommunityRank';
 export { default as NotFound } from './NotFound';

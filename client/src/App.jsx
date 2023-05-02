@@ -5,23 +5,32 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import AuthenticationGuard from './guard/AuthenticationGuard';
-import { Layout } from './components';
-import { communityCategoryLoader, communityPostLoader, communityMeLoader, rankLoader, profileLoader } from './loader';
+import { Layout, RootError } from './components';
 import {
+  postsByCategoryLoader,
+  myPostsLoader,
+  postDetailLoader,
+  rankLoader,
+  profileLoader,
+  myProfileLoader,
+} from './loaders';
+import {
+  Home,
   Community,
   CommunityMain,
   CommunityPost,
   ProfileEdit,
-  Question,
+  CommunityQuestion,
   RegisterProduct,
   SignIn,
   SignUp,
-  Rank,
+  CommunityRank,
   CommunityMe,
   CommunityCategory,
   Profile,
   NotFound,
   CommunityProfile,
+  CommunityFaq,
 } from './pages';
 
 import { SIGNIN_PATH } from './routes/routePaths';
@@ -38,10 +47,11 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <RootError />,
     children: [
       {
         index: true,
-        element: <div>Main</div>,
+        element: <Home />,
       },
       {
         path: '/signin',
@@ -60,29 +70,37 @@ const router = createBrowserRouter([
             element: <CommunityMain />,
           },
           {
-            path: ':category',
-            loader: communityCategoryLoader(queryClient),
+            path: 'category/:category',
+            loader: postsByCategoryLoader(queryClient),
             element: <CommunityCategory />,
           },
           {
             path: 'post/:postId',
-            loader: communityPostLoader(queryClient),
+            loader: postDetailLoader(queryClient),
             element: <CommunityPost />,
           },
           {
             path: 'me',
-            loader: communityMeLoader(queryClient),
-            element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<CommunityMe />} />,
+            loader: myPostsLoader(queryClient),
+            element: <CommunityMe />,
           },
-          { path: 'question', element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Question />} /> },
-          { path: 'rank', loader: rankLoader(queryClient), element: <Rank /> },
-          { path: 'profile/:nickName', element: <CommunityProfile /> },
+          { path: 'faq', element: <CommunityFaq /> },
+          {
+            path: 'question',
+            element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<CommunityQuestion />} />,
+          },
+          { path: 'rank', loader: rankLoader(queryClient), element: <CommunityRank /> },
+          {
+            path: 'profile/:nickName',
+            loader: profileLoader(queryClient),
+            element: <CommunityProfile />,
+          },
         ],
       },
       {
         path: '/profile',
-        loader: profileLoader(queryClient),
-        element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Profile />} />,
+        loader: myProfileLoader(queryClient),
+        element: <Profile />,
       },
       {
         path: '/profile/edit',

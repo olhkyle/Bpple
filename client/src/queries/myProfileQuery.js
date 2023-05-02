@@ -2,7 +2,7 @@ import { fetchProfile } from '../api/profile';
 
 const staleTime = 3000;
 
-const profileQuery = () => ({
+const myProfileQuery = () => ({
   queryKey: ['profile'],
   queryFn: async () => {
     const { data } = await fetchProfile();
@@ -12,4 +12,4 @@ const profileQuery = () => ({
   suspense: true,
 });
 
-export default profileQuery;
+export default myProfileQuery;

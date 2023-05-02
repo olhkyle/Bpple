@@ -4,11 +4,11 @@ import { Link, useParams } from 'react-router-dom';
 import { Flex, Text, Title, Image } from '@mantine/core';
 import { FiArrowRight } from 'react-icons/fi';
 import { BsArrowUpRightSquare } from 'react-icons/bs';
-import { COMMUNITY_PATH } from '../../routes/routePaths';
+import { COMMUNITY_CATEGORY_PATH, COMMUNITY_PATH } from '../../routes/routePaths';
 import { getSearchedPosts } from '../../api/posts';
 import { category as CATEGORY } from '../../constants/category';
 import { AutoComplete, Posts } from '.';
-import { categoryQuery } from '../../query';
+import { postsByCategoryQuery } from '../../queries';
 
 const CategoryImage = styled(Image)`
   display: flex;
@@ -33,7 +33,7 @@ const CommunityCategorySection = () => {
             <FiArrowRight />
           </Flex>
         </Link>
-        <Link to={`${COMMUNITY_PATH}/${category}`}>
+        <Link to={`${COMMUNITY_CATEGORY_PATH}/${category}`}>
           <Flex gap="5px" align="center" fz="15px" fw="600" td="none" c="var(--font-color)">
             <Text>{CATEGORY[category]}</Text>
             <BsArrowUpRightSquare />
@@ -52,7 +52,7 @@ const CommunityCategorySection = () => {
           <AutoComplete width={720} queryFn={getSearchedPosts} category={category} />
         </Flex>
       </Flex>
-      <Posts queryFn={categoryQuery(category)} />
+      <Posts queryFn={postsByCategoryQuery(category)} />
     </>
   );
 };

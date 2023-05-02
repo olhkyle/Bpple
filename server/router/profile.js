@@ -3,8 +3,6 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const users = require('../mock-data/users');
 
-const TOKEN = 'accessToken';
-
 // 사용자 프로필
 router.post('/', (req, res) => {
 	try {
@@ -48,7 +46,7 @@ router.post('/', (req, res) => {
 		});
 	} catch (e) {
 		console.error('😱 사용자 인증 실패..', e);
-		res.status(401).send({ auth: 'fail' });
+		res.status(403).send({ auth: 'fail' });
 	}
 });
 

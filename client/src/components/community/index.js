@@ -27,3 +27,5 @@ export { default as EmptyPostIndicator } from './EmptyPostIndicator';
 export { default as ShowMoreButton } from './ShowMoreButton';
 export { default as UsefulCommentChip } from './UsefulCommentChip';
 export { default as CommunityCategorySection } from './CommunityCategorySection';
+export { default as Tutorials } from './Tutorials';
+export { default as CommunityCategoryPosts } from './CommunityCategoryPosts';

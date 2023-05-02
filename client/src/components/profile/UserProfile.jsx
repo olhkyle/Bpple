@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Button, Divider, Flex, Grid, Text } from '@mantine/core';
-import { ProfileAvatar } from '../common';
+import { AvatarIcon } from '..';
 import formattedDate from '../../utils/formattedDate';
 import { PROFILE_EDIT_PATH } from '../../routes/routePaths';
 
@@ -75,7 +75,7 @@ const UserProfile = ({ nickName, avatarId, name, country, phoneNumber, point, le
       <Wrapper>
         <ProfileWrapper>
           <Flex p="30px">
-            <ProfileAvatar avatarId={avatarId} size="xl" />
+            <AvatarIcon avatarId={avatarId} size="xl" />
 
             <Flex direction="column" ml="30px" w="100%">
               <Flex direction="row" align="center" justify="flex-start">

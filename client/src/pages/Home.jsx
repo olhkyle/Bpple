@@ -1,28 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { Container, Image, List, Text, Title } from '@mantine/core';
-import { AutoComplete, Tutorials } from '../components/community';
-import { getSearchedPosts } from '../api/posts';
-import categoryList from '../constants/categoryList';
+import { Container, Flex, Image, List, Text, Title } from '@mantine/core';
 import { COMMUNITY_CATEGORY_PATH } from '../routes/routePaths';
+import categoryList from '../constants/categoryList';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   margin-top: 1rem;
   margin-bottom: 5rem;
   font-size: 0.75rem;
-  text-align: center;
   color: var(--font-color);
-`;
-
-const Description = styled.section`
-  width: 730px;
-  word-break: keep-all;
 `;
 
 const CategoryList = styled(List)`
@@ -30,6 +21,7 @@ const CategoryList = styled(List)`
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  padding: 3rem;
 `;
 
 const Category = styled(List.Item)`
@@ -47,7 +39,7 @@ const Category = styled(List.Item)`
   }
 
   a {
-    padding: 30px 45px;
+    padding: 3.5rem 5rem;
   }
 
   &:hover {
@@ -60,28 +52,35 @@ const Category = styled(List.Item)`
 
 const CategoryDescription = styled.p`
   margin-top: 30px;
-  font-size: 18px;
+  font-size: 21px;
   color: var(--font-color);
+  text-align: center;
   text-decoration: none;
 `;
 
-const CommunityMain = () => (
+const Home = () => (
   <Wrapper>
-    <Description>
-      <Title size="52px" mt="24px" mb="40px">
-        FineApple이 지원하는 커뮤니티
-      </Title>
-      <Text fz="26px" mb="40px">
-        전 세계 FineApple 고객들과 소통해 보세요 🚀
+    <Title fw={700} my="3rem" ta="center">
+      <Flex gap="1rem" justify="center" align="center" mb="1rem">
+        <Text mt="1rem" fz="6rem">
+          Welcome.
+        </Text>
+        <Text fz="7rem" variant="gradient" gradient={{ from: 'blue', to: '#FF7E37', deg: 120 }}>
+          FineApple
+        </Text>
+      </Flex>
+      <Text fz="1.5rem" c="gray">
+        커뮤니티에서 제품과 관련된 질문을 검색하고,
+        <br />
+        검색 결과에 원하는 질문이 없다면, 질문을 작성해 보세요.
       </Text>
-      <AutoComplete width={720} queryFn={getSearchedPosts} />
-    </Description>
+    </Title>
 
-    <Image src="/community/community-main.png" alt="community" pt="6rem" pb="3rem" />
+    <Image src="/home.jpeg" alt="home-image" radius={20} />
+    <Title fz="1.75rem" mt="7rem">
+      🍍 FineApple의 커뮤니티 기능을 활용해 보세요.
+    </Title>
 
-    <Text mt="4rem" mb="2rem" fz="21px" fw="600">
-      제품을 선택하시면 관련 주제가 표시됩니다 ⭐️
-    </Text>
     <CategoryList>
       {categoryList.map(({ imgPath, category }) => (
         <Category key={imgPath}>
@@ -92,9 +91,7 @@ const CommunityMain = () => (
         </Category>
       ))}
     </CategoryList>
-
-    <Tutorials />
   </Wrapper>
 );
 
-export default CommunityMain;
+export default Home;

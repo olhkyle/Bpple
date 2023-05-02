@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Text } from '@mantine/core';
 import styled from '@emotion/styled';
-import { ProfileAvatar } from './avatar';
+import { AvatarIcon } from '.';
 
 const Container = styled(Flex)`
   padding: 10px;
@@ -42,7 +42,7 @@ const Content = styled(Text)`
 const AvatarCard = ({ avatarId, title, content }) => (
   <Container>
     <AvatarWrapper>
-      <ProfileAvatar avatarId={avatarId} />
+      <AvatarIcon avatarId={avatarId} />
     </AvatarWrapper>
     <Wrapper>
       <Title>{title}</Title>

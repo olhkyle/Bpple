@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Container, Title } from '@mantine/core';
 import { Posts } from '../components/community';
-import { communityMeQuery } from '../query';
+import { myPostsQuery } from '../queries';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -20,7 +20,7 @@ const CommunityMe = () => (
     <Title size="52px" mt="40px">
       내가 작성한 글 목록
     </Title>
-    <Posts queryFn={communityMeQuery()} />
+    <Posts queryFn={myPostsQuery()} />
   </Wrapper>
 );
 

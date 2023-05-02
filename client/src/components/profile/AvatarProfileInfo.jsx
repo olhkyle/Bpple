@@ -2,8 +2,8 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Divider, Flex, Text } from '@mantine/core';
 import styled from '@emotion/styled';
-import { ProfileAvatar } from '../common';
-import { userProfileQuery } from '../../pages/CommunityProfile';
+import { AvatarIcon } from '..';
+import { profileByNickNameQuery } from '../../queries';
 
 const ProfileWrapper = styled.div`
   width: 100%;
@@ -41,14 +41,14 @@ const AboutMe = styled(Text)`
 const AvatarProfileInfo = ({ nickName }) => {
   const {
     data: { userInfo },
-  } = useQuery(userProfileQuery(nickName));
+  } = useQuery(profileByNickNameQuery(nickName));
 
   const { avatarId, level, point, aboutMe } = userInfo;
 
   return (
     <ProfileWrapper>
       <Flex p="30px">
-        <ProfileAvatar avatarId={avatarId} size="xl" />
+        <AvatarIcon avatarId={avatarId} size="xl" />
         <Flex direction="column" ml="30px" w="100%">
           <Flex direction="row" align="center" justify="flex-start">
             <Name fs="1.6rem" fw="600">
