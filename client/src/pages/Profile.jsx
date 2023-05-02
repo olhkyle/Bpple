@@ -2,7 +2,7 @@ import React from 'react';
 import Recoil from 'recoil';
 import styled from '@emotion/styled';
 import userState from '../recoil/atoms/userState';
-import { ProfileInfo } from '../components/profile';
+import { MyProfile } from '../components';
 import { Loader } from '../components/common';
 
 const Title = styled.h1`
@@ -20,7 +20,7 @@ const Profile = () => {
       <Title>{loginUser.nickName}님, 안녕하세요.</Title>
 
       <React.Suspense fallback={<Loader />}>
-        <ProfileInfo />
+        <MyProfile />
       </React.Suspense>
     </>
   );

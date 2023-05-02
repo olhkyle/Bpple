@@ -1,7 +1,8 @@
 import React from 'react';
+import { Accordion, Flex, Image, Radio, Text } from '@mantine/core';
 import styled from '@emotion/styled';
-import { Accordion, Flex, Text, Image, Radio } from '@mantine/core';
 import productThumbnail from '../../../constants/productThumbnail';
+import { productTypes } from '../../../constants/productList';
 
 const RadioInput = styled(Radio)`
   flex-basis: calc(25% - 10px);
@@ -34,8 +35,6 @@ const RadioInput = styled(Radio)`
   }
 
   .mantine-Text-root {
-    padding-left: 8px;
-    font-size: 15px;
     color: ${({ checked }) => (checked ? 'var(--hover-font-color)' : 'var(--font-color)')};
   }
 `;
@@ -58,27 +57,29 @@ const ItemImage = styled(Image)`
   }
 `;
 
-const SelectProductAccordionPanel = ({ productTypes, selectedProductType }) => (
+const MyProductListPanel = ({ products, selectedProductType, onSelectProduct }) => (
   <Accordion.Panel>
     <Flex ml="10px" gap="10px" wrap="wrap">
-      {Object.entries(productTypes).map(([productType, productName]) => (
-        <React.Fragment key={productType}>
-          <RadioInput
-            checked={selectedProductType === productType}
-            value={productType}
-            label={
-              <ItemCard>
-                <ItemImage src={productThumbnail[productType]} alt={`product-${productType}`} />
-                <Text size="md" c={'var(--font-color)'} w="100%">
-                  {productName}
-                </Text>
-              </ItemCard>
-            }
-          />
-        </React.Fragment>
+      {products.map(({ type: productType }, index) => (
+        <RadioInput
+          key={index}
+          checked={selectedProductType === productType}
+          value={productType}
+          onClick={() => {
+            if (onSelectProduct) onSelectProduct(productType);
+          }}
+          label={
+            <ItemCard>
+              <ItemImage src={productThumbnail[productType]} alt={`product-${productType}`} />
+              <Text ml="8px" size="15px" c={'var(--font-color)'} w="100%">
+                {productTypes[productType]}
+              </Text>
+            </ItemCard>
+          }
+        />
       ))}
     </Flex>
   </Accordion.Panel>
 );
 
-export default SelectProductAccordionPanel;
+export default MyProductListPanel;

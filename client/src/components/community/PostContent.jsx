@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Badge, Flex, Text, Title } from '@mantine/core';
 import { BsArrowUpRightSquare } from 'react-icons/bs';
 import formattedDate from '../../utils/formattedDate';
-import { AvatarIcon, CheckedCircleIcon, AppleRecommendIcon } from '../index';
+import { AvatarIcon, CompletedIcon, AppleRecommendIcon } from '..';
 import { COMMUNITY_CATEGORY_PATH, COMMUNITY_PROFILE_PATH } from '../../routes/routePaths';
 
 const PostSection = styled.section`
@@ -49,7 +49,7 @@ const PostContent = ({ post }) => {
       </Link>
       <PostSection>
         <Flex gap="1rem" mb="0.5rem" ml="auto" h="30px">
-          <CheckedCircleIcon completed={completed} />
+          <CompletedIcon completed={completed} />
           {certified && <AppleRecommendIcon />}
         </Flex>
 
