@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const posts = require('../mock-data/posts');
 const comments = require('../mock-data/comments');
 const users = require('../mock-data/users');
-const jwt = require('jsonwebtoken');
 
 // nickName, 아바타 / level point //
 

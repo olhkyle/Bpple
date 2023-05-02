@@ -4,6 +4,7 @@ export * from './posts';
 export * from './question';
 export * from './rank';
 
+export { default as AppleRecommendButton } from './AppleRecommendButton';
 export { default as AppleRecommendIcon } from './AppleRecommendIcon';
 export { default as AutoComplete } from './AutoComplete';
 export { default as CompletedIcon } from './CompletedIcon';
