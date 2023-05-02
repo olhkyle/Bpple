@@ -21,7 +21,7 @@ const MyPosts = styled(List)`
   gap: 1rem;
 `;
 
-const Posts = ({ queryFn }) => {
+const Posts = ({ queryFn, isShownQuestionButton = true }) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(queryFn);
 
   const [currentSort, setCurrentSort] = React.useState('recent');
@@ -67,10 +67,12 @@ const Posts = ({ queryFn }) => {
             ))}
           </MyPosts>
         ) : (
-          <EmptyPostIndicator />
+          <EmptyPostIndicator isShownButton={isShownQuestionButton} />
         )}
       </PostsContainer>
-      {hasNextPage && <ShowMoreButton onClick={fetchNextPage} loading={isFetchingNextPage} />}
+      {filteredPosts.length > 0 && hasNextPage && (
+        <ShowMoreButton onClick={fetchNextPage} loading={isFetchingNextPage} />
+      )}
     </>
   );
 };

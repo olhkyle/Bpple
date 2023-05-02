@@ -16,7 +16,7 @@ const Container = styled(Flex)`
   background-color: var(--secondary-bg-color);
 `;
 
-const EmptyPostIndicator = () => {
+const EmptyPostIndicator = ({ isShownButton }) => {
   const navigate = useNavigate();
 
   return (
@@ -24,9 +24,11 @@ const EmptyPostIndicator = () => {
       <Title mb="0.5rem" fz="2rem" fw="500" ta="center">
         작성한 글이 없습니다 👷🏻‍♂️
       </Title>
-      <Button onClick={() => navigate(COMMUNITY_QUESTION_PATH)} w="300px" radius="xl" fz="md">
-        질문하기
-      </Button>
+      {isShownButton && (
+        <Button onClick={() => navigate(COMMUNITY_QUESTION_PATH)} w="300px" radius="xl" fz="md">
+          질문하기
+        </Button>
+      )}
     </Container>
   );
 };

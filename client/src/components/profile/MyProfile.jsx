@@ -8,7 +8,7 @@ import { myProfileQuery } from '../../queries';
 const MyProfile = () => {
   const loginUser = Recoil.useRecoilValue(userState);
 
-  const { data: userInfo } = useQuery(myProfileQuery(loginUser.email));
+  const { data: userInfo } = useQuery(myProfileQuery());
 
   return (
     <>

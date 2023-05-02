@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '@mantine/core';
+import { Container, Skeleton } from '@mantine/core';
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 import { postsByNickNameQuery } from '../queries';
@@ -21,8 +21,12 @@ const CommunityProfile = () => {
 
   return (
     <Wrapper>
-      <AvatarProfileInfo nickName={nickName} />
-      <Posts queryFn={postsByNickNameQuery(nickName)} />
+      <React.Suspense fallback={<Skeleton width="100%" height={200} my="40px" />}>
+        <AvatarProfileInfo nickName={nickName} />
+      </React.Suspense>
+      <React.Suspense fallback={<Skeleton width="100%" height={200} my="40px" />}>
+        <Posts queryFn={postsByNickNameQuery(nickName)} isShownQuestionButton={false} />
+      </React.Suspense>
     </Wrapper>
   );
 };

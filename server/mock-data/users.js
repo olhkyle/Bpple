@@ -604,7 +604,7 @@ const getUsersRank = (topCount) => {
 		.map(
 			({ firstName, lastName, nickName, point, level, avatarId }, index) => ({
 				rank: index + 1,
-				name: firstName + lastName,
+				name: lastName + firstName,
 				nickName,
 				point,
 				level,
