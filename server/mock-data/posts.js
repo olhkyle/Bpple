@@ -317,6 +317,12 @@ const updateCompletedPost = (postId, completed) => {
 	);
 };
 
+const updateCertifiedPost = (postId, certified) => {
+	posts = posts.map((post) =>
+		post.id === postId ? { ...post, certified } : post
+	);
+};
+
 // TODO : 작성자 point 차감하기
 const deletePost = (postId) =>
 	(posts = posts.filter(({ id }) => id !== postId));
@@ -335,5 +341,6 @@ module.exports = {
 	createPost,
 	updatePost,
 	updateCompletedPost,
+	updateCertifiedPost,
 	deletePost,
 };

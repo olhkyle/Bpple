@@ -187,6 +187,12 @@ const updateUsefulComment = (commentId, useful) => {
 	);
 };
 
+const updateCertifiedComment = (commentId, certified) => {
+	comments = comments.map((comment) =>
+		comment.id === commentId ? { ...comment, certified } : comment
+	);
+};
+
 const updateComment = (commentId, commentInfo) => {
 	comments = comments.map((comment) =>
 		comment.id === commentId
@@ -205,5 +211,6 @@ module.exports = {
 	createComment,
 	updateComment,
 	updateUsefulComment,
+	updateCertifiedComment,
 	deleteComment,
 };

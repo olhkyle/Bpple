@@ -149,6 +149,26 @@ router.patch('/:postId/comment/useful/:commentId', (req, res) => {
 	}
 });
 
+router.patch('/:postId/comment/certified/:commentId', (req, res) => {
+	const accessToken = req.cookies.accessToken;
+
+	try {
+		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+
+		const { commentId, postId } = req.params;
+		const { certified } = req.body;
+
+		comments.updateCertifiedComment(commentId, certified);
+		posts.updateCertifiedPost(postId, certified);
+
+		res.send({ commentId, postId });
+	} catch {
+		res
+			.status(403)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
+	}
+});
+
 // 커뮤니티 글에 댓글 삭제
 router.delete('/:postid/comment/:commentId', (req, res) => {
 	const accessToken = req.cookies.accessToken;
