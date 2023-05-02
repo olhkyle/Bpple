@@ -34,4 +34,12 @@ const toggleUseful = (oldData, { commentId, useful }) => ({
   })),
 });
 
-export { add, edit, remove, toggleUseful };
+const updateCertifiedComment = (oldData, { commentId, certified }) => ({
+  ...oldData,
+  pages: oldData.pages.map(page => ({
+    ...page,
+    comments: page.comments.map(comment => (comment.id === commentId ? { ...comment, certified } : comment)),
+  })),
+});
+
+export { add, edit, remove, toggleUseful, updateCertifiedComment };
