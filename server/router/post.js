@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 const posts = require('../mock-data/posts');
 const comments = require('../mock-data/comments');
 const users = require('../mock-data/users');
@@ -64,27 +65,39 @@ router.delete('/:postId', (req, res) => {
 
 // comment 가져오기
 router.get('/:postId/comment', (req, res) => {
-	const { postId } = req.params;
-	const { page } = req.query;
+	let isAdmin = false;
 
-	const startIdx = PAGE_SIZE * (page - 1);
+	try {
+		const accessToken = req.cookies.accessToken;
 
-	const commentList = comments.getPostComments(postId);
+		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+		isAdmin = users.checkUserIsAdmin(decoded.email);
+	} catch (e) {
+		isAdmin = false;
+	} finally {
+		const { postId } = req.params;
+		const { page } = req.query;
 
-	const commentsData = commentList
-		.slice(startIdx, startIdx + PAGE_SIZE)
-		.map((comment) => {
-			const { nickName, avatarId, level, point } = users.findUserByEmail(
-				comment.author
-			);
+		const startIdx = PAGE_SIZE * (page - 1);
 
-			return { ...comment, nickName, avatarId, level, point };
+		const commentList = comments.getPostComments(postId);
+
+		const commentsData = commentList
+			.slice(startIdx, startIdx + PAGE_SIZE)
+			.map((comment) => {
+				const { nickName, avatarId, level, point } = users.findUserByEmail(
+					comment.author
+				);
+
+				return { ...comment, nickName, avatarId, level, point };
+			});
+
+		res.send({
+			isAdmin,
+			comments: commentsData,
+			totalLength: commentList.length,
 		});
-
-	res.send({
-		comments: commentsData,
-		totalLength: commentList.length,
-	});
+	}
 });
 
 // 커뮤니티 글에 댓글 추가

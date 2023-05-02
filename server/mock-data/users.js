@@ -35,6 +35,22 @@
 // 랭크에 접근 시 : level, point
 let users = [
 	{
+		firstName: '인애플',
+		lastName: '파',
+		country: '미국',
+		birthDate: new Date('1976-04-01'),
+		email: 'fineapple@email.com',
+		password: 'apple1234',
+		nickName: 'FineApple',
+		phoneNumber: '02-6712-6700',
+		products: [],
+		point: 0,
+		level: 0,
+		avatarId: 'avatar-33',
+		aboutMe: '나는 파인애플 관리자',
+		role: 'admin',
+	},
+	{
 		firstName: '서',
 		lastName: '준표',
 		country: '대한민국',
@@ -48,6 +64,7 @@ let users = [
 		level: 6,
 		avatarId: 'avatar-2',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '으',
@@ -63,6 +80,7 @@ let users = [
 		level: 2,
 		avatarId: 'avatar-19',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: 'park',
@@ -85,6 +103,7 @@ let users = [
 		level: 6,
 		avatarId: 'avatar-1',
 		aboutMe: '응애 나 아기 프엔',
+		role: 'user',
 	},
 	{
 		firstName: 'minhyuk',
@@ -104,6 +123,7 @@ let users = [
 		level: 6,
 		avatarId: 'avatar-0',
 		aboutMe: 'junior fe dev',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -119,6 +139,7 @@ let users = [
 		level: 3,
 		avatarId: 'avatar-1',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -134,6 +155,7 @@ let users = [
 		level: 5,
 		avatarId: 'avatar-26',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -149,6 +171,7 @@ let users = [
 		level: 5,
 		avatarId: 'avatar-25',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -164,6 +187,7 @@ let users = [
 		level: 5,
 		avatarId: 'avatar-24',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -179,6 +203,7 @@ let users = [
 		level: 5,
 		avatarId: 'avatar-23',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -194,6 +219,7 @@ let users = [
 		level: 5,
 		avatarId: 'avatar-22',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -209,6 +235,7 @@ let users = [
 		level: 5,
 		avatarId: 'avatar-21',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -224,6 +251,7 @@ let users = [
 		level: 4,
 		avatarId: 'avatar-20',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -239,6 +267,7 @@ let users = [
 		level: 4,
 		avatarId: 'avatar-19',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -254,6 +283,7 @@ let users = [
 		level: 4,
 		avatarId: 'avatar-18',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -269,6 +299,7 @@ let users = [
 		level: 4,
 		avatarId: 'avatar-17',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -284,6 +315,7 @@ let users = [
 		level: 4,
 		avatarId: 'avatar-16',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -299,6 +331,7 @@ let users = [
 		level: 3,
 		avatarId: 'avatar-15',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -314,6 +347,7 @@ let users = [
 		level: 3,
 		avatarId: 'avatar-14',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -329,6 +363,7 @@ let users = [
 		level: 3,
 		avatarId: 'avatar-13',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -344,6 +379,7 @@ let users = [
 		level: 3,
 		avatarId: 'avatar-12',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -359,6 +395,7 @@ let users = [
 		level: 3,
 		avatarId: 'avatar-11',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -374,6 +411,7 @@ let users = [
 		level: 2,
 		avatarId: 'avatar-10',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -389,6 +427,7 @@ let users = [
 		level: 2,
 		avatarId: 'avatar-9',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -404,6 +443,7 @@ let users = [
 		level: 2,
 		avatarId: 'avatar-8',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -419,6 +459,7 @@ let users = [
 		level: 2,
 		avatarId: 'avatar-7',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -434,6 +475,7 @@ let users = [
 		level: 2,
 		avatarId: 'avatar-6',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -449,6 +491,7 @@ let users = [
 		level: 1,
 		avatarId: 'avatar-5',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -464,6 +507,7 @@ let users = [
 		level: 1,
 		avatarId: 'avatar-4',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -479,6 +523,7 @@ let users = [
 		level: 1,
 		avatarId: 'avatar-3',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -494,6 +539,7 @@ let users = [
 		level: 1,
 		avatarId: 'avatar-2',
 		aboutMe: '',
+		role: 'user',
 	},
 	{
 		firstName: '김',
@@ -509,6 +555,7 @@ let users = [
 		level: 1,
 		avatarId: 'avatar-1',
 		aboutMe: '',
+		role: 'user',
 	},
 ];
 
@@ -544,6 +591,9 @@ const findUserProfileByNickName = (userNickName) => {
 
 	return { email, nickName, level, point, avatarId, aboutMe };
 };
+
+const checkUserIsAdmin = (email) =>
+	users.find((user) => user.email === email).role === 'admin';
 
 const getUsersRank = (topCount) => {
 	// TODO:알고리즘 수정
@@ -601,6 +651,7 @@ module.exports = {
 	findUserByEmail,
 	findUserByNickName,
 	findUserProfileByNickName,
+	checkUserIsAdmin,
 	getUsers,
 	getUsersRank,
 	updatePoint,

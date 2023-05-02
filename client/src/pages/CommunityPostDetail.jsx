@@ -27,7 +27,7 @@ const CommunityPostDetail = () => {
     <Wrapper>
       <PostContent post={post} />
       <Divider variant="dashed" />
-      <Comments postAuthor={post.author} />
+      <Comments postAuthor={post.author} certifiedPost={post.certified} />
     </Wrapper>
   );
 };
