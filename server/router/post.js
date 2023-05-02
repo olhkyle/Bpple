@@ -162,6 +162,26 @@ router.patch('/:postId/comment/useful/:commentId', (req, res) => {
 	}
 });
 
+router.patch('/:postId/comment/certified/:commentId', (req, res) => {
+	const accessToken = req.cookies.accessToken;
+
+	try {
+		const decode = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+
+		if (!users.checkUserIsAdmin(decode.email)) throw new Error();
+
+		const { commentId, postId } = req.params;
+		const { certified } = req.body;
+
+		comments.updateCertifiedComment(commentId, certified);
+		posts.updateCertifiedPost(postId, certified);
+
+		res.send({ commentId, postId });
+	} catch {
+		res.status(403).send({ error: '관리자 계정이 아닙니다.' });
+	}
+});
+
 // 커뮤니티 글에 댓글 삭제
 router.delete('/:postid/comment/:commentId', (req, res) => {
 	const accessToken = req.cookies.accessToken;
