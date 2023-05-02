@@ -15,7 +15,7 @@ const Wrapper = styled(Container)`
   color: var(--font-color);
 `;
 
-const CommunityMe = () => (
+const CommunityMyPosts = () => (
   <Wrapper>
     <Title size="52px" mt="40px">
       내가 작성한 글 목록
@@ -24,4 +24,4 @@ const CommunityMe = () => (
   </Wrapper>
 );
 
-export default CommunityMe;
+export default CommunityMyPosts;

@@ -18,16 +18,16 @@ import {
   Home,
   Community,
   CommunityMain,
-  CommunityPost,
+  CommunityPostDetail,
   ProfileEdit,
   CommunityQuestion,
   RegisterProduct,
   SignIn,
   SignUp,
   CommunityRank,
-  CommunityMe,
+  CommunityMyPosts,
   CommunityCategory,
-  Profile,
+  MyProfile,
   NotFound,
   CommunityProfile,
   CommunityFaq,
@@ -77,12 +77,12 @@ const router = createBrowserRouter([
           {
             path: 'post/:postId',
             loader: postDetailLoader(queryClient),
-            element: <CommunityPost />,
+            element: <CommunityPostDetail />,
           },
           {
             path: 'me',
             loader: myPostsLoader(queryClient),
-            element: <CommunityMe />,
+            element: <CommunityMyPosts />,
           },
           { path: 'faq', element: <CommunityFaq /> },
           {
@@ -100,7 +100,7 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         loader: myProfileLoader(queryClient),
-        element: <Profile />,
+        element: <MyProfile />,
       },
       {
         path: '/profile/edit',
