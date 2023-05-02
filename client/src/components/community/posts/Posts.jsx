@@ -70,7 +70,9 @@ const Posts = ({ queryFn, isShownQuestionButton = true }) => {
           <EmptyPostIndicator isShownButton={isShownQuestionButton} />
         )}
       </PostsContainer>
-      {hasNextPage && <ShowMoreButton onClick={fetchNextPage} loading={isFetchingNextPage} />}
+      {filteredPosts.length > 0 && hasNextPage && (
+        <ShowMoreButton onClick={fetchNextPage} loading={isFetchingNextPage} />
+      )}
     </>
   );
 };
