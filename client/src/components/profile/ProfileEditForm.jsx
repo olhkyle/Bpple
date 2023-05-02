@@ -38,7 +38,7 @@ const ProfileEditForm = () => {
 
   const [loginUser, setLoginUser] = Recoil.useRecoilState(userState);
 
-  const { data: userInfo } = useQuery(myProfileQuery());
+  const { data: userInfo } = useQuery({ ...myProfileQuery(), suspense: true });
 
   const [avatarEditPopupOpened, { open: openAvatarEditPopup, close: closeAvatarEditPopup }] = useDisclosure(false);
 
