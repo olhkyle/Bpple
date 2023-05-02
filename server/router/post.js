@@ -166,7 +166,9 @@ router.patch('/:postId/comment/certified/:commentId', (req, res) => {
 	const accessToken = req.cookies.accessToken;
 
 	try {
-		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+		const decode = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+
+		if (!users.checkUserIsAdmin(decode.email)) throw new Error();
 
 		const { commentId, postId } = req.params;
 		const { certified } = req.body;
@@ -176,9 +178,7 @@ router.patch('/:postId/comment/certified/:commentId', (req, res) => {
 
 		res.send({ commentId, postId });
 	} catch {
-		res
-			.status(403)
-			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
+		res.status(403).send({ error: '관리자 계정이 아닙니다.' });
 	}
 });
 
