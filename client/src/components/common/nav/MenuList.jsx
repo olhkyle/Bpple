@@ -3,10 +3,6 @@ import styled from '@emotion/styled';
 import { Menu, Text } from '@mantine/core';
 import { MacSubMenu, IphoneSubMenu, CommunitySubMenu } from '.';
 
-const TextMenu = styled(Menu)`
-  color: var(--font-color);
-`;
-
 const NavItem = styled(Text)`
   font-size: 20px;
   font-weight: 500;
@@ -21,26 +17,26 @@ const NavItem = styled(Text)`
 
 const MenuList = () => (
   <>
-    <TextMenu trigger="hover">
+    <Menu trigger="hover" c="var(--font-color)">
       <Menu.Target>
         <NavItem>Mac</NavItem>
       </Menu.Target>
       <MacSubMenu />
-    </TextMenu>
+    </Menu>
 
-    <TextMenu trigger="hover">
+    <Menu trigger="hover" c="var(--font-color)">
       <Menu.Target>
         <NavItem>iPhone</NavItem>
       </Menu.Target>
       <IphoneSubMenu />
-    </TextMenu>
+    </Menu>
 
-    <TextMenu trigger="hover">
+    <Menu trigger="hover" c="var(--font-color)">
       <Menu.Target>
         <NavItem>커뮤니티</NavItem>
       </Menu.Target>
       <CommunitySubMenu />
-    </TextMenu>
+    </Menu>
   </>
 );
 

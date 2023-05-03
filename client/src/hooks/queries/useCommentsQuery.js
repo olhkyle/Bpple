@@ -1,8 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import commentsQueryKey from '../../constants/commentsQueryKey';
 
-const usePaginationQuery = ({ queryFn, queryKeyword, param, select }) => {
-  const { data, hasNextPage, hasPreviousPage, isFetchingNextPage, fetchNextPage, refetch } = useInfiniteQuery({
-    queryKey: [queryKeyword, param],
+const useCommentsQuery = ({ queryFn, param, select }) => {
+  const { data, hasNextPage, isFetchingNextPage, fetchNextPage, refetch } = useInfiniteQuery({
+    queryKey: [commentsQueryKey, param],
     queryFn: async ({ pageParam = 1 }) => {
       const { data } = await queryFn({ param, pageParam });
       return data;
@@ -13,10 +14,11 @@ const usePaginationQuery = ({ queryFn, queryKeyword, param, select }) => {
       const { totalLength } = lastPage;
       return totalLength === 0 || Math.ceil(totalLength / 10) === allPages.length ? undefined : nextPage;
     },
+    suspense: true,
     select,
   });
 
-  return { data, hasNextPage, hasPreviousPage, isFetchingNextPage, fetchNextPage, refetch };
+  return { data, hasNextPage, isFetchingNextPage, fetchNextPage, refetch };
 };
 
-export default usePaginationQuery;
+export default useCommentsQuery;

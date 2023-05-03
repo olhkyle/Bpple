@@ -48,11 +48,11 @@ const RadioAvatar = styled(Avatar)`
  * avatarId?: string
  * }} props
  */
-const AvatarEditModal = ({ opened, onClose, avatarId }) => {
+const AvatarEditModal = ({ avatarId, opened, onClose }) => {
   const [selectedId, setSelectedId] = React.useState(avatarId);
 
   return (
-    <PopupModal opened={opened} onClose={onClose} title="아바타 수정">
+    <PopupModal title="아바타 수정" opened={opened} onClose={onClose}>
       <Container>
         <Text>아바타는 사용자의 활동을 맞춤화하여 목록 및 댓글을 통해 표시됩니다.</Text>
 

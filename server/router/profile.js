@@ -30,11 +30,12 @@ router.post('/', (req, res) => {
 			avatarId,
 			aboutMe,
 			birthDate,
+			email,
 		} = user;
 
 		res.send({
 			nickName,
-			name: firstName + lastName,
+			name: lastName + firstName,
 			country,
 			phoneNumber,
 			products,
@@ -43,6 +44,7 @@ router.post('/', (req, res) => {
 			avatarId,
 			aboutMe,
 			birthDate,
+			email,
 		});
 	} catch (e) {
 		console.error('😱 사용자 인증 실패..', e);

@@ -6,7 +6,7 @@ import { Menu } from '@mantine/core';
 import userState from '../../../recoil/atoms/userState';
 import { AvatarIcon } from '..';
 import { signOut } from '../../../api/auth';
-import { MAIN_PATH, PROFILE_PATH, REGISTER_PRODUCT_PATH, SIGNIN_PATH } from '../../../routes/routePaths';
+import { PROFILE_PATH, REGISTER_PRODUCT_PATH, SIGNIN_PATH } from '../../../routes/routePaths';
 
 const AvatarWrapper = styled.div`
   background: none;
@@ -65,7 +65,7 @@ const UserMenu = () => {
     } catch (e) {
       console.error(e);
     } finally {
-      navigate(MAIN_PATH);
+      navigate(SIGNIN_PATH);
     }
   };
 

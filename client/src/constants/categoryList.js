@@ -1,4 +1,4 @@
-import { category as CATEGORY } from './category';
+import { CATEGORY } from './category';
 
 const categoryList = [
   { imgPath: '/community/iphone/iphone-family.png', category: CATEGORY.iphone },

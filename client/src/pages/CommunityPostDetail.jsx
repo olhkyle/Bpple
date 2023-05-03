@@ -4,7 +4,14 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Container, Divider } from '@mantine/core';
 import { postDetailQuery } from '../queries';
-import { PostContent, Comments } from '../components';
+import { PostContent, CommentSection } from '../components';
+import {
+  useAddCommentMutation,
+  useEditCommentMutation,
+  useRemoveCommentMutation,
+  useToggleCommentUsefulMutation,
+  useToggleCertifiedMutation,
+} from '../hooks/mutations';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -18,16 +25,29 @@ const Wrapper = styled(Container)`
 `;
 
 const CommunityPostDetail = () => {
-  const params = useParams();
+  const { postId } = useParams();
   const {
     data: { post },
-  } = useQuery(postDetailQuery(params.postId));
+  } = useQuery(postDetailQuery(postId));
+
+  const mutateFns = {
+    editMutate: useEditCommentMutation(postId),
+    removeMutate: useRemoveCommentMutation(postId),
+    addMutate: useAddCommentMutation(postId),
+    toggleUsefulMutate: useToggleCommentUsefulMutation(postId),
+    toggleCertifiedMutate: useToggleCertifiedMutation(postId),
+  };
 
   return (
     <Wrapper>
       <PostContent post={post} />
       <Divider variant="dashed" />
-      <Comments postAuthor={post.author} certifiedPost={post.certified} />
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <CommentSection
+          postInfo={{ id: postId, author: post.author, certified: post.certified }}
+          mutateFns={mutateFns}
+        />
+      </React.Suspense>
     </Wrapper>
   );
 };

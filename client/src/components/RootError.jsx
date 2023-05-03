@@ -10,10 +10,11 @@ const RootError = () => {
 
   if (error.response.status === 403) {
     setUser(null);
+
     return <Navigate to={SIGNIN_PATH} />;
   }
 
-  return <Navigate to={'*'} />;
+  return <Navigate to="*" />;
 };
 
 export default RootError;

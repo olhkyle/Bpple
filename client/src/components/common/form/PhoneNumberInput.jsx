@@ -16,7 +16,7 @@ const PhoneNumberInput = ({ name, placeholder, onChange, onBlur, setValue }, ref
     onChange(e);
   };
 
-  return <Input ref={ref} name={name} placeholder={placeholder} onChange={handleChange} onBlur={onBlur} />;
+  return <Input placeholder={placeholder} name={name} ref={ref} onChange={handleChange} onBlur={onBlur} />;
 };
 
 export default React.forwardRef(PhoneNumberInput);

@@ -1,6 +1,6 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { Avatar, Container } from '@mantine/core';
-import React from 'react';
 import avatars from '../../constants/avatars';
 
 const AvatarWrapper = styled(Avatar)`
@@ -27,6 +27,7 @@ const Overlay = styled(Container)`
     background-color: rgba(0, 0, 0, 0.7);
     :after {
       content: '✎ 편집';
+      font-size: 12px;
     }
   }
 `;

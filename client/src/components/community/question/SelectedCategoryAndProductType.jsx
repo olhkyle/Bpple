@@ -11,16 +11,16 @@ const SelectedGroup = styled(Flex)`
   justify-content: center;
 `;
 
-const SelectedCategoryAndProductType = ({ categoryType, selectedProductType }) => (
+const SelectedCategoryAndProductType = ({ selectedCategoryType, selectedProductType }) => (
   <SelectedGroup>
-    {categoryType ? (
+    {selectedCategoryType ? (
       <Container w="100%">
         <Flex align="flex-end" w="100%">
           <Text size="lg" mr="sm" fw="600" c="var(--font-color)">
             {'💿 선택 카테고리 : '}
           </Text>
           <Badge variant="outline" size="lg">
-            {categoryType}
+            {selectedCategoryType}
           </Badge>
         </Flex>
         {selectedProductType && (

@@ -14,7 +14,7 @@ const Container = styled(Avatar)`
  * @param {{avatarId?: string}} param
  */
 const AvatarIcon = ({ avatarId, size = 'md' }) => (
-  <Container src={avatarId ? avatars[avatarId] : null} alt="avatar image" size={size} />
+  <Container src={avatarId ? avatars[avatarId] : null} size={size} alt="avatar image" />
 );
 
 export default AvatarIcon;

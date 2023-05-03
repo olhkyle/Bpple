@@ -10,7 +10,6 @@ const TableContainer = styled(Table)`
   font-size: 2.4rem;
 
   tr {
-    /* border-top: 1px solid var(--font-color); */
     border-top: 1px solid var(--opacity-border-color);
   }
 

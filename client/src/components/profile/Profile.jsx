@@ -63,7 +63,7 @@ const AboutMe = styled(Text)`
   padding: 20px;
 `;
 
-const Profile = ({ nickName, avatarId, name, country, phoneNumber, point, level, aboutMe, birthDate }) => {
+const Profile = ({ email, nickName, avatarId, name, country, phoneNumber, point, level, aboutMe, birthDate }) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
@@ -94,6 +94,9 @@ const Profile = ({ nickName, avatarId, name, country, phoneNumber, point, level,
           </Flex>
           <ColorDivider size="md" />
           <Grid gutter={30} columns={4} m="50px" grow>
+            <GridLabel span={1}>이메일</GridLabel>
+            <GridCol span={3}>{email}</GridCol>
+
             <GridLabel span={1}>국가</GridLabel>
             <GridCol span={3}>{country}</GridCol>
 

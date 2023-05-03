@@ -4,6 +4,7 @@ import { useController } from 'react-hook-form';
 import { Container, Title } from '@mantine/core';
 import { CategoryRadio, SelectProductRadio, SelectedCategoryAndProductType } from '..';
 import { ipadProductTypes, iphoneProductTypes, macbookProductTypes } from '../../../constants/productList';
+import { CATEGORY } from '../../../constants/category';
 
 const Wrapper = styled(Container)`
   background-color: var(--opacity-bg-color);
@@ -32,11 +33,11 @@ const SubjectSelect = ({ name, control }) => {
 
   const onChangeProduct = productType => {
     const category = iphoneTypes.includes(productType)
-      ? 'iPhone'
+      ? CATEGORY.iphone
       : ipadTypes.includes(productType)
-      ? 'iPad'
+      ? CATEGORY.ipad
       : macTypes.includes(productType)
-      ? 'Mac'
+      ? CATEGORY.mac
       : '';
 
     onChange({ category, productType });
@@ -57,7 +58,7 @@ const SubjectSelect = ({ name, control }) => {
           <SelectProductRadio value={value.productType} onChange={onChangeProduct} />
         </Wrapper>
       </Container>
-      <SelectedCategoryAndProductType categoryType={value.category} selectedProductType={value.productType} />
+      <SelectedCategoryAndProductType selectedCategoryType={value.category} selectedProductType={value.productType} />
     </>
   );
 };

@@ -1,21 +1,16 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { Chip } from '@mantine/core';
-import { useToggleCommentUsefulMutation } from '../../../hooks/mutations';
 
-const UsefulCommentChip = ({ useful, commentId, oneOfCommentsIsUseful }) => {
+const UsefulCommentChip = ({ useful, commentId, isOneOfCommentsIsUseful, toggleUsefulMutate }) => {
   const [isUseful, setIsUseful] = React.useState(useful);
-
-  const { postId } = useParams();
-  const toggleUseful = useToggleCommentUsefulMutation(postId);
 
   return (
     <>
-      {((isUseful && oneOfCommentsIsUseful) || !oneOfCommentsIsUseful) && (
+      {((isUseful && isOneOfCommentsIsUseful) || !isOneOfCommentsIsUseful) && (
         <Chip
           checked={isUseful}
           onChange={() => {
-            toggleUseful({ commentId, useful: !isUseful });
+            toggleUsefulMutate({ commentId, useful: !isUseful });
             setIsUseful(isUseful => !isUseful);
           }}
           mb="4px"
