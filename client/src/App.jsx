@@ -103,6 +103,10 @@ const router = createBrowserRouter([
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<RegisterProduct />} />,
       },
       {
+        path: '/cart',
+        element: <PreparePage />,
+      },
+      {
         path: '/shop/*',
         element: <PreparePage />,
       },
