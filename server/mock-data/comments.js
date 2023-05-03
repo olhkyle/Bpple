@@ -165,6 +165,7 @@ let comments = [
 ];
 
 const getComments = () => comments;
+const getComment = (commentId) => comments.find(({ id }) => id === commentId);
 
 const getPostComments = (postId) =>
 	comments.filter((comment) => postId === comment.postId);
@@ -207,6 +208,7 @@ const deleteComment = (commentId) => {
 
 module.exports = {
 	getComments,
+	getComment,
 	getPostComments,
 	createComment,
 	updateComment,
