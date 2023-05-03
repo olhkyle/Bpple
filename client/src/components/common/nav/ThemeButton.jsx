@@ -1,7 +1,7 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { Button } from '@mantine/core';
 import { BsSun, BsMoon } from 'react-icons/bs';
-import React from 'react';
 import useTheme from '../../../hooks/useTheme';
 
 const Container = styled(Button)`

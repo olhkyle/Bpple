@@ -10,9 +10,11 @@ const myPostsQuery = () => ({
   },
   getNextPageParam: (lastPage, allPages) => {
     const nextPage = allPages.length + 1;
-
     const { totalLength } = lastPage;
-    return totalLength === 0 || Math.ceil(totalLength / 5) === allPages.length ? undefined : nextPage;
+
+    return totalLength === 0 || Math.ceil(totalLength / allPages[0].posts.length) === allPages.length
+      ? undefined
+      : nextPage;
   },
   select: data => ({
     posts: data.pages.map(({ posts }) => posts).flat(),

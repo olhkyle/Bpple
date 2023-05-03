@@ -22,12 +22,12 @@ const getKrNameCountryList = () => {
 
 const CountrySelect = ({ name, onChange, onBlur }, ref) => (
   <NativeSelect
-    defaultValue="대한민국"
-    ref={ref}
     name={name}
+    ref={ref}
+    defaultValue="대한민국"
+    data={getKrNameCountryList()}
     onChange={onChange}
     onBlur={onBlur}
-    data={getKrNameCountryList()}
   />
 );
 

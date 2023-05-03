@@ -52,8 +52,8 @@ const PasswordTooltipInput = ({ name, placeholder, onChange, onBlur }, ref) => {
         <Input
           type="password"
           placeholder={placeholder}
-          ref={ref}
           name={name}
+          ref={ref}
           onFocus={() => setOpened(true)}
           onBlur={handleBlur}
           onChange={handleChange}

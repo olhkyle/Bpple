@@ -27,21 +27,21 @@ const MantineDateInput = styled(DateInput)`
  * @returns
  */
 
-const BirthDateInput = ({ name, placeholder, onBlur, setValue, initDate = new Date('2022-12-12') }, ref) => {
+const BirthDateInput = ({ name, placeholder, onBlur, setValue, initDate }, ref) => {
   const [date, setDate] = React.useState(initDate);
 
   return (
     <MantineDateInput
-      ref={ref}
+      placeholder={placeholder}
       name={name}
       value={date}
+      ref={ref}
+      valueFormat="YYYY-MM-DD"
       onChange={date => {
         setDate(date);
         setValue(name, date);
       }}
       onBlur={onBlur}
-      valueFormat="YYYY-MM-DD"
-      placeholder={placeholder}
     />
   );
 };

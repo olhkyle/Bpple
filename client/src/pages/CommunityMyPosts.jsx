@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Container, Title } from '@mantine/core';
-import { Posts } from '../components/community';
+import { PostSection } from '../components/community';
 import { myPostsQuery } from '../queries';
 
 const Wrapper = styled(Container)`
@@ -20,7 +20,7 @@ const CommunityMyPosts = () => (
     <Title size="52px" mt="40px">
       내가 작성한 글 목록
     </Title>
-    <Posts queryFn={myPostsQuery()} />
+    <PostSection queryFn={myPostsQuery()} />
   </Wrapper>
 );
 

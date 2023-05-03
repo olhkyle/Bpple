@@ -40,15 +40,17 @@ const SignUpForm = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(signupScheme),
+    shouldFocusError: true,
   });
 
   const onSubmit = async data => {
     try {
       await signUp(data);
+
       toast.success({ message: '회원가입에 성공하였습니다.' });
       navigate(SIGNIN_PATH);
     } catch (e) {
-      console.error(e);
+      toast.error({ message: '회원가입에 실패하였습니다.' });
     }
   };
 

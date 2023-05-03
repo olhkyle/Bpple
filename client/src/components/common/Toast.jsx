@@ -122,9 +122,9 @@ const Toast = ({
   };
 
   return (
-    <Container status={status} position={position} onAnimationEnd={handleAnimationEnd} h={h} bgc={bgc[type]}>
+    <Container status={status} position={position} h={h} bgc={bgc[type]} onAnimationEnd={handleAnimationEnd}>
       {closeOnClick && (
-        <ToastCloseButton onClick={() => setStatus('dismiss')} iconSize="24px" variant="transparent" right="2.5%" />
+        <ToastCloseButton right="2.5%" iconSize="24px" variant="transparent" onClick={() => setStatus('dismiss')} />
       )}
       <Center px="5%">{message}</Center>
     </Container>

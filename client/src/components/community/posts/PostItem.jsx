@@ -5,7 +5,7 @@ import { Badge, Flex, Group, List, Text, Title } from '@mantine/core';
 import { COMMUNITY_POST_PATH } from '../../../routes/routePaths';
 import formattedDate from '../../../utils/formattedDate';
 import { AvatarIcon, AppleRecommendIcon, CompletedIcon } from '../..';
-import { category as CATEGORY } from '../../../constants/category';
+import { CATEGORY } from '../../../constants/category';
 
 const Post = styled(List.Item)`
   border: 1px solid var(--opacity-border-color);
@@ -42,9 +42,9 @@ const PostDescription = styled(Group)`
   word-break: keep-all;
 `;
 
-const PostItem = ({ post }) => {
-  const { id, title, createAt, category, completed, avatarId, certified, commentsLength, productType } = post;
-
+const PostItem = ({
+  post: { id, title, createAt, category, completed, avatarId, certified, commentsLength, productType },
+}) => {
   const conditionalColor = category === CATEGORY.iphone ? 'red' : category === CATEGORY.mac ? 'green' : 'blue';
 
   return (

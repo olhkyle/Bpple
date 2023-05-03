@@ -55,7 +55,7 @@ const Header = ({ title, menuList }) => (
       <Title to={title.path}>{title.content}</Title>
       <MenuWrapper>
         {menuList.map(({ path, content }) => (
-          <Menu to={path} key={content}>
+          <Menu key={content} to={path}>
             {content}
           </Menu>
         ))}

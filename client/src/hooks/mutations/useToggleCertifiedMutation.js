@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
-import { updateCertifiedComment } from '../../constants/mutateComment';
-import { updateCommentCertified } from '../../api/post';
+import { toggleCertified } from '../../constants/mutateComment';
+import { toggleCommentCertified } from '../../api/post';
 import userState from '../../recoil/atoms/userState';
 
-const useUpdateCertifiedMutation = postId => {
+const useToggleCertifiedMutation = postId => {
   const queryClient = useQueryClient();
   const setUser = useSetRecoilState(userState);
 
@@ -13,7 +13,7 @@ const useUpdateCertifiedMutation = postId => {
 
   const { mutate } = useMutation({
     mutationFn: async variables => {
-      await updateCommentCertified({ postId, ...variables });
+      await toggleCommentCertified({ postId, ...variables });
     },
 
     onMutate: async variables => {
@@ -22,7 +22,7 @@ const useUpdateCertifiedMutation = postId => {
       const prevComments = queryClient.getQueryData(commentQueryKey);
       const prevPost = queryClient.getQueryData(postDetailQueryKey);
 
-      queryClient.setQueryData(commentQueryKey, oldData => updateCertifiedComment(oldData, variables));
+      queryClient.setQueryData(commentQueryKey, oldData => toggleCertified(oldData, variables));
       queryClient.setQueryData(postDetailQueryKey, oldData => ({
         ...oldData,
         post: { ...oldData.post, certified: variables.certified },
@@ -30,7 +30,7 @@ const useUpdateCertifiedMutation = postId => {
 
       return { prevComments, prevPost };
     },
-    onError: (error, variables, { prevComments, prevPost }) => {
+    onError: (_, __, { prevComments, prevPost }) => {
       setUser(null);
 
       queryClient.setQueryData(commentQueryKey, prevComments);
@@ -41,4 +41,4 @@ const useUpdateCertifiedMutation = postId => {
   return mutate;
 };
 
-export default useUpdateCertifiedMutation;
+export default useToggleCertifiedMutation;

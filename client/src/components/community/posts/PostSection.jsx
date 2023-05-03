@@ -21,7 +21,7 @@ const MyPosts = styled(List)`
   gap: 1rem;
 `;
 
-const Posts = ({ queryFn, isShownQuestionButton = true }) => {
+const PostSection = ({ queryFn, isShownQuestionButton = true }) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(queryFn);
 
   const [currentSort, setCurrentSort] = React.useState('recent');
@@ -77,4 +77,4 @@ const Posts = ({ queryFn, isShownQuestionButton = true }) => {
   );
 };
 
-export default Posts;
+export default PostSection;

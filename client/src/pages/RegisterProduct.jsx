@@ -19,7 +19,6 @@ const Title = styled.h1`
 
 const registerProductScheme = z
   .object({
-    // color: z.string(), // TODO:
     productType: z.string().regex(/.+/),
   })
   .required();
@@ -43,10 +42,10 @@ const RegisterProduct = () => {
   const onSubmit = async data => {
     try {
       await registerProduct(data);
-      toast.create({ message: '기기 등록이 완료되었습니다.' });
+      toast.success({ message: '기기 등록이 완료되었습니다.' });
       navigate(PROFILE_PATH);
     } catch (e) {
-      console.error(e);
+      toast.error({ message: '기기 등록에 실패하였습니다. 잠시 후 다시 시도해주세요.' });
     }
   };
 

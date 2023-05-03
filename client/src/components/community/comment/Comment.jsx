@@ -2,10 +2,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { Badge, Box, Button, CloseButton, Divider, Flex, Group, List, Text } from '@mantine/core';
+import { useRecoilValue } from 'recoil';
 import { AvatarIcon, AppleRecommendIcon, TextEditor, UsefulCommentChip, AppleRecommendButton } from '../..';
 import formattedDate from '../../../utils/formattedDate';
 import transientOptions from '../../../utils/transientOptions';
 import useTextEditor from '../../../hooks/useTextEditor';
+import userState from '../../../recoil/atoms/userState';
 
 const Container = styled(List.Item)`
   .mantine-List-itemWrapper {
@@ -64,16 +66,15 @@ const UsefulBadge = styled(Group)`
 
 const Comment = ({
   comment,
-  isAuthor,
-  isPostAuthorAndLoginUserSame,
+  postInfo,
   isAdmin,
-  certifiedPost,
-  oneOfCommentsIsUseful,
-  editMutate,
-  removeMutate,
-  updateCertifiedMutate,
+  isOneOfCommentsIsUseful,
+  mutateFns: { editMutate, toggleUsefulMutate, toggleCertifiedMutate, removeMutate },
 }) => {
-  const { id, avatarId, certified, content, createAt, level, nickName, useful } = comment;
+  const { id, author, avatarId, certified, content, createAt, level, nickName, useful } = comment;
+  const user = useRecoilValue(userState);
+
+  const isAuthor = author === user?.email;
 
   const [commentEditable, setCommentEditable] = React.useState(false);
 
@@ -82,7 +83,7 @@ const Comment = ({
     placeholder: '의견을 알려주세요.',
   });
 
-  const handleClickCertified = (commentId, certified) => () => updateCertifiedMutate({ commentId, certified });
+  const handleClickCertified = (commentId, certified) => () => toggleCertifiedMutate({ commentId, certified });
 
   return (
     <Container>
@@ -91,7 +92,6 @@ const Comment = ({
           {certified && <AppleRecommendIcon color="white" />}
           {isAuthor && (
             <CloseButton
-              onClick={() => removeMutate({ commentId: id })}
               title="Close popover"
               ml="auto"
               mr="6px"
@@ -99,34 +99,40 @@ const Comment = ({
               variant="transparent"
               iconSize={20}
               c="var(--font-color)"
+              onClick={() => removeMutate({ commentId: id })}
             />
           )}
         </CommentHeader>
         <CommentBody>
           <AvatarIcon avatarId={avatarId} />
           <Flex direction="column" w="100%">
-            <Flex display="flex" gap="10px">
+            <Flex gap="10px">
               <Flex gap="10px" align="center">
                 <Text mt="-3px" ml="2px" fz="21px" fw="500" c="var(--font-color)">
                   {nickName}
                 </Text>
                 <Badge variant="outline" size="sm" fz="14px" radius="xl" color="dark">
-                  L{level}
+                  {`L${level}`}
                 </Badge>
               </Flex>
 
               <Flex ml="auto" gap="10px">
-                {isAdmin && !certifiedPost && !certified && (
+                {isAdmin && !postInfo.certified && !certified && (
                   <AppleRecommendButton onClick={handleClickCertified(id, true)} />
                 )}
-                {isAdmin && certifiedPost && certified && (
-                  <Button onClick={handleClickCertified(id, false)} radius="xl" color="dark">
+                {isAdmin && postInfo.certified && certified && (
+                  <Button radius="xl" color="dark" onClick={handleClickCertified(id, false)}>
                     권장 답변 취소
                   </Button>
                 )}
 
-                {isPostAuthorAndLoginUserSame ? (
-                  <UsefulCommentChip useful={useful} commentId={id} oneOfCommentsIsUseful={oneOfCommentsIsUseful} />
+                {postInfo.author === user?.email ? (
+                  <UsefulCommentChip
+                    commentId={id}
+                    useful={useful}
+                    isOneOfCommentsIsUseful={isOneOfCommentsIsUseful}
+                    toggleUsefulMutate={toggleUsefulMutate}
+                  />
                 ) : (
                   useful && (
                     <UsefulBadge>
@@ -138,14 +144,14 @@ const Comment = ({
 
                 {isAuthor && (
                   <Button
-                    onClick={() => {
-                      setCommentEditable(!commentEditable);
-                      editor.commands.focus('end');
-                    }}
                     mb="4px"
                     h="32px"
                     color={commentEditable ? 'red' : 'blue'}
-                    radius="xl">
+                    radius="xl"
+                    onClick={() => {
+                      setCommentEditable(!commentEditable);
+                      editor.commands.focus('end');
+                    }}>
                     {commentEditable ? '편집 취소' : '답글 편집'}
                   </Button>
                 )}
@@ -160,12 +166,12 @@ const Comment = ({
                 <TextEditor editor={editor} />
                 <Flex justify="end" mt="20px" gap="10px">
                   <Button
+                    h="32px"
+                    radius="xl"
                     onClick={() => {
                       editMutate({ commentId: id, commentInfo: { content: editor.getHTML() } });
                       setCommentEditable(false);
-                    }}
-                    h="32px"
-                    radius="xl">
+                    }}>
                     편집 완료
                   </Button>
                 </Flex>

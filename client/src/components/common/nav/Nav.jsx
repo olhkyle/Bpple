@@ -24,10 +24,6 @@ const Wrapper = styled(Group)`
   gap: 20px;
 `;
 
-const SideWrapper = styled(Wrapper)`
-  margin-right: 50px;
-`;
-
 const LogoLink = styled(Link)`
   margin-right: 30px;
 `;
@@ -54,7 +50,7 @@ const Nav = () => (
         </LogoLink>
         <MenuList />
       </Wrapper>
-      <SideWrapper>
+      <Wrapper mr="50px">
         <CartLink to={CART_PATH}>
           <IconLink>
             <BsCart />
@@ -62,7 +58,7 @@ const Nav = () => (
         </CartLink>
         <ThemeButton />
         <UserMenu />
-      </SideWrapper>
+      </Wrapper>
     </NavContainer>
   </>
 );

@@ -69,11 +69,12 @@ const ProfileEditForm = () => {
 
     try {
       await editProfile({ ...data, userId: loginUser.email });
+
       setLoginUser({ email: loginUser.email, nickName: data.nickName, avatarId: data.avatarId });
-      toast.create({ message: '회원정보가 수정되었습니다.' });
+      toast.success({ message: '회원정보가 수정되었습니다.' });
       navigate(PROFILE_PATH);
     } catch (e) {
-      console.error(e);
+      toast.error({ message: '회원정보를 수정하는데 실패하였습니다. 잠시 후 다시 시도해주세요.' });
     }
   };
 
@@ -101,19 +102,19 @@ const ProfileEditForm = () => {
           </Radio.Group>
 
           <InputWrapper label="닉네임" desc="커뮤니티에서 사용할 닉네임입니다.." error={errors?.nickName?.message}>
-            <DuplicateCheckInput {...register('nickName')} checker={checkChangeNickName} placeholder="닉네임" />
+            <DuplicateCheckInput placeholder="닉네임" checker={checkChangeNickName} {...register('nickName')} />
           </InputWrapper>
 
           <InputWrapper label="전화번호" error={errors?.phoneNumber?.message}>
-            <PhoneNumberInput {...register('phoneNumber')} setValue={setValue} placeholder="전화번호" />
+            <PhoneNumberInput placeholder="전화번호" setValue={setValue} {...register('phoneNumber')} />
           </InputWrapper>
 
           <InputWrapper label="생년월일" error={errors?.birthDate?.message}>
             <BirthDateInput
-              {...register('birthDate')}
-              setValue={setValue}
               placeholder="생년월일"
               initDate={getValues('birthDate')}
+              setValue={setValue}
+              {...register('birthDate')}
             />
           </InputWrapper>
 

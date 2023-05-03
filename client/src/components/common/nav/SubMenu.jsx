@@ -43,6 +43,8 @@ const SubMenuLabel = styled(Text)`
 `;
 
 const SubMenuItem = styled(Menu.Item)`
+  font-size: ${({ size }) => (size === 'sm' ? '15px' : '20px')};
+  font-weight: ${({ size }) => (size === 'sm' ? '400' : '700')};
   color: var(--font-color);
   width: fit-content;
   padding: 3px 5px;
@@ -50,16 +52,6 @@ const SubMenuItem = styled(Menu.Item)`
   :hover {
     color: var(--hover-font-color);
   }
-`;
-
-const MenuItemLg = styled(SubMenuItem)`
-  font-size: 20px;
-  font-weight: 700;
-`;
-
-const MenuItemSm = styled(SubMenuItem)`
-  font-size: 15px;
-  font-weight: 400;
 `;
 
 /**
@@ -84,31 +76,19 @@ const SubMenu = ({ leftLabel, leftMenuItems, rightLabel, rightMenuItems }) => (
     <SubMenuWrapper>
       <SubMenuWrapperLeft>
         {leftLabel && <SubMenuLabel>{leftLabel}</SubMenuLabel>}
-        {leftMenuItems.map(({ size, content, path }) =>
-          size === 'sm' ? (
-            <MenuItemSm key={path} component="a" href={path}>
-              {content}
-            </MenuItemSm>
-          ) : (
-            <MenuItemLg key={path} component="a" href={path}>
-              {content}
-            </MenuItemLg>
-          )
-        )}
+        {leftMenuItems.map(({ size, content, path }) => (
+          <SubMenuItem key={path} component="a" href={path} size={size}>
+            {content}
+          </SubMenuItem>
+        ))}
       </SubMenuWrapperLeft>
       <SubMenuWrapperRight>
         {rightLabel && <SubMenuLabel>{rightLabel}</SubMenuLabel>}
-        {rightMenuItems.map(({ size, content, path }) =>
-          size === 'sm' ? (
-            <MenuItemSm key={path} component="a" href={path}>
-              {content}
-            </MenuItemSm>
-          ) : (
-            <MenuItemLg key={path} component="a" href={path}>
-              {content}
-            </MenuItemLg>
-          )
-        )}
+        {rightMenuItems.map(({ size, content, path }) => (
+          <SubMenuItem key={path} component="a" href={path} size={size}>
+            {content}
+          </SubMenuItem>
+        ))}
       </SubMenuWrapperRight>
     </SubMenuWrapper>
   </SubMenuContainer>

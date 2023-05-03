@@ -30,7 +30,7 @@ const DuplicateCheckInput = ({ checker, name, placeholder, onChange, onBlur }, r
           </Flex>
         )
       }>
-      <Input ref={ref} name={name} placeholder={placeholder} onChange={onChange} onBlur={handleBlur} />
+      <Input placeholder={placeholder} name={name} ref={ref} onChange={onChange} onBlur={handleBlur} />
     </Input.Wrapper>
   );
 };

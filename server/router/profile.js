@@ -30,6 +30,7 @@ router.post('/', (req, res) => {
 			avatarId,
 			aboutMe,
 			birthDate,
+			email,
 		} = user;
 
 		res.send({
@@ -43,6 +44,7 @@ router.post('/', (req, res) => {
 			avatarId,
 			aboutMe,
 			birthDate,
+			email,
 		});
 	} catch (e) {
 		console.error('😱 사용자 인증 실패..', e);
