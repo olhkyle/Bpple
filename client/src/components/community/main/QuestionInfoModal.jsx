@@ -24,7 +24,7 @@ const QuestionInfoModal = ({ opened, onClose }) => {
       <Text mt="30px" fw="500" fz="lg">
         홈페이지에서 질문을 하려면 다음을 따릅니다.
       </Text>
-      <List p="32px" spacing="lg">
+      <List p="32px" spacing="lg" c="var(--font-color)">
         {followingInstructions.map((instruction, idx) => (
           <List.Item key={idx}>{instruction}</List.Item>
         ))}
