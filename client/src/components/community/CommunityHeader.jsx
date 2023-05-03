@@ -18,7 +18,7 @@ const CommunityHeader = () => (
       { path: COMMUNITY_QUESTION_PATH, content: '질문하기' },
       { path: COMMUNITY_FAQ_PATH, content: '자주 묻는 질문' },
       { path: COMMUNITY_RANK_PATH, content: '랭킹' },
-      { path: COMMUNITY_ME_PATH, content: '내가 작성한 글 목록' },
+      { path: COMMUNITY_ME_PATH, content: '내가 작성한 질문' },
     ]}
   />
 );

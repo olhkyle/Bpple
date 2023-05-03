@@ -18,7 +18,7 @@ const Wrapper = styled(Container)`
 const CommunityMyPosts = () => (
   <Wrapper>
     <Title size="52px" mt="40px">
-      내가 작성한 글 목록
+      내가 작성한 질문
     </Title>
     <PostSection queryFn={myPostsQuery()} />
   </Wrapper>
