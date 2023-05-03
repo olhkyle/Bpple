@@ -8,9 +8,9 @@ let comments = [
 		content: `저는 지금 <b>아이폰12 프로맥스</b> 사용중이고 업데이트도 최신 버전인 <b>16.4.1</b> 사용중인데 같은 현상을 일으킨 적은 없고,
 		<b>예전에 아이폰X를 사용할 때 그런 동일한 경험이 있긴 합니다.</b><br/><br/>
 		저 같은 경우엔 유심칩쪽을 제대로 인식 못해서 처음엔 기다리면 다시 되더니
-		나중에는 유심칩 트레이를 뽑았다 다시 장착하거나 그 후에는 동일한 방법을 써도 인식이 잘 안되더라구요.<br/><br/>
+		<i>나중에는 유심칩 트레이를 뽑았다 다시 장착하거나 그 후에는 동일한 방법을 써도 인식이 잘 안되더라구요.</i><br/><br/>
 		사용하시다가 앱 실행 초기말고 사용하시다 중간 중간에 그런다면 
-		<b>유심칩 트레이 불량이거나 유심칩 불량일 가능성도 있기 때문에</b>
+		<mark><b>유심칩 트레이 불량이거나 유심칩 불량일 가능성도 있기 때문에</b></mark>
 		괜찮으시다면 유심칩 먼저 교환해보시거나 <b>esim</b> 지원한다면 esim도 한 번 고려해 보세요.`,
 		createAt: new Date('2023-04-24'),
 		updateAt: new Date(),
@@ -86,7 +86,7 @@ let comments = [
 		author: 'email22@email.com',
 		content: `저도 똑같은 문제로 <b>애플 스토어</b>에 방문했는데 제대로 된 해결책을 주지 않아서, esim으로 바꿔서 해결했습니다. <br/>
 		특정 앱에서 네트워크 통신 간에 문제가 있는 것 같은데, <b>확실한 해결책은 아니지만 저는 esim으로 해결했습니다.</b> <br/>
-		물리적으로 비싼돈을 다시 들여서 핸드폰을 바꾸는 것보다 나은 것 같네요.`,
+		<i>물리적으로 비싼 돈</i>을 다시 들여서 핸드폰을 바꾸는 것보다 나은 것 같네요.`,
 		createAt: new Date('2023-03-06'),
 		updateAt: new Date(),
 		certified: false,
@@ -237,7 +237,7 @@ let comments = [
 		postId: '2',
 		author: 'email8@email.com',
 		content: `특정인에게 발생되는 내용인가요? 상대방도 동일 모델이라면 사운드가 나오지 않는 문제에 대한 iPhone 12 및 iPhone 12 Pro 서비스 프로그램
-		해당 서비스가 필요한지 확인을 해 봐야할 것 같네요.`,
+		해당 서비스가 필요한지 확인을 해봐야할 것 같네요.`,
 		createAt: new Date('2023-03-25'),
 		updateAt: new Date(),
 		certified: true,
@@ -267,8 +267,8 @@ let comments = [
 		id: uuidv4(),
 		postId: '2',
 		author: 'email21@email.com',
-		content: `음성이 전달되는 마이크 부분에 먼지가 많이 껴서 그럴 수도 있을 것 같네요. 
-		<b>휴대폰을 오래사용하셨다면, 내부 청소를 하는 것도 방법일 것 같아요.</b>
+		content: `음성이 전달되는 마이크 부분에 먼지가 많이 껴서 그럴 수도 있을 것 같네요. <br/>
+		<b>휴대폰을 오래사용하셨다면, 내부 청소를 하는 것도 방법일 것 같아요.</b><br/>
 		그래도 안된다면, 애플 공식 매장에 방문하셔서 수리받으셔야 해요`,
 		createAt: new Date('2023-04-05'),
 		updateAt: new Date(),
@@ -310,7 +310,7 @@ let comments = [
 		postId: '4',
 		author: 'email2@email.com',
 		content: `특정 앱을 실행하면 해당 오류가 보이는 증상이시군요.<br/>
-		이 문제는 해당 앱의 문제이기 때문에 개발사로 해당 버그에 대해 보고 후 문제 해결 방법을 확인해 보세요.<br/>
+		이 문제는 해당 앱의 문제이기 때문에 <mark>개발사로 해당 버그에 대해 보고 후 문제 해결 방법을 확인</mark>해 보세요.<br/>
 		Apple 지원 커뮤니티를 이용해 주셔서 감사드리며, 문제가 잘 해결되기를 바랍니다.`,
 		createAt: new Date('2023-03-18'),
 		updateAt: new Date(),
@@ -346,9 +346,78 @@ let comments = [
 		author: 'kylekwon.dev@gmail.com',
 		content:
 			'<b>설정 -> safari -> 방문기록 및 웹사이트 데이터 지우기</b> 진행해도 동일한가요?',
+		createAt: new Date('2023-03-19'),
+		updateAt: new Date(),
+		certified: false,
+		useful: false,
+	},
+	{
+		id: uuidv4(),
+		postId: '19',
+		author: 'email19@email.com',
+		content: `시스템 종료 후 MacBook의 상판 덮개를 닫으면 자동으로 부팅이 되는 증상이시군요.<br/>
+			제 생각에는 MacBook의 <b>힌지 부분</b>이 문제로 생각이 됩니다.<br/><br/>
+			감사합니다.`,
 		createAt: new Date(),
 		updateAt: new Date(),
 		certified: false,
+		useful: false,
+	},
+	{
+		id: uuidv4(),
+		postId: '29',
+		author: 'email20@email.com',
+		content: `애플 스토어 예약관련 문의 주셨군요.<br/><br/>
+			친구분의 휴대폰을 사용할 수 없는 상태이기 때문에, 어쩔수 없는 상황이라면 그렇게 진행하셔도 될 것 같습니다.<br/>
+			<mark><b>다만, 예약자 정보를 친구 분의 성함으로 진행해 보시기 바랍니다.</b></mark><br/>
+			아무쪼록 문제가 잘 해결되시길 바랍니다.`,
+		createAt: new Date('2022-10-06'),
+		updateAt: new Date(),
+		certified: false,
+		useful: false,
+	},
+	{
+		id: uuidv4(),
+		postId: '31',
+		author: 'fineapple@email.com',
+		content: `<b>iPhone 14 Pro 발열 관련 글</b>을 남겨주셨군요.
+			일반적으로 아래와 같은 상황에서는 기기의 온도가 높아질 수 있습니다.
+			<br/><br/>
+			- 1. 기기를 처음 설정하는 경우
+			<br/>
+			- 2. 백업에서 복원하는 경우
+			<br/>
+			- 3. 소프트웨어 업데이트 후 사진 앱에서 얼굴, 장소 또는 키워드를 태그할 때처럼 앱에서 데이터를 재인덱스하거나 다시 분석하는 경우
+			<br/>
+			- 4. 증강 현실 또는 그래픽이 많은 앱이나 기능을 사용하는 경우, 기기의 온도가 특정 임계 값을 초과하게 되면 온도 경고 화면을 보여 줍니다.<br/><br/>
+			다만, 현재 사용한지 두달이 된 상황으로
+			기기의 온도가 높아질 수 있는 일반적인 상황이 아니라면, 추가적인 점검 또는 확인이 필요할 수 있습니다.
+			아래 방법으로 추가 문의해 주세요.
+			<br/><br/>
+			<b><mark>Apple 지원 전화문의: 080-333-4000</mark></b>
+			<br/><br/>
+			"발열"에 대한 문제가 남겨드린 내용과는 다르게 비정상적인 열이 발생하는 경우 기기를 점검 받아보실 필요가 있으며, <br/>
+			이 경우에는 가까운 Apple Store 혹은 Apple 공인 서비스 센터를 방문해 보실수도 있습니다.
+			<br/><br/>
+			조금이나마 도움이 되셨길 바랍니다.<br/>
+			감사합니다.`,
+		createAt: new Date('2022-10-02'),
+		updateAt: new Date(),
+		certified: false,
+		useful: true,
+	},
+	{
+		id: uuidv4(),
+		postId: '32',
+		author: 'fineapple@email.com',
+		content: `아이패드 화면이 켜지지 않고 터치도 되지 않아 문의 주셨군요. <br/>
+		문의해 주신 증상을 보면 하드웨어 점검이 필요해 보입니다.<br/>
+		<b><i>혹시, 모를 데이터 유실을 방지하기 위해 센터 방문전 꼭 데이터 백업을 해 주시기 바랍니다.</i></b><br/><br/>
+		아무쪼록 문제가 잘 해결되시길 바랍니다.
+		감사합니다.`,
+		createAt: new Date('2022-09-23'),
+		updateAt: new Date(),
+		certified: true,
 		useful: false,
 	},
 ];
