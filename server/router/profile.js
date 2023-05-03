@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
 
 		res.send({
 			nickName,
-			name: firstName + lastName,
+			name: lastName + firstName,
 			country,
 			phoneNumber,
 			products,
