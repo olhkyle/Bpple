@@ -30,6 +30,8 @@ const PostSection = ({ queryFn, isShownQuestionButton = true }) => {
 
   const filteredPosts = filterPosts(data.posts, currentFilter);
 
+  console.log(filteredPosts);
+
   return (
     <>
       <Flex gap="10px" mt="5.5rem" mb="10px" align="center" fw="600">
@@ -63,7 +65,7 @@ const PostSection = ({ queryFn, isShownQuestionButton = true }) => {
         {filteredPosts.length !== 0 ? (
           <MyPosts>
             {sortPosts(filteredPosts, currentSort).map(post => (
-              <PostItem key={post.title} post={post} />
+              <PostItem key={post.id} post={post} />
             ))}
           </MyPosts>
         ) : (

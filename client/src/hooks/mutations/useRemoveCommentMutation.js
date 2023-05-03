@@ -7,8 +7,14 @@ const useRemoveCommentMutation = postId =>
     postId,
     requestFn: removeComment,
     commentUpdateFn: remove,
-    postUpdateFn: (oldData, variables) =>
-      variables.certified ? { ...oldData, post: { ...oldData.post, certified: false } } : oldData,
+    postUpdateFn: (oldData, variables) => ({
+      ...oldData,
+      post: {
+        ...oldData.post,
+        certified: variables.certified ? false : oldData.post.certified,
+        completed: variables.useful ? false : oldData.post.completed,
+      },
+    }),
   });
 
 export default useRemoveCommentMutation;

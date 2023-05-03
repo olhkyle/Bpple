@@ -119,7 +119,7 @@ const Comment = ({
               variant="transparent"
               iconSize={20}
               c="var(--font-color)"
-              onClick={() => removeMutate({ commentId: id, certified })}
+              onClick={() => removeMutate({ commentId: id, certified, useful })}
             />
           )}
         </CommentHeader>
