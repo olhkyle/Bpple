@@ -8,7 +8,7 @@ const useCommentMutation = ({ requestFn, postId, updateFn, ...options }) => {
   const toast = useToast();
   const setUser = useSetRecoilState(userState);
 
-  const queryKey = ['comment', postId];
+  const queryKey = ['comments', postId];
 
   const { mutate } = useMutation({
     mutationFn: async variables => {
