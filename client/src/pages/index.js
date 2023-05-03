@@ -14,3 +14,4 @@ export { default as RegisterProduct } from './RegisterProduct';
 export { default as CommunityQuestion } from './CommunityQuestion';
 export { default as CommunityRank } from './CommunityRank';
 export { default as NotFound } from './NotFound';
+export { default as PreparePage } from './PreparePage';
