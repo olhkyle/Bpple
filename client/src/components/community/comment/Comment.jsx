@@ -121,7 +121,7 @@ const Comment = ({
                   <AppleRecommendButton onClick={handleClickCertified(id, true)} />
                 )}
                 {isAdmin && postInfo.certified && certified && (
-                  <Button radius="xl" color="dark" onClick={handleClickCertified(id, false)}>
+                  <Button radius="xl" color="red" onClick={handleClickCertified(id, false)}>
                     권장 답변 취소
                   </Button>
                 )}

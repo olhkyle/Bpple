@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router';
-import { Flex } from '@mantine/core';
+import { Flex, Text } from '@mantine/core';
 import { AvatarIcon } from '../..';
 import { COMMUNITY_POST_PATH } from '../../../routes/routePaths';
 
