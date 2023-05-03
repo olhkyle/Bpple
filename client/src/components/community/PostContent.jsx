@@ -7,6 +7,11 @@ import formattedDate from '../../utils/formattedDate';
 import { AvatarIcon, CompletedIcon, AppleRecommendIcon } from '..';
 import { COMMUNITY_CATEGORY_PATH, COMMUNITY_PROFILE_PATH } from '../../routes/routePaths';
 
+const BreadCrumb = styled(Link)`
+  width: 100px;
+  cursor: pointer;
+`;
+
 const PostSection = styled.section`
   margin-top: 2.5rem;
 `;
@@ -40,12 +45,12 @@ const PostContent = ({
   post: { title, category, createAt, content, completed, avatarId, certified, nickName, level, point },
 }) => (
   <>
-    <Link to={`${COMMUNITY_CATEGORY_PATH}/${category.toLowerCase()}`}>
+    <BreadCrumb to={`${COMMUNITY_CATEGORY_PATH}/${category.toLowerCase()}`}>
       <Flex gap="5px" align="center" fz="15px" fw="600" td="none" c="var(--font-color)">
         <Text>{category}</Text>
         <BsArrowUpRightSquare />
       </Flex>
-    </Link>
+    </BreadCrumb>
     <PostSection>
       <Flex gap="1rem" mb="0.5rem" ml="auto" h="30px">
         <CompletedIcon completed={completed} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Menu, Text } from '@mantine/core';
-import { MacSubMenu, IphoneSubMenu, CommunitySubMenu } from '.';
+import { MacSubMenu, IphoneSubMenu, IpadSubMenu, CommunitySubMenu } from '.';
 
 const NavItem = styled(Text)`
   font-size: 20px;
@@ -29,6 +29,13 @@ const MenuList = () => (
         <NavItem>iPhone</NavItem>
       </Menu.Target>
       <IphoneSubMenu />
+    </Menu>
+
+    <Menu trigger="hover" c="var(--font-color)">
+      <Menu.Target>
+        <NavItem>iPad</NavItem>
+      </Menu.Target>
+      <IpadSubMenu />
     </Menu>
 
     <Menu trigger="hover" c="var(--font-color)">

@@ -10,6 +10,7 @@ const SubTitle = styled.h2`
 
 const PointTable = styled(Table)`
   margin-top: 20px;
+  color: var(--font-color);
 `;
 
 /**

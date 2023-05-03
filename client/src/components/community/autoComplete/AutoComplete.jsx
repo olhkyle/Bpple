@@ -55,7 +55,7 @@ const AutoComplete = ({ width = 620, queryFn, category = '' }) => {
       wrapperwidth={width}
       zIndex={10}
       dropdownPosition="bottom"
-      placeholder="검색 또는 질문하기"
+      placeholder="검색하기"
       value={value}
       limit={LIMIT_OF_POSTS}
       itemComponent={AutoCompleteItem}

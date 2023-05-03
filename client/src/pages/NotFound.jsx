@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Button, Container, Flex, Text } from '@mantine/core';
-import { FiArrowLeft } from 'react-icons/fi';
+import { BsArrowLeftCircleFill } from 'react-icons/bs';
 import useGoBack from '../hooks/useGoBack';
 
 const Wrapper = styled(Container)`
@@ -26,7 +26,7 @@ const NotFound = () => {
           요청하신 페이지를 찾을 수 없습니다. <br />
           입력하신 주소가 정확한 지 다시 한 번 확인해 주세요.
         </Text>
-        <Button onClick={goBack} w={240} size="md" radius="xl" leftIcon={<FiArrowLeft size="21" />}>
+        <Button w={240} size="md" radius="xl" fz="16px" leftIcon={<BsArrowLeftCircleFill size="18" />} onClick={goBack}>
           이전 페이지로 돌아가기
         </Button>
       </Flex>

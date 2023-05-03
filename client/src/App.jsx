@@ -24,8 +24,8 @@ import {
   NotFound,
   CommunityProfile,
   CommunityFaq,
+  PreparePage,
 } from './pages';
-
 import { SIGNIN_PATH } from './routes/routePaths';
 
 const queryClient = new QueryClient({
@@ -101,6 +101,14 @@ const router = createBrowserRouter([
       {
         path: '/profile/register',
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<RegisterProduct />} />,
+      },
+      {
+        path: '/cart',
+        element: <PreparePage />,
+      },
+      {
+        path: '/shop/*',
+        element: <PreparePage />,
       },
       {
         path: '*',
