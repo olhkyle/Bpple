@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { Badge, Box, Button, CloseButton, Divider, Flex, Group, List, Text } from '@mantine/core';
 import { useRecoilValue } from 'recoil';
 import { AvatarIcon, AppleRecommendIcon, TextEditor, UsefulCommentChip, AppleRecommendButton } from '../..';
+import { COMMUNITY_PROFILE_PATH } from '../../../routes/routePaths';
 import formattedDate from '../../../utils/formattedDate';
 import transientOptions from '../../../utils/transientOptions';
 import useTextEditor from '../../../hooks/useTextEditor';
@@ -32,6 +34,12 @@ const CommentHeader = styled(Flex, transientOptions)`
   background: ${({ $certified }) => ($certified ? '#238BE680' : 'var(--secondary-bg-color)')};
 `;
 
+const CommentWrapper = styled(Flex)`
+  flex-direction: column;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+`;
+
 const CommentBody = styled.div`
   min-width: 500px;
   display: flex;
@@ -39,10 +47,22 @@ const CommentBody = styled.div`
   padding: 1.5rem;
 `;
 
-const CommentWrapper = styled(Flex)`
-  flex-direction: column;
-  border: 1px solid #e5e5e5;
-  border-radius: 10px;
+const CommentNickName = styled(Text)`
+  margin: 2.5px 0 0 2px;
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--font-color);
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const CommentLevelBadge = styled(Badge)`
+  margin-top: 4px;
+  padding: 0 8px;
+  font-size: 14px;
+  border: 1px solid var(--font-color);
+  color: var(--font-color);
 `;
 
 const CommentContent = styled(Text)`
@@ -104,24 +124,24 @@ const Comment = ({
           )}
         </CommentHeader>
         <CommentBody>
-          <AvatarIcon avatarId={avatarId} />
+          <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
+            <AvatarIcon avatarId={avatarId} />
+          </Link>
           <Flex direction="column" w="100%">
             <Flex gap="10px">
-              <Flex gap="10px" align="center">
-                <Text mt="-3px" ml="2px" fz="21px" fw="500" c="var(--font-color)">
-                  {nickName}
-                </Text>
-                <Badge variant="outline" size="sm" fz="14px" radius="xl" color="dark">
-                  {`L${level}`}
-                </Badge>
-              </Flex>
+              <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
+                <Flex gap="10px" align="center">
+                  <CommentNickName>{nickName}</CommentNickName>
+                  <CommentLevelBadge variant="outline">{`L${level}`}</CommentLevelBadge>
+                </Flex>
+              </Link>
 
               <Flex ml="auto" gap="10px">
                 {isAdmin && !postInfo.certified && !certified && (
                   <AppleRecommendButton onClick={handleClickCertified(id, true)} />
                 )}
                 {isAdmin && postInfo.certified && certified && (
-                  <Button radius="xl" color="red" onClick={handleClickCertified(id, false)}>
+                  <Button h="32px" radius="xl" color="red" onClick={handleClickCertified(id, false)}>
                     권장 답변 취소
                   </Button>
                 )}
