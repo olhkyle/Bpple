@@ -32,7 +32,7 @@ const PostSection = ({ queryFn, isShownQuestionButton = true }) => {
 
   return (
     <>
-      <Flex gap="10px" mt="5.5rem" mb="10px" align="center" fw="600">
+      <Flex gap="10px" mt="3.5rem" mb="10px" align="center" fw="600">
         <Text fz="2rem" fw="600" mt="1px">
           질문
         </Text>
