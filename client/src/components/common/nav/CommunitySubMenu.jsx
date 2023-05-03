@@ -2,6 +2,7 @@ import React from 'react';
 import {
   COMMUNITY_CATEGORY_IPHONE_PATH,
   COMMUNITY_CATEGORY_MAC_PATH,
+  COMMUNITY_CATEGORY_IPAD_PATH,
   COMMUNITY_FAQ_PATH,
   COMMUNITY_ME_PATH,
   COMMUNITY_PATH,
@@ -15,7 +16,7 @@ const CommunitySubMenu = () => {
     { size: 'lg', content: '커뮤니티', path: COMMUNITY_PATH },
     { size: 'lg', content: 'Mac', path: COMMUNITY_CATEGORY_MAC_PATH },
     { size: 'lg', content: 'iPhone', path: COMMUNITY_CATEGORY_IPHONE_PATH },
-    { size: 'lg', content: 'iPad', path: '#' },
+    { size: 'lg', content: 'iPad', path: COMMUNITY_CATEGORY_IPAD_PATH },
   ];
 
   const rightMenuItems = [

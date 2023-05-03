@@ -189,9 +189,11 @@ router.delete('/:postId/comment/:commentId', (req, res) => {
 		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
 		const { commentId, postId } = req.params;
-		const { certified } = comments.getComment(commentId);
+		const { certified, useful } = comments.getComment(commentId);
 
 		if (certified) posts.updateCertifiedPost(postId, false);
+		if (useful) posts.updateCompletedPost(postId, false);
+
 		comments.deleteComment(commentId);
 
 		res.send({ commentId });
