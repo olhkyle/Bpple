@@ -29,7 +29,7 @@ const Category = styled(List.Item)`
   flex-direction: column;
   align-items: center;
   border: 1px solid #e5e5e5;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
 
   span {
