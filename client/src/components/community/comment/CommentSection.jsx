@@ -103,8 +103,8 @@ const CommentSection = ({ postInfo, mutateFns }) => {
             variant="subtle"
             radius="xl"
             onClick={() => {
-              scrollIntoView({ alignment: 'start' });
               editor.commands.focus();
+              scrollIntoView({ alignment: 'start' });
             }}>
             <Text mr="8px" fz="1rem">
               답글 작성하기

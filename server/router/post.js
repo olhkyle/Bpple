@@ -182,14 +182,16 @@ router.patch('/:postId/comment/certified/:commentId', (req, res) => {
 });
 
 // 커뮤니티 글에 댓글 삭제
-router.delete('/:postid/comment/:commentId', (req, res) => {
+router.delete('/:postId/comment/:commentId', (req, res) => {
 	const accessToken = req.cookies.accessToken;
 
 	try {
 		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-		const { commentId } = req.params;
+		const { commentId, postId } = req.params;
+		const { certified } = comments.getComment(commentId);
 
+		if (certified) posts.updateCertifiedPost(postId, false);
 		comments.deleteComment(commentId);
 
 		res.send({ commentId });

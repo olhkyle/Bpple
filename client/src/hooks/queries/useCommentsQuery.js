@@ -1,9 +1,8 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import commentsQueryKey from '../../constants/commentsQueryKey';
 
 const useCommentsQuery = ({ queryFn, param, select }) => {
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage, refetch } = useInfiniteQuery({
-    queryKey: [commentsQueryKey, param],
+    queryKey: ['comments', param],
     queryFn: async ({ pageParam = 1 }) => {
       const { data } = await queryFn({ param, pageParam });
       return data;
