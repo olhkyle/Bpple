@@ -44,6 +44,7 @@ const AvatarProfileInfo = ({ nickName }) => {
   } = useQuery(profileByNickNameQuery(nickName));
 
   const { avatarId, level, point, aboutMe } = userInfo;
+  console.log(avatarId);
 
   return (
     <ProfileWrapper>

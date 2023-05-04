@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Flex, Input, Button } from '@mantine/core';
+import { Flex, Input, Button, Text } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { InputWrapper } from '../../common';
@@ -61,7 +61,12 @@ const QuestionForm = () => {
         </InputWrapper>
         <ContentEditor name="content" control={control} />
         <SubjectSelect name="subject" control={control} />
-        <Button type="submit" size="lg" mt="20px" radius="10px" disabled={!formState.isValid}>
+        {formState.isValid && (
+          <Text mt="20px" c="var(--font-color)" ta="center" fz="1rem">
+            작성한 글이 수정되지 않으므로, 신중하게 작성해 주세요.
+          </Text>
+        )}
+        <Button type="submit" size="lg" radius="10px" disabled={!formState.isValid}>
           글쓰기
         </Button>
       </Flex>

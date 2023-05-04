@@ -4,8 +4,6 @@ import { Profile, MyProductList } from '.';
 import { myProfileQuery } from '../../queries';
 
 const MyProfile = () => {
-  // const loginUser = Recoil.useRecoilValue(userState);
-
   const { data: userInfo } = useQuery(myProfileQuery());
 
   return (
