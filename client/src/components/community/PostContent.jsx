@@ -47,7 +47,7 @@ const Content = styled(Text)`
 const PostContent = ({
   post: { id, author, title, category, createAt, content, completed, avatarId, certified, nickName, level, point },
 }) => {
-  const { email } = Recoil.useRecoilValue(userState);
+  const userInfo = Recoil.useRecoilValue(userState);
   const [opened, { close: closeModal, open: openModal }] = useDisclosure(false);
 
   return (
@@ -64,7 +64,7 @@ const PostContent = ({
             <CompletedIcon completed={completed} />
             {certified && <AppleRecommendIcon />}
           </Flex>
-          {author === email && (
+          {author === userInfo?.email && (
             <Button radius="xl" color="red" variant="outline" onClick={openModal}>
               질문 삭제하기
             </Button>

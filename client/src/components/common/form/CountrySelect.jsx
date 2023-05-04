@@ -20,11 +20,11 @@ const getKrNameCountryList = () => {
  * @returns
  */
 
-const CountrySelect = ({ name, onChange, onBlur }, ref) => (
+const CountrySelect = ({ name, onChange, onBlur, defaultCountry = '대한민국' }, ref) => (
   <NativeSelect
     name={name}
     ref={ref}
-    defaultValue="대한민국"
+    defaultValue={defaultCountry}
     data={getKrNameCountryList()}
     onChange={onChange}
     onBlur={onBlur}
