@@ -114,7 +114,7 @@ const SignUpForm = () => {
           <PhoneNumberInput {...register('phoneNumber')} setValue={setValue} placeholder="전화번호" />
         </InputWrapper>
 
-        <Button mt="xl" size="lg" type="submit">
+        <Button type="submit" mt="xl" size="lg" radius="10px">
           회원가입
         </Button>
       </Stack>
