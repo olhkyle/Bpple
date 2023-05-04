@@ -4,9 +4,22 @@ import { Button, Flex, Image, Text } from '@mantine/core';
 import { PopupModal } from '../common';
 import { COMMUNITY_PATH } from '../../routes/routePaths';
 import { removePost } from '../../api/post';
+import useToast from '../../hooks/useToast';
 
 const DeletePostModal = ({ postId, opened, onClose }) => {
   const navigate = useNavigate();
+  const toast = useToast();
+
+  const handleDeletePostClick = async () => {
+    try {
+      await removePost(postId);
+
+      toast.success({ message: '게시물이 정상적으로 삭제되었습니다.' });
+      navigate(COMMUNITY_PATH);
+    } catch (e) {
+      toast.error({ message: '게시물 삭제에 실패하였습니다. 잠시 후 다시 시도해주세요.' });
+    }
+  };
 
   return (
     <PopupModal opened={opened} onClose={onClose} title={''}>
@@ -24,10 +37,7 @@ const DeletePostModal = ({ postId, opened, onClose }) => {
             fz="1.1rem"
             color="var(--font-color)"
             variant="outline"
-            onClick={() => {
-              removePost(postId);
-              navigate(COMMUNITY_PATH);
-            }}>
+            onClick={handleDeletePostClick}>
             {`확 인`}
           </Button>
           <Button w={120} radius="xl" fz="1.1rem" color="red" variant="outline" onClick={onClose}>

@@ -80,7 +80,7 @@ let posts = [
 		category: 'Mac',
 		productType: 'macbook-air-m1',
 		completed: false,
-		certified: false,
+		certified: true,
 	},
 	{
 		id: '4',
@@ -89,7 +89,7 @@ let posts = [
 		<code>Failed to convert value of type java.lang.String to required type 
 		'int'; nested exception is java.lang.NumberFormatException: For input string: 'NaN'</code><br/><br/>
 		위와 같은 오류가 뜹니다. 해결책이 있을까요? `,
-		author: 'email11@email.com',
+		author: 'cooljp95@naver.com',
 		createAt: new Date('2023-03-09'),
 		updateAt: new Date(),
 		category: 'iPhone',
@@ -106,7 +106,7 @@ let posts = [
 		화면을 누르고 있을 경우 동영상이 배속이 되는 기능이 있었는데 
 		어느 순간 기능이 작동하지 않습니다.
 		혹시 해결방법이 있을까요?`,
-		author: 'email23@email.com',
+		author: 'cooljp95@naver.com',
 		createAt: new Date('2023-01-02'),
 		updateAt: new Date(),
 		category: 'Ipad',
@@ -119,7 +119,7 @@ let posts = [
 		title: '애플 뮤직 & 앱스토어 어플 튕김',
 		content:
 			'<b>애플 뮤직</b>과 <b>앱스토어 어플</b>만 안들어가지고 계속 튕깁니다. 아예 어플이 안켜집니다. 재부팅도 해봤는데 똑같네요. 어떻게 해결할 수 있을까요? ',
-		author: 'email15@email.com',
+		author: 'cooljp95@naver.com',
 		createAt: new Date('2023-03-14'),
 		updateAt: new Date(),
 		category: 'iPhone',

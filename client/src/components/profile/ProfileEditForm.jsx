@@ -56,7 +56,7 @@ const ProfileEditForm = () => {
       phoneNumber: userInfo.phoneNumber,
       birthDate: new Date(userInfo.birthDate),
       aboutMe: userInfo.aboutMe,
-      avatarId: userInfo.avatarId,
+      avatarId: userInfo.avatarId ?? '',
     },
   });
 
@@ -119,7 +119,7 @@ const ProfileEditForm = () => {
           </InputWrapper>
 
           <InputWrapper label="국가 / 지역" error={errors?.country?.message}>
-            <CountrySelect {...register('country')} />
+            <CountrySelect defaultCountry={userInfo.country} {...register('country')} />
           </InputWrapper>
 
           <InputWrapper label="자기소개">
