@@ -49,7 +49,7 @@ const SignInForm = () => {
         <InputWrapper error={errorMessage || errors?.password?.message}>
           <Input type="password" {...register('password')} placeholder="암호" />
         </InputWrapper>
-        <Button mt="xl" size="lg" type="submit">
+        <Button type="submit" mt="xl" size="lg" radius="10px">
           로그인
         </Button>
       </Stack>

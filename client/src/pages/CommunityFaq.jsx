@@ -19,8 +19,8 @@ const Wrapper = styled(Container)`
 const CommunityFaq = () => {
   const faqList = [
     {
-      title: 'SIM이 없는 iPhone은 왜 apple.com에서 구입하는 게 좋은가요?',
-      content: `apple.com에서 구입하신 미개통 iPhone은 언락 기기입니다. 어느 한 이동통신사와 약정도, 다년간의 서비스 계약도 맺지 않은 상태의 기기라는 뜻이죠. 그래서 당신에게 알맞은 네트워크 및 요금제를 직접 선택할 수 있습니다. 새 iPhone은 활성화 후에도 여전히 언락 기기이기 때문에 iPhone용 서비스를 제공하는 어느 이동통신사에서든 개통할 수 있습니다.`,
+      title: 'SIM이 없는 iPhone은 왜 fineapple.com에서 구입하는 게 좋은가요?',
+      content: `fineapple.com에서 구입하신 미개통 iPhone은 언락 기기입니다. 어느 한 이동통신사와 약정도, 다년간의 서비스 계약도 맺지 않은 상태의 기기라는 뜻이죠. 그래서 당신에게 알맞은 네트워크 및 요금제를 직접 선택할 수 있습니다. 새 iPhone은 활성화 후에도 여전히 언락 기기이기 때문에 iPhone용 서비스를 제공하는 어느 이동통신사에서든 개통할 수 있습니다.`,
     },
     {
       title: '새 기기로 자료를 전송하거나 새로운 iPhone을 설정하는 일은 쉬운가요?',
@@ -48,7 +48,7 @@ const CommunityFaq = () => {
 
         재고가 있는 제품에 한해 익일 무료 배송을 받을 수 있고, 모든 주문에는 일반 무료 배송이 제공됩니다.
         
-        지역에 따라 Apple Store 픽업 옵션도 지원될 수 있습니다. 결제 시, 가까운 Apple Store에서 제품을 픽업하겠다는 옵션을 선택하면 됩니다.`,
+        지역에 따라 FineApple Store 픽업 옵션도 지원될 수 있습니다. 결제 시, 가까운 FineApple Store에서 제품을 픽업하겠다는 옵션을 선택하면 됩니다.`,
     },
   ];
 
