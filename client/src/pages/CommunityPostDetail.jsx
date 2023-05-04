@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Container, Divider } from '@mantine/core';
 import { postDetailQuery } from '../queries';
-import { PostContent, CommentSection } from '../components';
+import { PostContent, CommentSection, CommentLoader } from '../components';
 import {
   useAddCommentMutation,
   useEditCommentMutation,
@@ -42,7 +42,7 @@ const CommunityPostDetail = () => {
     <Wrapper>
       <PostContent post={post} />
       <Divider variant="dashed" />
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<CommentLoader />}>
         <CommentSection
           postInfo={{ id: postId, author: post.author, certified: post.certified }}
           mutateFns={mutateFns}

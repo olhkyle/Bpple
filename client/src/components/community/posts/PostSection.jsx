@@ -30,8 +30,6 @@ const PostSection = ({ queryFn, isShownQuestionButton = true }) => {
 
   const filteredPosts = filterPosts(data.posts, currentFilter);
 
-  console.log(filteredPosts);
-
   return (
     <>
       <Flex gap="10px" mt="3.5rem" mb="10px" align="center" fw="600">

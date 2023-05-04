@@ -4,6 +4,8 @@ const getPost = postId => axios.get(`/api/post/${postId}`);
 
 const addPost = postInfo => axios.post('/api/post', { postInfo });
 
+const removePost = postId => axios.delete(`/api/post/${postId}`);
+
 const addComment = ({ postId, commentInfo }) => axios.post(`/api/post/${postId}/comment`, { commentInfo });
 
 const editComment = ({ postId, commentId, commentInfo }) =>
@@ -22,6 +24,7 @@ const toggleCommentCertified = ({ postId, commentId, certified }) =>
 export {
   getPost,
   addPost,
+  removePost,
   addComment,
   editComment,
   removeComment,
