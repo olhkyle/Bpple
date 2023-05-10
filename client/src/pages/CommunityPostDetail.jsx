@@ -26,9 +26,7 @@ const Wrapper = styled(Container)`
 
 const CommunityPostDetail = () => {
   const { postId } = useParams();
-  const {
-    data: { post },
-  } = useQuery(postDetailQuery(postId));
+  const { data: post } = useQuery(postDetailQuery(postId));
 
   const mutateFns = {
     editMutate: useEditCommentMutation(postId),

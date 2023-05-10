@@ -12,6 +12,7 @@ import { addPost } from '../../../api/post';
 import { COMMUNITY_POST_PATH } from '../../../routes/routePaths';
 import userState from '../../../recoil/atoms/userState';
 import useToast from '../../../hooks/useToast';
+import { createPost } from '../../../../firebase/posts';
 
 const TitleInput = styled(Input)`
   input {
@@ -42,9 +43,7 @@ const QuestionForm = () => {
     try {
       const { title, content, subject } = data;
 
-      const {
-        data: { postId },
-      } = await addPost({ author: user.email, title, content, ...subject });
+      const postId = await createPost({ author: user.email, title, content, ...subject });
 
       navigate(`${COMMUNITY_POST_PATH}/${postId}`);
       toast.success({ message: '작성하신 글이 등록되었습니다.' });

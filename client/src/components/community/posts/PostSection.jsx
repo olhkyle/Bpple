@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { Chip, Flex, Group, List, Text, Burger, Divider } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import FILTERS from '../../../constants/filters';
 import { EmptyPostIndicator, PostItem, ShowMoreButton, SideFilter } from '..';
 import filterPosts from '../../../utils/filterPosts';
 import sortPosts from '../../../utils/sortPosts';
+import { getPosts } from '../../../../firebase/posts';
 
 const PostsContainer = styled(Flex)`
   margin-top: 1rem;
@@ -23,12 +24,16 @@ const MyPosts = styled(List)`
 
 const PostSection = ({ queryFn, isShownQuestionButton = true }) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(queryFn);
+  const { data: posts } = useQuery({
+    queryKey: ['postsFire'],
+    queryFn: getPosts,
+  });
 
   const [currentSort, setCurrentSort] = React.useState('recent');
   const [currentFilter, setCurrentFilter] = React.useState(FILTERS.all);
   const [opened, { toggle }] = useDisclosure(false);
 
-  const filteredPosts = filterPosts(data.posts, currentFilter);
+  // const filteredPosts = filterPosts(data.posts, currentFilter);
 
   return (
     <>
@@ -60,9 +65,9 @@ const PostSection = ({ queryFn, isShownQuestionButton = true }) => {
       </Flex>
       <PostsContainer>
         <SideFilter open={opened} currentFilter={currentFilter} setCurrentFilter={setCurrentFilter} />
-        {filteredPosts.length !== 0 ? (
+        {posts?.length !== 0 ? (
           <MyPosts>
-            {sortPosts(filteredPosts, currentSort).map(post => (
+            {posts?.map(post => (
               <PostItem key={post.id} post={post} />
             ))}
           </MyPosts>
@@ -70,9 +75,7 @@ const PostSection = ({ queryFn, isShownQuestionButton = true }) => {
           <EmptyPostIndicator isShownButton={isShownQuestionButton} />
         )}
       </PostsContainer>
-      {filteredPosts.length > 0 && hasNextPage && (
-        <ShowMoreButton onClick={fetchNextPage} loading={isFetchingNextPage} />
-      )}
+      {posts?.length > 0 && hasNextPage && <ShowMoreButton onClick={fetchNextPage} loading={isFetchingNextPage} />}
     </>
   );
 };

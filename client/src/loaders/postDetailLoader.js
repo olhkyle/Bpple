@@ -6,7 +6,7 @@ const postDetailLoader =
     const query = postDetailQuery(params.postId);
 
     // eslint-disable-next-line no-return-await
-    const { post } = queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));
+    const post = queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));
     return post;
   };
 

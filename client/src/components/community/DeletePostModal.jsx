@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Flex, Image, Text } from '@mantine/core';
 import { PopupModal } from '../common';
 import { COMMUNITY_PATH } from '../../routes/routePaths';
-import { removePost } from '../../api/post';
+// import { removePost } from '../../api/post';
 import useToast from '../../hooks/useToast';
+import { removePost } from '../../../firebase/posts';
 
 const DeletePostModal = ({ postId, opened, onClose }) => {
   const navigate = useNavigate();
