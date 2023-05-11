@@ -24,6 +24,7 @@ const Wrapper = styled(Container)`
   color: var(--font-color);
 `;
 
+// [] todo: postInfo의 author, certified auth 연결 후 임의 데이터 수정 필요
 const CommunityPostDetail = () => {
   const { postId } = useParams();
   const { data: post } = useQuery(postDetailQuery(postId));
@@ -41,10 +42,7 @@ const CommunityPostDetail = () => {
       <PostContent post={post} />
       <Divider variant="dashed" />
       <React.Suspense fallback={<CommentLoader />}>
-        <CommentSection
-          postInfo={{ id: postId, author: post.author, certified: post.certified }}
-          mutateFns={mutateFns}
-        />
+        <CommentSection postInfo={{ id: postId, author: 'cool jp', certified: true }} mutateFns={mutateFns} />
       </React.Suspense>
     </Wrapper>
   );
