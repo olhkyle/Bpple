@@ -3,6 +3,7 @@ export { default as SignIn } from './SignIn';
 export { default as SignUp } from './SignUp';
 export { default as ComputerIt } from './ComputerIt';
 export { default as Game } from './Game';
+export { default as PopularPosts } from './PopularPosts';
 export { default as Community } from './Community';
 export { default as CommunityMain } from './CommunityMain';
 export { default as CommunityMyPosts } from './CommunityMyPosts';
