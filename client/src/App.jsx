@@ -61,14 +61,9 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <CommunityMain /> },
           {
-            path: 'category/:category',
+            path: 'category/:sub-category',
             loader: postsByCategoryLoader(queryClient),
-            element: <CommunityCategory />,
-          },
-          {
-            path: 'post/:postId',
-            loader: postDetailLoader(queryClient),
-            element: <CommunityPostDetail />,
+            element: <CommunityCategory category="computer-it" />,
           },
         ],
       },
@@ -82,12 +77,12 @@ const router = createBrowserRouter([
             loader: postsByCategoryLoader(queryClient),
             element: <CommunityCategory />,
           },
-          {
-            path: 'post/:postId',
-            loader: postDetailLoader(queryClient),
-            element: <CommunityPostDetail />,
-          },
         ],
+      },
+      {
+        path: 'post/:postId',
+        loader: postDetailLoader(queryClient),
+        element: <CommunityPostDetail />,
       },
       {
         path: 'myposts',
