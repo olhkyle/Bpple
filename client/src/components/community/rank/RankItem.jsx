@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { AvatarIcon } from '../..';
-import { COMMUNITY_PROFILE_PATH } from '../../../routes/routePaths';
+import { PROFILE_PATH } from '../../../routes/routePaths';
 
 const AvatarWrapper = styled.td`
   display: flex;
@@ -13,12 +13,12 @@ const RankItem = ({ rank, avatarId, nickName, level, point }) => (
   <tr>
     <td>{rank}</td>
     <AvatarWrapper>
-      <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
+      <Link to={`${PROFILE_PATH}/${nickName}`}>
         <AvatarIcon avatarId={avatarId} />
       </Link>
     </AvatarWrapper>
     <td>
-      <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>{nickName}</Link>
+      <Link to={`${PROFILE_PATH}/${nickName}`}>{nickName}</Link>
     </td>
     <td>{level}</td>
     <td>{point}</td>

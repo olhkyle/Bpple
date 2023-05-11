@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { Button, Flex, Title } from '@mantine/core';
-import { COMMUNITY_QUESTION_PATH } from '../../../routes/routePaths';
+import { QUESTION_PATH } from '../../../routes/routePaths';
 
 const Container = styled(Flex)`
   flex-direction: column;
@@ -25,7 +25,7 @@ const EmptyPostIndicator = ({ isShownButton }) => {
         작성한 글이 없습니다 👷🏻‍♂️
       </Title>
       {isShownButton && (
-        <Button onClick={() => navigate(COMMUNITY_QUESTION_PATH)} w="300px" radius="xl" fz="md">
+        <Button onClick={() => navigate(QUESTION_PATH)} w="300px" radius="xl" fz="md">
           질문하기
         </Button>
       )}

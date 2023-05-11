@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { InputWrapper } from '../../common';
 import { SubjectSelect, ContentEditor } from '..';
-import { addPost } from '../../../api/post';
-import { COMMUNITY_POST_PATH } from '../../../routes/routePaths';
+// import { addPost } from '../../../api/post';
+import { POST_PATH } from '../../../routes/routePaths';
 import userState from '../../../recoil/atoms/userState';
 import useToast from '../../../hooks/useToast';
 import { createPost } from '../../../../firebase/posts';
@@ -45,7 +45,7 @@ const QuestionForm = () => {
 
       const postId = await createPost({ author: user.email, title, content, ...subject });
 
-      navigate(`${COMMUNITY_POST_PATH}/${postId}`);
+      navigate(`${POST_PATH}/${postId}`);
       toast.success({ message: '작성하신 글이 등록되었습니다.' });
     } catch (e) {
       toast.error({ message: '글 작성에 실패하였습니다. 잠시 후 다시 시도해주세요' });

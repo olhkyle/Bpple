@@ -5,7 +5,7 @@ import { FiSearch } from 'react-icons/fi';
 import { Autocomplete } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import useAutoCompleteQuery from '../../../hooks/queries/useAutoCompleteQuery';
-import { COMMUNITY_POST_PATH } from '../../../routes/routePaths';
+import { POST_PATH } from '../../../routes/routePaths';
 import { AutoCompleteItem, NothingFound } from '.';
 
 const CommunityAutoComplete = styled(Autocomplete)`
@@ -61,7 +61,7 @@ const AutoComplete = ({ width = 620, queryFn, category = '' }) => {
       itemComponent={AutoCompleteItem}
       data={posts ?? []}
       onItemSubmit={item => {
-        navigate(`${COMMUNITY_POST_PATH}/${item.id}`);
+        navigate(`${POST_PATH}/${item.id}`);
         setValue('');
       }}
       onChange={setValue}

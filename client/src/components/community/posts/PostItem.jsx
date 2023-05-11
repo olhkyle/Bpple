@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { Badge, Flex, Group, List, Text, Title } from '@mantine/core';
-import { COMMUNITY_POST_PATH } from '../../../routes/routePaths';
+import { POST_PATH } from '../../../routes/routePaths';
 import formattedDate from '../../../utils/formattedDate';
 import { AvatarIcon, AppleRecommendIcon, CompletedIcon } from '../..';
 import { CATEGORY } from '../../../constants/category';
@@ -49,7 +49,7 @@ const PostItem = ({
 
   return (
     <Post key={id} fz="15px" bg="var(--opacity-bg-color)">
-      <PostLink to={`${COMMUNITY_POST_PATH}/${id}`}>
+      <PostLink to={`${POST_PATH}/${id}`}>
         <Flex mih={50} gap="xl">
           <AvatarIcon avatarId={avatarId} />
           <PostDescription>

@@ -2,8 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Header, Group } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { BsCart } from 'react-icons/bs';
-import { CART_PATH, MAIN_PATH } from '../../../routes/routePaths';
+import { MAIN_PATH } from '../../../routes/routePaths';
 import { MenuList, ThemeButton, UserMenu, Logo } from '..';
 
 const NavContainer = styled(Header)`
@@ -28,19 +27,6 @@ const LogoLink = styled(Link)`
   margin-right: 30px;
 `;
 
-const CartLink = styled(Link)`
-  display: flex;
-  padding: 8px;
-  color: var(--font-color);
-  :hover {
-    color: var(--hover-font-color);
-  }
-`;
-
-const IconLink = styled.i`
-  font-size: 24px;
-`;
-
 const Nav = () => (
   <>
     <NavContainer>
@@ -51,11 +37,6 @@ const Nav = () => (
         <MenuList />
       </Wrapper>
       <Wrapper mr="50px">
-        <CartLink to={CART_PATH}>
-          <IconLink>
-            <BsCart />
-          </IconLink>
-        </CartLink>
         <ThemeButton />
         <UserMenu />
       </Wrapper>
