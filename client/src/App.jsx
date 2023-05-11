@@ -11,14 +11,15 @@ import {
   Home,
   CommunityMain,
   CommunityPostDetail,
-  ProfileEdit,
   CommunityQuestion,
+  ProfileEdit,
   RegisterProduct,
   SignIn,
   SignUp,
   CommunityRank,
   CommunityMyPosts,
   CommunityCategory,
+  PopularPosts,
   MyProfile,
   NotFound,
   CommunityProfile,
@@ -61,9 +62,13 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <CommunityMain /> },
           {
-            path: 'category/:sub-category',
+            path: ':sub-category',
             loader: postsByCategoryLoader(queryClient),
             element: <CommunityCategory category="computer-it" />,
+          },
+          {
+            path: 'list/popular',
+            element: <PopularPosts category="computer-it" />,
           },
         ],
       },
@@ -73,9 +78,13 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <CommunityMain /> },
           {
-            path: 'category/:category',
+            path: ':sub-category',
             loader: postsByCategoryLoader(queryClient),
             element: <CommunityCategory />,
+          },
+          {
+            path: 'list/popular',
+            element: <PopularPosts category="game" />,
           },
         ],
       },
