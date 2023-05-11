@@ -2,10 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 import { Flex, Title, Image } from '@mantine/core';
-import { getSearchedPosts } from '../../api/posts';
 import { CATEGORY } from '../../constants/category';
 import { AutoComplete, PostSection } from '.';
 import { postsByCategoryQuery } from '../../queries';
+import { getSearchedPosts } from '../../../firebase/posts';
 
 const CategoryImage = styled(Image)`
   display: flex;
@@ -18,23 +18,23 @@ const CategoryImage = styled(Image)`
   }
 `;
 
-const CommunityCategorySection = () => {
-  const { category } = useParams();
+const CommunityCategorySection = ({ category }) => {
+  const { subCategory } = useParams();
 
   return (
     <>
       <Flex gap="0.5rem" mt="4rem">
-        <CategoryImage
-          src={`/community/${category}/${category}-category.png`}
-          alt={`${category}-category-img`}
-          category={category}
-        />
+        {/* <CategoryImage
+          src={`/community/${subCategory}/${subCategory}-category.png`}
+          alt={`${subCategory}-category-img`}
+          category={subCategory}
+        /> */}
         <Flex direction="column" justify="center">
-          <Title mb="3rem">{CATEGORY[category]}</Title>
-          <AutoComplete width={720} queryFn={getSearchedPosts} category={category} />
+          {/* <Title mb="3rem">{CATEGORY[subCategory]}</Title> */}
+          <AutoComplete width={720} queryFn={getSearchedPosts} category={category} subCategory={subCategory} />
         </Flex>
       </Flex>
-      <PostSection queryFn={postsByCategoryQuery(category)} />
+      <PostSection queryFn={postsByCategoryQuery(subCategory)} />
     </>
   );
 };
