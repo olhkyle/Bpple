@@ -60,9 +60,9 @@ const router = createBrowserRouter([
         path: '/computer-it',
         element: <ComputerIt />,
         children: [
-          { index: true, element: <CommunityMain /> },
+          { index: true, element: <CommunityMain category="computer-it" /> },
           {
-            path: ':sub-category',
+            path: ':subCategory',
             loader: postsByCategoryLoader(queryClient),
             element: <CommunityCategory category="computer-it" />,
           },
@@ -76,11 +76,11 @@ const router = createBrowserRouter([
         path: '/game',
         element: <Game />,
         children: [
-          { index: true, element: <CommunityMain /> },
+          { index: true, element: <CommunityMain category="game" /> },
           {
-            path: ':sub-category',
+            path: ':subCategory',
             loader: postsByCategoryLoader(queryClient),
-            element: <CommunityCategory />,
+            element: <CommunityCategory category="game" />,
           },
           {
             path: 'list/popular',
