@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router';
 import { Flex, Text } from '@mantine/core';
 import { AvatarIcon } from '../..';
-import { COMMUNITY_POST_PATH } from '../../../routes/routePaths';
+import { POST_PATH } from '../../../routes/routePaths';
 
 const Container = styled.div`
   border: 1px solid transparent;
@@ -34,7 +34,7 @@ const AutoCompleteItem = React.forwardRef(({ title, id, avatarId, ...option }, r
   const navigate = useNavigate();
 
   return (
-    <Container ref={ref} onClick={() => navigate(`${COMMUNITY_POST_PATH}/${id}`)} {...option}>
+    <Container ref={ref} onClick={() => navigate(`${POST_PATH}/${id}`)} {...option}>
       <Flex justify="flex-start" align="center" p="20px">
         <AvatarIcon avatarId={avatarId} />
         <Content>{title}</Content>

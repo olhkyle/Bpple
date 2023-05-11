@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Link, useParams } from 'react-router-dom';
-import { Flex, Text, Title, Image } from '@mantine/core';
-import { FiArrowRight } from 'react-icons/fi';
-import { BsArrowUpRightSquare } from 'react-icons/bs';
-import { COMMUNITY_CATEGORY_PATH, COMMUNITY_PATH } from '../../routes/routePaths';
+import { useParams } from 'react-router-dom';
+import { Flex, Title, Image } from '@mantine/core';
 import { getSearchedPosts } from '../../api/posts';
 import { CATEGORY } from '../../constants/category';
 import { AutoComplete, PostSection } from '.';
@@ -26,21 +23,6 @@ const CommunityCategorySection = () => {
 
   return (
     <>
-      <Flex>
-        <Link to={`${COMMUNITY_PATH}`}>
-          <Flex gap="5px" align="center" mr="5px" fz="15px" fw="600" td="none" c="var(--font-color)">
-            <Text>Community</Text>
-            <FiArrowRight />
-          </Flex>
-        </Link>
-        <Link to={`${COMMUNITY_CATEGORY_PATH}/${category}`}>
-          <Flex gap="5px" align="center" fz="15px" fw="600" td="none" c="var(--font-color)">
-            <Text>{CATEGORY[category]}</Text>
-            <BsArrowUpRightSquare />
-          </Flex>
-        </Link>
-      </Flex>
-
       <Flex gap="0.5rem" mt="4rem">
         <CategoryImage
           src={`/community/${category}/${category}-category.png`}

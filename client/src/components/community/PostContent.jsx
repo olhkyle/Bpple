@@ -4,16 +4,10 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import { Badge, Button, Flex, Text, Title } from '@mantine/core';
-import { BsArrowUpRightSquare } from 'react-icons/bs';
 import formattedDate from '../../utils/formattedDate';
 import { AvatarIcon, CompletedIcon, AppleRecommendIcon, DeletePostModal } from '..';
-import { COMMUNITY_CATEGORY_PATH, COMMUNITY_PROFILE_PATH } from '../../routes/routePaths';
 import userState from '../../recoil/atoms/userState';
-
-const BreadCrumb = styled(Link)`
-  width: 100px;
-  cursor: pointer;
-`;
+import { PROFILE_PATH } from '../../routes/routePaths';
 
 const PostSection = styled.section`
   margin-top: 2.5rem;
@@ -45,19 +39,13 @@ const Content = styled(Text)`
 `;
 
 const PostContent = ({
-  post: { id, author, title, category, createAt, content, completed, avatarId, certified, nickName, level, point },
+  post: { id, author, title, createAt, content, completed, avatarId, certified, nickName, level, point },
 }) => {
   const userInfo = Recoil.useRecoilValue(userState);
   const [opened, { close: closeModal, open: openModal }] = useDisclosure(false);
 
   return (
     <>
-      <BreadCrumb to={`${COMMUNITY_CATEGORY_PATH}/${category.toLowerCase()}`}>
-        <Flex gap="5px" align="center" fz="15px" fw="600" td="none" c="var(--font-color)">
-          <Text>{category}</Text>
-          <BsArrowUpRightSquare />
-        </Flex>
-      </BreadCrumb>
       <PostSection>
         <Flex justify="space-between" w="100%" mb="1rem">
           <Flex gap="1rem" mt="0.2rem" mb="0.5rem" h="30px">
@@ -76,7 +64,7 @@ const PostContent = ({
         <Text mt="0.5rem" ml="0.2rem" fz="15px" c="grey">
           {formattedDate(new Date(createAt))}
         </Text>
-        <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
+        <Link to={`${PROFILE_PATH}/${nickName}`}>
           <AuthorProfile>
             <AvatarIcon avatarId={avatarId} />
             <Flex display="flex" gap="10px" direction="column">

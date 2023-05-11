@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Button, Container, Flex, Text } from '@mantine/core';
 import { BsArrowRightCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-import { COMMUNITY_PATH } from '../routes/routePaths';
+import { MAIN_PATH } from '../routes/routePaths';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -33,7 +33,7 @@ const PreparePage = () => {
           fz="16px"
           color="green"
           rightIcon={<BsArrowRightCircleFill size="18" />}
-          onClick={() => navigate(COMMUNITY_PATH)}>
+          onClick={() => navigate(MAIN_PATH)}>
           커뮤니티로 가기
         </Button>
       </Flex>

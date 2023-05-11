@@ -5,7 +5,7 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 import { Badge, Box, Button, CloseButton, Divider, Flex, Group, List, Text } from '@mantine/core';
 import { useRecoilValue } from 'recoil';
 import { AvatarIcon, AppleRecommendIcon, TextEditor, UsefulCommentChip, AppleRecommendButton } from '../..';
-import { COMMUNITY_PROFILE_PATH } from '../../../routes/routePaths';
+import { PROFILE_PATH } from '../../../routes/routePaths';
 import formattedDate from '../../../utils/formattedDate';
 import transientOptions from '../../../utils/transientOptions';
 import useTextEditor from '../../../hooks/useTextEditor';
@@ -124,12 +124,12 @@ const Comment = ({
           )}
         </CommentHeader>
         <CommentBody>
-          <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
+          <Link to={`${PROFILE_PATH}/${nickName}`}>
             <AvatarIcon avatarId={avatarId} />
           </Link>
           <Flex direction="column" w="100%">
             <Flex gap="10px">
-              <Link to={`${COMMUNITY_PROFILE_PATH}/${nickName}`}>
+              <Link to={`${PROFILE_PATH}/${nickName}`}>
                 <Flex gap="10px" align="center">
                   <CommentNickName>{nickName}</CommentNickName>
                   <CommentLevelBadge variant="outline">{`L${level}`}</CommentLevelBadge>

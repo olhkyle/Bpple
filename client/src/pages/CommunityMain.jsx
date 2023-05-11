@@ -5,7 +5,7 @@ import { Container, Image, List, Text, Title } from '@mantine/core';
 import { AutoComplete, Tutorials } from '../components';
 import { getSearchedPosts } from '../api/posts';
 import categoryList from '../constants/categoryList';
-import { COMMUNITY_CATEGORY_PATH } from '../routes/routePaths';
+import { COMPUTER_IT_PATH } from '../routes/routePaths';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -85,7 +85,7 @@ const CommunityMain = () => (
     <CategoryList>
       {categoryList.map(({ imgPath, category }) => (
         <Category key={imgPath}>
-          <Link to={`${COMMUNITY_CATEGORY_PATH}/${category.toLowerCase()}`}>
+          <Link to={`${COMPUTER_IT_PATH}/${category.toLowerCase()}`}>
             <Image src={imgPath} alt={`category-${category}`} />
             <CategoryDescription>{category}</CategoryDescription>
           </Link>

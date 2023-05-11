@@ -9,7 +9,6 @@ import { Layout, RootError } from './components';
 import { postsByCategoryLoader, myPostsLoader, postDetailLoader, rankLoader, myProfileLoader } from './loaders';
 import {
   Home,
-  Community,
   CommunityMain,
   CommunityPostDetail,
   ProfileEdit,
@@ -24,7 +23,9 @@ import {
   NotFound,
   CommunityProfile,
   CommunityFaq,
-  PreparePage,
+  // PreparePage,
+  ComputerIt,
+  Game,
 } from './pages';
 import { SIGNIN_PATH } from './routes/routePaths';
 
@@ -55,13 +56,10 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: '/community',
-        element: <Community />,
+        path: '/computer-it',
+        element: <ComputerIt />,
         children: [
-          {
-            index: true,
-            element: <CommunityMain />,
-          },
+          { index: true, element: <CommunityMain /> },
           {
             path: 'category/:category',
             loader: postsByCategoryLoader(queryClient),
@@ -72,22 +70,39 @@ const router = createBrowserRouter([
             loader: postDetailLoader(queryClient),
             element: <CommunityPostDetail />,
           },
+        ],
+      },
+      {
+        path: '/game',
+        element: <Game />,
+        children: [
+          { index: true, element: <CommunityMain /> },
           {
-            path: 'me',
-            loader: myPostsLoader(queryClient),
-            element: <CommunityMyPosts />,
+            path: 'category/:category',
+            loader: postsByCategoryLoader(queryClient),
+            element: <CommunityCategory />,
           },
-          { path: 'faq', element: <CommunityFaq /> },
           {
-            path: 'question',
-            element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<CommunityQuestion />} />,
-          },
-          { path: 'rank', loader: rankLoader(queryClient), element: <CommunityRank /> },
-          {
-            path: 'profile/:nickName',
-            element: <CommunityProfile />,
+            path: 'post/:postId',
+            loader: postDetailLoader(queryClient),
+            element: <CommunityPostDetail />,
           },
         ],
+      },
+      {
+        path: 'myposts',
+        loader: myPostsLoader(queryClient),
+        element: <CommunityMyPosts />,
+      },
+      { path: 'guide-faq', element: <CommunityFaq /> },
+      {
+        path: 'question',
+        element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<CommunityQuestion />} />,
+      },
+      { path: 'rank', loader: rankLoader(queryClient), element: <CommunityRank /> },
+      {
+        path: 'profile/:nickName',
+        element: <CommunityProfile />,
       },
       {
         path: '/profile',
@@ -99,16 +114,8 @@ const router = createBrowserRouter([
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<ProfileEdit />} />,
       },
       {
-        path: '/profile/register',
+        path: '/fav-category',
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<RegisterProduct />} />,
-      },
-      {
-        path: '/cart',
-        element: <PreparePage />,
-      },
-      {
-        path: '/shop/*',
-        element: <PreparePage />,
       },
       {
         path: '*',
