@@ -3,9 +3,9 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { Container, Image, List, Text, Title } from '@mantine/core';
 import { AutoComplete, Tutorials } from '../components';
-import { getSearchedPosts } from '../api/posts';
 import categoryList from '../constants/categoryList';
 import { COMPUTER_IT_PATH } from '../routes/routePaths';
+import { getSearchedPosts } from '../../firebase/posts';
 
 const Wrapper = styled(Container)`
   min-width: 1024px;
@@ -65,7 +65,7 @@ const CategoryDescription = styled.p`
   text-decoration: none;
 `;
 
-const CommunityMain = () => (
+const CommunityMain = ({ category }) => (
   <Wrapper>
     <Description>
       <Title size="52px" mt="24px" mb="40px">
@@ -74,7 +74,7 @@ const CommunityMain = () => (
       <Text fz="26px" mb="40px">
         전 세계 FineApple 고객들과 소통해 보세요 🚀
       </Text>
-      <AutoComplete width={720} queryFn={getSearchedPosts} />
+      <AutoComplete width={720} queryFn={getSearchedPosts} category={category} />
     </Description>
 
     <Image src="/community/community-main.png" alt="community" pt="6rem" pb="3rem" />

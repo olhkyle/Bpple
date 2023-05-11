@@ -41,13 +41,13 @@ const CommunityAutoComplete = styled(Autocomplete)`
 
 const LIMIT_OF_POSTS = 10;
 
-const AutoComplete = ({ width = 620, queryFn, category = '' }) => {
+const AutoComplete = ({ width = 620, queryFn, category = '', subCategory = '' }) => {
   const [value, setValue] = React.useState('');
   const [debounced] = useDebouncedValue(value, 500);
 
   const navigate = useNavigate();
 
-  const posts = useAutoCompleteQuery({ inputValue: debounced, queryFn, category });
+  const posts = useAutoCompleteQuery({ inputValue: debounced, queryFn, category, subCategory });
 
   return (
     <CommunityAutoComplete

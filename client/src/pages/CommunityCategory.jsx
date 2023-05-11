@@ -14,9 +14,9 @@ const Wrapper = styled(Container)`
   color: var(--font-color);
 `;
 
-const CommunityCategory = () => (
+const CommunityCategory = ({ category }) => (
   <Wrapper>
-    <CommunityCategorySection />
+    <CommunityCategorySection category={category} />
   </Wrapper>
 );
 
