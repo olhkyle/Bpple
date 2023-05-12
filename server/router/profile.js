@@ -3,8 +3,6 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const users = require('../mock-data/users');
 
-const TOKEN = 'accessToken';
-
 // 사용자 프로필
 router.post('/', (req, res) => {
 	try {
@@ -32,11 +30,12 @@ router.post('/', (req, res) => {
 			avatarId,
 			aboutMe,
 			birthDate,
+			email,
 		} = user;
 
 		res.send({
 			nickName,
-			name: firstName + lastName,
+			name: lastName + firstName,
 			country,
 			phoneNumber,
 			products,
@@ -45,10 +44,11 @@ router.post('/', (req, res) => {
 			avatarId,
 			aboutMe,
 			birthDate,
+			email,
 		});
 	} catch (e) {
 		console.error('😱 사용자 인증 실패..', e);
-		res.status(401).send({ auth: 'fail' });
+		res.status(403).send({ auth: 'fail' });
 	}
 });
 
@@ -99,6 +99,14 @@ router.post('/register-product', (req, res) => {
 		console.error('😱 사용자 인증 실패..', e);
 		res.status(401).send({ auth: 'fail' });
 	}
+});
+
+router.get('/community/:nickName', (req, res) => {
+	const { nickName } = req.params;
+
+	const userInfo = users.findUserProfileByNickName(nickName);
+
+	res.send({ userInfo });
 });
 
 module.exports = router;

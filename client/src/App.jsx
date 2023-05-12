@@ -5,14 +5,30 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Global } from '@emotion/react';
 import GlobalStyle from './styles/GlobalStyle';
 import AuthenticationGuard from './guard/AuthenticationGuard';
-import { Community, CommunityPost, ProfileEdit, Question, RegisterProduct, SignIn, SignUp } from './pages';
-import CommunityMe, { communityMeLoader } from './pages/CommunityMe';
-import Profile, { profileLoader } from './pages/Profile';
-import { communityPostLoader } from './pages/CommunityPost';
-import Rank, { rankLoader } from './pages/Rank';
-import { Layout } from './components';
+import { Layout, RootError } from './components';
+import { postsByCategoryLoader, myPostsLoader, postDetailLoader, rankLoader, myProfileLoader } from './loaders';
+import {
+  Home,
+  CommunityMain,
+  CommunityPostDetail,
+  CommunityQuestion,
+  ProfileEdit,
+  RegisterProduct,
+  SignIn,
+  SignUp,
+  CommunityRank,
+  CommunityMyPosts,
+  CommunityCategory,
+  PopularPosts,
+  MyProfile,
+  NotFound,
+  CommunityProfile,
+  CommunityFaq,
+  // PreparePage,
+  ComputerIt,
+  Game,
+} from './pages';
 import { SIGNIN_PATH } from './routes/routePaths';
-import CommunityCategory, { communityCategoryLoader } from './pages/CommunityCategory';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +42,12 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <RootError />,
     children: [
+      {
+        index: true,
+        element: <Home />,
+      },
       {
         path: '/signin',
         element: <SignIn />,
@@ -36,40 +57,73 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: '/community',
-        element: <Community />,
+        path: '/computer-it',
+        element: <ComputerIt />,
         children: [
+          { index: true, element: <CommunityMain category="computer-it" /> },
           {
-            path: ':category',
-            loader: communityCategoryLoader(queryClient),
-            element: <CommunityCategory />,
+            path: ':subCategory',
+            loader: postsByCategoryLoader(queryClient),
+            element: <CommunityCategory category="computer-it" />,
           },
           {
-            path: 'post/:postId',
-            loader: communityPostLoader(queryClient),
-            element: <CommunityPost />,
+            path: 'list/popular',
+            element: <PopularPosts category="computer-it" />,
           },
-          {
-            path: 'me',
-            loader: communityMeLoader(queryClient),
-            element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<CommunityMe />} />,
-          },
-          { path: 'question', element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Question />} /> },
-          { path: 'rank', loader: rankLoader(queryClient), element: <Rank /> },
         ],
       },
       {
+        path: '/game',
+        element: <Game />,
+        children: [
+          { index: true, element: <CommunityMain category="game" /> },
+          {
+            path: ':subCategory',
+            loader: postsByCategoryLoader(queryClient),
+            element: <CommunityCategory category="game" />,
+          },
+          {
+            path: 'list/popular',
+            element: <PopularPosts category="game" />,
+          },
+        ],
+      },
+      {
+        path: 'post/:postId',
+        loader: postDetailLoader(queryClient),
+        element: <CommunityPostDetail />,
+      },
+      {
+        path: 'myposts',
+        loader: myPostsLoader(queryClient),
+        element: <CommunityMyPosts />,
+      },
+      { path: 'guide-faq', element: <CommunityFaq /> },
+      {
+        path: 'question',
+        element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<CommunityQuestion />} />,
+      },
+      { path: 'rank', loader: rankLoader(queryClient), element: <CommunityRank /> },
+      {
+        path: 'profile/:nickName',
+        element: <CommunityProfile />,
+      },
+      {
         path: '/profile',
-        loader: profileLoader(queryClient),
-        element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<Profile />} />,
+        loader: myProfileLoader(queryClient),
+        element: <MyProfile />,
       },
       {
         path: '/profile/edit',
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<ProfileEdit />} />,
       },
       {
-        path: '/profile/register',
+        path: '/fav-category',
         element: <AuthenticationGuard redirectTo={SIGNIN_PATH} element={<RegisterProduct />} />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },

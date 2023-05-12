@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -20,18 +21,12 @@ const SignInForm = () => {
     handleSubmit,
     register,
     reset,
-    setFocus,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(signinScheme) });
+  } = useForm({ resolver: zodResolver(signinScheme), shouldFocusError: true });
 
   const [errorMessage, setErrorMessage] = React.useState('');
   const navigate = useNavigate();
   const setUser = useSetRecoilState(userState);
-
-  React.useEffect(() => {
-    setFocus('email');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errorMessage]);
 
   const onSubmit = async data => {
     try {
@@ -49,12 +44,12 @@ const SignInForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack w="340px" spacing="12px">
         <InputWrapper label="이메일" error={errors?.email?.message}>
-          <Input {...register('email')} placeholder="FineApple ID" />
+          <Input {...register('email')} placeholder="FineApple ID" autoFocus />
         </InputWrapper>
         <InputWrapper error={errorMessage || errors?.password?.message}>
           <Input type="password" {...register('password')} placeholder="암호" />
         </InputWrapper>
-        <Button mt="xl" size="lg" type="submit">
+        <Button type="submit" mt="xl" size="lg" radius="10px">
           로그인
         </Button>
       </Stack>

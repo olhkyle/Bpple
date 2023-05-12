@@ -1,6 +1,6 @@
 import React from 'react';
-import { Modal } from '@mantine/core';
 import styled from '@emotion/styled';
+import { Modal } from '@mantine/core';
 
 const ModalContainer = styled(Modal)`
   position: relative;
@@ -8,6 +8,13 @@ const ModalContainer = styled(Modal)`
 
   section {
     height: 820px;
+    background-color: var(--body-bg-color);
+  }
+
+  .mantine-Modal-header,
+  .mantine-Modal-body {
+    color: var(--font-color);
+    background-color: var(--body-bg-color);
   }
 
   button.mantine-Modal-close {

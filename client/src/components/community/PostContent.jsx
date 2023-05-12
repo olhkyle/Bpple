@@ -1,12 +1,13 @@
 import React from 'react';
+import Recoil from 'recoil';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { Badge, Flex, Text, Title } from '@mantine/core';
-import { BsArrowUpRightSquare } from 'react-icons/bs';
+import { useDisclosure } from '@mantine/hooks';
+import { Badge, Button, Flex, Text, Title } from '@mantine/core';
 import formattedDate from '../../utils/formattedDate';
-import { ProfileAvatar } from '../common';
-import { CheckedCircleIcon, AppleRecommendIcon } from '.';
-import { COMMUNITY_PATH } from '../../routes/routePaths';
+import { AvatarIcon, CompletedIcon, AppleRecommendIcon, DeletePostModal } from '..';
+import userState from '../../recoil/atoms/userState';
+import { PROFILE_PATH } from '../../routes/routePaths';
 
 const PostSection = styled.section`
   margin-top: 2.5rem;
@@ -37,21 +38,25 @@ const Content = styled(Text)`
   word-break: keep-all;
 `;
 
-const PostContent = ({ post }) => {
-  const { title, category, createAt, content, completed, avatarId, certified, nickName, level, point } = post;
+const PostContent = ({
+  post: { id, author, title, createAt, content, completed, avatarId, certified, nickName, level, point },
+}) => {
+  const userInfo = Recoil.useRecoilValue(userState);
+  const [opened, { close: closeModal, open: openModal }] = useDisclosure(false);
 
   return (
     <>
-      <Link to={`${COMMUNITY_PATH}/${category.toLowerCase()}`}>
-        <Flex gap="5px" align="center" fz="15px" fw="600" td="none" c="var(--font-color)">
-          <Text>{category}</Text>
-          <BsArrowUpRightSquare />
-        </Flex>
-      </Link>
       <PostSection>
-        <Flex gap="1rem" mb="0.5rem" ml="auto" h="30px">
-          <CheckedCircleIcon completed={completed} />
-          {certified && <AppleRecommendIcon />}
+        <Flex justify="space-between" w="100%" mb="1rem">
+          <Flex gap="1rem" mt="0.2rem" mb="0.5rem" h="30px">
+            <CompletedIcon completed={completed} />
+            {certified && <AppleRecommendIcon />}
+          </Flex>
+          {author === userInfo?.email && (
+            <Button radius="xl" color="red" variant="outline" onClick={openModal}>
+              질문 삭제하기
+            </Button>
+          )}
         </Flex>
 
         <PostTitle>{title}</PostTitle>
@@ -59,23 +64,28 @@ const PostContent = ({ post }) => {
         <Text mt="0.5rem" ml="0.2rem" fz="15px" c="grey">
           {formattedDate(new Date(createAt))}
         </Text>
-        <AuthorProfile>
-          <ProfileAvatar avatarId={avatarId} />
-          <Flex display="flex" gap="10px" direction="column">
-            <Text mt="-3px" ml="2px" fz="21px" fw="500">
-              {nickName}
-            </Text>
-            <Flex gap="8px" align="center">
-              <Badge variant="outline" size="lg" fz="14px">
-                레벨 {level}
-              </Badge>
-              <Badge variant="outline" size="lg" fz="14px">
-                포인트 {point}
-              </Badge>
+        <Link to={`${PROFILE_PATH}/${nickName}`}>
+          <AuthorProfile>
+            <AvatarIcon avatarId={avatarId} />
+            <Flex display="flex" gap="10px" direction="column">
+              <Text mt="-3px" ml="2px" fz="21px" fw="500" c="var(--font-color)">
+                {nickName}
+              </Text>
+              <Flex gap="8px" align="center">
+                <Badge variant="outline" size="lg" fz="14px">
+                  레벨 {level}
+                </Badge>
+                <Badge variant="outline" size="lg" fz="14px">
+                  포인트 {point}
+                </Badge>
+              </Flex>
             </Flex>
-          </Flex>
-        </AuthorProfile>
-        <Content>{content}</Content>
+          </AuthorProfile>
+        </Link>
+        <Content>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </Content>
+        <DeletePostModal postId={id} opened={opened} onClose={closeModal} />
       </PostSection>
     </>
   );

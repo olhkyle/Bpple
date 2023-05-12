@@ -30,27 +30,27 @@ const signupScheme = z
   });
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+  const toast = useToast();
+
   const {
     handleSubmit,
     register,
     setValue,
-    formState: { isDirty, errors },
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(signupScheme),
+    shouldFocusError: true,
   });
 
-  const navigate = useNavigate();
-  const toast = useToast();
-
   const onSubmit = async data => {
-    if (!isDirty) return;
-
     try {
       await signUp(data);
-      toast.create({ message: '회원가입에 성공하였습니다.' });
+
+      toast.success({ message: '회원가입에 성공하였습니다.' });
       navigate(SIGNIN_PATH);
     } catch (e) {
-      console.error(e);
+      toast.error({ message: '회원가입에 실패하였습니다.' });
     }
   };
 
@@ -114,7 +114,7 @@ const SignUpForm = () => {
           <PhoneNumberInput {...register('phoneNumber')} setValue={setValue} placeholder="전화번호" />
         </InputWrapper>
 
-        <Button mt="xl" size="lg" type="submit">
+        <Button type="submit" mt="xl" size="lg" radius="10px">
           회원가입
         </Button>
       </Stack>

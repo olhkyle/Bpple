@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 const staleTime = 3000;
 
@@ -9,17 +9,17 @@ const staleTime = 3000;
  * queryFn: () => promise
  * }} props
  */
-const useAutoCompleteQuery = ({ inputValue, queryFn, category }) => {
+const useAutoCompleteQuery = ({ inputValue, queryFn, category, subCategory }) => {
   const [value, setValue] = React.useState([]);
 
   const { data: posts, isFetched } = useQuery({
-    queryKey: ['posts', inputValue, category],
+    queryKey: ['posts', inputValue, category, subCategory],
     queryFn: async () => {
-      const { data: posts } = await queryFn({ keyword: inputValue, category });
-      return posts;
+      const data = await queryFn({ keyword: inputValue, category, subCategory });
+      return data;
     },
     staleTime,
-    select: data => data.posts.map(post => ({ ...post, value: post.id })),
+    select: posts => posts.map(post => ({ ...post, value: post.id })),
   });
 
   React.useEffect(() => {

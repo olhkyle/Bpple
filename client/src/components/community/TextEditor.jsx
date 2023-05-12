@@ -28,19 +28,19 @@ const TextEditor = ({ editor, useBubble = true }) => (
       {useBubble && editor && (
         <BubbleMenu editor={editor}>
           <EditorButtonGroup>
-            <RichTextEditor.Bold />
-            <RichTextEditor.Italic />
-            <RichTextEditor.Link />
+            <RichTextEditor.Bold tabIndex={-1} />
+            <RichTextEditor.Italic tabIndex={-1} />
+            <RichTextEditor.Link tabIndex={-1} />
           </EditorButtonGroup>
         </BubbleMenu>
       )}
       <EditorButtonGroup>
-        <RichTextEditor.Bold />
-        <RichTextEditor.Italic />
-        <RichTextEditor.Underline />
-        <RichTextEditor.Strikethrough />
-        <RichTextEditor.Highlight />
-        <RichTextEditor.ClearFormatting />
+        <RichTextEditor.Bold tabIndex={-1} />
+        <RichTextEditor.Italic tabIndex={-1} />
+        <RichTextEditor.Underline tabIndex={-1} />
+        <RichTextEditor.Strikethrough tabIndex={-1} />
+        <RichTextEditor.Highlight tabIndex={-1} />
+        <RichTextEditor.ClearFormatting tabIndex={-1} />
       </EditorButtonGroup>
     </RichTextEditor.Toolbar>
     <RichTextEditor.Content bg="var(--body-bg-color)" c="var(--font-color)" />

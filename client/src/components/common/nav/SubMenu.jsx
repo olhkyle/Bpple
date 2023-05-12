@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
-import { Menu, Text } from '@mantine/core';
 import React from 'react';
+import styled from '@emotion/styled';
+import { Flex, Menu, Text } from '@mantine/core';
 
 const SubMenuContainer = styled(Menu.Dropdown)`
   min-width: 100vw;
@@ -26,14 +26,6 @@ const SubMenuWrapper = styled.div`
   flex-direction: row;
 `;
 
-const SubMenuWrapperLeft = styled.div`
-  width: 40%;
-`;
-
-const SubMenuWrapperRight = styled.div`
-  width: 60%;
-`;
-
 const SubMenuLabel = styled(Text)`
   color: var(--footer-font-color);
   font-size: 15px;
@@ -43,6 +35,8 @@ const SubMenuLabel = styled(Text)`
 `;
 
 const SubMenuItem = styled(Menu.Item)`
+  font-size: ${({ size }) => (size === 'sm' ? '15px' : '20px')};
+  font-weight: ${({ size }) => (size === 'sm' ? '400' : '700')};
   color: var(--font-color);
   width: fit-content;
   padding: 3px 5px;
@@ -52,26 +46,10 @@ const SubMenuItem = styled(Menu.Item)`
   }
 `;
 
-const MenuItemLg = styled(SubMenuItem)`
-  font-size: 20px;
-  font-weight: 700;
-`;
-
-const MenuItemSm = styled(SubMenuItem)`
-  font-size: 15px;
-  font-weight: 400;
-`;
-
 /**
  * @param {{
- * leftLabel?: string
- * leftMeunItems: Array<{
- *  size: 'sm' | 'lg',
- *  content: string,
- *  path: string
- * }>
- * rightLabel?: string
- * rightMeunItems: Array<{
+ * label?: string
+ * meunItems: Array<{
  *  size: 'sm' | 'lg',
  *  content: string,
  *  path: string
@@ -79,37 +57,23 @@ const MenuItemSm = styled(SubMenuItem)`
  *
  * }} props
  */
-const SubMenu = ({ leftLabel, leftMenuItems, rightLabel, rightMenuItems }) => (
+const SubMenu = ({ label, menuItems }) => (
   <SubMenuContainer>
     <SubMenuWrapper>
-      <SubMenuWrapperLeft>
-        {leftLabel && <SubMenuLabel>{leftLabel}</SubMenuLabel>}
-        {leftMenuItems.map(({ size, content, path }) =>
-          size === 'sm' ? (
-            <MenuItemSm key={path} component="a" href={path}>
+      <Flex direction="column">
+        {label && <SubMenuLabel>{label}</SubMenuLabel>}
+        {menuItems.map(({ size, content, path, onClick }) =>
+          path ? (
+            <SubMenuItem key={path} size={size} component="a" href={path}>
               {content}
-            </MenuItemSm>
+            </SubMenuItem>
           ) : (
-            <MenuItemLg key={path} component="a" href={path}>
+            <SubMenuItem key={content} size={size} component="a" onClick={onClick}>
               {content}
-            </MenuItemLg>
+            </SubMenuItem>
           )
         )}
-      </SubMenuWrapperLeft>
-      <SubMenuWrapperRight>
-        {rightLabel && <SubMenuLabel>{rightLabel}</SubMenuLabel>}
-        {rightMenuItems.map(({ size, content, path }) =>
-          size === 'sm' ? (
-            <MenuItemSm key={path} component="a" href={path}>
-              {content}
-            </MenuItemSm>
-          ) : (
-            <MenuItemLg key={path} component="a" href={path}>
-              {content}
-            </MenuItemLg>
-          )
-        )}
-      </SubMenuWrapperRight>
+      </Flex>
     </SubMenuWrapper>
   </SubMenuContainer>
 );

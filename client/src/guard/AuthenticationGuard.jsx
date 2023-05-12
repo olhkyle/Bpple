@@ -5,9 +5,6 @@ import { Navigate } from 'react-router-dom';
 import { auth } from '../api/auth';
 import userState from '../recoil/atoms/userState';
 
-/**
- * Protected Route
- */
 const AuthenticationGuard = ({ redirectTo, element }) => {
   const { isFetched, error } = useQuery({
     queryKey: ['isAuthenticated'],

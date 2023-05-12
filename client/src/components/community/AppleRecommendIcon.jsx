@@ -11,18 +11,14 @@ const AppleLogoIcon = styled.i`
   color: ${({ color }) => color};
 `;
 
-const Desc = styled(Text)`
-  color: ${({ color }) => color};
-`;
-
 const AppleRecommendIcon = ({ color = 'var(--font-color)' }) => (
   <Flex gap="5px" align="center">
     <AppleLogoIcon color={color}>
       <AiFillApple />
     </AppleLogoIcon>
-    <Desc pt="3px" fz="15px" fw="500" color={color}>
+    <Text c={color} pt="3px" fz="15px" fw="500">
       FineApple 권장 답변
-    </Desc>
+    </Text>
   </Flex>
 );
 

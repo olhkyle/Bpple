@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { UserProfileEditForm } from '../components/profile';
+import { ProfileEditForm } from '../components';
 import { Loader } from '../components/common';
 
 const Title = styled.h1`
@@ -14,7 +14,7 @@ const ProfileEdit = () => (
   <>
     <Title>프로필 수정</Title>
     <React.Suspense fallback={<Loader />}>
-      <UserProfileEditForm />
+      <ProfileEditForm />
     </React.Suspense>
   </>
 );

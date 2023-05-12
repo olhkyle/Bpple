@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 const posts = require('../mock-data/posts');
 const comments = require('../mock-data/comments');
 const users = require('../mock-data/users');
@@ -34,10 +35,10 @@ router.get('/:postId', (req, res) => {
 router.post('/', (req, res) => {
 	const { postInfo } = req.body;
 
-	posts.createPost(postInfo);
+	const postId = posts.createPost(postInfo);
 	users.updatePoint(postInfo.author, 10);
 
-	res.send({ postInfo });
+	res.send({ postId });
 });
 
 // 커뮤니티 글 수정
@@ -63,69 +64,144 @@ router.delete('/:postId', (req, res) => {
 
 // comment 가져오기
 router.get('/:postId/comment', (req, res) => {
-	const { postId } = req.params;
-	const { page } = req.query;
+	let isAdmin = false;
 
-	const startIdx = PAGE_SIZE * (page - 1);
+	try {
+		const accessToken = req.cookies.accessToken;
 
-	const commentList = comments.getPostComments(postId);
+		const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+		isAdmin = users.checkUserIsAdmin(decoded.email);
+	} catch (e) {
+		isAdmin = false;
+	} finally {
+		const { postId } = req.params;
+		const { page } = req.query;
 
-	const commentsData = commentList
-		.slice(startIdx, startIdx + PAGE_SIZE)
-		.map((comment) => {
-			const { nickName, avatarId, level, point } = users.findUserByEmail(
-				comment.author
-			);
+		const startIdx = PAGE_SIZE * (page - 1);
 
-			return { ...comment, nickName, avatarId, level, point };
+		const commentList = comments.getPostComments(postId);
+
+		const commentsData = commentList
+			.slice(startIdx, startIdx + PAGE_SIZE)
+			.map((comment) => {
+				const { nickName, avatarId, level, point } = users.findUserByEmail(
+					comment.author
+				);
+
+				return { ...comment, nickName, avatarId, level, point };
+			});
+
+		res.send({
+			isAdmin,
+			comments: commentsData,
+			totalLength: commentList.length,
 		});
-
-	res.send({
-		comments: commentsData,
-		totalLength: commentList.length,
-	});
+	}
 });
 
 // 커뮤니티 글에 댓글 추가
 router.post('/:postId/comment', (req, res) => {
+	const accessToken = req.cookies.accessToken;
 	const { postId } = req.params;
 	const { commentInfo } = req.body;
 
-	comments.createComment({ ...commentInfo, postId });
+	try {
+		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	res.send({ postId });
+		comments.createComment({ ...commentInfo, postId });
+
+		res.send({ postId });
+	} catch {
+		res
+			.status(403)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
+	}
 });
 
 // 커뮤니티 글에 댓글 수정
 router.patch('/:postId/comment/:commentId', (req, res) => {
-	const { commentId } = req.params;
-	const { commentInfo } = req.body;
+	const accessToken = req.cookies.accessToken;
 
-	comments.updateComment(commentId, commentInfo);
+	try {
+		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	res.send({ commentId });
+		const { commentId } = req.params;
+		const { commentInfo } = req.body;
+
+		comments.updateComment(commentId, commentInfo);
+
+		res.send({ commentId });
+	} catch {
+		res
+			.status(403)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
+	}
 });
 
 // useful 댓글 설정
 router.patch('/:postId/comment/useful/:commentId', (req, res) => {
-	const { commentId, postId } = req.params;
-	const { useful } = req.body;
-	const { author } = posts.getPost(postId);
+	const accessToken = req.cookies.accessToken;
 
-	comments.updateUsefulComment(commentId, useful);
-	posts.updateCompletedPost(postId, useful);
-	users.updatePoint(author, useful ? 20 : -20);
+	try {
+		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	res.send({ commentId, postId });
+		const { commentId, postId } = req.params;
+		const { useful } = req.body;
+		const { author } = posts.getPost(postId);
+
+		comments.updateUsefulComment(commentId, useful);
+		posts.updateCompletedPost(postId, useful);
+		users.updatePoint(author, useful ? 20 : -20);
+
+		res.send({ commentId, postId });
+	} catch {
+		res
+			.status(403)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
+	}
+});
+
+router.patch('/:postId/comment/certified/:commentId', (req, res) => {
+	const accessToken = req.cookies.accessToken;
+
+	try {
+		const decode = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
+
+		if (!users.checkUserIsAdmin(decode.email)) throw new Error();
+
+		const { commentId, postId } = req.params;
+		const { certified } = req.body;
+
+		comments.updateCertifiedComment(commentId, certified);
+		posts.updateCertifiedPost(postId, certified);
+
+		res.send({ commentId, postId });
+	} catch {
+		res.status(403).send({ error: '관리자 계정이 아닙니다.' });
+	}
 });
 
 // 커뮤니티 글에 댓글 삭제
-router.delete('/:postid/comment/:commentId', (req, res) => {
-	const { commentId } = req.params;
+router.delete('/:postId/comment/:commentId', (req, res) => {
+	const accessToken = req.cookies.accessToken;
 
-	comments.deleteComment(commentId);
+	try {
+		jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
 
-	res.send({ commentId });
+		const { commentId, postId } = req.params;
+		const { certified, useful } = comments.getComment(commentId);
+
+		if (certified) posts.updateCertifiedPost(postId, false);
+		if (useful) posts.updateCompletedPost(postId, false);
+
+		comments.deleteComment(commentId);
+
+		res.send({ commentId });
+	} catch {
+		res
+			.status(403)
+			.send({ error: '로그인이 만료되었습니다. 다시 로그인 후 시도해주세요.' });
+	}
 });
 
 module.exports = router;

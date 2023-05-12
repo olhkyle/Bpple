@@ -58,7 +58,7 @@ const ItemImage = styled(Image)`
   }
 `;
 
-const SelectProductAccordionPanel = ({ productTypes, selectedProductType, onSelectProduct }) => (
+const SelectProductAccordionPanel = ({ productTypes, selectedProductType }) => (
   <Accordion.Panel>
     <Flex ml="10px" gap="10px" wrap="wrap">
       {Object.entries(productTypes).map(([productType, productName]) => (
@@ -66,9 +66,6 @@ const SelectProductAccordionPanel = ({ productTypes, selectedProductType, onSele
           <RadioInput
             checked={selectedProductType === productType}
             value={productType}
-            onClick={() => {
-              if (onSelectProduct) onSelectProduct(productType);
-            }}
             label={
               <ItemCard>
                 <ItemImage src={productThumbnail[productType]} alt={`product-${productType}`} />

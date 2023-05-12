@@ -1,14 +1,13 @@
-import useCommentMutation from './useCommentMutation';
-import commentsQueryKey from '../../constants/commentsQueryKey';
 import { toggleUseful } from '../../constants/mutateComment';
-import { checkIsUseFul } from '../../api/post';
+import { toggleCommentUseFul } from '../../api/post';
+import usePostInfoMutation from './usePostInfoMutation';
 
 const useToggleCommentUsefulMutation = postId =>
-  useCommentMutation({
-    requestFn: checkIsUseFul,
-    queryKeyword: commentsQueryKey,
+  usePostInfoMutation({
     postId,
-    onMutate: toggleUseful,
+    requestFn: toggleCommentUseFul,
+    commentUpdateFn: toggleUseful,
+    postUpdateFn: (oldData, variables) => ({ ...oldData, post: { ...oldData.post, completed: variables.useful } }),
   });
 
 export default useToggleCommentUsefulMutation;
