@@ -14,7 +14,7 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import app from './app';
+import app from './firebaseApp';
 import { specifySnapshotIntoData, formattedCreateAt, formattedUpdateAt } from './utils';
 
 const db = getFirestore(app);
